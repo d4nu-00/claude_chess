@@ -74,3 +74,14 @@ silently match nothing (empty labels, missing ACPL).
   `<label>-rerun`; `report` groups by config + Maia level, so they merge automatically.
 - Engines get `ENGINE_START_TIMEOUT = 120 s` (baselines.py) to start: python-chess's 10 s default
   failed 8 exp1 games (`game failed: TimeoutError()`) with ~20 parallel games + analysis running.
+
+## Offline position test suite (`claude-chess suite`, `src/claude_chess/suite.py`)
+- `suite build --n 100 --out suites/v1.jsonl`: positions where Claude moved in past runs (half
+  "hard": the move played lost ≥150cp), deduped by EPD, full move history kept (context v3 needs
+  the last move), Stockfish depth-14 best move + eval as labels.
+- `suite run SUITE --player SPEC [player opts] --out suites/results/X.jsonl`: one decision per
+  position (8 threads), scored afterwards by Stockfish: mean cp loss (cap 1000), SF-best hit,
+  blunder rate (≥200), proposer recall (SF best among Claude's own candidates), $/pos, s/pos.
+- `suite compare A B`: paired sign-flip permutation test on cp loss. For binary metrics use an
+  exact McNemar on discordant pairs (see [[results]]).
+- ≈ $0.9 per 100 positions for the Haiku harness — use it before spending on games.

@@ -98,6 +98,12 @@ proposes. Pay only for context it needs; the questions themselves are a salience
 sections/lines predict good vs bad decisions (logistic / feature ablation on the test suite);
 prune sections with no effect; this turns "what is important" into a measured answer.
 
+## Status (2026-09-24)
+Built: 0 (test suite), A (move deltas), B (last move), C (relations), D (temperature ordering,
+top-1 guidance), E-lite (legal-move material check, fail-low at 0). Suite A/B: proposer recall
+49%→68% (p=0.0002); blunders 23%→17% and cp loss 177→160 not yet significant ([[results]]).
+Not yet: F (master-game retrieval), G (Claude asks questions), H (learned relevance).
+
 ## Recommendation
 Build 0 (suite), then A+B+C (all Python, move-/change-conditioned relations), then D's
 variance ranking and Guidance trimming, then E. F–H after. Expected effect: fewer blunders from

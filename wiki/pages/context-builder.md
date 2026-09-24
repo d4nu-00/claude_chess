@@ -42,6 +42,22 @@ per position (test asserts <50ms avg). Code: `src/claude_chess/context/`, data: 
   **Blocked in the cloud sandbox** (egress policy) — works on a normal machine. Tests force
   it offline via `tests/conftest.py`.
 
+- **Context v3** (`build_context(version=3)`, player `ctx_version=3`, CLI `--ctx-version 3`;
+  `context/relations.py`) — from [[context-research]]:
+  - *Opponent's last move*: what it attacks (flags undefended targets), discovered attacks,
+    pieces it stopped defending, new threats (null-move SEE captures).
+  - *Piece relations*: attackers/defenders of every attacked piece, loose pieces, OVERLOADED
+    sole defenders — targets "knows where pieces are, not what they attack".
+  - *Tactical temperature* (winning captures, own en-prise pieces, checks): SHARP positions
+    put last move/tactics/relations first and trim strategy; quiet ones do the reverse.
+  - Only the top-1 concept page (Guidance was ~45% of tokens and generic).
+  - Prompt-level (engine/prompts.py, v3 only): the proposer gets a **material check of every
+    legal move** (Python tactical search depth 1: "wins material" / "LOSES material", or "the
+    only moves that don't lose" when most do); compare/threat options get `move_delta`
+    ("rescues Qb3", "IGNORES the threat to Qd3", "allows checks", "weakens own king shelter").
+  - Hybrid fail-low widens to all legal moves whenever every Claude candidate loses material.
+  - v2 output is unchanged when version=2 (asserted in tests/test_context_v3.py).
+
 ## Why these choices
 - Everything is phrased as short sentences naming the colour ("White isolated pawn(s): d4")
   so the prompt is unambiguous regardless of side to move.
