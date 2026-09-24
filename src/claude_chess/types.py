@@ -73,6 +73,12 @@ class MoveDecision:
     # Claude's own report of the position (piece placement, threats, hanging pieces) scored
     # against the real board — see engine/boardread.py. None unless board_read is enabled.
     board_read: dict | None = None
+    # Structured search facts per candidate (tactical score, verified refutations, positional
+    # score, vetoes, alpha-beta stats) — the engine-verified half of the dataset.
+    search_info: dict = field(default_factory=dict)
+    # Every LLM call made for this decision: {role, prompt, response, cost_usd, seconds, fen}.
+    # Written to traces.jsonl (not decisions.jsonl) by the match runner.
+    traces: list[dict] = field(default_factory=list)
 
 
 class Player(Protocol):

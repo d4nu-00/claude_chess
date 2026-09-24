@@ -48,8 +48,10 @@ def make_player_factory(spec: str, args: Any, seed: int = 0) -> Callable[[], Any
                                        max_retries=args.max_retries, tactical=True,
                                        tac_depth=args.tac_depth, tac_margin=args.tac_margin,
                                        board_read=args.board_read, threat_agent=args.threat_agent,
-                                       tablebase=not args.no_tablebase)
-                p.name = f"{spec}(t{args.tac_depth}{',threat' if args.threat_agent else ''},{args.model})"
+                                       tablebase=not args.no_tablebase, search=args.search)
+                ab = ",ab" if args.search == "alphabeta" else ""
+                thr = ",threat" if args.threat_agent or args.search == "alphabeta" else ""
+                p.name = f"{spec}(t{args.tac_depth}{thr}{ab},{args.model})"
             else:
                 ctx = spec == "engine-ctx"
                 p = ClaudeEnginePlayer(llm, use_context=ctx, depth=args.depth,
@@ -98,6 +100,7 @@ def cmd_match(args: argparse.Namespace) -> None:
                           "tac_depth": args.tac_depth, "tac_margin": args.tac_margin,
                           "thinking": args.thinking, "board_read": args.board_read,
                           "threat_agent": args.threat_agent, "tablebase": not args.no_tablebase,
+                          "search": args.search,
                           "illegal_policy": args.illegal_policy, "argv": sys.argv[1:]})
     print(f"run dir: {rd}")
 
@@ -163,6 +166,18 @@ def cmd_db(args: argparse.Namespace) -> None:
         raise SystemExit("db: choose a subcommand (ingest/stats/export/query)")
 
 
+def cmd_dataset(args: argparse.Namespace) -> None:
+    from pathlib import Path
+
+    from claude_chess.dataset import export
+    root = Path(args.runs_root)
+    dirs = [Path(d) for d in args.run_dir] or sorted(p for p in root.iterdir()
+                                                     if p.is_dir() and not p.name.startswith("_"))
+    stats = export(dirs, Path(args.out), with_context=args.with_context)
+    import json
+    print(json.dumps(stats, indent=2))
+
+
 def main(argv: list[str] | None = None) -> None:
     ap = argparse.ArgumentParser(prog="claude-chess")
     sub = ap.add_subparsers(dest="cmd", required=True)
@@ -189,6 +204,9 @@ def main(argv: list[str] | None = None) -> None:
                    help="CLI backend: max extended-thinking tokens per call (0 = off; default = CLI default)")
     m.add_argument("--threat-agent", action="store_true",
                    help="hybrid: extra Claude call names refutations; Python verifies them")
+    m.add_argument("--search", choices=("compare", "alphabeta"), default="compare",
+                   help="hybrid: 1-ply batched positional compare, or depth-2 alpha-beta over "
+                        "Claude positional leaves (implies the threat agent for replies)")
     m.add_argument("--no-tablebase", action="store_true", help="hybrid: don't play tablebase moves")
     m.add_argument("--board-read", action="store_true",
                    help="Claude also reports piece placement/threats; scored vs the real board")
@@ -208,6 +226,14 @@ def main(argv: list[str] | None = None) -> None:
     c = sub.add_parser("context", help="print render_context for a FEN or move list")
     c.add_argument("position")
     c.set_defaults(func=cmd_context)
+
+    x = sub.add_parser("dataset", help="export Claude reasoning traces as a training dataset")
+    x.add_argument("run_dir", nargs="*", help="run directories (default: every run under --runs-root)")
+    x.add_argument("--runs-root", default="runs")
+    x.add_argument("--out", default="datasets/reasoning")
+    x.add_argument("--with-context", action="store_true",
+                   help="include the rendered context block in SFT inputs")
+    x.set_defaults(func=cmd_dataset)
 
     d = sub.add_parser("db", help="query the permanent games database (db/games.sqlite)")
     d.add_argument("--db-path", default="db/games.sqlite")

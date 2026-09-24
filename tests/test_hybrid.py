@@ -124,9 +124,9 @@ def test_threat_agent_reply_is_verified_by_search():
             return llm.threat
 
     out = p._threats(T(), b, survivors, verdicts, depth=1)
-    assert out[b.parse_san("Rb7")][0] == "Ra1+"
-    assert out[b.parse_san("Rb7")][1] <= -tactical.MATE_BAND
-    assert out[b.parse_san("Rb8+")][1] > -tactical.MATE_BAND
+    assert out[b.parse_san("Rb7")]["reply"] == "Ra1+"
+    assert out[b.parse_san("Rb7")]["score"] <= -tactical.MATE_BAND
+    assert out[b.parse_san("Rb8+")]["score"] > -tactical.MATE_BAND
 
 
 def test_hybrid_plays_tablebase_move(monkeypatch):
@@ -137,3 +137,38 @@ def test_hybrid_plays_tablebase_move(monkeypatch):
     llm = Fake(cands(("Kd3", 0.7), ("Kf4", 0.3)))
     d = ClaudeEnginePlayer(llm, use_context=False, tactical=True).choose_move(b)
     assert d.san == "Kf4" and "tablebase" in d.note
+
+
+def test_alphabeta_cutoff_skips_claude_calls():
+    """e4 (searched first) is worth +50 whatever Black replies; the first reply to d4 already
+    scores -100 <= alpha, so d4's remaining replies are pruned (no Claude calls for them)."""
+    b = chess.Board()
+    seen = []
+
+    class L:
+        model = "fake"
+
+        def complete(self, system, prompt, max_tokens=1024):
+            if system == prompts.PROPOSER_SYSTEM:
+                text = cands(("e4", 0.6), ("d4", 0.4))
+            elif system == prompts.THREAT_SYSTEM:
+                text = json.dumps({"replies": [{"move": "e4", "reply": "e5", "alt": "c5"},
+                                               {"move": "d4", "reply": "d5", "alt": "Nf6"}]})
+            elif system == prompts.POSITIONAL_SYSTEM:
+                fen = prompt.split("FEN: ", 1)[1].split("\n", 1)[0]
+                seen.append(fen)
+                white_pawn_e4 = chess.Board(fen).piece_at(chess.E4) == chess.Piece(chess.PAWN, chess.WHITE)
+                text = json.dumps({"positional_cp": 50 if white_pawn_e4 else -100})
+            else:
+                raise AssertionError(system)
+            return LLMResponse(text=text, cost_usd=0.001)
+
+    p = ClaudeEnginePlayer(L(), use_context=False, tactical=True, search="alphabeta")
+    d = p.choose_move(b)
+    assert d.san == "e4"
+    ab = d.search_info["alphabeta"]
+    assert ab["pruned"] >= 1 and ab["evaluated"] < ab["leaves"]
+    assert sum(1 for f in seen if chess.Board(f).piece_at(chess.D4)) == 1  # one d4 leaf, then cutoff
+    assert d.search_info["candidates"]["d4"]["ab_value"] <= -100
+    roles = [t["role"] for t in d.traces]
+    assert roles[0] == "proposer" and "threat" in roles and "positional" in roles

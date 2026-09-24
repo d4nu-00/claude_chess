@@ -73,6 +73,7 @@ def decision_row(board: chess.Board, player: str, d: MoveDecision, game_id: int)
         "forfeit_reason": d.forfeit_reason, "note": d.note,
         "forced_random": getattr(d, "forced_random", False),
         "board_read": getattr(d, "board_read", None),
+        "search": getattr(d, "search_info", None) or None,
     }
 
 
@@ -170,6 +171,8 @@ def play_game(
             d.san = board.san(d.move)
         row = decision_row(board, player.name, d, game_id)
         row["own_eval"] = _own_eval(d)
+        if getattr(d, "traces", None):
+            row["_traces"] = d.traces  # popped by the run-dir writer into traces.jsonl
         decisions.append(row)
         if on_move:
             on_move(row)
@@ -288,8 +291,14 @@ def play_match(
         oname, omoves = (opening_list[(i // 2) % len(opening_list)] if opening_list else (None, None))
 
         def on_move(row: dict[str, Any]) -> None:
+            traces = row.pop("_traces", None)
             with file_lock, dec_path.open("a") as f:
                 f.write(json.dumps(row) + "\n")
+            if traces:
+                with file_lock, (rd / "traces.jsonl").open("a") as f:
+                    for k, t in enumerate(traces):
+                        f.write(json.dumps({"game": row["game"], "ply": row["ply"], "player": row["player"],
+                                            "call": k, **t}) + "\n")
             if not quiet:
                 ev = f" own={row['own_eval']:+.0f}" if row.get("own_eval") is not None else ""
                 ill = f" illegal={len(row['illegal_attempts'])}" if row["illegal_attempts"] else ""

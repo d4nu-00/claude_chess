@@ -46,8 +46,17 @@ deflection/decoy, trapped pieces, pawn promotions, 2-3 move combinations.
 The reply must be a LEGAL move for the opponent in the position AFTER the candidate (use \
 the board shown for that candidate). If a candidate is genuinely safe, give the opponent's \
 best reply anyway.
+Also give "alt": the opponent's most NATURAL reply (what a strong player would most likely \
+play), which may differ from the most dangerous one.
 Reply with ONLY a JSON object, no prose outside it:
-{"replies": [{"move": "<candidate SAN exactly as listed>", "reply": "<opponent SAN>", "idea": "<few words>"}]}"""
+{"replies": [{"move": "<candidate SAN exactly as listed>", "reply": "<opponent SAN>", "idea": "<few words>", "alt": "<opponent SAN>"}]}"""
+
+POSITIONAL_SYSTEM = """You are the positional-evaluation module of a chess engine. Material \
+and short forcing tactics are counted exactly by the engine's search — do NOT count material. \
+Judge only positional factors: king safety, piece activity and coordination, pawn structure, \
+space, initiative, long-term weaknesses and plans.
+Reply with ONLY a JSON object, no prose outside it:
+{"positional_cp": <integer -150..150 from WHITE's point of view: positive = White better positionally>, "reason": "<one short sentence>"}"""
 
 NAIVE_SYSTEM = """You are a strong chess player. Choose the best move for the side to move.
 Reply with ONLY a JSON object, no prose outside it:
@@ -134,6 +143,11 @@ def threat_prompt(board: chess.Board, options: list[tuple[str, str, chess.Board]
     return "\n".join(parts)
 
 
+def positional_prompt(board: chess.Board, use_context: bool) -> str:
+    p = position_block(board, use_context, show_legal_moves=False)
+    return p + "\n\nScore the POSITIONAL balance (positional_cp from WHITE's point of view)."
+
+
 def naive_prompt(board: chess.Board, show_legal_moves: bool, feedback: str = "") -> str:
     side = "White" if board.turn == chess.WHITE else "Black"
     p = position_block(board, use_context=False, show_legal_moves=show_legal_moves)
@@ -149,3 +163,14 @@ def illegal_feedback(board: chess.Board, errors: list[str]) -> str:
         + "\nThe complete list of legal moves is: " + " ".join(legal_moves_san(board))
         + "\nPick only from that list."
     )
+
+
+# Role name for every system prompt: used to label logged LLM calls (dataset traces).
+ROLES = {
+    PROPOSER_SYSTEM: "proposer",
+    EVALUATOR_SYSTEM: "evaluator",
+    COMPARE_SYSTEM: "compare",
+    THREAT_SYSTEM: "threat",
+    POSITIONAL_SYSTEM: "positional",
+    NAIVE_SYSTEM: "naive",
+}

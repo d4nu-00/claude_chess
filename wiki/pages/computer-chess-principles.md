@@ -47,6 +47,15 @@ So the LLM is a decent *positional* evaluator and move generator, and a terrible
 13. **Tablebases** (≤7 pieces): hybrid plays a tablebase-best move (Claude's candidate if
     it is one, fastest win first). `--no-tablebase` disables. Context also shows it.
 
+## v3: alpha-beta over Claude leaves (`--search alphabeta`)
+Depth-2 max-min: our tactically-sound candidates × opponent replies (engine refutation +
+threat agent's dangerous + natural reply). Leaf = exact material swing (Python search after
+the reply) + Claude **positional-only** score (`POSITIONAL_SYSTEM`, ±pos_cap, TT-cached).
+Pruning, each saving a Claude call: move ordering (tactical score, prior; replies most
+damaging first), **futility** (material + cap ≤ alpha ⇒ refuted, no call), **beta cutoff**,
+**root futility**. The first candidate's leaves run in parallel (YBWC); the rest
+sequentially so cutoffs fire. Smoke: 7 leaves, 4 evaluated, 3 pruned; ~$0.018/move Haiku.
+
 ## What it deliberately is NOT
 No Stockfish, no positional heuristics in Python: the search knows only piece values
 (100/320/330/500/900) and mate. Positional sacrifices >1 pawn are vetoed by design —
