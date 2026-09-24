@@ -35,7 +35,7 @@ def test_export_builds_all_files(tmp_path):
              {"move": "Rd3", "reason": "active rook", "prior": 0.5},
              {"move": "Ke2", "reason": "centralise", "prior": 0.3},
              {"move": "Rxd5", "reason": "wins the queen", "prior": 0.2}]})}])
-    _write(run / "move_analysis.jsonl", [{"game": 0, "ply": 1, "cpl": 0, "eval_before": 400,
+    _write(run / "move_analysis.jsonl", [{"game": "0", "ply": 1, "cpl": 0, "eval_before": 400,
                                           "eval_after": 400, "best_move": "Rxd5"}])
     out = tmp_path / "ds"
     stats = export([run], out)

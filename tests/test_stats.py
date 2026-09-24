@@ -14,7 +14,7 @@ def _run(root, name, spec, level, results, cost):
     for i, r in enumerate(results):
         white, black = (spec, f"maia-{level}") if i % 2 == 0 else (f"maia-{level}", spec)
         games.append({"game": i, "white": white, "black": black, "result": r})
-        decs.append({"game": i, "player": spec, "cost": cost})
+        decs.append({"game": i, "player": spec, "cost": cost, "seconds": 2.0})
     (rd / "games.jsonl").write_text("".join(json.dumps(g) + "\n" for g in games))
     (rd / "decisions.jsonl").write_text("".join(json.dumps(d) + "\n" for d in decs))
 
@@ -46,3 +46,4 @@ def test_report_writes_crosstable_with_cost(tmp_path):
     assert summary["configs"]["haiku-naive"]["score"] == 0.0
     assert abs(summary["configs"]["haiku-harness"]["usd_per_game"] - 0.01) < 1e-9
     assert "haiku" in summary["tests"]
+    assert "s/move" in table and summary["configs"]["haiku-naive"]["seconds_per_move"] == 2.0

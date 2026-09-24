@@ -37,6 +37,28 @@ Run `20260924_210922_hybrid2-haiku-vs-maia1100`, Haiku 4.5, thinking off, --boar
   unavailable in the sandbox — would have been exact on a normal machine).
 - Tablebase + Lichess unreachable here; K+P rules in context were the only endgame help.
 
+## 2026-09-24 — hybrid v3 alpha-beta (`--search alphabeta`) vs Maia-1100, 8 games
+Run `20260924_213321_hybrid-ab-haiku-vs-maia1100`, same settings as v2 (Haiku, thinking off,
+--board-read; threat agent supplies replies).
+
+| player | score | ACPL | blunders | calls/move | $ total (8 games) | s/move |
+|---|---|---|---|---|---|---|
+| hybrid v2 compare+threat | **6/8** | **63** | 7 | 2.33 | 2.82 | 14 |
+| hybrid v3 alpha-beta | 3.5/8 (2W 3D 3L) | 114 | 38 | 3.7 | 4.96 | 18 |
+
+- Alpha-beta pruned ~40% of leaves (e.g. 3/7) but is **worse and dearer** than v2.
+- Why (inspected every ≥300cp error; no search bug):
+  1. Most blunders were decided before any search: every Haiku candidate lost material and
+     the veto picked the least bad ("only tactically sound candidate"); the Stockfish best
+     move was never proposed. Fail-low only fires below −tac_margin (−100), so "all lose a
+     pawn" cases never widen to all legal moves. → lower the fail-low threshold to 0.
+  2. **Pointwise positional scores are noisy**: independent leaf calls scored a king walk
+     (Kd2, +45) above O-O-O (+45 tie → prior) etc. v2's single *listwise* compare call ranks
+     siblings on one scale — consistent with LLM-as-judge findings (comparative > absolute).
+  3. Lost endgames: depth-2 + ±150 positional can't see king-walk mating nets.
+- Verdict: keep `compare` as the default harness; alpha-beta over LLM leaves needs a
+  comparative leaf evaluator (e.g. batch all leaves under one root) to pay off.
+
 ## Earlier
 - Sonnet naive vs Maia-1100 (2 finished games, others aborted by spend limit): 0/2, both mated.
   Stockfish: 9/53 moves lost ≥200cp, all short tactics — see [[computer-chess-principles]].

@@ -119,16 +119,17 @@ def build_rows(run_dir: Path) -> tuple[list[dict], list[dict]]:
     meta = json.loads((run_dir / "meta.json").read_text()) if (run_dir / "meta.json").exists() else {}
     run_id = run_dir.name
     games = _games(run_dir)
-    results = {g.get("game"): g.get("result") for g in _jsonl(run_dir / "games.jsonl")}
-    analysis = {(a["game"], a["ply"]): a for a in _jsonl(run_dir / "move_analysis.jsonl")}
+    results = {int(g["game"]): g.get("result") for g in _jsonl(run_dir / "games.jsonl")}
+    # move_analysis.jsonl stores "game" as a string, decisions/traces as an int: normalise.
+    analysis = {(int(a["game"]), a["ply"]): a for a in _jsonl(run_dir / "move_analysis.jsonl")}
     traces: dict[tuple, list[dict]] = {}
     for t in _jsonl(run_dir / "traces.jsonl"):
-        traces.setdefault((t["game"], t["ply"]), []).append(t)
+        traces.setdefault((int(t["game"]), t["ply"]), []).append(t)
     rows, calls = [], []
     for d in _jsonl(run_dir / "decisions.jsonl"):
         if not _is_claude(d["player"]) or not d.get("san"):
             continue
-        key = (d["game"], d["ply"])
+        key = (int(d["game"]), d["ply"])
         tr = sorted(traces.get(key, []), key=lambda t: t.get("call", 0))
         g = games.get(d["game"])
         history = []

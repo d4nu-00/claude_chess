@@ -48,29 +48,33 @@ def load_games(runs_root: Path, prefix: str) -> list[dict]:
         config = f"{model}-{'harness' if harness else 'naive'}"
         cost: dict = {}
         moves: dict = {}
+        secs: dict = {}
         for d in _jsonl(rd / "decisions.jsonl"):
             if "maia" in d.get("player", ""):
                 continue
-            cost[d["game"]] = cost.get(d["game"], 0.0) + (d.get("cost") or 0.0)
-            moves[d["game"]] = moves.get(d["game"], 0) + 1
+            gid = int(d["game"])  # analysis files store it as a string, others as int
+            cost[gid] = cost.get(gid, 0.0) + (d.get("cost") or 0.0)
+            moves[gid] = moves.get(gid, 0) + 1
+            secs[gid] = secs.get(gid, 0.0) + (d.get("seconds") or 0.0)
         acpl = {}
         for a in _jsonl(rd / "move_analysis.jsonl"):
             if "maia" in a.get("player", ""):
                 continue
-            acpl.setdefault(a["game"], []).append(min(a.get("cpl") or 0, 1000))
+            acpl.setdefault(int(a["game"]), []).append(min(a.get("cpl") or 0, 1000))
         for g in _jsonl(rd / "games.jsonl"):
             if g.get("result") not in ("1-0", "0-1", "1/2-1/2"):
                 continue  # aborted (infrastructure) games are excluded, never scored
             color = "white" if "maia" not in g["white"] else "black"
             res = g["result"]
             score = 0.5 if res == "1/2-1/2" else float((res == "1-0") == (color == "white"))
-            cp = acpl.get(g["game"], [])
+            gid = int(g["game"])
+            cp = acpl.get(gid, [])
             games.append({"run": rd.name, "game": g["game"], "config": config, "model": model,
                           "harness": harness, "level": level, "color": color, "score": score,
                           "result": res, "termination": g.get("termination", ""),
                           "plies": g.get("plies"), "acpl": sum(cp) / len(cp) if cp else None,
-                          "cost_usd": round(cost.get(g["game"], 0.0), 5),
-                          "claude_moves": moves.get(g["game"], 0)})
+                          "cost_usd": round(cost.get(gid, 0.0), 5),
+                          "claude_moves": moves.get(gid, 0), "claude_seconds": round(secs.get(gid, 0.0), 1)})
     return games
 
 
@@ -168,8 +172,8 @@ def report(runs_root: str | Path, prefix: str, out_dir: str | Path) -> dict:
     lines = [f"# Experiment `{prefix}` — Claude vs Maia", "",
              "Cell = score / games (W-D-L) from Claude's side.", "",
              "| config | " + " | ".join(f"maia-{lv}" for lv in levels)
-             + " | total | score % | Elo (95% CI) | ACPL | cost $ | $/game | $/move |",
-             "|---|" + "---|" * (len(levels) + 7)]
+             + " | total | score % | Elo (95% CI) | ACPL | cost $ | $/game | $/move | s/move |",
+             "|---|" + "---|" * (len(levels) + 8)]
     summary: dict = {"configs": {}, "tests": {}}
     for c in configs:
         cells = []
@@ -190,13 +194,15 @@ def report(runs_root: str | Path, prefix: str, out_dir: str | Path) -> dict:
         acpl = sum(ac) / len(ac) if ac else None
         usd = sum(g["cost_usd"] for g in gs)
         nmoves = sum(g["claude_moves"] for g in gs)
+        spm = sum(g["claude_seconds"] for g in gs) / max(1, nmoves)
         acpl_s = f"{acpl:.0f}" if acpl is not None else "–"
         lines.append(f"| {c} | " + " | ".join(cells) +
                      f" | {tot:g}/{len(gs)} | {100 * tot / len(gs):.0f}% | {r:.0f} ({ci[0]:.0f}–{ci[1]:.0f}) | "
-                     f"{acpl_s} | {usd:.2f} | {usd / len(gs):.3f} | {usd / max(1, nmoves):.4f} |")
+                     f"{acpl_s} | {usd:.2f} | {usd / len(gs):.3f} | {usd / max(1, nmoves):.4f} | {spm:.1f} |")
         summary["configs"][c] = {"games": len(gs), "score": tot, "elo": r, "elo_ci95": ci, "acpl": acpl,
                                  "cost_usd": usd, "usd_per_game": usd / len(gs),
-                                 "usd_per_move": usd / max(1, nmoves), "claude_moves": nmoves}
+                                 "usd_per_move": usd / max(1, nmoves), "claude_moves": nmoves,
+                                 "seconds_per_move": spm}
 
     lines += ["", "## Harness vs no harness", "",
               "| model | Δ mean score | permutation p (stratified) | Elo naive → harness | LR χ² | LR p | ACPL naive → harness | Mann-Whitney p | $/game naive → harness | extra $ per extra point |",
@@ -226,7 +232,7 @@ def report(runs_root: str | Path, prefix: str, out_dir: str | Path) -> dict:
               "adjudication (Stockfish referee, never inside a player's decision)."]
     (out / "crosstable.md").write_text("\n".join(lines) + "\n")
     cols = ["run", "game", "config", "model", "harness", "level", "color", "result", "score",
-            "termination", "plies", "acpl", "cost_usd", "claude_moves"]
+            "termination", "plies", "acpl", "cost_usd", "claude_moves", "claude_seconds"]
     with (out / "games.csv").open("w") as f:
         f.write(",".join(cols) + "\n")
         for g in games:

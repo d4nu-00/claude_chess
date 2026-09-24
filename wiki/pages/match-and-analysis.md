@@ -50,3 +50,19 @@ that side, else draw. Termination string records the eval, e.g. `adjudication (p
   processes are never shared across `--parallel` threads. Adjudication/analysis open their own.
 - If both specs produce the same name (e.g. random vs random) they get `#A`/`#B` suffixes.
 - CPL from short/weak analysis is noisy: use >= depth 12 and many games before concluding.
+
+## Gotcha: game id types differ between files (found 2026-09-24)
+`move_analysis.jsonl` writes `"game": "7"` (string); `decisions.jsonl`, `traces.jsonl`,
+`games.jsonl` write `7` (int). Any join must normalise with `int(...)` — otherwise joins
+silently match nothing (empty labels, missing ACPL).
+
+## Resign adjudication and experiment reports (added 2026-09-24)
+- `--resign-cp N --resign-plies K`: a per-game Stockfish referee (depth 12 / 0.2 s per ply)
+  ends the game once the eval stays beyond ±N for K plies (cutechess/TCEC style). Saves the
+  long tail of decided games; never influences a player's move.
+- `--opening-offset i`: start the opening rotation at i (vary openings across matches while
+  keeping both arms of an experiment paired).
+- `claude-chess report PREFIX --out experiments/PREFIX`: cross table (per Maia level), score,
+  performance Elo (MLE + bootstrap CI), ACPL, cost ($, $/game, $/move), s/move, and
+  harness-vs-naive tests (stratified permutation, likelihood ratio, Mann-Whitney on ACPL).
+  Code: `match/stats.py`. Experiment driver: `scripts/exp_harness_vs_naive.sh`.
