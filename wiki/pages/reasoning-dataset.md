@@ -42,3 +42,11 @@ User confirmed use complies with the Anthropic terms they are on (2026-09-24).
 Sonnet 5, thinking off. Every position has Stockfish labels.
 Gotcha fixed before export: `move_analysis.jsonl` stores `game` as a string (see
 [[match-and-analysis]]); without normalising, all labels were silently empty.
+
+## Known LLM reasoning errors to filter/annotate (observed 2026-09-24)
+- **Recapture called a win**: "Rxc7 wins the queen outright" after ...Qxc7 (Opus), "Bxg5 wins queen
+  for bishop" after ...Qxg5 (Sonnet). The model scores the capture, not the exchange sequence.
+- **Material-count drift**: "a pawn up" when three up; "loses the queen for a rook" when for a pawn.
+- **Phantom captures** from the threat agent (Sonnet: "Bxd5" that did not exist).
+Use `[verified]` material facts to correct or drop such sentences before training. Full example:
+`experiments/opus/opus_thoughts.md`.
