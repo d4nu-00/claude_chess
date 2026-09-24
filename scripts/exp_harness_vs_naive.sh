@@ -10,6 +10,7 @@ LEVELS=${LEVELS:-"1100 1300 1500 1700 1900"}
 GAMES=${GAMES:-4}
 JOBS=${JOBS:-5}
 ARMS=${ARMS:-"harness naive"}
+CTX=${CTX:-2}   # context version for the harness arm (3 = relations/last move/deltas/material check)
 COMMON="--games $GAMES --parallel $GAMES --max-plies 200 --backend cli --thinking 0 \
   --resign-cp 1000 --resign-plies 6"
 jobs=()
@@ -17,7 +18,7 @@ for model in $MODELS; do
   short=$( [[ $model == *haiku* ]] && echo haiku || ([[ $model == *sonnet* ]] && echo sonnet || echo opus) )
   for arm in $ARMS; do
     for lvl in $LEVELS; do
-      if [[ $arm == harness ]]; then spec="hybrid-ctx --threat-agent"; else spec="naive"; fi
+      if [[ $arm == harness ]]; then spec="hybrid-ctx --threat-agent --ctx-version $CTX"; else spec="naive"; fi
       # Opening offset is a function of the Maia level only, so both arms (and any later
       # re-run with a subset of LEVELS) play identical openings/colours: a paired design.
       jobs+=("uv run claude-chess match --white $spec --black maia:$lvl --model $model $COMMON \

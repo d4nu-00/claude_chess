@@ -45,7 +45,7 @@ def test_report_writes_crosstable_with_cost(tmp_path):
     assert summary["configs"]["haiku-harness"]["score"] == 3.5
     assert summary["configs"]["haiku-naive"]["score"] == 0.0
     assert abs(summary["configs"]["haiku-harness"]["usd_per_game"] - 0.01) < 1e-9
-    assert "haiku" in summary["tests"]
+    assert "haiku-harness vs haiku-naive" in summary["tests"]
     assert "s/move" in table and summary["configs"]["haiku-naive"]["seconds_per_move"] == 2.0
 
 

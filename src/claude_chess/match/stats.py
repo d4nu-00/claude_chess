@@ -92,6 +92,8 @@ def load_games(runs_root: Path, prefix: str) -> list[dict]:
         model = meta.get("model", "?")
         model = "haiku" if "haiku" in model else "sonnet" if "sonnet" in model else "opus" if "opus" in model else model
         config = f"{model}-{'harness' if harness else 'naive'}"
+        if harness and int(meta.get("ctx_version") or 2) >= 3:
+            config += f"-ctx{meta['ctx_version']}"
         cost: dict = {}
         moves: dict = {}
         secs: dict = {}
@@ -258,10 +260,15 @@ def report(runs_root: str | Path, prefix: str, out_dir: str | Path) -> dict:
                                  "seconds_per_move": spm}
 
     lines += ["", "## Harness vs no harness", "",
-              "| model (levels both arms played) | Δ mean score | permutation p (stratified) | Elo naive → harness | LR χ² | LR p | ACPL naive → harness | Mann-Whitney p | $/game naive → harness | extra $ per extra point |",
+              "| comparison A vs B (levels both played) | Δ mean score | permutation p (stratified) | Elo naive → harness | LR χ² | LR p | ACPL naive → harness | Mann-Whitney p | $/game naive → harness | extra $ per extra point |",
               "|---|---|---|---|---|---|---|---|---|---|"]
+    pairs = []
     for model in sorted({g["model"] for g in games}):
-        a, b = by(f"{model}-harness"), by(f"{model}-naive")
+        pairs += [(model, f"{model}-harness", f"{model}-naive"),
+                  (f"{model} ctx3", f"{model}-harness-ctx3", f"{model}-naive"),
+                  (f"{model} ctx3 vs ctx2", f"{model}-harness-ctx3", f"{model}-harness")]
+    for model, ca, cb in pairs:
+        a, b = by(ca), by(cb)
         # Paired comparison: only Maia levels BOTH arms played (an unbalanced ladder would
         # confound harness with opponent strength).
         common = {g["level"] for g in a} & {g["level"] for g in b}
@@ -287,7 +294,7 @@ def report(runs_root: str | Path, prefix: str, out_dir: str | Path) -> dict:
         lines.append(f"| {model} ({','.join(map(str, sorted(common)))}; {len(a)} vs {len(b)} games) | {d:+.2f} | {p_perm:.4f} | {sb['elo']:.0f} → {sa['elo']:.0f} | {stat:.1f} | "
                      f"{p_lr:.2g} | {fa(sb['acpl'])} → {fa(sa['acpl'])} | {p_mw:.2g} | "
                      f"{sb['usd_per_game']:.3f} → {sa['usd_per_game']:.3f} | {per_pt} |")
-        summary["tests"][model] = {"levels": sorted(common), "games": [len(a), len(b)],
+        summary["tests"][f"{ca} vs {cb}"] = {"levels": sorted(common), "games": [len(a), len(b)],
                                    "delta_score": d, "p_permutation": p_perm, "lr_stat": stat,
                                    "p_lr": p_lr, "p_mann_whitney_acpl": p_mw}
     rel_rows = []

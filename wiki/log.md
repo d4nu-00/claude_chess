@@ -20,3 +20,4 @@
 - 2026-09-24 hybrid agent: exp1 FINAL (56 games): naive Claude 0/24; harness 6.5/12 (Haiku) and 10.5/20 (Sonnet); harness vs naive p=0.012 (Haiku) / 0.001 (Sonnet) stratified permutation; Haiku≈Sonnet with harness, Sonnet 4× cost, lower ACPL, less reliance on search. See [[results]].
 - 2026-09-24 hybrid agent: merged ctx-v3 (context v3 + suite) into the working branch; suite results in suites/results/. Documented in [[context-builder]], [[match-and-analysis]], [[context-research]] status.
 - 2026-09-24 hybrid agent: exported datasets/reasoning_v1 (2,384 positions, 2,339 SFT, 1,664 DPO pairs, all SF-labelled). See [[reasoning-dataset]].
+- 2026-09-24 hybrid agent: exp2 launched — Haiku harness with context v3 (CTX=3) + Haiku naive vs Maia 1100/1500/1900, 4 games each (same openings/settings as exp1). Report now labels v3 runs '<model>-harness-ctx3' and adds ctx3-vs-naive and ctx3-vs-ctx2 tests; combine with 'claude-chess report exp'.
