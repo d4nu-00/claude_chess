@@ -47,3 +47,11 @@ run,game,config,model,harness,level,color,result,score,termination,plies,acpl,co
 20260924_221735_exp1-haiku-naive-maia1900,1,haiku-naive,haiku,False,1900,black,1-0,0.0,"checkmate",27,263.4,0.01738,10,47.3
 20260924_221735_exp1-haiku-naive-maia1900,2,haiku-naive,haiku,False,1900,white,0-1,0.0,"adjudication (resign: SF -1157cp for 6 plies)",28,299.1818181818182,0.01903,11,51.1
 20260924_221735_exp1-haiku-naive-maia1900,0,haiku-naive,haiku,False,1900,white,0-1,0.0,"adjudication (resign: SF -1308cp for 6 plies)",36,101.06666666666666,0.02548,15,64.1
+20260924_222457_exp1-haiku-harness-maia1100-rerun,0,haiku-harness,haiku,True,1100,white,1-0,1.0,"checkmate",53,22.75,0.182,24,232.2
+20260924_222457_exp1-sonnet-naive-maia1100-rerun,0,sonnet-naive,sonnet,False,1100,white,0-1,0.0,"adjudication (resign: SF -1321cp for 6 plies)",32,135.0,0.09837,13,48.0
+20260924_222457_exp1-sonnet-naive-maia1100-rerun,1,sonnet-naive,sonnet,False,1100,black,1-0,0.0,"adjudication (resign: SF +1111cp for 6 plies)",33,140.30769230769232,0.10509,13,51.2
+20260924_222457_exp1-sonnet-naive-maia1100-rerun,3,sonnet-naive,sonnet,False,1100,black,1-0,0.0,"adjudication (resign: SF +1271cp for 6 plies)",39,85.3125,0.11975,16,61.0
+20260924_222457_exp1-sonnet-naive-maia1100-rerun,2,sonnet-naive,sonnet,False,1100,white,0-1,0.0,"adjudication (resign: SF -9995cp for 6 plies)",42,103.16666666666667,0.14789,18,71.1
+20260924_222457_exp1-sonnet-naive-maia1500-rerun,2,sonnet-naive,sonnet,False,1500,white,0-1,0.0,"checkmate",34,146.0,0.1059,14,53.1
+20260924_222457_exp1-sonnet-naive-maia1500-rerun,1,sonnet-naive,sonnet,False,1500,black,1-0,0.0,"adjudication (resign: SF +1267cp for 6 plies)",56,46.125,0.1807,24,84.1
+20260924_222457_exp1-sonnet-naive-maia1900-rerun,1,sonnet-naive,sonnet,False,1900,black,1-0,0.0,"checkmate",41,192.23529411764707,0.12798,17,59.8

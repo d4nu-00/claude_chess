@@ -37,6 +37,34 @@ Run `20260924_210922_hybrid2-haiku-vs-maia1100`, Haiku 4.5, thinking off, --boar
   unavailable in the sandbox — would have been exact on a normal machine).
 - Tablebase + Lichess unreachable here; K+P rules in context were the only endgame help.
 
+## 2026-09-24 — exp1: harness vs no harness × Haiku/Sonnet × Maia ladder (FINAL)
+Full report: `experiments/exp1/crosstable.md` (+ `games.csv`, `stats.json`); script
+`scripts/exp_harness_vs_naive.sh`; report `claude-chess report exp1`. Thinking off for all;
+resign adjudication ±1000cp × 6 plies; openings paired by Maia level. Budget-trimmed (user):
+Sonnet-harness at 5 levels, other arms at 1100/1500/1900. 8 games that failed at engine
+start-up were re-run with `--only-games` (same opening/colour). 56 games, ≈ $32 API.
+
+| config | 1100 | 1300 | 1500 | 1700 | 1900 | total | Elo (95% CI) | ACPL | $/game | s/move |
+|---|---|---|---|---|---|---|---|---|---|---|
+| haiku-harness | 2/4 | – | 2.5/4 | – | 2/4 | 6.5/12 | 1552 (1153–1960) | 72 | 0.31 | 15 |
+| haiku-naive | 0/4 | – | 0/4 | – | 0/4 | 0/12 | – (all lost) | 201 | 0.02 | 4.5 |
+| sonnet-harness | 3/4 | 2.5/4 | 2.5/4 | 1.5/4 | 1/4 | 10.5/20 | 1528 (1332–1716) | 46 | 1.32 | 19 |
+| sonnet-naive | 0/4 | – | 0/4 | – | 0/4 | 0/12 | – (all lost) | 115 | 0.13 | 4.2 |
+
+Harness vs no harness (levels both arms played, 12 vs 12 games each):
+- Haiku: +0.54 points/game, stratified permutation p = 0.012, LR p = 5e-5, ACPL 201→72
+  (Mann-Whitney p = 1e-4); $0.54 extra per extra point.
+- Sonnet: +0.54 points/game, permutation p = 0.001, LR p = 5e-5, ACPL 115→46 (p = 2e-4);
+  $1.97 extra per extra point.
+- **Naive Claude lost all 24 games** (both models, all levels). The harness is significantly
+  better for both models.
+- Haiku-harness ≈ Sonnet-harness in score (Elo CIs overlap heavily). Sonnet is more accurate
+  (ACPL 46 vs 72) and leans less on the tactical search (#1 overruled 27% vs 42%, moves added
+  by search 5% vs 13%) but costs ~4× per game. Haiku's 2/4 vs Maia-1900 (Sonnet 1/4) = two
+  comebacks after Maia blunders (Maia is policy-only, blunders tactically) vs Sonnet saving two
+  lost games by repetition — noise at n=4.
+- Maia's nominal ratings are used for Elo; treat absolute Elo as rough ([[maia-calibration]]).
+
 ## 2026-09-24 — offline suite A/B: context v2 vs v3 (Haiku, 100 positions)
 Suite `suites/v1.jsonl` (100 positions from our games, half "hard"; SF depth 14 labels; built by
 `claude-chess suite build`). One decision per position, paired. (Code on branch `ctx-v3`,
