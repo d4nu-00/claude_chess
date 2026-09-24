@@ -246,6 +246,7 @@ def play_match(
     analysis_depth: int = 12,
     meta: dict[str, Any] | None = None,
     quiet: bool = False,
+    db_path: str | Path | None = None,
 ) -> Path:
     """Play `games` games; A is White in even-numbered games (0, 2, ...). Each opening is
     used twice in a row (once per colour). Factories are called per game so no engine
@@ -306,6 +307,13 @@ def play_match(
                 f.write(rec.pgn + "\n\n")
             with gj_path.open("a") as f:
                 f.write(json.dumps(rec.summary()) + "\n")
+        try:  # live DB hook: base columns now, analysis columns merged in later by analyze_run
+            from claude_chess.match.database import insert_game
+            kwargs = {"db_path": db_path} if db_path is not None else {}
+            insert_game(rd, label, (rd / "meta.json").read_text() if (rd / "meta.json").exists() else None,
+                       rec.game, rec.game_id, rec.decisions, **kwargs)
+        except Exception as e:
+            _say(f"[db] insert_game failed for game {i}: {e!r}")
         if rec.termination.startswith("aborted"):
             aborted.set()
         _say(f"[g{i}] RESULT {rec.white} vs {rec.black}: {rec.result} ({rec.termination})")
@@ -324,5 +332,5 @@ def play_match(
 
     if analyze:
         from claude_chess.match.analysis import analyze_run
-        analyze_run(rd, depth=analysis_depth)
+        analyze_run(rd, depth=analysis_depth, db_path=db_path)
     return rd

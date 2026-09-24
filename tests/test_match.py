@@ -85,7 +85,7 @@ def test_analysis_acpl_on_short_game():
 def test_stockfish_vs_random_match(tmp_path):
     rd = play_match(lambda: StockfishPlayer(skill=5, time=0.01), lambda: RandomPlayer(7),
                     games=2, max_plies=40, runs_root=tmp_path, label="t", parallel=2,
-                    analysis_depth=6, quiet=True)
+                    analysis_depth=6, quiet=True, db_path=tmp_path / "games.sqlite")
     summary = json.loads((rd / "summary.json").read_text())
     sf, rnd = summary["players"]["stockfish(skill5)"], summary["players"]["random"]
     assert sf["games"] == rnd["games"] == 2

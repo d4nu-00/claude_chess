@@ -22,3 +22,4 @@ reads this index first and writes back what it learns. Pages are small and singl
 - [match-and-analysis](pages/match-and-analysis.md) — runner, adjudication, metrics (match agent)
 - [results](pages/results.md) — experiment results
 - [infra-failures](pages/infra-failures.md) — rate limits / backend errors abort games; never scored as illegal moves
+- [maia-calibration](pages/maia-calibration.md) — Maia (human-like lc0 nets) as opponents, Lichess rating table, performance-rating stats (maia agent)

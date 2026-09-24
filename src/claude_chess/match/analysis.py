@@ -25,14 +25,17 @@ MATE = 10000
 INACCURACY, MISTAKE, BLUNDER = 50, 100, 300
 
 
-def _eval_stm(eng: chess.engine.SimpleEngine, board: chess.Board, limit: chess.engine.Limit) -> int:
-    """Eval of `board` from the side-to-move's view, in centipawns (mate = ±10000)."""
+def _eval_stm(eng: chess.engine.SimpleEngine, board: chess.Board,
+             limit: chess.engine.Limit) -> tuple[int, chess.Move | None]:
+    """Eval of `board` from the side-to-move's view (mate = ±10000), plus Stockfish's
+    top choice (PV[0]) from that position, if any."""
     if board.is_checkmate():
-        return -MATE
+        return -MATE, None
     if board.is_stalemate() or board.is_insufficient_material():
-        return 0
+        return 0, None
     info = eng.analyse(board, limit)
-    return info["score"].relative.score(mate_score=MATE)
+    pv = info.get("pv")
+    return info["score"].relative.score(mate_score=MATE), (pv[0] if pv else None)
 
 
 def analyze_game(game: chess.pgn.Game, eng: chess.engine.SimpleEngine | None = None,
@@ -47,23 +50,24 @@ def analyze_game(game: chess.pgn.Game, eng: chess.engine.SimpleEngine | None = N
     rows: list[dict[str, Any]] = []
     try:
         board = game.board()
-        prev: int | None = None  # eval of current position, side-to-move view
+        prev: tuple[int, chess.Move | None] | None = None  # (eval, best move) of current position, side-to-move view
         for ply, move in enumerate(game.mainline_moves(), start=1):
             if ply <= book:
                 board.push(move)
                 prev = None
                 continue
-            before = prev if prev is not None else _eval_stm(eng, board, limit)
+            before, best_mv = prev if prev is not None else _eval_stm(eng, board, limit)
+            best_san = board.san(best_mv) if best_mv else None
             mover = board.turn
             san = board.san(move)
             board.push(move)
-            after_opp = _eval_stm(eng, board, limit)
-            after = -after_opp  # mover's view
+            after_score, after_best = _eval_stm(eng, board, limit)
+            after = -after_score  # mover's view
             cpl = max(0, min(CPL_CAP, before - after))
             rows.append({"ply": ply, "color": "white" if mover == chess.WHITE else "black",
                          "player": names[mover], "san": san, "cpl": cpl,
-                         "eval_before": before, "eval_after": after})
-            prev = after_opp
+                         "eval_before": before, "eval_after": after, "best_move": best_san})
+            prev = (after_score, after_best)
     finally:
         if own:
             eng.quit()
@@ -178,7 +182,7 @@ def render_report(summary: dict[str, Any], title: str = "Match report") -> str:
 
 
 def analyze_run(run_dir: str | Path, depth: int = 12, time: float | None = None,
-                quiet: bool = False) -> dict[str, Any]:
+                quiet: bool = False, db_path: str | Path | None = None) -> dict[str, Any]:
     rd = Path(run_dir)
     games = _read_games(rd / "games.pgn")
     decisions = _read_jsonl(rd / "decisions.jsonl")
@@ -202,4 +206,10 @@ def analyze_run(run_dir: str | Path, depth: int = 12, time: float | None = None,
     (rd / "report.md").write_text(report)
     if not quiet:
         print(report)
+    try:  # merge analysis columns into the permanent DB; never let this fail a match
+        from claude_chess.match.database import DEFAULT_DB_PATH, ingest_run
+        ingest_run(rd, db_path=db_path if db_path is not None else DEFAULT_DB_PATH)
+    except Exception as e:
+        if not quiet:
+            print(f"[db] ingest_run({rd}) failed: {e!r}")
     return summary

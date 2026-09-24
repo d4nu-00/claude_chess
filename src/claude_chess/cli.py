@@ -9,7 +9,8 @@ from typing import Any, Callable
 
 import chess
 
-SPEC_HELP = "naive | engine-ctx | engine-noctx | stockfish:ELO | stockfish-skill:N | random"
+SPEC_HELP = ("naive | engine-ctx | engine-noctx | stockfish:ELO | stockfish-skill:N | "
+             "maia:RATING (1100..1900, step 100) | random")
 
 
 def make_player_factory(spec: str, args: Any, seed: int = 0) -> Callable[[], Any]:
@@ -27,6 +28,10 @@ def make_player_factory(spec: str, args: Any, seed: int = 0) -> Callable[[], Any
         from claude_chess.match.baselines import StockfishPlayer
         elo = int(spec.split(":", 1)[1]) if ":" in spec else None
         return lambda: StockfishPlayer(elo=elo, time=args.sf_time)
+    if spec.startswith("maia:"):
+        from claude_chess.match.maia import MaiaPlayer
+        rating = int(spec.split(":", 1)[1])
+        return lambda: MaiaPlayer(rating=rating)
     if spec in ("naive", "engine-ctx", "engine-noctx"):
         def factory():
             from claude_chess.engine.players import ClaudeEnginePlayer, NaiveClaudePlayer
@@ -97,6 +102,55 @@ def cmd_context(args: argparse.Namespace) -> None:
     print(render_context(build_context(board)))
 
 
+def cmd_db(args: argparse.Namespace) -> None:
+    from claude_chess.match import database as db
+
+    if args.db_cmd == "ingest":
+        if args.all:
+            totals = db.ingest_all(args.runs_root, db_path=args.db_path, include_invalid=True)
+            print(f"ingested {totals['runs']} run(s), {totals['games']} game(s), "
+                 f"{totals['moves']} move(s)")
+        else:
+            if not args.run_dir:
+                raise SystemExit("db ingest: give RUN_DIR ... or --all")
+            n_games = n_moves = 0
+            for rd in args.run_dir:
+                r = db.ingest_run(rd, db_path=args.db_path)
+                n_games += r["games"]
+                n_moves += r["moves"]
+                print(f"{rd}: {r['games']} game(s), {r['moves']} move(s)")
+            print(f"total: {n_games} game(s), {n_moves} move(s)")
+    elif args.db_cmd == "stats":
+        stats = db.player_stats(db_path=args.db_path, include_invalid=args.include_invalid,
+                                include_aborted=args.include_aborted)
+        header = ("player", "G", "W", "D", "L", "score", "moves", "ACPL", "blunder%", "illegal%",
+                 "calls", "cost$")
+        print(" | ".join(header))
+        for p in stats:
+            print(" | ".join(str(x) for x in (
+                p["player"], p["games"], p["W"], p["D"], p["L"], p["score"], p["moves"],
+                p["acpl"], p["blunder_rate"], p["illegal_rate"], p["llm_calls"],
+                round(p["cost_usd"], 4))))
+    elif args.db_cmd == "export":
+        n = db.export_pgn(args.pgn, db_path=args.db_path, player=args.player,
+                          include_invalid=args.include_invalid)
+        print(f"wrote {n} game(s) to {args.pgn}")
+    elif args.db_cmd == "query":
+        conn = db.connect(args.db_path)
+        try:
+            rows = conn.execute(args.sql).fetchall()
+        finally:
+            conn.close()
+        if rows:
+            cols = rows[0].keys()
+            print(" | ".join(cols))
+            for r in rows:
+                print(" | ".join(str(r[c]) for c in cols))
+        print(f"({len(rows)} row(s))")
+    else:
+        raise SystemExit("db: choose a subcommand (ingest/stats/export/query)")
+
+
 def main(argv: list[str] | None = None) -> None:
     ap = argparse.ArgumentParser(prog="claude-chess")
     sub = ap.add_subparsers(dest="cmd", required=True)
@@ -131,6 +185,30 @@ def main(argv: list[str] | None = None) -> None:
     c = sub.add_parser("context", help="print render_context for a FEN or move list")
     c.add_argument("position")
     c.set_defaults(func=cmd_context)
+
+    d = sub.add_parser("db", help="query the permanent games database (db/games.sqlite)")
+    d.add_argument("--db-path", default="db/games.sqlite")
+    dsub = d.add_subparsers(dest="db_cmd", required=True)
+
+    di = dsub.add_parser("ingest", help="(re)ingest run dir(s) into the database")
+    di.add_argument("run_dir", nargs="*", help="run directories to ingest")
+    di.add_argument("--all", action="store_true", help="ingest every run under --runs-root, "
+                    "including runs/_invalid (stored with valid=0)")
+    di.add_argument("--runs-root", default="runs")
+
+    ds = dsub.add_parser("stats", help="per-player W/D/L/score, ACPL, blunder/illegal rate, cost")
+    ds.add_argument("--include-invalid", action="store_true")
+    ds.add_argument("--include-aborted", action="store_true")
+
+    de = dsub.add_parser("export", help="export stored games to a single PGN file")
+    de.add_argument("--pgn", required=True)
+    de.add_argument("--player", default=None, help="only games this player name played in")
+    de.add_argument("--include-invalid", action="store_true")
+
+    dq = dsub.add_parser("query", help="run a read SQL query against the database")
+    dq.add_argument("sql")
+
+    d.set_defaults(func=cmd_db)
 
     args = ap.parse_args(argv)
     args.func(args)
