@@ -22,9 +22,17 @@ The experiment toggles context on/off and compares.
    Terminal positions (mate/stalemate/draw) are scored exactly, never sent to Claude.
 6. Return `MoveDecision` (move, candidates with scores + PV, illegal attempts, cost).
 
+## Hybrid pipeline (current best; `ClaudeEnginePlayer(tactical=True)`, CLI `hybrid-ctx`)
+Claude proposes → Python material search (alpha-beta + quiescence, `engine/tactical.py`)
+scores every candidate + all forcing moves → tablebase / mate / veto / fail-low shortcuts →
+either one batched positional **compare** call (+ optional threat agent), or depth-2
+**alpha-beta** over Claude positional leaves (`--search alphabeta`). Details and rationale:
+[[computer-chess-principles]]. Every call is traced for the [[reasoning-dataset]].
+
 ## Players
 - `NaiveClaudePlayer` — one call: FEN + move list -> move. The "plain Claude" baseline.
-- `ClaudeEnginePlayer(use_context=bool, depth=0|1|2)` — the harness.
+- `ClaudeEnginePlayer(use_context=bool, depth=0|1|2)` — the original LLM-only search.
+- `ClaudeEnginePlayer(tactical=True, search="compare"|"alphabeta", threat_agent=bool)` — hybrid.
 - `StockfishPlayer(elo|skill)`, `RandomPlayer` — reference opponents.
 
 ## Match layer
