@@ -205,10 +205,15 @@ def report(runs_root: str | Path, prefix: str, out_dir: str | Path) -> dict:
                                  "seconds_per_move": spm}
 
     lines += ["", "## Harness vs no harness", "",
-              "| model | Δ mean score | permutation p (stratified) | Elo naive → harness | LR χ² | LR p | ACPL naive → harness | Mann-Whitney p | $/game naive → harness | extra $ per extra point |",
+              "| model (levels both arms played) | Δ mean score | permutation p (stratified) | Elo naive → harness | LR χ² | LR p | ACPL naive → harness | Mann-Whitney p | $/game naive → harness | extra $ per extra point |",
               "|---|---|---|---|---|---|---|---|---|---|"]
     for model in sorted({g["model"] for g in games}):
         a, b = by(f"{model}-harness"), by(f"{model}-naive")
+        # Paired comparison: only Maia levels BOTH arms played (an unbalanced ladder would
+        # confound harness with opponent strength).
+        common = {g["level"] for g in a} & {g["level"] for g in b}
+        a = [g for g in a if g["level"] in common]
+        b = [g for g in b if g["level"] in common]
         if not a or not b:
             continue
         d, p_perm = permutation_test(a, b)
@@ -216,15 +221,21 @@ def report(runs_root: str | Path, prefix: str, out_dir: str | Path) -> dict:
         xa = [g["acpl"] for g in a if g["acpl"] is not None]
         xb = [g["acpl"] for g in b if g["acpl"] is not None]
         _, p_mw = mann_whitney(xa, xb) if xa and xb else (None, float("nan"))
-        sa, sb = summary["configs"][f"{model}-harness"], summary["configs"][f"{model}-naive"]
+        def _sub(gs):
+            usd = sum(g["cost_usd"] for g in gs)
+            ac = [g["acpl"] for g in gs if g["acpl"] is not None]
+            return {"elo": elo_mle(gs), "acpl": sum(ac) / len(ac) if ac else None, "score": sum(g["score"] for g in gs),
+                    "games": len(gs), "usd_per_game": usd / len(gs)}
+        sa, sb = _sub(a), _sub(b)
         fa = lambda v: f"{v:.0f}" if v is not None else "–"  # noqa: E731
         extra_pts = sa["score"] / sa["games"] - sb["score"] / sb["games"]
         extra_usd = sa["usd_per_game"] - sb["usd_per_game"]
         per_pt = f"{extra_usd / extra_pts:.2f}" if extra_pts > 0 else "–"
-        lines.append(f"| {model} | {d:+.2f} | {p_perm:.4f} | {sb['elo']:.0f} → {sa['elo']:.0f} | {stat:.1f} | "
+        lines.append(f"| {model} ({','.join(map(str, sorted(common)))}; {len(a)} vs {len(b)} games) | {d:+.2f} | {p_perm:.4f} | {sb['elo']:.0f} → {sa['elo']:.0f} | {stat:.1f} | "
                      f"{p_lr:.2g} | {fa(sb['acpl'])} → {fa(sa['acpl'])} | {p_mw:.2g} | "
                      f"{sb['usd_per_game']:.3f} → {sa['usd_per_game']:.3f} | {per_pt} |")
-        summary["tests"][model] = {"delta_score": d, "p_permutation": p_perm, "lr_stat": stat,
+        summary["tests"][model] = {"levels": sorted(common), "games": [len(a), len(b)],
+                                   "delta_score": d, "p_permutation": p_perm, "lr_stat": stat,
                                    "p_lr": p_lr, "p_mann_whitney_acpl": p_mw}
     lines += ["", "Notes: Elo is a performance rating against Maia's *nominal* ratings (Lichess-ish "
               "scale, see wiki maia-calibration); boundary values (0 or 3200) mean every game was "
