@@ -1,0 +1,97 @@
+{
+  "configs": {
+    "haiku-harness": {
+      "games": 11,
+      "score": 5.5,
+      "elo": 1545,
+      "elo_ci95": [
+        1066,
+        1943
+      ],
+      "acpl": 76.30381948446244,
+      "cost_usd": 3.56894,
+      "usd_per_game": 0.3244490909090909,
+      "usd_per_move": 0.008747401960784313,
+      "claude_moves": 408,
+      "seconds_per_move": 15.373529411764705
+    },
+    "haiku-naive": {
+      "games": 12,
+      "score": 0.0,
+      "elo": -10,
+      "elo_ci95": [
+        -10,
+        -10
+      ],
+      "acpl": 201.2592489540716,
+      "cost_usd": 0.23573,
+      "usd_per_game": 0.019644166666666667,
+      "usd_per_move": 0.0018133076923076922,
+      "claude_moves": 130,
+      "seconds_per_move": 4.464615384615384
+    },
+    "sonnet-harness": {
+      "games": 20,
+      "score": 10.5,
+      "elo": 1528,
+      "elo_ci95": [
+        1332,
+        1716
+      ],
+      "acpl": 46.132694259617054,
+      "cost_usd": 26.33315,
+      "usd_per_game": 1.3166575,
+      "usd_per_move": 0.03446747382198953,
+      "claude_moves": 764,
+      "seconds_per_move": 18.654450261780106
+    },
+    "sonnet-naive": {
+      "games": 5,
+      "score": 0.0,
+      "elo": -10,
+      "elo_ci95": [
+        -10,
+        -10
+      ],
+      "acpl": 106.29420289855072,
+      "cost_usd": 0.6829,
+      "usd_per_game": 0.13657999999999998,
+      "usd_per_move": 0.007673033707865168,
+      "claude_moves": 89,
+      "seconds_per_move": 4.793258426966292
+    }
+  },
+  "tests": {
+    "haiku": {
+      "levels": [
+        1100,
+        1500,
+        1900
+      ],
+      "games": [
+        11,
+        12
+      ],
+      "delta_score": 0.5,
+      "p_permutation": 0.009299535023248838,
+      "lr_stat": 15.559532364758997,
+      "p_lr": 7.99475329498029e-05,
+      "p_mann_whitney_acpl": 0.00022184668066321269
+    },
+    "sonnet": {
+      "levels": [
+        1500,
+        1900
+      ],
+      "games": [
+        8,
+        5
+      ],
+      "delta_score": 0.4375,
+      "p_permutation": 0.0735963201839908,
+      "lr_stat": 4.266107925961686,
+      "p_lr": 0.038879887495940346,
+      "p_mann_whitney_acpl": 0.005413914287949453
+    }
+  }
+}
