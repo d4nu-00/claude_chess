@@ -183,7 +183,7 @@ class ClaudeEnginePlayer:
                  name: str | None = None, tactical: bool = False, tac_depth: int = 2,
                  tac_margin: int = 100, pos_cap: int = 150, board_read: bool = False,
                  threat_agent: bool = False, tablebase: bool = True,
-                 search: str = "compare") -> None:
+                 search: str = "compare", ctx_version: int = 2) -> None:
         assert depth in (0, 1, 2), "depth must be 0, 1 or 2"
         assert illegal_policy in ILLEGAL_POLICIES
         self.llm = llm
@@ -202,6 +202,9 @@ class ClaudeEnginePlayer:
         self.tablebase = tablebase  # hybrid only: play tablebase moves when a probe answers
         assert search in ("compare", "alphabeta")
         self.search = search  # hybrid only: 1-ply batched compare, or depth-2 alpha-beta
+        # 2 = original context; 3 = relations, last-move changes, per-candidate deltas,
+        # adaptive ordering, legal-move material check, wider fail-low (context-research).
+        self.ctx_version = ctx_version
         self.tac_depth = tac_depth
         self.tac_margin = tac_margin
         self.pos_cap = pos_cap
@@ -219,7 +222,8 @@ class ClaudeEnginePlayer:
                       read: bool = False
                       ) -> tuple[list[tuple[Candidate, chess.Move]], list[str], dict]:
         """One proposer call -> (legal candidates sorted by prior desc, illegal/err strings, raw JSON)."""
-        prompt = prompts.proposer_prompt(board, n, self.use_context, self.show_legal_moves, feedback)
+        prompt = prompts.proposer_prompt(board, n, self.use_context, self.show_legal_moves, feedback,
+                                         v=self.ctx_version)
         if read:
             prompt += "\n" + boardread.INSTRUCTION
         data: dict = {}
@@ -283,7 +287,7 @@ class ClaudeEnginePlayer:
             hit = self._tt.get(key)
         if hit is not None:
             return hit
-        prompt = prompts.evaluator_prompt(board, self.use_context)
+        prompt = prompts.evaluator_prompt(board, self.use_context, v=self.ctx_version)
         for _ in range(2):
             try:
                 data = extract_json(tally.complete(prompts.EVALUATOR_SYSTEM, prompt, max_tokens=400))
@@ -441,7 +445,8 @@ class ClaudeEnginePlayer:
         verdicts = {v.move: v for v in tactical.score_moves(board, [mv for _, mv in cands] + extra,
                                                               depth=depth)}
         best_claude = max(verdicts[mv].score for _, mv in cands)
-        if best_claude < -self.tac_margin:
+        fail_low = 0 if self.ctx_version >= 3 else -self.tac_margin
+        if best_claude < fail_low:
             # Fail low: every Claude idea loses material -> widen to all legal moves.
             rest = [m for m in board.legal_moves if m not in verdicts]
             verdicts.update({v.move: v for v in tactical.score_moves(board, rest, depth=depth)})
@@ -542,7 +547,7 @@ class ClaudeEnginePlayer:
             hit = self._tt.get(key)
         if hit is not None:
             return hit
-        prompt = prompts.positional_prompt(board, self.use_context)
+        prompt = prompts.positional_prompt(board, self.use_context, v=self.ctx_version)
         for _ in range(2):
             try:
                 data = extract_json(tally.complete(prompts.POSITIONAL_SYSTEM, prompt, max_tokens=300))
@@ -668,7 +673,7 @@ class ClaudeEnginePlayer:
             b.push(m)
             afters[m] = b
             options.append((c.san, verdicts[m].refutation, b))
-        prompt = prompts.threat_prompt(board, options, self.use_context)
+        prompt = prompts.threat_prompt(board, options, self.use_context, v=self.ctx_version)
         try:
             data = extract_json(tally.complete(prompts.THREAT_SYSTEM, prompt, max_tokens=600))
         except LLMUnavailable:
@@ -706,7 +711,7 @@ class ClaudeEnginePlayer:
             b.push(m)
             v = verdicts[m]
             options.append((c.san, v.score, v.refutation, b.fen()))
-        prompt = prompts.compare_prompt(board, options, self.use_context)
+        prompt = prompts.compare_prompt(board, options, self.use_context, v=self.ctx_version)
         by_san = {c.san: m for c, m in survivors}
         for _ in range(2):
             try:
