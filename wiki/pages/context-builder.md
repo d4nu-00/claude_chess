@@ -51,6 +51,10 @@ per position (test asserts <50ms avg). Code: `src/claude_chess/context/`, data: 
   only rank. Otherwise e.g. `bad-bishop` dragged in the Stonewall page.
 
 ## Gotchas
+- **Not thread-safe on a shared board**: `build_context` (tactics/SEE) push/pops moves on the
+  board it is given. Two threads building context from the same `chess.Board` corrupt it
+  (seen as a forfeit: "push() expects move to be pseudo-legal"). Always pass `board.copy()`
+  to anything that runs in parallel.
 - SEE is a simple swap-off with least-valuable legal recapture; ignores x-ray subtleties
   beyond what re-computing attackers after each push gives (it does handle batteries).
 - Bad bishop requires ≥2 of its own central pawns *fixed by enemy pawns*; otherwise every
