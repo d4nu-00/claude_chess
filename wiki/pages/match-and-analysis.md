@@ -66,3 +66,6 @@ silently match nothing (empty labels, missing ACPL).
   performance Elo (MLE + bootstrap CI), ACPL, cost ($, $/game, $/move), s/move, and
   harness-vs-naive tests (stratified permutation, likelihood ratio, Mann-Whitney on ACPL).
   Code: `match/stats.py`. Experiment driver: `scripts/exp_harness_vs_naive.sh`.
+- Live dashboard: `uv run python scripts/live_status.py PREFIX --expected N --loop 20` rewrites
+  `experiments/PREFIX/LIVE.md` + `live.html` (auto-refresh) with the cross table so far,
+  % complete, API cost, ETA and in-progress games. No LLM calls.

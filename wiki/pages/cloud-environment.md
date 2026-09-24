@@ -30,5 +30,9 @@ cd /tmp/lc0 && meson setup build/release --buildtype=release --wrap-mode=nodownl
 ## Agent gotchas
 - Waiting on a match with `while pgrep -f "claude-chess match"` never ends: the waiter's
   own command line matches. Use a bracket pattern: `pgrep -f "[b]in/claude-chess match"`.
+- Same self-match trap with `pkill -f "<pattern>"`: it can kill the very shell running it
+  (exit 144). Kill by PID from `ps` + awk that excludes itself.
+- File ctime changes on every write — don't use it as a start time (use a write-once file
+  such as a run's `meta.json`).
 - `runs/` is gitignored; results persist via `db/games.sqlite` (commit it) and
   `wiki/pages/results.md`. Exported datasets go under `datasets/`.
