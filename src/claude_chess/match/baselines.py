@@ -16,11 +16,14 @@ import chess.engine
 from claude_chess.types import MoveDecision
 
 STOCKFISH_PATH = os.environ.get("STOCKFISH_PATH") or shutil.which("stockfish") or "/opt/homebrew/bin/stockfish"
+# python-chess waits 10 s for an engine to start by default; with ~20 parallel games (each an
+# lc0 + a Stockfish referee) engines missed that and whole games failed (exp1). Be patient.
+ENGINE_START_TIMEOUT = 120.0
 MIN_UCI_ELO = 1320  # Stockfish 17's UCI_Elo floor; use skill level for weaker play
 
 
 def open_stockfish(path: str | None = None) -> chess.engine.SimpleEngine:
-    eng = chess.engine.SimpleEngine.popen_uci(path or STOCKFISH_PATH)
+    eng = chess.engine.SimpleEngine.popen_uci(path or STOCKFISH_PATH, timeout=ENGINE_START_TIMEOUT)
     eng.configure({"Threads": 1, "Hash": 16})
     return eng
 

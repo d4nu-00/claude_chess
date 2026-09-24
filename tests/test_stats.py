@@ -47,3 +47,17 @@ def test_report_writes_crosstable_with_cost(tmp_path):
     assert abs(summary["configs"]["haiku-harness"]["usd_per_game"] - 0.01) < 1e-9
     assert "haiku" in summary["tests"]
     assert "s/move" in table and summary["configs"]["haiku-naive"]["seconds_per_move"] == 2.0
+
+
+def test_classify_decision_reliance():
+    from claude_chess.match.stats import classify_decision, reliance
+    d_claude = {"san": "e4", "note": "hybrid", "search": {"decided_by": "hybrid", "candidates": {
+        "e4": {"source": "claude", "prior": 0.6}, "d4": {"source": "claude", "prior": 0.4}}}}
+    d_search = {"san": "Rxd5", "note": "fail-low: searched all moves; injected Rxd5; only tactically sound candidate",
+                "search": {"decided_by": "only tactically sound candidate", "candidates": {
+                    "Rd3": {"source": "claude", "prior": 0.7, "vetoed": True},
+                    "Rxd5": {"source": "engine", "prior": 0.0}}}}
+    a, b = classify_decision(d_claude), classify_decision(d_search)
+    assert a["top_played"] == 1 and a["search_added"] == 0 and a["no_claude_value"] == 0
+    assert b["top_overruled"] == 1 and b["search_added"] == 1 and b["fail_low"] == 1 and b["no_claude_value"] == 1
+    assert reliance([d_claude, d_search, {"san": "e4"}])["moves"] == 2

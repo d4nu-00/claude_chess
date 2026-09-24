@@ -272,6 +272,7 @@ def play_match(
     resign_cp: int | None = None,
     resign_plies: int = 6,
     opening_offset: int = 0,
+    only_games: list[int] | None = None,
 ) -> Path:
     """Play `games` games; A is White in even-numbered games (0, 2, ...). Each opening is
     used twice in a row (once per colour). Factories are called per game so no engine
@@ -353,11 +354,11 @@ def play_match(
         return rec
 
     if parallel <= 1:
-        for i in range(games):
+        for i in (only_games or range(games)):
             run_one(i)
     else:
         with ThreadPoolExecutor(max_workers=parallel) as ex:
-            futs = [ex.submit(run_one, i) for i in range(games)]
+            futs = [ex.submit(run_one, i) for i in (only_games or range(games))]
             for fut in as_completed(futs):
                 exc = fut.exception()
                 if exc:

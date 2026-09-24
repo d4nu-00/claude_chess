@@ -24,6 +24,52 @@ from pathlib import Path
 MAIA_RE = re.compile(r"maia[:-]?(\d{4})")
 
 
+RELIANCE_KEYS = ("moves", "top_played", "top_overruled", "claude_proposed", "search_added",
+                 "fail_low", "no_claude_value")
+
+
+def classify_decision(d: dict) -> dict | None:
+    """Who decided a harness move: Claude or the Python tactical search? (None if no search info.)
+
+    top_played      Claude's own #1 candidate (highest prior) was played
+    top_overruled   Claude's #1 was vetoed by the material search or refuted by a verified threat
+    claude_proposed the played move was one of Claude's candidates
+    search_added    the played move was NOT proposed by Claude (injected by the search)
+    fail_low        every Claude candidate lost material, so all legal moves were searched
+    no_claude_value the choice needed no Claude positional judgement (mate, single survivor,
+                    tablebase, forced move)
+    """
+    info = d.get("search") or {}
+    cands = info.get("candidates") or {}
+    note = d.get("note") or ""
+    if not cands and "only legal move" not in note:
+        return None
+    played = d.get("san")
+    claude = {k: v for k, v in cands.items() if v.get("source") == "claude"}
+    top = max(claude, key=lambda k: claude[k].get("prior") or 0) if claude else None
+    tc = claude.get(top, {}) if top else {}
+    decided = info.get("decided_by", "")
+    return {
+        "moves": 1,
+        "top_played": int(top is not None and played == top),
+        "top_overruled": int(bool(tc.get("vetoed") or tc.get("threat_verified"))),
+        "claude_proposed": int(played in claude),
+        "search_added": int(bool(cands) and played in cands and cands[played].get("source") == "engine"),
+        "fail_low": int("fail-low" in note),
+        "no_claude_value": int("only legal move" in note or decided.startswith(("mate in", "only ", "tablebase"))),
+    }
+
+
+def reliance(decisions: list[dict]) -> dict:
+    tot = dict.fromkeys(RELIANCE_KEYS, 0)
+    for d in decisions:
+        c = classify_decision(d)
+        if c:
+            for k in RELIANCE_KEYS:
+                tot[k] += c[k]
+    return tot
+
+
 def _jsonl(path: Path) -> list[dict]:
     if not path.exists():
         return []
@@ -49,6 +95,7 @@ def load_games(runs_root: Path, prefix: str) -> list[dict]:
         cost: dict = {}
         moves: dict = {}
         secs: dict = {}
+        rel: dict = {}
         for d in _jsonl(rd / "decisions.jsonl"):
             if "maia" in d.get("player", ""):
                 continue
@@ -56,6 +103,11 @@ def load_games(runs_root: Path, prefix: str) -> list[dict]:
             cost[gid] = cost.get(gid, 0.0) + (d.get("cost") or 0.0)
             moves[gid] = moves.get(gid, 0) + 1
             secs[gid] = secs.get(gid, 0.0) + (d.get("seconds") or 0.0)
+            c = classify_decision(d)
+            if c:
+                r = rel.setdefault(gid, dict.fromkeys(RELIANCE_KEYS, 0))
+                for k in RELIANCE_KEYS:
+                    r[k] += c[k]
         acpl = {}
         for a in _jsonl(rd / "move_analysis.jsonl"):
             if "maia" in a.get("player", ""):
@@ -74,7 +126,8 @@ def load_games(runs_root: Path, prefix: str) -> list[dict]:
                           "result": res, "termination": g.get("termination", ""),
                           "plies": g.get("plies"), "acpl": sum(cp) / len(cp) if cp else None,
                           "cost_usd": round(cost.get(gid, 0.0), 5),
-                          "claude_moves": moves.get(gid, 0), "claude_seconds": round(secs.get(gid, 0.0), 1)})
+                          "claude_moves": moves.get(gid, 0), "claude_seconds": round(secs.get(gid, 0.0), 1),
+                          "reliance": rel.get(gid)})
     return games
 
 
@@ -237,6 +290,22 @@ def report(runs_root: str | Path, prefix: str, out_dir: str | Path) -> dict:
         summary["tests"][model] = {"levels": sorted(common), "games": [len(a), len(b)],
                                    "delta_score": d, "p_permutation": p_perm, "lr_stat": stat,
                                    "p_lr": p_lr, "p_mann_whitney_acpl": p_mw}
+    rel_rows = []
+    for c in configs:
+        tot = dict.fromkeys(RELIANCE_KEYS, 0)
+        for g in by(c):
+            for k in RELIANCE_KEYS:
+                tot[k] += (g.get("reliance") or {}).get(k, 0)
+        if tot["moves"]:
+            summary["configs"][c]["reliance"] = tot
+            pc = lambda k: f"{100 * tot[k] / tot['moves']:.0f}%"  # noqa: E731
+            rel_rows.append(f"| {c} | {tot['moves']} | {pc('top_played')} | {pc('top_overruled')} | "
+                            f"{pc('claude_proposed')} | {pc('search_added')} | {pc('fail_low')} | {pc('no_claude_value')} |")
+    if rel_rows:
+        lines += ["", "## Reliance on the Python tactical search (harness moves)", "",
+                  "| config | moves | Claude's #1 played | #1 overruled by search | played move proposed by Claude "
+                  "| played move added by search | fail-low (all Claude ideas lose material) | decided without Claude's positional call |",
+                  "|---|---|---|---|---|---|---|---|"] + rel_rows
     lines += ["", "Notes: Elo is a performance rating against Maia's *nominal* ratings (Lichess-ish "
               "scale, see wiki maia-calibration); boundary values (0 or 3200) mean every game was "
               "lost/won. Aborted games (LLM outages) are excluded. Games may end by resign "

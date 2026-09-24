@@ -13,7 +13,7 @@ import re
 import time
 from pathlib import Path
 
-from claude_chess.match.stats import load_games
+from claude_chess.match.stats import load_games, reliance
 
 PLY_RE = re.compile(r"^\[g(\d+)\] ply +(\d+)")
 
@@ -29,6 +29,21 @@ def snapshot(prefix: str, expected: int, runs_root: Path, logs: Path, t0: float)
                 d = json.loads(line)
                 if "maia" not in d.get("player", ""):
                     cost += d.get("cost") or 0.0
+    rel_by: dict[str, dict] = {}
+    for rd in runs_root.iterdir():
+        if rd.is_dir() and prefix in rd.name and (rd / "decisions.jsonl").exists():
+            decs = [json.loads(x) for x in (rd / "decisions.jsonl").read_text().splitlines() if x.strip()]
+            decs = [d for d in decs if "maia" not in d.get("player", "")]
+            if decs:
+                r = reliance(decs)
+                if r["moves"]:
+                    key = decs[0]["player"]
+                    agg = rel_by.setdefault(key, dict.fromkeys(r, 0))
+                    for k, v in r.items():
+                        agg[k] += v
+    rel_lines = [f"- {html.escape(k)}: Claude's #1 played {100 * v['top_played'] / v['moves']:.0f}% · overruled "
+                 f"{100 * v['top_overruled'] / v['moves']:.0f}% · move added by search {100 * v['search_added'] / v['moves']:.0f}%"
+                 f" · fail-low {100 * v['fail_low'] / v['moves']:.0f}% ({v['moves']} moves)" for k, v in sorted(rel_by.items())]
     running = []
     for lf in sorted(logs.glob(f"{prefix}-*.log")):
         last: dict[str, int] = {}
@@ -70,6 +85,8 @@ def snapshot(prefix: str, expected: int, runs_root: Path, logs: Path, t0: float)
     for c in configs:
         md.append(f"| {c} | " + " | ".join(cell(c, lv) for lv in levels) + f" | {total(c)} |")
     md += ["", f"**In progress ({len(running)}):** " + (", ".join(running) if running else "none")]
+    if rel_lines:
+        md += ["", "**Reliance on the Python tactical search:**"] + rel_lines
 
     rows = "".join(
         f"<tr><th>{html.escape(c)}</th>" + "".join(f"<td>{html.escape(cell(c, lv))}</td>" for lv in levels)
@@ -95,6 +112,7 @@ th,td{{padding:6px 10px;border-bottom:1px solid var(--line);text-align:left;whit
 <div class=wrap><table><tr><th>config</th>{head}<th>total</th></tr>{rows}</table></div>
 <p class=mut>Cell = score/games (W-D-L) from Claude's side.</p>
 <p><b>In progress ({len(running)}):</b> {html.escape(', '.join(running) or 'none')}</p>
+{('<h2 style="font-size:16px">Reliance on the Python tactical search</h2><ul>' + ''.join('<li>' + x[2:] + '</li>' for x in rel_lines) + '</ul>') if rel_lines else ''}
 </body></html>"""
     return "\n".join(md) + "\n", page
 

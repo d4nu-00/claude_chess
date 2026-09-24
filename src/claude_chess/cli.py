@@ -96,6 +96,7 @@ def cmd_match(args: argparse.Namespace) -> None:
                     label=label, runs_root=args.runs_root, analyze=not args.no_analysis,
                     analysis_depth=args.analysis_depth, resign_cp=args.resign_cp,
                     resign_plies=args.resign_plies, opening_offset=args.opening_offset,
+                    only_games=[int(x) for x in args.only_games.split(",")] if args.only_games else None,
                     meta={"resign_cp": args.resign_cp, "resign_plies": args.resign_plies,
                           "opening_offset": args.opening_offset, "white_spec": args.white, "black_spec": args.black, "model": args.model,
                           "depth": args.depth, "candidates": args.candidates, "replies": args.replies,
@@ -225,6 +226,9 @@ def main(argv: list[str] | None = None) -> None:
     m.add_argument("--resign-plies", type=int, default=6)
     m.add_argument("--opening-offset", type=int, default=0,
                    help="start the opening rotation at this index (vary openings across matches)")
+    m.add_argument("--only-games", default=None,
+                   help="comma-separated game indices to play (re-run failed games with the same "
+                        "opening/colour assignment), e.g. 1,2")
     m.add_argument("--no-openings", action="store_true", help="start every game from the initial position")
     m.add_argument("--no-analysis", action="store_true")
     m.add_argument("--analysis-depth", type=int, default=12)
