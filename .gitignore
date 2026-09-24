@@ -5,3 +5,5 @@ __pycache__/
 .pytest_cache/
 engines/
 logs/
+experiments/*/LIVE.md
+experiments/*/live.html
