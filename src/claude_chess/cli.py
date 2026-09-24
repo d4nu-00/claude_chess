@@ -9,7 +9,7 @@ from typing import Any, Callable
 
 import chess
 
-SPEC_HELP = ("naive | engine-ctx | engine-noctx | stockfish:ELO | stockfish-skill:N | "
+SPEC_HELP = ("naive | engine-ctx | engine-noctx | hybrid-ctx | hybrid-noctx | stockfish:ELO | stockfish-skill:N | "
              "maia:RATING (1100..1900, step 100) | random")
 
 
@@ -32,21 +32,29 @@ def make_player_factory(spec: str, args: Any, seed: int = 0) -> Callable[[], Any
         from claude_chess.match.maia import MaiaPlayer
         rating = int(spec.split(":", 1)[1])
         return lambda: MaiaPlayer(rating=rating)
-    if spec in ("naive", "engine-ctx", "engine-noctx"):
+    if spec in ("naive", "engine-ctx", "engine-noctx", "hybrid-ctx", "hybrid-noctx"):
         def factory():
             from claude_chess.engine.players import ClaudeEnginePlayer, NaiveClaudePlayer
             from claude_chess.llm import make_llm
-            llm = make_llm(args.model, backend=args.backend)
+            llm = make_llm(args.model, backend=args.backend, thinking_tokens=args.thinking)
             legal = not args.no_legal_moves
             if spec == "naive":
-                p = NaiveClaudePlayer(llm, show_legal_moves=legal)
+                p = NaiveClaudePlayer(llm, show_legal_moves=legal, board_read=args.board_read)
                 p.name = f"naive({args.model})"
+            elif spec.startswith("hybrid"):
+                ctx = spec == "hybrid-ctx"
+                p = ClaudeEnginePlayer(llm, use_context=ctx, n_candidates=args.candidates,
+                                       show_legal_moves=legal, illegal_policy=args.illegal_policy,
+                                       max_retries=args.max_retries, tactical=True,
+                                       tac_depth=args.tac_depth, tac_margin=args.tac_margin,
+                                       board_read=args.board_read)
+                p.name = f"{spec}(t{args.tac_depth},{args.model})"
             else:
                 ctx = spec == "engine-ctx"
                 p = ClaudeEnginePlayer(llm, use_context=ctx, depth=args.depth,
                                        n_candidates=args.candidates, n_replies=args.replies,
                                        show_legal_moves=legal, illegal_policy=args.illegal_policy,
-                                       max_retries=args.max_retries)
+                                       max_retries=args.max_retries, board_read=args.board_read)
                 p.name = f"{spec}(d{args.depth},{args.model})"
             return p
         return factory
@@ -86,6 +94,8 @@ def cmd_match(args: argparse.Namespace) -> None:
                     analysis_depth=args.analysis_depth,
                     meta={"white_spec": args.white, "black_spec": args.black, "model": args.model,
                           "depth": args.depth, "candidates": args.candidates, "replies": args.replies,
+                          "tac_depth": args.tac_depth, "tac_margin": args.tac_margin,
+                          "thinking": args.thinking, "board_read": args.board_read,
                           "illegal_policy": args.illegal_policy, "argv": sys.argv[1:]})
     print(f"run dir: {rd}")
 
@@ -167,8 +177,16 @@ def main(argv: list[str] | None = None) -> None:
     m.add_argument("--depth", type=int, default=1)
     m.add_argument("--candidates", type=int, default=4)
     m.add_argument("--replies", type=int, default=2)
+    m.add_argument("--tac-depth", type=int, default=2,
+                   help="hybrid: full-width plies of material search after each candidate")
+    m.add_argument("--tac-margin", type=int, default=100,
+                   help="hybrid: veto candidates this many cp worse (material) than the best")
     m.add_argument("--illegal-policy", default="random")
     m.add_argument("--max-retries", type=int, default=3)
+    m.add_argument("--thinking", type=int, default=None,
+                   help="CLI backend: max extended-thinking tokens per call (0 = off; default = CLI default)")
+    m.add_argument("--board-read", action="store_true",
+                   help="Claude also reports piece placement/threats; scored vs the real board")
     m.add_argument("--no-legal-moves", action="store_true", help="hide legal-move list from Claude")
     m.add_argument("--no-openings", action="store_true", help="start every game from the initial position")
     m.add_argument("--no-analysis", action="store_true")

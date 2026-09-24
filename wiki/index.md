@@ -22,4 +22,6 @@ reads this index first and writes back what it learns. Pages are small and singl
 - [match-and-analysis](pages/match-and-analysis.md) — runner, adjudication, metrics (match agent)
 - [results](pages/results.md) — experiment results
 - [infra-failures](pages/infra-failures.md) — rate limits / backend errors abort games; never scored as illegal moves
+- [computer-chess-principles](pages/computer-chess-principles.md) — hybrid search: quiescence, full-width tactical veto, batched positional eval
+- [board-vision](pages/board-vision.md) — `--board-read`: Claude reports pieces/threats, scored vs the real board
 - [maia-calibration](pages/maia-calibration.md) — Maia (human-like lc0 nets) as opponents, Lichess rating table, performance-rating stats (maia agent)

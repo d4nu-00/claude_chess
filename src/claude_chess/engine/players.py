@@ -14,7 +14,7 @@ from concurrent.futures import ThreadPoolExecutor
 
 import chess
 
-from claude_chess.engine import prompts
+from claude_chess.engine import boardread, prompts, tactical
 from claude_chess.llm import LLMUnavailable, extract_json
 from claude_chess.types import LLM, Candidate, MoveDecision
 
@@ -103,9 +103,11 @@ class NaiveClaudePlayer:
     """Plain Claude: one call (FEN + board + history [+ legal moves]) -> move."""
 
     def __init__(self, llm: LLM, show_legal_moves: bool = True, illegal_policy: str = "random",
-                 max_retries: int = 2, seed: int | None = None, name: str | None = None) -> None:
+                 max_retries: int = 2, seed: int | None = None, name: str | None = None,
+                 board_read: bool = False) -> None:
         assert illegal_policy in ILLEGAL_POLICIES
         self.llm = llm
+        self.board_read = board_read
         self.show_legal_moves = show_legal_moves
         self.illegal_policy = illegal_policy
         self.max_retries = max_retries
@@ -119,9 +121,11 @@ class NaiveClaudePlayer:
         feedback = ""
         for _ in range(self.max_retries + 1):
             try:
-                text = tally.complete(prompts.NAIVE_SYSTEM,
-                                      prompts.naive_prompt(board, self.show_legal_moves, feedback))
-                raw = str(extract_json(text).get("move", ""))
+                prompt = prompts.naive_prompt(board, self.show_legal_moves, feedback)
+                if self.board_read:
+                    prompt += "\n" + boardread.INSTRUCTION
+                data = extract_json(tally.complete(prompts.NAIVE_SYSTEM, prompt))
+                raw = str(data.get("move", ""))
             except LLMUnavailable:
                 raise  # infrastructure failure, not an illegal move: runner aborts the game
             except Exception as e:  # unparseable reply
@@ -133,7 +137,8 @@ class NaiveClaudePlayer:
             if mv is not None:
                 return MoveDecision(move=mv, san=board.san(mv), illegal_attempts=illegal,
                                     llm_calls=tally.calls, cost_usd=tally.cost,
-                                    seconds=time.monotonic() - t0)
+                                    seconds=time.monotonic() - t0,
+                                    board_read=boardread.score(board, data) if self.board_read else None)
             illegal.append(f"{raw}: {why}")
             feedback = prompts.illegal_feedback(board, [f"{raw}: {why}"])
         return _exhausted(board, self.illegal_policy, self.rng, "naive", tally, t0, illegal)
@@ -143,12 +148,19 @@ class NaiveClaudePlayer:
 
 
 class ClaudeEnginePlayer:
-    """Claude as policy + value, Python as search on a real board."""
+    """Claude as policy + value, Python as search on a real board.
+
+    `tactical=True` switches to the hybrid pipeline (wiki/pages/computer-chess-principles.md):
+    Claude proposes, a material-only alpha-beta + quiescence search (engine/tactical.py)
+    vetoes tactically losing candidates and injects winning forcing moves, and ONE batched
+    Claude call ranks the survivors on positional merit. `depth` is ignored in that mode.
+    """
 
     def __init__(self, llm: LLM, use_context: bool = True, depth: int = 1, n_candidates: int = 4,
                  n_replies: int = 2, show_legal_moves: bool = True, illegal_policy: str = "random",
                  max_retries: int = 2, max_workers: int = MAX_WORKERS, seed: int | None = None,
-                 name: str | None = None) -> None:
+                 name: str | None = None, tactical: bool = False, tac_depth: int = 2,
+                 tac_margin: int = 100, pos_cap: int = 150, board_read: bool = False) -> None:
         assert depth in (0, 1, 2), "depth must be 0, 1 or 2"
         assert illegal_policy in ILLEGAL_POLICIES
         self.llm = llm
@@ -161,15 +173,29 @@ class ClaudeEnginePlayer:
         self.max_retries = max_retries
         self.max_workers = max_workers
         self.rng = random.Random(seed)
+        self.tactical = tactical
+        self.board_read = board_read
+        self.tac_depth = tac_depth
+        self.tac_margin = tac_margin
+        self.pos_cap = pos_cap
+        # Transposition table for Claude's static evals (position -> (cp, reason)): the same
+        # position recurs across sibling lines and across moves of one game.
+        self._tt: dict = {}
+        self._tt_lock = threading.Lock()
+        kind = "hybrid" if tactical else f"d={depth}"
         self.name = name or (f"engine[{getattr(llm, 'model', '?')},ctx={int(use_context)},"
-                             f"d={depth},legal={int(show_legal_moves)}]")
+                             f"{kind},legal={int(show_legal_moves)}]")
 
     # policy ---------------------------------------------------------------
 
-    def _propose_once(self, tally: _Tally, board: chess.Board, n: int, feedback: str
-                      ) -> tuple[list[tuple[Candidate, chess.Move]], list[str]]:
-        """One proposer call -> (legal candidates sorted by prior desc, illegal/err strings)."""
+    def _propose_once(self, tally: _Tally, board: chess.Board, n: int, feedback: str,
+                      read: bool = False
+                      ) -> tuple[list[tuple[Candidate, chess.Move]], list[str], dict]:
+        """One proposer call -> (legal candidates sorted by prior desc, illegal/err strings, raw JSON)."""
         prompt = prompts.proposer_prompt(board, n, self.use_context, self.show_legal_moves, feedback)
+        if read:
+            prompt += "\n" + boardread.INSTRUCTION
+        data: dict = {}
         try:
             data = extract_json(tally.complete(prompts.PROPOSER_SYSTEM, prompt))
             items = data.get("candidates") or []
@@ -178,7 +204,7 @@ class ClaudeEnginePlayer:
         except LLMUnavailable:
             raise
         except Exception as e:
-            return [], [f"unparseable reply ({type(e).__name__})"]
+            return [], [f"unparseable reply ({type(e).__name__})"], data
         legal: list[tuple[Candidate, chess.Move]] = []
         bad: list[str] = []
         seen: set[chess.Move] = set()
@@ -201,16 +227,19 @@ class ClaudeEnginePlayer:
                 prior = 0.0
             legal.append((Candidate(san=board.san(mv), reason=str(it.get("reason", "")), prior=prior), mv))
         legal.sort(key=lambda cm: -cm[0].prior)  # stable: ties keep proposer order
-        return legal[:n], bad
+        return legal[:n], bad, data
 
-    def _propose(self, tally: _Tally, board: chess.Board, n: int, retries: int
+    def _propose(self, tally: _Tally, board: chess.Board, n: int, retries: int, read: bool = False
                  ) -> tuple[list[tuple[Candidate, chess.Move]], list[str]]:
         illegal: list[str] = []
         feedback = ""
+        self._last_read = None
         for _ in range(retries + 1):
-            legal, bad = self._propose_once(tally, board, n, feedback)
+            legal, bad, data = self._propose_once(tally, board, n, feedback, read)
             illegal.extend(bad)
             if legal:
+                if read:
+                    self._last_read = boardread.score(board, data)
                 return legal, illegal
             feedback = prompts.illegal_feedback(board, bad or ["no candidates given"])
         return [], illegal
@@ -222,12 +251,20 @@ class ClaudeEnginePlayer:
         exact = terminal_score(board)
         if exact is not None:
             return exact, "terminal"
+        key = board._transposition_key()
+        with self._tt_lock:
+            hit = self._tt.get(key)
+        if hit is not None:
+            return hit
         prompt = prompts.evaluator_prompt(board, self.use_context)
         for _ in range(2):
             try:
                 data = extract_json(tally.complete(prompts.EVALUATOR_SYSTEM, prompt, max_tokens=400))
                 cp = int(round(float(data["eval_cp"])))
-                return max(-EVAL_CLAMP, min(EVAL_CLAMP, cp)), str(data.get("reason", ""))
+                res = max(-EVAL_CLAMP, min(EVAL_CLAMP, cp)), str(data.get("reason", ""))
+                with self._tt_lock:
+                    self._tt[key] = res
+                return res
             except LLMUnavailable:
                 raise
             except Exception:
@@ -240,9 +277,20 @@ class ClaudeEnginePlayer:
         t0 = time.monotonic()
         board = board.copy()
         tally = _Tally(self.llm)
-        cands, illegal = self._propose(tally, board, self.n_candidates, self.max_retries)
+        if self.tactical:
+            legal = list(board.legal_moves)
+            if len(legal) == 1:  # forced move: no need to think
+                return MoveDecision(move=legal[0], san=board.san(legal[0]), llm_calls=0,
+                                    seconds=time.monotonic() - t0, note="only legal move")
+        cands, illegal = self._propose(tally, board, self.n_candidates, self.max_retries,
+                                       read=self.board_read)
+        read = self._last_read
         if not cands:
             return _exhausted(board, self.illegal_policy, self.rng, "proposer", tally, t0, illegal)
+        if self.tactical:
+            dec = self._choose_hybrid(tally, board, cands, illegal, t0)
+            dec.board_read = read
+            return dec
 
         note = ""
         if self.depth == 1:
@@ -256,7 +304,7 @@ class ClaudeEnginePlayer:
             best_c, best_m = max(cands, key=lambda cm: (cm[0].score_cp, cm[0].prior))
         return MoveDecision(move=best_m, san=best_c.san, candidates=[c for c, _ in cands],
                             illegal_attempts=illegal, llm_calls=tally.calls, cost_usd=tally.cost,
-                            seconds=time.monotonic() - t0, note=note)
+                            seconds=time.monotonic() - t0, note=note, board_read=read)
 
     def _search_d1(self, tally: _Tally, board: chess.Board,
                    cands: list[tuple[Candidate, chess.Move]]) -> None:
@@ -320,3 +368,91 @@ class ClaudeEnginePlayer:
             c.score_cp = best[0]
             c.line = [c.san] + best[1]
         return f"opponent-proposer illegal replies: {opp_illegal}" if opp_illegal else ""
+
+    # hybrid: Claude policy + tactical verification + batched positional value ----------
+
+    def _choose_hybrid(self, tally: _Tally, board: chess.Board,
+                       cands: list[tuple[Candidate, chess.Move]], illegal: list[str],
+                       t0: float) -> MoveDecision:
+        claude_moves = {mv for _, mv in cands}
+        extra = [m for m in tactical.forcing_moves(board) if m not in claude_moves]
+        verdicts = {v.move: v for v in tactical.score_moves(board, [mv for _, mv in cands] + extra,
+                                                              depth=self.tac_depth)}
+        notes: list[str] = []
+
+        # Forcing moves Claude missed enter only if they are materially clearly better
+        # than everything Claude proposed (engine "move generation" for tactics).
+        best_claude = max(verdicts[mv].score for _, mv in cands)
+        pool = list(cands)
+        for m in extra:
+            v = verdicts[m]
+            if v.score >= best_claude + self.tac_margin:
+                what = f"mates in {v.mate}" if v.mate > 0 else f"wins {v.score - best_claude:+d}cp"
+                pool.append((Candidate(san=board.san(m), reason=f"engine: {what}", prior=0.0), m))
+                notes.append(f"injected {board.san(m)}")
+
+        for c, m in pool:
+            v = verdicts[m]
+            c.score_cp = v.score
+            c.line = [c.san] + ([v.refutation] if v.refutation else [])
+
+        def decide(c: Candidate, m: chess.Move, why: str) -> MoveDecision:
+            return MoveDecision(move=m, san=c.san, candidates=[pc for pc, _ in pool],
+                                illegal_attempts=illegal, llm_calls=tally.calls, cost_usd=tally.cost,
+                                seconds=time.monotonic() - t0, note="; ".join(notes + [why]))
+
+        # Forced mate found by the search: play the fastest one.
+        mates = [(verdicts[m].mate, c, m) for c, m in pool if verdicts[m].mate > 0]
+        if mates:
+            _, c, m = min(mates, key=lambda t: t[0])
+            return decide(c, m, f"mate in {verdicts[m].mate} plies")
+
+        # Tactical veto: drop moves materially worse than the best by more than the margin.
+        best_t = max(verdicts[m].score for _, m in pool)
+        survivors = [(c, m) for c, m in pool if verdicts[m].score >= best_t - self.tac_margin]
+        vetoed = [c.san for c, m in pool if (c, m) not in survivors]
+        if vetoed:
+            notes.append("vetoed " + ",".join(vetoed))
+        if len(survivors) == 1:
+            c, m = survivors[0]
+            return decide(c, m, "only tactically sound candidate")
+
+        # Positional value: one batched Claude call ranks the survivors on a common scale.
+        pos = self._compare(tally, board, survivors, verdicts)
+        if pos is None:
+            notes.append("compare failed; used tactics+prior")
+            pos = {m: 0 for _, m in survivors}
+        for c, m in survivors:
+            c.score_cp = verdicts[m].score + pos[m]
+        c, m = max(survivors, key=lambda cm: (cm[0].score_cp, cm[0].prior))
+        return decide(c, m, "hybrid")
+
+    def _compare(self, tally: _Tally, board: chess.Board,
+                 survivors: list[tuple[Candidate, chess.Move]],
+                 verdicts: dict) -> dict | None:
+        options = []
+        for c, m in survivors:
+            b = board.copy(stack=False)
+            b.push(m)
+            v = verdicts[m]
+            options.append((c.san, v.score, v.refutation, b.fen()))
+        prompt = prompts.compare_prompt(board, options, self.use_context)
+        by_san = {c.san: m for c, m in survivors}
+        for _ in range(2):
+            try:
+                data = extract_json(tally.complete(prompts.COMPARE_SYSTEM, prompt, max_tokens=600))
+                out: dict = {}
+                for it in data.get("scores") or []:
+                    mv, _why = parse_move(board, str(it.get("move", "")))
+                    if mv is None or mv not in by_san.values():
+                        continue
+                    sc = int(round(float(it.get("score", 0))))
+                    out[mv] = max(-self.pos_cap, min(self.pos_cap, sc))
+                if not out:
+                    raise ValueError("no usable scores")
+                return {m: out.get(m, 0) for _, m in survivors}
+            except LLMUnavailable:
+                raise
+            except Exception:
+                continue
+        return None

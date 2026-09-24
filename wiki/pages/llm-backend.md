@@ -10,3 +10,10 @@
   JSON output has `result`, `total_cost_usd`, `usage.input_tokens/output_tokens`, `is_error`.
 - Calls are independent processes → parallelise with a thread pool (search fans out).
 - If `ANTHROPIC_API_KEY` is set, `AnthropicLLM` uses the SDK directly (faster, same prompts).
+
+## Extended thinking cost (2026-09-24)
+- The CLI enables extended thinking by default. On a full chess prompt Haiku 4.5 thought for
+  ~17k tokens: **one call = $0.09 and 170 s**. `MAX_THINKING_TOKENS=0` (env) turns it off:
+  same prompt ≈ $0.003 and ~5 s. `ClaudeCLI(thinking_tokens=N)` / CLI `--thinking N` sets it.
+- Default stays `None` (CLI default) so older runs remain comparable; pass `--thinking 0`
+  for cheap experiments and record it (it is saved in the run's meta.json).

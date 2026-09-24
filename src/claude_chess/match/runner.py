@@ -72,6 +72,7 @@ def decision_row(board: chess.Board, player: str, d: MoveDecision, game_id: int)
         "cost": d.cost_usd, "seconds": round(d.seconds, 3),
         "forfeit_reason": d.forfeit_reason, "note": d.note,
         "forced_random": getattr(d, "forced_random", False),
+        "board_read": getattr(d, "board_read", None),
     }
 
 

@@ -27,6 +27,17 @@ forks, pins, mate threats. Remember the side to move can act first. THEN weigh m
 Reply with ONLY a JSON object, no prose outside it:
 {"eval_cp": <integer, centipawns from WHITE's point of view: positive = White better>, "reason": "<one short sentence>"}"""
 
+COMPARE_SYSTEM = """You are the positional-evaluation module of a chess engine. The engine's \
+tactical search has ALREADY resolved captures, checks and short forcing lines for every option \
+below, and has removed moves that lose material or allow mate. Material is counted exactly by \
+the engine — do NOT re-count it. Your job is only what the search cannot see: compare the \
+options on positional merit (piece activity and coordination, king safety, pawn structure, \
+plans, initiative, long-term weaknesses, whether the engine's shown reply is really harmless).
+Score every option relative to the others, from the point of view of the side to move: \
+-150 (clearly worst) .. +150 (clearly best).
+Reply with ONLY a JSON object, no prose outside it:
+{"thinking": "<= 2 short sentences", "scores": [{"move": "<SAN exactly as listed>", "score": <int -150..150>, "reason": "<few words>"}]}"""
+
 NAIVE_SYSTEM = """You are a strong chess player. Choose the best move for the side to move.
 Reply with ONLY a JSON object, no prose outside it:
 {"thinking": "<= 2 short sentences", "move": "<SAN>"}
@@ -83,6 +94,20 @@ def evaluator_prompt(board: chess.Board, use_context: bool) -> str:
     # Evaluator never needs the legal-move list: it judges, it doesn't move.
     p = position_block(board, use_context, show_legal_moves=False)
     return p + "\n\nEvaluate this position (eval_cp from WHITE's point of view)."
+
+
+def compare_prompt(board: chess.Board, options: list[tuple[str, int, str, str]],
+                   use_context: bool) -> str:
+    """options: (san, material swing for the mover in cp, engine's best reply SAN, FEN after move)."""
+    side = "White" if board.turn == chess.WHITE else "Black"
+    p = position_block(board, use_context, show_legal_moves=False)
+    lines = []
+    for i, (san, swing, reply, fen) in enumerate(options, 1):
+        mat = f"{swing:+d}cp" if swing else "level"
+        rep = f"; engine's best reply {reply}" if reply else ""
+        lines.append(f"{i}. {san} — material after forcing play: {mat}{rep}; FEN after {san}: {fen}")
+    return (p + f"\n\nCandidate moves for {side} (all tactically checked by the engine):\n"
+            + "\n".join(lines) + f"\n\nScore each option for {side}.")
 
 
 def naive_prompt(board: chess.Board, show_legal_moves: bool, feedback: str = "") -> str:

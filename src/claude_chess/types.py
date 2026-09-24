@@ -68,6 +68,9 @@ class MoveDecision:
     forfeit_reason: str | None = None
     note: str = ""
     forced_random: bool = False  # all retries failed -> uniform-random legal move played
+    # Claude's own report of the position (piece placement, threats, hanging pieces) scored
+    # against the real board — see engine/boardread.py. None unless board_read is enabled.
+    board_read: dict | None = None
 
 
 class Player(Protocol):
