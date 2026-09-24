@@ -173,3 +173,32 @@ def test_context_toggle(monkeypatch):
     assert "RENDERED-CONTEXT" not in off and "Legal moves:" in off and "Nf3" in off
     ev = prompts.evaluator_prompt(b, use_context=True)
     assert "RENDERED-CONTEXT" in ev and "Legal moves:" not in ev
+
+
+# ── infrastructure failures are not illegal moves ───────────────────────────
+
+
+class _DownLLM:
+    model = "down"
+
+    def complete(self, system, prompt, max_tokens=1024):
+        from claude_chess.llm import LLMUnavailable
+        raise LLMUnavailable("session limit")
+
+
+def test_llm_unavailable_propagates_instead_of_counting_as_illegal():
+    import pytest
+    from claude_chess.engine import ClaudeEnginePlayer, NaiveClaudePlayer
+    from claude_chess.llm import LLMUnavailable
+    for p in (NaiveClaudePlayer(_DownLLM()), ClaudeEnginePlayer(_DownLLM(), use_context=False)):
+        with pytest.raises(LLMUnavailable):
+            p.choose_move(chess.Board())
+
+
+def test_runner_aborts_game_on_llm_unavailable():
+    from claude_chess.engine import NaiveClaudePlayer
+    from claude_chess.match.baselines import RandomPlayer
+    from claude_chess.match.runner import play_game
+    rec = play_game(RandomPlayer(seed=1), NaiveClaudePlayer(_DownLLM(), name="down"), max_plies=20)
+    assert rec.result == "*" and rec.termination.startswith("aborted")
+    assert all(not r["illegal_attempts"] for r in rec.decisions)

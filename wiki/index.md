@@ -21,3 +21,4 @@ reads this index first and writes back what it learns. Pages are small and singl
 - [engine](pages/engine.md) — prompts, proposer, evaluator, search (engine agent)
 - [match-and-analysis](pages/match-and-analysis.md) — runner, adjudication, metrics (match agent)
 - [results](pages/results.md) — experiment results
+- [infra-failures](pages/infra-failures.md) — rate limits / backend errors abort games; never scored as illegal moves

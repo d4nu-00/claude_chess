@@ -4,7 +4,7 @@ import stat
 
 import pytest
 
-from claude_chess.llm import AnthropicLLM, ClaudeCLI, LLMError, extract_json, make_llm
+from claude_chess.llm import LIMIT_BACKOFF_S, AnthropicLLM, ClaudeCLI, LLMError, LLMUnavailable, extract_json, make_llm
 
 
 @pytest.mark.parametrize("text", [
@@ -46,9 +46,20 @@ def test_cli_retries_then_fails(tmp_path, monkeypatch):
     monkeypatch.setattr("time.sleep", lambda s: None)
     exe = _fake_claude(tmp_path, f"echo x >> {tmp_path}/count\necho '{{\"is_error\": true, \"result\": \"boom\"}}'\n")
     llm = ClaudeCLI(executable=exe, retries=2)
-    with pytest.raises(LLMError):
+    with pytest.raises(LLMUnavailable):  # backend failure, never an "illegal move"
         llm.complete("s", "p")
     assert len((tmp_path / "count").read_text().split()) == 3
+
+
+def test_cli_backs_off_longer_on_limit_errors(tmp_path, monkeypatch):
+    waits = []
+    monkeypatch.setattr("time.sleep", waits.append)
+    exe = _fake_claude(tmp_path, f"echo x >> {tmp_path}/count\n"
+                                 "echo '{\"is_error\": true, \"result\": \"You have hit your session limit\"}'\n")
+    with pytest.raises(LLMUnavailable):
+        ClaudeCLI(executable=exe, retries=2).complete("s", "p")
+    assert len((tmp_path / "count").read_text().split()) == 3 + len(LIMIT_BACKOFF_S)
+    assert max(waits) == max(LIMIT_BACKOFF_S)
 
 
 def test_make_llm_backend(monkeypatch):

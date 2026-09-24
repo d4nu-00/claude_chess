@@ -15,7 +15,7 @@ from concurrent.futures import ThreadPoolExecutor
 import chess
 
 from claude_chess.engine import prompts
-from claude_chess.llm import extract_json
+from claude_chess.llm import LLMUnavailable, extract_json
 from claude_chess.types import LLM, Candidate, MoveDecision
 
 MATE_CP = 10000
@@ -122,7 +122,9 @@ class NaiveClaudePlayer:
                 text = tally.complete(prompts.NAIVE_SYSTEM,
                                       prompts.naive_prompt(board, self.show_legal_moves, feedback))
                 raw = str(extract_json(text).get("move", ""))
-            except Exception as e:  # LLM failure or unparseable reply
+            except LLMUnavailable:
+                raise  # infrastructure failure, not an illegal move: runner aborts the game
+            except Exception as e:  # unparseable reply
                 err = f"unparseable reply ({type(e).__name__})"
                 illegal.append(err)
                 feedback = prompts.illegal_feedback(board, [err + ": reply with the JSON object only"])
@@ -173,6 +175,8 @@ class ClaudeEnginePlayer:
             items = data.get("candidates") or []
             if not isinstance(items, list):
                 raise ValueError("candidates is not a list")
+        except LLMUnavailable:
+            raise
         except Exception as e:
             return [], [f"unparseable reply ({type(e).__name__})"]
         legal: list[tuple[Candidate, chess.Move]] = []
@@ -224,6 +228,8 @@ class ClaudeEnginePlayer:
                 data = extract_json(tally.complete(prompts.EVALUATOR_SYSTEM, prompt, max_tokens=400))
                 cp = int(round(float(data["eval_cp"])))
                 return max(-EVAL_CLAMP, min(EVAL_CLAMP, cp)), str(data.get("reason", ""))
+            except LLMUnavailable:
+                raise
             except Exception:
                 continue
         return 0, "evaluator failed; scored 0"

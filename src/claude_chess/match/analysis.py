@@ -114,6 +114,9 @@ def summarize(games: list[chess.pgn.Game], move_rows: list[dict[str, Any]],
                         "termination": h.get("Termination", ""), "opening": h.get("Opening", "")})
         for name, won, lost in ((w, "1-0", "0-1"), (b, "0-1", "1-0")):
             p = players[name]
+            if r not in ("1-0", "0-1", "1/2-1/2"):  # aborted (LLM unavailable): no result
+                p["aborted"] = p.get("aborted", 0) + 1
+                continue
             p["games"] += 1
             if r == won:
                 p["W"] += 1

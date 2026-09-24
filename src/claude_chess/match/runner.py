@@ -22,6 +22,7 @@ import chess
 import chess.engine
 import chess.pgn
 
+from claude_chess.llm import LLMUnavailable
 from claude_chess.match.baselines import open_stockfish
 from claude_chess.match.openings import OPENINGS
 from claude_chess.types import MoveDecision, Player
@@ -70,6 +71,7 @@ def decision_row(board: chess.Board, player: str, d: MoveDecision, game_id: int)
         "illegal_attempts": list(d.illegal_attempts), "calls": d.llm_calls,
         "cost": d.cost_usd, "seconds": round(d.seconds, 3),
         "forfeit_reason": d.forfeit_reason, "note": d.note,
+        "forced_random": getattr(d, "forced_random", False),
     }
 
 
@@ -152,6 +154,9 @@ def play_game(
         t0 = time.monotonic()
         try:
             d = player.choose_move(board.copy())
+        except LLMUnavailable as e:  # backend down / rate-limited: not the player's fault
+            result, termination = "*", f"aborted (LLM unavailable: {str(e)[:160]})"
+            break
         except Exception as e:  # a crashing player forfeits rather than killing the match
             d = MoveDecision(move=None, san=None, forfeit_reason=f"exception: {type(e).__name__}: {e}")
         if not d.seconds:
@@ -269,7 +274,12 @@ def play_match(
         "openings": [n or " ".join(m) for n, m in opening_list], **(meta or {}),
     }, indent=2))
 
-    def run_one(i: int) -> GameRecord:
+    aborted = threading.Event()  # set once the LLM backend is unavailable: stop scheduling games
+
+    def run_one(i: int) -> GameRecord | None:
+        if aborted.is_set():
+            _say(f"[g{i}] SKIPPED (LLM backend unavailable earlier in this match)")
+            return None
         a, b = player_a_factory(), player_b_factory()
         a.name, b.name = names["a"], names["b"]
         white, black = (a, b) if i % 2 == 0 else (b, a)
@@ -296,6 +306,8 @@ def play_match(
                 f.write(rec.pgn + "\n\n")
             with gj_path.open("a") as f:
                 f.write(json.dumps(rec.summary()) + "\n")
+        if rec.termination.startswith("aborted"):
+            aborted.set()
         _say(f"[g{i}] RESULT {rec.white} vs {rec.black}: {rec.result} ({rec.termination})")
         return rec
 

@@ -5,3 +5,4 @@
 - 2026-09-24 match agent: built match/ (baselines, openings, runner, analysis), cli.py (match/analyze/context), tests/test_match.py; see [[match-and-analysis]].
 - 2026-09-24 engine agent: llm.py (CLI via stdin + SDK), engine prompts/players (d0/d1/d2 search, illegal-move retries per [[illegal-moves]], added MoveDecision.forced_random); wiki/pages/engine.md; haiku smoke OK.
 - 2026-09-24 context agent: built context builder (openings by EPD from lichess ECO TSVs, pawn structures incl. named ones, king safety, activity, SEE tactics + null-move threats, concept KB of 25 pages + opening plans); see [[context-builder]].
+- 2026-09-24 orchestrator: session-limit incident; added LLMUnavailable abort path, quarantined 3 runs to runs/_invalid. See [[infra-failures]].

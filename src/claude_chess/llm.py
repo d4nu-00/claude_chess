@@ -22,6 +22,22 @@ MODEL_ALIASES = {
 }
 
 
+class LLMUnavailable(RuntimeError):
+    """The backend itself failed (rate/session limit, outage, timeouts) after backoff.
+
+    Deliberately NOT a subclass of LLMError: players must never count this as an
+    illegal/unparseable move. The match runner aborts the game instead.
+    """
+
+
+_LIMIT_MARKERS = ("limit", "429", "overloaded", "rate", "529", "quota")
+
+
+def _is_limit_error(msg: str) -> bool:
+    m = msg.lower()
+    return any(k in m for k in _LIMIT_MARKERS)
+
+
 class LLMError(RuntimeError):
     pass
 
@@ -114,7 +130,34 @@ class ClaudeCLI:
                 last_err = e
                 if attempt < self.retries:
                     time.sleep(1.5 * (attempt + 1))
-        raise LLMError(f"claude -p failed after {self.retries + 1} attempts: {last_err}")
+        if last_err is not None and _is_limit_error(str(last_err)):
+            # Rate/session limit: back off for a few minutes before giving up.
+            for wait in LIMIT_BACKOFF_S:
+                time.sleep(wait)
+                try:
+                    return self._once(system, prompt)
+                except (subprocess.TimeoutExpired, json.JSONDecodeError, LLMError, OSError) as e:
+                    last_err = e
+        raise LLMUnavailable(f"claude -p failed after retries: {last_err}")
+
+    def _once(self, system: str, prompt: str) -> LLMResponse:
+        t0 = time.monotonic()
+        proc = subprocess.run(self._cmd(system), input=prompt, capture_output=True, text=True,
+                              timeout=self.timeout, cwd=self._cwd)
+        data = json.loads(proc.stdout)
+        if data.get("is_error") or proc.returncode != 0:
+            raise LLMError(f"claude -p error rc={proc.returncode}: {str(data.get('result'))[:300]}")
+        usage = data.get("usage") or {}
+        resp = LLMResponse(text=data.get("result") or "",
+                           cost_usd=float(data.get("total_cost_usd") or 0.0),
+                           input_tokens=int(usage.get("input_tokens") or 0),
+                           output_tokens=int(usage.get("output_tokens") or 0),
+                           seconds=time.monotonic() - t0)
+        self.counters.record(resp)
+        return resp
+
+
+LIMIT_BACKOFF_S = (30, 60, 120)
 
 
 class AnthropicLLM:
@@ -138,12 +181,17 @@ class AnthropicLLM:
 
     def complete(self, system: str, prompt: str, max_tokens: int = 1024) -> LLMResponse:
         t0 = time.monotonic()
-        msg = self.client.messages.create(
-            model=self.model,
-            max_tokens=max_tokens,
-            system=system,
-            messages=[{"role": "user", "content": prompt}],
-        )
+        import anthropic
+
+        try:
+            msg = self.client.messages.create(
+                model=self.model,
+                max_tokens=max_tokens,
+                system=system,
+                messages=[{"role": "user", "content": prompt}],
+            )
+        except anthropic.APIError as e:  # SDK already retried transient errors
+            raise LLMUnavailable(f"anthropic SDK: {e}") from e
         text = "".join(getattr(b, "text", "") for b in msg.content)
         inp, out = msg.usage.input_tokens, msg.usage.output_tokens
         resp = LLMResponse(text=text, cost_usd=self._price(inp, out), input_tokens=inp,
