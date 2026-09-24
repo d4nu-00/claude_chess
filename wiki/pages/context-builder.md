@@ -27,6 +27,21 @@ per position (test asserts <50ms avg). Code: `src/claude_chess/context/`, data: 
   Top 3 go into `ctx.concepts` plus the opening-family plan from
   `knowledge/openings_plans.md` (`match:` name prefixes, longest wins) and named-structure plans.
 
+- `character.py` (middlegame/opening only) — **centre type** (open / closed / dynamic /
+  mobile / semi-open, Pachman-Silman) with its standard plan; for closed centres the
+  **pawn-chain direction** (which wing to play on); **pawn breaks** (levers) for both sides;
+  opposite-wing kings race; **imbalances**: bishops vs knights judged against the
+  structure, **space** (pawn-controlled squares in the enemy half, diff ≥3), development lead.
+- `endgame.py` (endgame only) — **ending type** (pawn / rook / queen / knight / B-vs-N /
+  same- or opposite-coloured bishops / mixed) + textbook guidance; **K+P rules** computed
+  exactly: rule of the square (who can catch each passer, side to move counted), **key
+  squares** (rook-pawn special case), **opposition** (direct/distant/diagonal, who holds it),
+  outside passed pawns; lone-minor-can't-win; **tablebase** verdict + best moves.
+- `tablebase.py` — ≤7 pieces: local Syzygy (`$SYZYGY_PATH` or `engines/syzygy`) then the
+  Lichess API (`CLAUDE_CHESS_TB_ONLINE=0` disables; one failure disables for the process).
+  **Blocked in the cloud sandbox** (egress policy) — works on a normal machine. Tests force
+  it offline via `tests/conftest.py`.
+
 ## Why these choices
 - Everything is phrased as short sentences naming the colour ("White isolated pawn(s): d4")
   so the prompt is unambiguous regardless of side to move.

@@ -160,7 +160,8 @@ class ClaudeEnginePlayer:
                  n_replies: int = 2, show_legal_moves: bool = True, illegal_policy: str = "random",
                  max_retries: int = 2, max_workers: int = MAX_WORKERS, seed: int | None = None,
                  name: str | None = None, tactical: bool = False, tac_depth: int = 2,
-                 tac_margin: int = 100, pos_cap: int = 150, board_read: bool = False) -> None:
+                 tac_margin: int = 100, pos_cap: int = 150, board_read: bool = False,
+                 threat_agent: bool = False, tablebase: bool = True) -> None:
         assert depth in (0, 1, 2), "depth must be 0, 1 or 2"
         assert illegal_policy in ILLEGAL_POLICIES
         self.llm = llm
@@ -175,6 +176,8 @@ class ClaudeEnginePlayer:
         self.rng = random.Random(seed)
         self.tactical = tactical
         self.board_read = board_read
+        self.threat_agent = threat_agent  # hybrid only: extra Claude call hunting refutations
+        self.tablebase = tablebase  # hybrid only: play tablebase moves when a probe answers
         self.tac_depth = tac_depth
         self.tac_margin = tac_margin
         self.pos_cap = pos_cap
@@ -374,16 +377,47 @@ class ClaudeEnginePlayer:
     def _choose_hybrid(self, tally: _Tally, board: chess.Board,
                        cands: list[tuple[Candidate, chess.Move]], illegal: list[str],
                        t0: float) -> MoveDecision:
+        notes: list[str] = []
+        pool = list(cands)
+
+        def decide(c: Candidate, m: chess.Move, why: str) -> MoveDecision:
+            return MoveDecision(move=m, san=c.san, candidates=[pc for pc, _ in pool],
+                                illegal_attempts=illegal, llm_calls=tally.calls, cost_usd=tally.cost,
+                                seconds=time.monotonic() - t0, note="; ".join(notes + [why]))
+
+        # Endgame tablebase: the result is known exactly — look it up, don't calculate.
+        if self.tablebase:
+            from claude_chess.context.tablebase import probe
+            tb = probe(board)
+            best = tb.best_moves() if tb else []
+            if best:
+                claude_best = [(c, m) for c, m in cands if c.san in best]
+                if claude_best:
+                    c, m = claude_best[0]
+                else:
+                    m = board.parse_san(best[0])
+                    c = Candidate(san=best[0], reason=f"tablebase {tb.verdict}", prior=0.0)
+                    pool.append((c, m))
+                return decide(c, m, f"tablebase ({tb.source}): {tb.verdict}")
+
+        # Deeper tactical search when few pieces remain (branching factor is small).
+        depth = self.tac_depth
+        if chess.popcount(board.occupied & ~board.pawns & ~board.kings) <= 4:
+            depth += 1
+
         claude_moves = {mv for _, mv in cands}
         extra = [m for m in tactical.forcing_moves(board) if m not in claude_moves]
         verdicts = {v.move: v for v in tactical.score_moves(board, [mv for _, mv in cands] + extra,
-                                                              depth=self.tac_depth)}
-        notes: list[str] = []
-
-        # Forcing moves Claude missed enter only if they are materially clearly better
-        # than everything Claude proposed (engine "move generation" for tactics).
+                                                              depth=depth)}
         best_claude = max(verdicts[mv].score for _, mv in cands)
-        pool = list(cands)
+        if best_claude < -self.tac_margin:
+            # Fail low: every Claude idea loses material -> widen to all legal moves.
+            rest = [m for m in board.legal_moves if m not in verdicts]
+            verdicts.update({v.move: v for v in tactical.score_moves(board, rest, depth=depth)})
+            extra += rest
+            notes.append("fail-low: searched all moves")
+
+        # Moves Claude missed enter only if materially clearly better than all its proposals.
         for m in extra:
             v = verdicts[m]
             if v.score >= best_claude + self.tac_margin:
@@ -391,15 +425,11 @@ class ClaudeEnginePlayer:
                 pool.append((Candidate(san=board.san(m), reason=f"engine: {what}", prior=0.0), m))
                 notes.append(f"injected {board.san(m)}")
 
+        tscore = {m: verdicts[m].score for _, m in pool}
         for c, m in pool:
             v = verdicts[m]
             c.score_cp = v.score
             c.line = [c.san] + ([v.refutation] if v.refutation else [])
-
-        def decide(c: Candidate, m: chess.Move, why: str) -> MoveDecision:
-            return MoveDecision(move=m, san=c.san, candidates=[pc for pc, _ in pool],
-                                illegal_attempts=illegal, llm_calls=tally.calls, cost_usd=tally.cost,
-                                seconds=time.monotonic() - t0, note="; ".join(notes + [why]))
 
         # Forced mate found by the search: play the fastest one.
         mates = [(verdicts[m].mate, c, m) for c, m in pool if verdicts[m].mate > 0]
@@ -408,24 +438,88 @@ class ClaudeEnginePlayer:
             return decide(c, m, f"mate in {verdicts[m].mate} plies")
 
         # Tactical veto: drop moves materially worse than the best by more than the margin.
-        best_t = max(verdicts[m].score for _, m in pool)
-        survivors = [(c, m) for c, m in pool if verdicts[m].score >= best_t - self.tac_margin]
-        vetoed = [c.san for c, m in pool if (c, m) not in survivors]
-        if vetoed:
-            notes.append("vetoed " + ",".join(vetoed))
+        survivors = self._veto(pool, tscore, notes)
         if len(survivors) == 1:
             c, m = survivors[0]
             return decide(c, m, "only tactically sound candidate")
 
-        # Positional value: one batched Claude call ranks the survivors on a common scale.
-        pos = self._compare(tally, board, survivors, verdicts)
+        # Positional value (one batched call) and the threat agent run in parallel.
+        with ThreadPoolExecutor(max_workers=2) as ex:
+            f_pos = ex.submit(self._compare, tally, board, survivors, verdicts)
+            f_thr = ex.submit(self._threats, tally, board, survivors, verdicts, depth) \
+                if self.threat_agent else None
+            pos = f_pos.result()
+            threats = f_thr.result() if f_thr else {}
+        for m, (reply, sc, line) in threats.items():
+            if sc < tscore[m] - 50:  # verified: the agent's reply really costs material
+                c = next(c for c, mm in survivors if mm == m)
+                notes.append(f"threat {c.san}?{reply} ({tscore[m]:+d}->{sc:+d})")
+                tscore[m] = sc
+                c.line = [c.san] + line
+        if threats:
+            survivors = self._veto(survivors, tscore, notes)
         if pos is None:
             notes.append("compare failed; used tactics+prior")
             pos = {m: 0 for _, m in survivors}
         for c, m in survivors:
-            c.score_cp = verdicts[m].score + pos[m]
+            c.score_cp = tscore[m] + pos.get(m, 0)
         c, m = max(survivors, key=lambda cm: (cm[0].score_cp, cm[0].prior))
         return decide(c, m, "hybrid")
+
+    def _veto(self, pool, tscore, notes):
+        best_t = max(tscore[m] for _, m in pool)
+        keep = [(c, m) for c, m in pool if tscore[m] >= best_t - self.tac_margin]
+        vetoed = [c.san for c, m in pool if tscore[m] < best_t - self.tac_margin]
+        if vetoed:
+            notes.append("vetoed " + ",".join(vetoed))
+        return keep
+
+    def _threats(self, tally: _Tally, board: chess.Board,
+                 survivors: list[tuple[Candidate, chess.Move]], verdicts: dict, depth: int
+                 ) -> dict:
+        """Threat agent: Claude names the opponent's most dangerous reply to each candidate;
+        Python VERIFIES it (plays it, then searches full width) — an LLM-guided selective
+        extension. Returns {move: (reply SAN, verified material score, line)}."""
+        options = []
+        afters = {}
+        for c, m in survivors:
+            b = board.copy(stack=True)
+            b.push(m)
+            afters[m] = b
+            options.append((c.san, verdicts[m].refutation, b))
+        prompt = prompts.threat_prompt(board, options, self.use_context)
+        try:
+            data = extract_json(tally.complete(prompts.THREAT_SYSTEM, prompt, max_tokens=600))
+        except LLMUnavailable:
+            raise
+        except Exception:
+            return {}
+        by_san = {c.san: m for c, m in survivors}
+        base = tactical.material(board) * _sign(board.turn)
+        out: dict = {}
+        for it in data.get("replies") or []:
+            if not isinstance(it, dict):
+                continue
+            m = by_san.get(str(it.get("move", "")).strip())
+            if m is None:
+                mv, _ = parse_move(board, str(it.get("move", "")))
+                m = mv if mv in afters else None
+            if m is None:
+                continue
+            b = afters[m].copy(stack=True)
+            reply, _why = parse_move(b, str(it.get("reply", "")))
+            if reply is None:
+                continue
+            rsan = b.san(reply)
+            b.push(reply)
+            ts = tactical.TacticalSearch(node_limit=60_000)
+            if b.is_checkmate():
+                sc = -tactical.MATE_CP
+            else:
+                v = ts.search(b, depth)  # our move again: full width + quiescence
+                sc = v if abs(v) > tactical.MATE_BAND else v - base
+            out[m] = (rsan, sc, [rsan])
+        return out
 
     def _compare(self, tally: _Tally, board: chess.Board,
                  survivors: list[tuple[Candidate, chess.Move]],

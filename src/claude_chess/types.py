@@ -41,6 +41,8 @@ class PositionContext:
     piece_activity: list[str] = field(default_factory=list)
     tactics: list[str] = field(default_factory=list)  # hanging pieces, checks, pins
     concepts: list[str] = field(default_factory=list)  # retrieved KB guidance
+    character: list[str] = field(default_factory=list)  # middlegame type, pawn breaks, imbalances
+    endgame: list[str] = field(default_factory=list)  # ending type, K+P rules, tablebase
     legal_moves_san: list[str] = field(default_factory=list)
 
 

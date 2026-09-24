@@ -20,7 +20,8 @@ MATE_CP = 10000
 MATE_BAND = MATE_CP - 1000  # |score| above this means a forced mate was found
 VALUES = {chess.PAWN: 100, chess.KNIGHT: 320, chess.BISHOP: 330, chess.ROOK: 500,
           chess.QUEEN: 900, chess.KING: 0}
-MAX_QDEPTH = 8  # capture sequences longer than this are cut (stand-pat)
+MAX_QDEPTH = 8
+MAX_EXT_PLY = 6  # no check extensions beyond this ply (keeps perpetual-check lines bounded)  # capture sequences longer than this are cut (stand-pat)
 
 
 def material(board: chess.Board) -> int:
@@ -107,6 +108,8 @@ class TacticalSearch:
         moves = list(board.legal_moves)
         if not moves:
             return -(MATE_CP - ply) if board.is_check() else 0
+        if board.is_check() and 0 < depth and ply < MAX_EXT_PLY:
+            depth += 1  # check extension: forcing sequences are searched a ply deeper
         if depth <= 0 or self.nodes > self.node_limit:
             return self.qsearch(board, alpha, beta, ply)
         self.nodes += 1

@@ -5,7 +5,7 @@ import json
 import chess
 
 from claude_chess.engine import ClaudeEnginePlayer, NaiveClaudePlayer, boardread, prompts, tactical
-from claude_chess.types import LLMResponse
+from claude_chess.types import Candidate, LLMResponse
 
 
 class Fake:
@@ -105,3 +105,35 @@ def test_board_read_attached_to_decisions():
     assert d.board_read["piece_accuracy"] == 1.0
     naive = NaiveClaudePlayer(Fake("", naive=json.dumps({"move": "e4", **extra})), board_read=True)
     assert naive.choose_move(b).board_read["pieces_correct"] == 32
+
+
+def test_threat_agent_reply_is_verified_by_search():
+    # Rb7?? allows ...Ra1+ Rb1 Rxb1# (back rank); Rb8+ is fine. The agent names Ra1+,
+    # Python plays it and searches -> Rb7 is scored as mated.
+    b = chess.Board("r5k1/5ppp/8/2P5/8/8/5PPP/1R4K1 w - - 0 1")
+    llm = Fake(cands(("Rb7", 0.6), ("Rb8+", 0.4)))
+    llm.threat = json.dumps({"replies": [{"move": "Rb7", "reply": "Ra1+", "idea": "back rank"},
+                                         {"move": "Rb8+", "reply": "Rxb8", "idea": "trade"}]})
+    p = ClaudeEnginePlayer(llm, use_context=False, tactical=True, threat_agent=True)
+    survivors = [(Candidate(san="Rb7"), b.parse_san("Rb7")), (Candidate(san="Rb8+"), b.parse_san("Rb8+"))]
+    verdicts = {v.move: v for v in tactical.score_moves(b, [m for _, m in survivors], depth=0)}
+
+    class T:
+        def complete(self, system, prompt, max_tokens=1024):
+            assert system == prompts.THREAT_SYSTEM and "Rb7" in prompt
+            return llm.threat
+
+    out = p._threats(T(), b, survivors, verdicts, depth=1)
+    assert out[b.parse_san("Rb7")][0] == "Ra1+"
+    assert out[b.parse_san("Rb7")][1] <= -tactical.MATE_BAND
+    assert out[b.parse_san("Rb8+")][1] > -tactical.MATE_BAND
+
+
+def test_hybrid_plays_tablebase_move(monkeypatch):
+    from claude_chess.context import tablebase as tbmod
+    b = chess.Board("8/8/4k3/8/4K3/4P3/8/8 w - - 0 1")
+    monkeypatch.setattr(tbmod, "probe", lambda board: tbmod.TBResult(0, 0, [("Kd4", 0, 0), ("Kf4", 0, 0),
+                                                                            ("Kd3", -2, 5)], "fake"))
+    llm = Fake(cands(("Kd3", 0.7), ("Kf4", 0.3)))
+    d = ClaudeEnginePlayer(llm, use_context=False, tactical=True).choose_move(b)
+    assert d.san == "Kf4" and "tablebase" in d.note

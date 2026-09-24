@@ -9,6 +9,8 @@ import chess
 
 from ..types import PositionContext
 from . import concepts as _concepts
+from .character import imbalances, middlegame_character
+from .endgame import endgame_info
 from .features import CNAME, king_safety, material, pawn_structure, phase, piece_activity
 from .openings import identify_opening
 from .tactics import tactics
@@ -69,6 +71,10 @@ def build_context(board: chess.Board, include_legal_moves: bool = True) -> Posit
         piece_activity=piece_activity(board, tags, ph),
         tactics=tactics(board, tags),
     )
+    if ph == "endgame":
+        ctx.endgame = endgame_info(board, tags)
+    else:
+        ctx.character = middlegame_character(board, tags) + imbalances(board, tags)
 
     concept_lines: list[str] = []
     if entry is not None and ph != "endgame":
@@ -108,6 +114,8 @@ def render_context(ctx: PositionContext, include_legal_moves: bool = True) -> st
     lines += ["", "## Material", f"- {ctx.material}"]
     sections = [
         ("Tactics (side to move first)", ctx.tactics, 10),
+        ("Endgame", ctx.endgame, 10),
+        ("Middlegame character & imbalances", ctx.character, 8),
         ("Pawn structure", ctx.pawn_structure, 12),
         ("King safety", ctx.king_safety, 4),
         ("Piece activity", ctx.piece_activity, 5),

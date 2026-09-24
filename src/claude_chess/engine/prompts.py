@@ -38,6 +38,17 @@ Score every option relative to the others, from the point of view of the side to
 Reply with ONLY a JSON object, no prose outside it:
 {"thinking": "<= 2 short sentences", "scores": [{"move": "<SAN exactly as listed>", "score": <int -150..150>, "reason": "<few words>"}]}"""
 
+THREAT_SYSTEM = """You are the tactical watchdog of a chess engine: the OPPONENT's advocate. \
+For each candidate move, find the opponent's MOST DANGEROUS reply in the position after it. \
+The engine's shallow material search has already checked plain captures, so hunt for what it \
+misses: quiet killer moves, mating nets, forks, pins and skewers, discovered attacks, \
+deflection/decoy, trapped pieces, pawn promotions, 2-3 move combinations.
+The reply must be a LEGAL move for the opponent in the position AFTER the candidate (use \
+the board shown for that candidate). If a candidate is genuinely safe, give the opponent's \
+best reply anyway.
+Reply with ONLY a JSON object, no prose outside it:
+{"replies": [{"move": "<candidate SAN exactly as listed>", "reply": "<opponent SAN>", "idea": "<few words>"}]}"""
+
 NAIVE_SYSTEM = """You are a strong chess player. Choose the best move for the side to move.
 Reply with ONLY a JSON object, no prose outside it:
 {"thinking": "<= 2 short sentences", "move": "<SAN>"}
@@ -108,6 +119,19 @@ def compare_prompt(board: chess.Board, options: list[tuple[str, int, str, str]],
         lines.append(f"{i}. {san} — material after forcing play: {mat}{rep}; FEN after {san}: {fen}")
     return (p + f"\n\nCandidate moves for {side} (all tactically checked by the engine):\n"
             + "\n".join(lines) + f"\n\nScore each option for {side}.")
+
+
+def threat_prompt(board: chess.Board, options: list[tuple[str, str, chess.Board]],
+                  use_context: bool) -> str:
+    """options: (candidate SAN, engine's shallow best reply SAN or "", board after candidate)."""
+    side = "White" if board.turn == chess.WHITE else "Black"
+    opp = "Black" if board.turn == chess.WHITE else "White"
+    p = position_block(board, use_context, show_legal_moves=False)
+    parts = [p, f"\n{side} is considering these moves. For each, find {opp}'s most dangerous reply."]
+    for i, (san, eng, after) in enumerate(options, 1):
+        hint = f" (engine's shallow search expects {eng})" if eng else ""
+        parts.append(f"\n### {i}. {side} plays {san}{hint}\nFEN: {after.fen()}\n{after}")
+    return "\n".join(parts)
 
 
 def naive_prompt(board: chess.Board, show_legal_moves: bool, feedback: str = "") -> str:

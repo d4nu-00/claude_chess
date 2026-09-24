@@ -33,6 +33,20 @@ So the LLM is a decent *positional* evaluator and move generator, and a terrible
 7. **Transposition table** for Claude's static evals (d1/d2 path) keyed by position.
 8. **Move ordering** in the material search: TT move, MVV-LVA captures, promotions.
 
+## v2 additions (2026-09-24, second session)
+9. **Threat agent** (`--threat-agent`): a separate Claude call — the opponent's advocate —
+   names the most dangerous reply to each surviving candidate (quiet killers, mating nets,
+   forks). Python **verifies** it: plays the reply, then full-width search + quiescence.
+   Only verified material loss counts, so hallucinated threats cost nothing but the call.
+   This is an *LLM-guided selective extension*: Claude picks which line to search deeper.
+   Runs in parallel with the positional compare call (no extra latency).
+10. **Check extensions** in the material search (≤ ply 6).
+11. **Endgame depth boost**: +1 ply when ≤4 non-pawn pieces remain.
+12. **Fail-low re-search**: if every Claude candidate loses >`tac_margin`, all legal moves
+    are scored and the best injected.
+13. **Tablebases** (≤7 pieces): hybrid plays a tablebase-best move (Claude's candidate if
+    it is one, fastest win first). `--no-tablebase` disables. Context also shows it.
+
 ## What it deliberately is NOT
 No Stockfish, no positional heuristics in Python: the search knows only piece values
 (100/320/330/500/900) and mate. Positional sacrifices >1 pawn are vetoed by design —

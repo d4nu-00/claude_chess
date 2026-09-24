@@ -47,8 +47,9 @@ def make_player_factory(spec: str, args: Any, seed: int = 0) -> Callable[[], Any
                                        show_legal_moves=legal, illegal_policy=args.illegal_policy,
                                        max_retries=args.max_retries, tactical=True,
                                        tac_depth=args.tac_depth, tac_margin=args.tac_margin,
-                                       board_read=args.board_read)
-                p.name = f"{spec}(t{args.tac_depth},{args.model})"
+                                       board_read=args.board_read, threat_agent=args.threat_agent,
+                                       tablebase=not args.no_tablebase)
+                p.name = f"{spec}(t{args.tac_depth}{',threat' if args.threat_agent else ''},{args.model})"
             else:
                 ctx = spec == "engine-ctx"
                 p = ClaudeEnginePlayer(llm, use_context=ctx, depth=args.depth,
@@ -96,6 +97,7 @@ def cmd_match(args: argparse.Namespace) -> None:
                           "depth": args.depth, "candidates": args.candidates, "replies": args.replies,
                           "tac_depth": args.tac_depth, "tac_margin": args.tac_margin,
                           "thinking": args.thinking, "board_read": args.board_read,
+                          "threat_agent": args.threat_agent, "tablebase": not args.no_tablebase,
                           "illegal_policy": args.illegal_policy, "argv": sys.argv[1:]})
     print(f"run dir: {rd}")
 
@@ -185,6 +187,9 @@ def main(argv: list[str] | None = None) -> None:
     m.add_argument("--max-retries", type=int, default=3)
     m.add_argument("--thinking", type=int, default=None,
                    help="CLI backend: max extended-thinking tokens per call (0 = off; default = CLI default)")
+    m.add_argument("--threat-agent", action="store_true",
+                   help="hybrid: extra Claude call names refutations; Python verifies them")
+    m.add_argument("--no-tablebase", action="store_true", help="hybrid: don't play tablebase moves")
     m.add_argument("--board-read", action="store_true",
                    help="Claude also reports piece placement/threats; scored vs the real board")
     m.add_argument("--no-legal-moves", action="store_true", help="hide legal-move list from Claude")
