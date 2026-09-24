@@ -444,9 +444,11 @@ class ClaudeEnginePlayer:
             return decide(c, m, "only tactically sound candidate")
 
         # Positional value (one batched call) and the threat agent run in parallel.
+        # Each thread gets its own board copy: the context builder push/pops on the board it
+        # is given, so sharing one board across threads corrupts it (seen as a forfeit).
         with ThreadPoolExecutor(max_workers=2) as ex:
-            f_pos = ex.submit(self._compare, tally, board, survivors, verdicts)
-            f_thr = ex.submit(self._threats, tally, board, survivors, verdicts, depth) \
+            f_pos = ex.submit(self._compare, tally, board.copy(), survivors, verdicts)
+            f_thr = ex.submit(self._threats, tally, board.copy(), survivors, verdicts, depth) \
                 if self.threat_agent else None
             pos = f_pos.result()
             threats = f_thr.result() if f_thr else {}

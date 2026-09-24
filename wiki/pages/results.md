@@ -18,6 +18,25 @@ gitignored). 4 games each, colours alternate, 6-ply book openings, SF depth-12 a
   threat detection only 14/90 (naive) and 42/111 (hybrid) — seeing attacks is the gap.
 - n=4 per arm: direction is clear (0 vs 1.5, ACPL halved), magnitude is not.
 
+## 2026-09-24 — hybrid v2 (context v2 + threat agent) vs Maia-1100, 8 games
+Run `20260924_210922_hybrid2-haiku-vs-maia1100`, Haiku 4.5, thinking off, --board-read,
+--threat-agent, one game per opening in the 8-opening rotation.
+
+| player | score | ACPL | blunders | calls/move | $ total (8 games) | s/move |
+|---|---|---|---|---|---|---|
+| hybrid v2 Haiku | **6/8** (6 W, 2 L; 1 L was a forfeit bug) | **63** | 7 | 2.33 | 2.82 | 14 |
+
+- vs v1 (1.5/4, ACPL 113) and naive (0/4, ACPL 220). Same opponent/settings.
+- The forfeit was a harness bug, not chess: compare + threat calls ran in parallel on the
+  SAME board and the context builder push/pops on it → corrupted board → exception.
+  Fixed (each thread gets `board.copy()`). The game was otherwise ongoing.
+- Decision anatomy over 264 moves: candidates vetoed in 187, "only tactically sound
+  candidate" (no compare call) 73, forcing moves injected 30, fail-low re-search 31,
+  mates found 9, **threat agent verified refutation changed scores 9×**, forced moves 5.
+- Remaining ≥300cp errors: 7 in 8 games; 3 in an already-lost K+P ending (tablebase
+  unavailable in the sandbox — would have been exact on a normal machine).
+- Tablebase + Lichess unreachable here; K+P rules in context were the only endgame help.
+
 ## Earlier
 - Sonnet naive vs Maia-1100 (2 finished games, others aborted by spend limit): 0/2, both mated.
   Stockfish: 9/53 moves lost ≥200cp, all short tactics — see [[computer-chess-principles]].
