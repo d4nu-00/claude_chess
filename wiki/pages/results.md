@@ -37,6 +37,31 @@ Run `20260924_210922_hybrid2-haiku-vs-maia1100`, Haiku 4.5, thinking off, --boar
   unavailable in the sandbox — would have been exact on a normal machine).
 - Tablebase + Lichess unreachable here; K+P rules in context were the only endgame help.
 
+## 2026-09-24 — exp2: context v3 in games (Haiku, Maia 1100/1500/1900, 4 games each)
+Reports: `experiments/exp2/`, combined with exp1 in `experiments/exp1_exp2_combined/`
+(`claude-chess report exp`). Same openings/colours/settings as exp1; 24 games, ≈ $4.7.
+
+| Haiku config | 1100 | 1500 | 1900 | total | Elo (95% CI) | ACPL | $/game | s/move |
+|---|---|---|---|---|---|---|---|---|
+| harness ctx v2 (exp1) | 2/4 | 2.5/4 | 2/4 | 6.5/12 | 1552 (1153–1960) | 72 | 0.31 | 15.1 |
+| harness ctx v3 (exp2) | 3.5/4 | 1/4 | 3/4 | 7.5/12 | 1659 (1321–2043) | 72 | 0.37 | 12.4 |
+| naive (exp1+exp2) | 0/8 | 0/8 | 0/8 | 0/24 | – | 212 | 0.02 | 4.1 |
+
+- v3 vs v2: +0.08 points/game, permutation p = 0.85 → **no measurable strength change in
+  games** at n=12 (ACPL identical, 72).
+- v3 vs naive: +0.62/game, p < 0.0001. Naive Haiku now 0/24.
+- **Big shift in WHO plays the moves** (reliance on the Python tactical search):
+
+| | Claude's #1 played | #1 overruled by search | move added by search | no Claude value call |
+|---|---|---|---|---|
+| ctx v2 | 41% | 42% | 13% | 39% |
+| ctx v3 | **65%** | **16%** | **2%** | 26% |
+
+  With the material check / relations / last-move context, Claude proposes safe moves itself;
+  the same strength is now reached with far less Python override — more of the chess is
+  Claude's (also better training data for [[reasoning-dataset]]). Slightly dearer per game
+  (+19%) but faster per move (fewer vetoes → fewer extra calls).
+
 ## 2026-09-24 — exp1: harness vs no harness × Haiku/Sonnet × Maia ladder (FINAL)
 Full report: `experiments/exp1/crosstable.md` (+ `games.csv`, `stats.json`); script
 `scripts/exp_harness_vs_naive.sh`; report `claude-chess report exp1`. Thinking off for all;
