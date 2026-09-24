@@ -64,37 +64,53 @@ Reply with ONLY a JSON object, no prose outside it:
 The move must be legal, in Standard Algebraic Notation (e.g. Nf3, exd5, O-O, e8=Q+)."""
 
 
-def move_history_san(board: chess.Board) -> str:
-    """Moves played so far as numbered SAN (from the board's move stack)."""
+def move_history_san(board: chess.Board, last: int | None = None) -> str:
+    """Moves played so far as numbered SAN (from the board's move stack); `last` keeps only
+    the final N plies (prefixed with "...")."""
     if not board.move_stack:
         return "(none — starting position)" if board.fen() == chess.STARTING_FEN else "(none given)"
     root = board.root()
-    return root.variation_san(board.move_stack)
+    stack = board.move_stack
+    if last is None or len(stack) <= last:
+        return root.variation_san(stack)
+    for mv in stack[:-last]:
+        root.push(mv)
+    return "... " + root.variation_san(stack[-last:])
 
 
 def legal_moves_san(board: chess.Board) -> list[str]:
     return [board.san(m) for m in board.legal_moves]
 
 
-def _context_block(board: chess.Board, include_legal_moves: bool) -> str:
+COMPACT_HISTORY_PLIES = 10
+
+
+def _context_block(board: chess.Board, include_legal_moves: bool, compact: bool = False) -> str:
     from claude_chess.context import build_context, render_context  # lazy: owned by another module
 
     ctx = build_context(board, include_legal_moves=include_legal_moves)
+    if compact:
+        ctx.concepts = []  # generic "Guidance" (~500 tokens) is only useful to the proposer
     return render_context(ctx, include_legal_moves=include_legal_moves)
 
 
-def position_block(board: chess.Board, use_context: bool, show_legal_moves: bool) -> str:
+def position_block(board: chess.Board, use_context: bool, show_legal_moves: bool,
+                   compact: bool = False) -> str:
+    """`compact` (secondary roles: compare/threat/positional): no generic guidance, only the
+    last COMPACT_HISTORY_PLIES of history — ~25% fewer input tokens per call."""
     side = "White" if board.turn == chess.WHITE else "Black"
+    hist = move_history_san(board, COMPACT_HISTORY_PLIES if compact else None)
     parts = [
         f"FEN: {board.fen()}",
         f"Side to move: {side}",
         "Board (uppercase = White, lowercase = Black, rank 8 at top):",
         str(board),
-        f"Moves so far: {move_history_san(board)}",
+        f"Moves so far: {hist}",
     ]
     if use_context:
         # Legal moves are appended by us below, so the context never carries them itself.
-        parts.append("## Position analysis\n" + _context_block(board, include_legal_moves=False))
+        parts.append("## Position analysis\n" + _context_block(board, include_legal_moves=False,
+                                                                compact=compact))
     if show_legal_moves:
         parts.append("Legal moves: " + " ".join(legal_moves_san(board)))
     return "\n".join(parts)
@@ -120,7 +136,7 @@ def compare_prompt(board: chess.Board, options: list[tuple[str, int, str, str]],
                    use_context: bool) -> str:
     """options: (san, material swing for the mover in cp, engine's best reply SAN, FEN after move)."""
     side = "White" if board.turn == chess.WHITE else "Black"
-    p = position_block(board, use_context, show_legal_moves=False)
+    p = position_block(board, use_context, show_legal_moves=False, compact=True)
     lines = []
     for i, (san, swing, reply, fen) in enumerate(options, 1):
         mat = f"{swing:+d}cp" if swing else "level"
@@ -135,7 +151,7 @@ def threat_prompt(board: chess.Board, options: list[tuple[str, str, chess.Board]
     """options: (candidate SAN, engine's shallow best reply SAN or "", board after candidate)."""
     side = "White" if board.turn == chess.WHITE else "Black"
     opp = "Black" if board.turn == chess.WHITE else "White"
-    p = position_block(board, use_context, show_legal_moves=False)
+    p = position_block(board, use_context, show_legal_moves=False, compact=True)
     parts = [p, f"\n{side} is considering these moves. For each, find {opp}'s most dangerous reply."]
     for i, (san, eng, after) in enumerate(options, 1):
         hint = f" (engine's shallow search expects {eng})" if eng else ""
@@ -144,7 +160,7 @@ def threat_prompt(board: chess.Board, options: list[tuple[str, str, chess.Board]
 
 
 def positional_prompt(board: chess.Board, use_context: bool) -> str:
-    p = position_block(board, use_context, show_legal_moves=False)
+    p = position_block(board, use_context, show_legal_moves=False, compact=True)
     return p + "\n\nScore the POSITIONAL balance (positional_cp from WHITE's point of view)."
 
 

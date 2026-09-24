@@ -94,8 +94,10 @@ def cmd_match(args: argparse.Namespace) -> None:
     rd = play_match(fa, fb, args.games, args.max_plies,
                     openings=None if args.no_openings else OPENINGS, parallel=args.parallel,
                     label=label, runs_root=args.runs_root, analyze=not args.no_analysis,
-                    analysis_depth=args.analysis_depth,
-                    meta={"white_spec": args.white, "black_spec": args.black, "model": args.model,
+                    analysis_depth=args.analysis_depth, resign_cp=args.resign_cp,
+                    resign_plies=args.resign_plies, opening_offset=args.opening_offset,
+                    meta={"resign_cp": args.resign_cp, "resign_plies": args.resign_plies,
+                          "opening_offset": args.opening_offset, "white_spec": args.white, "black_spec": args.black, "model": args.model,
                           "depth": args.depth, "candidates": args.candidates, "replies": args.replies,
                           "tac_depth": args.tac_depth, "tac_margin": args.tac_margin,
                           "thinking": args.thinking, "board_read": args.board_read,
@@ -178,6 +180,13 @@ def cmd_dataset(args: argparse.Namespace) -> None:
     print(json.dumps(stats, indent=2))
 
 
+def cmd_report(args: argparse.Namespace) -> None:
+    from claude_chess.match.stats import report
+    report(args.runs_root, args.prefix, args.out)
+    from pathlib import Path
+    print(Path(args.out, "crosstable.md").read_text())
+
+
 def main(argv: list[str] | None = None) -> None:
     ap = argparse.ArgumentParser(prog="claude-chess")
     sub = ap.add_subparsers(dest="cmd", required=True)
@@ -211,6 +220,11 @@ def main(argv: list[str] | None = None) -> None:
     m.add_argument("--board-read", action="store_true",
                    help="Claude also reports piece placement/threats; scored vs the real board")
     m.add_argument("--no-legal-moves", action="store_true", help="hide legal-move list from Claude")
+    m.add_argument("--resign-cp", type=int, default=None,
+                   help="referee: end the game once SF eval stays beyond ±N cp for --resign-plies plies")
+    m.add_argument("--resign-plies", type=int, default=6)
+    m.add_argument("--opening-offset", type=int, default=0,
+                   help="start the opening rotation at this index (vary openings across matches)")
     m.add_argument("--no-openings", action="store_true", help="start every game from the initial position")
     m.add_argument("--no-analysis", action="store_true")
     m.add_argument("--analysis-depth", type=int, default=12)
@@ -234,6 +248,12 @@ def main(argv: list[str] | None = None) -> None:
     x.add_argument("--with-context", action="store_true",
                    help="include the rendered context block in SFT inputs")
     x.set_defaults(func=cmd_dataset)
+
+    r = sub.add_parser("report", help="cross table + Elo + harness significance tests for an experiment")
+    r.add_argument("prefix", help="substring of the experiment's run directory names")
+    r.add_argument("--runs-root", default="runs")
+    r.add_argument("--out", required=True, help="output dir (crosstable.md, games.csv, stats.json)")
+    r.set_defaults(func=cmd_report)
 
     d = sub.add_parser("db", help="query the permanent games database (db/games.sqlite)")
     d.add_argument("--db-path", default="db/games.sqlite")
