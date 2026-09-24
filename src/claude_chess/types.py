@@ -43,6 +43,10 @@ class PositionContext:
     concepts: list[str] = field(default_factory=list)  # retrieved KB guidance
     character: list[str] = field(default_factory=list)  # middlegame type, pawn breaks, imbalances
     endgame: list[str] = field(default_factory=list)  # ending type, K+P rules, tablebase
+    # v3 (context-research): relations, what the last move changed, tactical temperature
+    relations: list[str] = field(default_factory=list)
+    last_move: list[str] = field(default_factory=list)
+    temperature: int | None = None
     legal_moves_san: list[str] = field(default_factory=list)
 
 

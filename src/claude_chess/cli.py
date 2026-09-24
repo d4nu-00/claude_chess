@@ -48,7 +48,8 @@ def make_player_factory(spec: str, args: Any, seed: int = 0) -> Callable[[], Any
                                        max_retries=args.max_retries, tactical=True,
                                        tac_depth=args.tac_depth, tac_margin=args.tac_margin,
                                        board_read=args.board_read, threat_agent=args.threat_agent,
-                                       tablebase=not args.no_tablebase, search=args.search)
+                                       tablebase=not args.no_tablebase, search=args.search,
+                                       ctx_version=args.ctx_version)
                 ab = ",ab" if args.search == "alphabeta" else ""
                 thr = ",threat" if args.threat_agent or args.search == "alphabeta" else ""
                 p.name = f"{spec}(t{args.tac_depth}{thr}{ab},{args.model})"
@@ -103,7 +104,7 @@ def cmd_match(args: argparse.Namespace) -> None:
                           "tac_depth": args.tac_depth, "tac_margin": args.tac_margin,
                           "thinking": args.thinking, "board_read": args.board_read,
                           "threat_agent": args.threat_agent, "tablebase": not args.no_tablebase,
-                          "search": args.search,
+                          "search": args.search, "ctx_version": args.ctx_version,
                           "illegal_policy": args.illegal_policy, "argv": sys.argv[1:]})
     print(f"run dir: {rd}")
 
@@ -188,6 +189,40 @@ def cmd_report(args: argparse.Namespace) -> None:
     print(Path(args.out, "crosstable.md").read_text())
 
 
+def cmd_suite(args: argparse.Namespace) -> None:
+    import json
+
+    from claude_chess import suite
+    if args.suite_cmd == "build":
+        print(f"{suite.build(args.runs_root, args.out, n=args.n, seed=args.seed)} positions -> {args.out}")
+    elif args.suite_cmd == "run":
+        factory = make_player_factory(args.player, args, seed=1)
+        print(json.dumps(suite.run(args.suite, factory, args.out, workers=args.workers), indent=2))
+    else:
+        print(json.dumps(suite.compare(args.a, args.b), indent=2))
+
+
+def _add_player_args(p: argparse.ArgumentParser) -> None:
+    """Player-construction options shared by `suite run` (mirrors `match`)."""
+    p.add_argument("--model", default="sonnet")
+    p.add_argument("--backend", default="auto")
+    p.add_argument("--thinking", type=int, default=None)
+    p.add_argument("--depth", type=int, default=1)
+    p.add_argument("--candidates", type=int, default=4)
+    p.add_argument("--replies", type=int, default=2)
+    p.add_argument("--illegal-policy", default="random")
+    p.add_argument("--max-retries", type=int, default=3)
+    p.add_argument("--no-legal-moves", action="store_true")
+    p.add_argument("--board-read", action="store_true")
+    p.add_argument("--tac-depth", type=int, default=2)
+    p.add_argument("--tac-margin", type=int, default=100)
+    p.add_argument("--threat-agent", action="store_true")
+    p.add_argument("--no-tablebase", action="store_true")
+    p.add_argument("--search", choices=("compare", "alphabeta"), default="compare")
+    p.add_argument("--ctx-version", type=int, default=2, choices=(2, 3))
+    p.add_argument("--sf-time", type=float, default=0.05)
+
+
 def main(argv: list[str] | None = None) -> None:
     ap = argparse.ArgumentParser(prog="claude-chess")
     sub = ap.add_subparsers(dest="cmd", required=True)
@@ -217,6 +252,8 @@ def main(argv: list[str] | None = None) -> None:
     m.add_argument("--search", choices=("compare", "alphabeta"), default="compare",
                    help="hybrid: 1-ply batched positional compare, or depth-2 alpha-beta over "
                         "Claude positional leaves (implies the threat agent for replies)")
+    m.add_argument("--ctx-version", type=int, default=2, choices=(2, 3),
+                   help="hybrid: 3 = relations, last-move changes, per-move deltas, material check")
     m.add_argument("--no-tablebase", action="store_true", help="hybrid: don't play tablebase moves")
     m.add_argument("--board-read", action="store_true",
                    help="Claude also reports piece placement/threats; scored vs the real board")
@@ -258,6 +295,24 @@ def main(argv: list[str] | None = None) -> None:
     r.add_argument("--runs-root", default="runs")
     r.add_argument("--out", required=True, help="output dir (crosstable.md, games.csv, stats.json)")
     r.set_defaults(func=cmd_report)
+
+    su = sub.add_parser("suite", help="offline position test suite: build / run / compare")
+    ssub = su.add_subparsers(dest="suite_cmd", required=True)
+    sb = ssub.add_parser("build", help="sample positions from past runs, label with Stockfish")
+    sb.add_argument("--runs-root", default="runs")
+    sb.add_argument("--out", default="suites/v1.jsonl")
+    sb.add_argument("--n", type=int, default=100)
+    sb.add_argument("--seed", type=int, default=0)
+    sr = ssub.add_parser("run", help="one decision per position with a player, scored by Stockfish")
+    sr.add_argument("suite")
+    sr.add_argument("--player", required=True, help=SPEC_HELP)
+    sr.add_argument("--out", required=True)
+    sr.add_argument("--workers", type=int, default=8)
+    _add_player_args(sr)
+    sc = ssub.add_parser("compare", help="paired permutation test between two suite result files")
+    sc.add_argument("a")
+    sc.add_argument("b")
+    su.set_defaults(func=cmd_suite)
 
     d = sub.add_parser("db", help="query the permanent games database (db/games.sqlite)")
     d.add_argument("--db-path", default="db/games.sqlite")

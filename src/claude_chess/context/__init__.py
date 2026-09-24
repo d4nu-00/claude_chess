@@ -11,6 +11,7 @@ from ..types import PositionContext
 from . import concepts as _concepts
 from .character import imbalances, middlegame_character
 from .endgame import endgame_info
+from .relations import last_move, relations, temperature
 from .features import CNAME, king_safety, material, pawn_structure, phase, piece_activity
 from .openings import identify_opening
 from .tactics import tactics
@@ -44,7 +45,9 @@ def _legal_moves_grouped(board: chess.Board) -> list[str]:
     return out
 
 
-def build_context(board: chess.Board, include_legal_moves: bool = True) -> PositionContext:
+def build_context(board: chess.Board, include_legal_moves: bool = True, version: int = 2) -> PositionContext:
+    """version 2 = original context; 3 adds piece relations, last-move changes, tactical
+    temperature (adaptive ordering in render_context) and keeps only the top concept page."""
     tags: set[str] = set()
     structure_plans: list[str] = []
     ph = phase(board)
@@ -82,9 +85,13 @@ def build_context(board: chess.Board, include_legal_moves: bool = True) -> Posit
         if plan:
             concept_lines.append(f"Opening plans ({plan[0]}): {plan[1]}")
     concept_lines += [f"Structure plan — {p}" for p in structure_plans]
-    for page in _concepts.retrieve(tags, k=3):
+    for page in _concepts.retrieve(tags, k=1 if version >= 3 else 3):
         concept_lines.append(f"{page.title}: " + " ".join(page.summary))
     ctx.concepts = concept_lines
+    if version >= 3:
+        ctx.relations = relations(board)
+        ctx.last_move = last_move(board)
+        ctx.temperature = temperature(board)
     if include_legal_moves:
         ctx.legal_moves_san = _legal_moves_grouped(board)
     return ctx
@@ -121,6 +128,21 @@ def render_context(ctx: PositionContext, include_legal_moves: bool = True) -> st
         ("Piece activity", ctx.piece_activity, 5),
         ("Guidance", ctx.concepts, 6),
     ]
+    if ctx.temperature is not None:  # v3: budget context by how tactical the position is
+        hot = ctx.temperature >= 4
+        lines[-1] += f", {'SHARP (tactics first)' if hot else 'quiet (plans first)'}"
+        last = ("Opponent's last move", ctx.last_move, 5)
+        rel = ("Piece relations (attackers / defenders)", ctx.relations, 8 if hot else 4)
+        tac = ("Tactics (side to move first)", ctx.tactics, 10)
+        eg = ("Endgame", ctx.endgame, 10)
+        if hot:
+            sections = [last, tac, rel, eg, ("Middlegame character & imbalances", ctx.character, 3),
+                        ("King safety", ctx.king_safety, 4), ("Pawn structure", ctx.pawn_structure, 4),
+                        ("Piece activity", ctx.piece_activity, 3), ("Guidance", ctx.concepts, 2)]
+        else:
+            sections = [last, tac, ("Middlegame character & imbalances", ctx.character, 8), eg,
+                        ("Pawn structure", ctx.pawn_structure, 8), rel, ("King safety", ctx.king_safety, 4),
+                        ("Piece activity", ctx.piece_activity, 4), ("Guidance", ctx.concepts, 3)]
     for title, items, cap in sections:
         if not items:
             continue
