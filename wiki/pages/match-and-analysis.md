@@ -85,3 +85,7 @@ silently match nothing (empty labels, missing ACPL).
 - `suite compare A B`: paired sign-flip permutation test on cp loss. For binary metrics use an
   exact McNemar on discordant pairs (see [[results]]).
 - ≈ $0.9 per 100 positions for the Haiku harness — use it before spending on games.
+- Game viewer: `uv run python scripts/game_viewer.py RUN_DIR --game N --out file.html` — board
+  (blue arrow = move played, green = Stockfish best from post-game analysis, never shown to
+  Claude), clickable eval graph, and per Claude move: proposer thinking, candidates (reason,
+  prior, material score, positional score, verdict), compare thinking, threat-agent replies.

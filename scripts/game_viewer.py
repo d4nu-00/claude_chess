@@ -36,6 +36,18 @@ def _e(x) -> str:
     return html.escape(str(x))
 
 
+def _pretty(name: str) -> str:
+    """'hybrid-ctx(t2,threat,claude-opus-5-5)' -> 'Claude opus-5-5 + harness'; 'maia-1900' unchanged."""
+    import re
+    m = re.search(r"claude-([a-z]+-\d+(?:-\d+)?)", name)
+    model = f"Claude {m.group(1)}" if m else "Claude"
+    if name.startswith(("hybrid", "engine")):
+        return f"{model} + harness"
+    if name.startswith("naive"):
+        return f"{model} (no harness)"
+    return name
+
+
 def build(rd: Path, gid: int, title: str | None) -> str:
     f = io.StringIO((rd / "games.pgn").read_text())
     while (g := chess.pgn.read_game(f)) is not None:
@@ -70,7 +82,7 @@ def build(rd: Path, gid: int, title: str | None) -> str:
             ev = a["eval_after"] if a["color"] == "white" else -a["eval_after"]
         white_ev.append(ev)
         d = dec.get(i)
-        who = g.headers["White"] if mover_white else g.headers["Black"]
+        who = _pretty(g.headers["White"] if mover_white else g.headers["Black"])
         body: list[str] = []
         if a:
             body.append(f"<p class=mut>Stockfish after the move (White's view): <b>{ev:+d}</b> cp · this move lost "

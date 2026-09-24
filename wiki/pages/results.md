@@ -37,6 +37,17 @@ Run `20260924_210922_hybrid2-haiku-vs-maia1100`, Haiku 4.5, thinking off, --boar
   unavailable in the sandbox — would have been exact on a normal machine).
 - Tablebase + Lichess unreachable here; K+P rules in context were the only endgame help.
 
+## 2026-09-24 — showcase: Opus 5.5 + harness (ctx v3, threat agent) vs Maia-1900, 1 game
+Run `20260924_225106_opus-harness-vs-maia1900`; viewer `experiments/opus/game_opus_vs_maia1900.html`
+(`scripts/game_viewer.py`). Opus as White, Ruy Lopez Exchange, **won** (resign adjudication at
++38 after 55.g4). **ACPL 19.7**, 0 blunders, one mistake (24.Nd2, −2.2); cost **$5.53** (52
+moves × $0.106, 2.8 calls/move, 23 s/move — ≈17× Haiku per game).
+Reliance on the tactical search: Claude's #1 played 38/52 (73%), overruled **1/52**, moves added
+by search **0**, fail-low **0** — Opus played essentially all of its own chess; the harness only
+checked. Key moments: 9.Qg3 double attack (e5+g7) → 10.Qxe5 wins a pawn; 18.Ra7 invasion (+1.9);
+26.Qxc7 into a won ending; passed d-pawn 36.d5–39.d6; 41–44 wins the bishop; Maia's 52...h5?? ends it.
+n = 1: a showcase, not a measurement.
+
 ## 2026-09-24 — exp2: context v3 in games (Haiku, Maia 1100/1500/1900, 4 games each)
 Reports: `experiments/exp2/`, combined with exp1 in `experiments/exp1_exp2_combined/`
 (`claude-chess report exp`). Same openings/colours/settings as exp1; 24 games, ≈ $4.7.
