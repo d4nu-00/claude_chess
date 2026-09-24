@@ -1,0 +1,23 @@
+# claude_chess wiki — index
+
+Agent-maintained knowledge base (Karpathy-style "LLM Wiki"): raw sources are read once,
+distilled into interlinked pages here, and kept current. Every agent working on this repo
+reads this index first and writes back what it learns. Pages are small and single-topic.
+
+## Rules for agents
+1. Read this index; open only the pages you need.
+2. When you learn something non-obvious (a gotcha, a decision, a result), write/update a page
+   in `pages/`, add a one-line link below, and append a dated line to `log.md`.
+3. Prefer updating an existing page to creating a near-duplicate. Link pages with `[[page-name]]`.
+4. Record *why*, not just *what*. Code structure lives in the code; the wiki holds reasoning.
+
+## Pages
+- [architecture](pages/architecture.md) — the pipeline, module ownership, data flow
+- [decisions](pages/decisions.md) — design decisions log with rationale
+- [llm-backend](pages/llm-backend.md) — how we call Claude (CLI vs SDK), latency, cost
+- [illegal-moves](pages/illegal-moves.md) — policy for illegal LLM moves + prior art (research agent)
+- [prior-art](pages/prior-art.md) — input format (FEN/PGN/ASCII) & prompt-design findings (research agent)
+- [context-builder](pages/context-builder.md) — what features we extract and why (context agent)
+- [engine](pages/engine.md) — prompts, proposer, evaluator, search (engine agent)
+- [match-and-analysis](pages/match-and-analysis.md) — runner, adjudication, metrics (match agent)
+- [results](pages/results.md) — experiment results

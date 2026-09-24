@@ -1,0 +1,274 @@
+<title>Claude Engine Blueprint</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;800&family=Archivo+Narrow:wght@500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --paper:#eef0ec; --panel:#f8f9f6; --ink:#1c2226; --muted:#5a6560; --rule:#c9cfc9;
+  --claude:#b8621b; --claude-soft:#f4e3d2; --py:#2a6f73; --py-soft:#d6e8e7;
+  --good:#3c7a3a; --bad:#a8382c;
+  --sans:"Archivo",system-ui,sans-serif; --narrow:"Archivo Narrow","Arial Narrow",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --paper:#15191b; --panel:#1d2326; --ink:#e4e8e4; --muted:#9aa5a0; --rule:#39433f;
+    --claude:#e59352; --claude-soft:#3a2716; --py:#5fb3b6; --py-soft:#17312f;
+    --good:#7dbf6f; --bad:#e3786a;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --paper:#15191b; --panel:#1d2326; --ink:#e4e8e4; --muted:#9aa5a0; --rule:#39433f;
+  --claude:#e59352; --claude-soft:#3a2716; --py:#5fb3b6; --py-soft:#17312f;
+  --good:#7dbf6f; --bad:#e3786a;
+}
+body{background:var(--paper);color:var(--ink);font:15px/1.6 var(--sans);padding-inline:16px;padding-block:32px 64px}
+main{max-width:1180px;margin:0 auto;display:grid;gap:48px}
+header{display:grid;gap:10px;max-width:760px}
+.eyebrow{font:600 12px/1 var(--narrow);letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+h1{font:800 clamp(30px,5vw,48px)/1.05 var(--sans);margin:0;text-wrap:balance;letter-spacing:-.01em}
+h2{font:800 22px/1.2 var(--sans);margin:0;text-wrap:balance}
+p{margin:0;max-width:68ch}
+.lede{font-size:17px;color:var(--muted)}
+section{display:grid;gap:14px}
+figure{margin:0;background:var(--panel);border:1px solid var(--rule);border-radius:6px;padding:18px;display:grid;gap:12px}
+.scroll{overflow-x:auto}
+svg{display:block;width:100%;height:auto;min-width:720px;color:var(--ink)}
+figcaption{font-size:14px;color:var(--muted);max-width:80ch}
+.legend{display:flex;flex-wrap:wrap;gap:18px;font:500 13px/1 var(--narrow)}
+.key{display:inline-flex;align-items:center;gap:8px}
+.sw{width:18px;height:12px;border-radius:2px;border:1.5px solid}
+.sw.c{background:var(--claude-soft);border-color:var(--claude)}
+.sw.p{background:var(--py-soft);border-color:var(--py)}
+.sw.d{border:0;border-top:2px dashed var(--claude);height:0;border-radius:0}
+code,.mono{font-family:var(--mono);font-size:.9em}
+table{border-collapse:collapse;width:100%;font-size:14px;font-variant-numeric:tabular-nums}
+th,td{text-align:left;padding:8px 12px;border-bottom:1px solid var(--rule);vertical-align:top}
+th{font:600 12px/1.2 var(--narrow);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.yes{color:var(--good);font-weight:600}.no{color:var(--muted)}
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:20px}
+.note{border-left:3px solid var(--claude);padding:4px 0 4px 14px}
+/* svg classes via attributes only below */
+</style>
+
+<main>
+<header>
+  <span class="eyebrow">claude_chess · architecture</span>
+  <h1>Claude as a chess engine</h1>
+  <p class="lede">Claude supplies the judgement a classical engine gets from its move ordering and evaluation function. Python supplies the parts an LLM is bad at: exact board state, legality, and tree bookkeeping. The experiment removes one wire, the context block, and measures what changes.</p>
+  <div class="legend">
+    <span class="key"><span class="sw c"></span>Claude call (LLM)</span>
+    <span class="key"><span class="sw p"></span>Deterministic Python</span>
+    <span class="key"><span class="sw d"></span>Context wire (cut in the no-context arm)</span>
+  </div>
+</header>
+
+<section>
+  <span class="eyebrow">Figure 1 · one move, end to end</span>
+  <h2>The move factory</h2>
+  <figure>
+    <div class="scroll">
+    <svg viewBox="0 0 1170 340" role="img" aria-label="Per-move pipeline: board feeds context builder and proposer; proposer candidates go through validator with a retry loop, then search which calls opponent proposer and evaluator in parallel, and outputs a move. The context wire feeds proposer, opponent proposer and evaluator.">
+      <defs>
+        <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0L10,5L0,10z" fill="currentColor"/></marker>
+        <marker id="ac" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0L10,5L0,10z" fill="var(--claude)"/></marker>
+      </defs>
+      <g font-family="Archivo Narrow, Arial Narrow, sans-serif" font-size="12" fill="currentColor">
+        <!-- always-on FEN wire -->
+        <path d="M80,70 V30 H515 V70" fill="none" stroke="currentColor" stroke-width="1.4" marker-end="url(#a)"/>
+        <text x="300" y="24" text-anchor="middle">FEN · ASCII board · move list · legal moves (always sent)</text>
+
+        <!-- boxes row 1 -->
+        <rect x="20" y="70" width="120" height="64" rx="4" fill="var(--py-soft)" stroke="var(--py)" stroke-width="1.5"/>
+        <text x="80" y="98" text-anchor="middle" font-weight="600" font-size="14">Board</text>
+        <text x="80" y="116" text-anchor="middle" fill="var(--muted)">python-chess</text>
+
+        <rect x="180" y="70" width="190" height="64" rx="4" fill="var(--py-soft)" stroke="var(--py)" stroke-width="1.5"/>
+        <text x="275" y="94" text-anchor="middle" font-weight="600" font-size="14">Context builder</text>
+        <text x="275" y="112" text-anchor="middle" fill="var(--muted)">ECO · pawns · king · activity</text>
+        <text x="275" y="126" text-anchor="middle" fill="var(--muted)">tactics flags · phase</text>
+
+        <rect x="430" y="70" width="170" height="64" rx="4" fill="var(--claude-soft)" stroke="var(--claude)" stroke-width="1.5"/>
+        <text x="515" y="98" text-anchor="middle" font-weight="600" font-size="14">Proposer</text>
+        <text x="515" y="116" text-anchor="middle" fill="var(--muted)">N candidates + prior (JSON)</text>
+
+        <rect x="650" y="70" width="160" height="64" rx="4" fill="var(--py-soft)" stroke="var(--py)" stroke-width="1.5"/>
+        <text x="730" y="98" text-anchor="middle" font-weight="600" font-size="14">Validator</text>
+        <text x="730" y="116" text-anchor="middle" fill="var(--muted)">parse SAN / UCI, legal?</text>
+
+        <rect x="860" y="70" width="170" height="64" rx="4" fill="var(--py-soft)" stroke="var(--py)" stroke-width="1.5"/>
+        <text x="945" y="98" text-anchor="middle" font-weight="600" font-size="14">Search</text>
+        <text x="945" y="116" text-anchor="middle" fill="var(--muted)">real board copies · minimax</text>
+
+        <rect x="1070" y="70" width="80" height="64" rx="32" fill="none" stroke="currentColor" stroke-width="1.5"/>
+        <text x="1110" y="107" text-anchor="middle" font-weight="600" font-size="14">Move</text>
+
+        <!-- row 1 edges -->
+        <line x1="140" y1="102" x2="178" y2="102" stroke="currentColor" stroke-width="1.4" marker-end="url(#a)"/>
+        <line x1="370" y1="102" x2="428" y2="102" stroke="var(--claude)" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#ac)"/>
+        <line x1="600" y1="102" x2="648" y2="102" stroke="currentColor" stroke-width="1.4" marker-end="url(#a)"/>
+        <line x1="810" y1="102" x2="858" y2="102" stroke="currentColor" stroke-width="1.4" marker-end="url(#a)"/>
+        <line x1="1030" y1="102" x2="1068" y2="102" stroke="currentColor" stroke-width="1.4" marker-end="url(#a)"/>
+        <text x="624" y="94" text-anchor="middle">cands</text>
+        <text x="834" y="94" text-anchor="middle">legal</text>
+        <text x="1049" y="94" text-anchor="middle">best</text>
+
+        <!-- retry loop -->
+        <path d="M730,134 V160 H540 V136" fill="none" stroke="var(--bad)" stroke-width="1.4" marker-end="url(#a)" color="var(--bad)"/>
+        <text x="635" y="176" text-anchor="middle" fill="var(--bad)">no legal move → error + legal list, retry ≤ 3</text>
+
+        <!-- knowledge store -->
+        <rect x="180" y="220" width="150" height="60" rx="4" fill="none" stroke="var(--py)" stroke-width="1.5" stroke-dasharray="2 3"/>
+        <text x="255" y="246" text-anchor="middle" font-weight="600" font-size="13">knowledge/</text>
+        <text x="255" y="264" text-anchor="middle" fill="var(--muted)">concepts · opening plans</text>
+        <line x1="255" y1="220" x2="255" y2="136" stroke="currentColor" stroke-width="1.4" marker-end="url(#a)"/>
+        <text x="262" y="186" fill="var(--muted)">top 2–3 pages by tag</text>
+
+        <!-- row 2 claude boxes -->
+        <rect x="720" y="220" width="160" height="60" rx="4" fill="var(--claude-soft)" stroke="var(--claude)" stroke-width="1.5"/>
+        <text x="800" y="246" text-anchor="middle" font-weight="600" font-size="14">Opponent proposer</text>
+        <text x="800" y="264" text-anchor="middle" fill="var(--muted)">K replies (depth 2)</text>
+
+        <rect x="920" y="220" width="160" height="60" rx="4" fill="var(--claude-soft)" stroke="var(--claude)" stroke-width="1.5"/>
+        <text x="1000" y="246" text-anchor="middle" font-weight="600" font-size="14">Evaluator</text>
+        <text x="1000" y="264" text-anchor="middle" fill="var(--muted)">eval_cp, White's view</text>
+
+        <!-- search <-> row2 -->
+        <line x1="905" y1="134" x2="820" y2="218" stroke="currentColor" stroke-width="1.4" marker-end="url(#a)"/>
+        <line x1="790" y1="218" x2="880" y2="136" stroke="currentColor" stroke-width="1.4" marker-end="url(#a)"/>
+        <text x="822" y="168" text-anchor="end">child FEN</text>
+        <text x="878" y="196" text-anchor="start" fill="var(--muted)">replies</text>
+        <line x1="970" y1="134" x2="985" y2="218" stroke="currentColor" stroke-width="1.4" marker-end="url(#a)"/>
+        <line x1="1015" y1="218" x2="1000" y2="136" stroke="currentColor" stroke-width="1.4" marker-end="url(#a)"/>
+        <text x="1022" y="170">leaf FENs ⇉ parallel</text>
+        <text x="1022" y="186" fill="var(--muted)">scores back</text>
+
+        <!-- context wire to row2 -->
+        <path d="M350,134 V310 H1000 V282" fill="none" stroke="var(--claude)" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#ac)"/>
+        <path d="M800,310 V282" fill="none" stroke="var(--claude)" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#ac)"/>
+        <text x="560" y="328" text-anchor="middle" fill="var(--claude)" font-weight="600">context block → every Claude prompt (cut in no-context arm)</text>
+      </g>
+    </svg>
+    </div>
+    <figcaption>Every node the search visits is an exact position produced by python-chess, so Claude never has to track pieces through an imagined line. Claude answers two narrow questions: “which moves are worth looking at?” and “who is better here?”. Mates, stalemates and draws are scored exactly and never sent to Claude.</figcaption>
+  </figure>
+</section>
+
+<section>
+  <span class="eyebrow">Figure 2 · depth-2 search, illustrative numbers</span>
+  <h2>Minimax over Claude's own judgement</h2>
+  <div class="two">
+  <figure>
+    <div class="scroll">
+    <svg viewBox="0 0 900 330" role="img" aria-label="Depth-2 tree: three White candidates, two Black replies each, leaves scored by Claude evaluator; each candidate takes the minimum of its replies, and the root picks Re1 at +35." style="min-width:640px">
+      <g font-family="Archivo Narrow, Arial Narrow, sans-serif" font-size="13" fill="currentColor" text-anchor="middle">
+        <g stroke="currentColor" stroke-width="1.2">
+          <line x1="450" y1="58" x2="150" y2="122"/><line x1="450" y1="58" x2="450" y2="122"/><line x1="450" y1="58" x2="750" y2="122"/>
+          <line x1="150" y1="158" x2="80" y2="232"/><line x1="150" y1="158" x2="220" y2="232"/>
+          <line x1="450" y1="158" x2="380" y2="232"/><line x1="450" y1="158" x2="520" y2="232"/>
+          <line x1="750" y1="158" x2="680" y2="232"/><line x1="750" y1="158" x2="820" y2="232"/>
+        </g>
+        <line x1="450" y1="58" x2="150" y2="122" stroke="var(--good)" stroke-width="3"/>
+        <line x1="150" y1="158" x2="80" y2="232" stroke="var(--good)" stroke-width="3"/>
+        <rect x="370" y="22" width="160" height="36" rx="4" fill="var(--py-soft)" stroke="var(--py)" stroke-width="1.5"/>
+        <text x="450" y="45" font-weight="600">root · White to move</text>
+        <text x="620" y="45" text-anchor="start" fill="var(--muted)">max over candidates</text>
+        <g font-weight="600">
+          <rect x="100" y="122" width="100" height="36" rx="4" fill="var(--claude-soft)" stroke="var(--good)" stroke-width="2.5"/><text x="150" y="145">Re1 · +35</text>
+          <rect x="400" y="122" width="100" height="36" rx="4" fill="var(--claude-soft)" stroke="var(--claude)" stroke-width="1.5"/><text x="450" y="145">d4 · −60</text>
+          <rect x="700" y="122" width="100" height="36" rx="4" fill="var(--claude-soft)" stroke="var(--claude)" stroke-width="1.5"/><text x="750" y="145">Nc3 · +10</text>
+        </g>
+        <text x="860" y="145" text-anchor="start" fill="var(--muted)">min</text>
+        <g>
+          <rect x="40" y="232" width="80" height="44" rx="4" fill="none" stroke="var(--good)" stroke-width="2"/><text x="80" y="251">…Nd6</text><text x="80" y="268" font-weight="600">+35</text>
+          <rect x="180" y="232" width="80" height="44" rx="4" fill="none" stroke="currentColor"/><text x="220" y="251">…Be7</text><text x="220" y="268" font-weight="600">+48</text>
+          <rect x="340" y="232" width="80" height="44" rx="4" fill="none" stroke="currentColor"/><text x="380" y="251">…Nd6</text><text x="380" y="268" font-weight="600">+20</text>
+          <rect x="480" y="232" width="80" height="44" rx="4" fill="none" stroke="var(--bad)" stroke-width="2"/><text x="520" y="251">…exd4</text><text x="520" y="268" font-weight="600" fill="var(--bad)">−60</text>
+          <rect x="640" y="232" width="80" height="44" rx="4" fill="none" stroke="currentColor"/><text x="680" y="251">…Be7</text><text x="680" y="268" font-weight="600">+22</text>
+          <rect x="780" y="232" width="80" height="44" rx="4" fill="none" stroke="currentColor"/><text x="820" y="251">…Nd6</text><text x="820" y="268" font-weight="600">+10</text>
+        </g>
+        <text x="450" y="310" fill="var(--claude)">leaf scores from the Claude evaluator, 6 calls in parallel</text>
+        <text x="450" y="196" fill="var(--claude)" font-size="12">replies from the opponent proposer</text>
+      </g>
+    </svg>
+    </div>
+    <figcaption>d4 has the highest prior but a refutation (…exd4) drags it to −60. The search plays Re1, whose worst reply still leaves +35. This is how search can overrule Claude's first instinct.</figcaption>
+  </figure>
+  <div style="display:grid;gap:12px;align-content:start">
+    <table>
+      <thead><tr><th>Depth</th><th>Claude calls / move</th><th>What decides</th></tr></thead>
+      <tbody>
+        <tr><td class="mono">0</td><td>1</td><td>Proposer's highest-prior legal move</td></tr>
+        <tr><td class="mono">1</td><td>1 + N</td><td>Evaluator score after each candidate</td></tr>
+        <tr><td class="mono">2</td><td>1 + N + N·K</td><td>Worst-case score after opponent's best replies</td></tr>
+      </tbody>
+    </table>
+    <p class="note">With N = 4 candidates and K = 2 replies, depth 2 costs 13 calls a move. The calls in each layer run in parallel, so a move takes about three round-trips of wall time.</p>
+  </div>
+  </div>
+</section>
+
+<section>
+  <span class="eyebrow">Figure 3 · the experiment</span>
+  <h2>What each player sees</h2>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>Player</th><th>FEN, history, legal list</th><th>Context block</th><th>Candidates + search</th><th>Role</th></tr></thead>
+    <tbody>
+      <tr><td class="mono">naive</td><td class="yes">yes</td><td class="no">no</td><td class="no">no, one call</td><td>Plain Claude baseline</td></tr>
+      <tr><td class="mono">engine-noctx</td><td class="yes">yes</td><td class="no">no</td><td class="yes">yes</td><td>Isolates the effect of search</td></tr>
+      <tr><td class="mono">engine-ctx</td><td class="yes">yes</td><td class="yes">yes</td><td class="yes">yes</td><td>The full harness</td></tr>
+      <tr><td class="mono">stockfish:ELO</td><td colspan="3" class="no">Stockfish 17 with UCI_Elo cap. Opponent and judge only, never an input to a Claude player.</td><td>Yardstick</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>engine-ctx vs engine-noctx answers “does context help?”. engine-noctx vs naive answers “does search help?”. Every game gets analysed by Stockfish afterwards for average centipawn loss (ACPL), blunders and illegal-move rate, so small samples still give per-move signal beyond win/loss.</p>
+</section>
+
+<section id="illegal">
+  <span class="eyebrow">Policy</span>
+  <h2>Illegal moves</h2>
+  <p id="illegal-text">Illegal or unparseable candidates are dropped and logged. If no candidate is legal, Claude is re-asked with the specific error and the full legal list, up to three times. After that the configured policy applies. The default plays a random legal move and flags it, so games finish and the failure still counts in the metrics. The <span class="mono">forfeit</span> policy, like a UCI engine sending an illegal move in engine tournaments, scores it as a loss.</p>
+</section>
+
+<section>
+  <span class="eyebrow">Figure 4 · how this was built</span>
+  <h2>Agents sharing one wiki</h2>
+  <figure>
+    <div class="scroll">
+    <svg viewBox="0 0 1000 250" role="img" aria-label="An orchestrator dispatches four subagents (research, context, engine, match); each reads wiki/index.md first and writes pages and log lines back; code contracts live in types.py." style="min-width:680px">
+      <defs><marker id="b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0L10,5L0,10z" fill="currentColor"/></marker></defs>
+      <g font-family="Archivo Narrow, Arial Narrow, sans-serif" font-size="13" fill="currentColor" text-anchor="middle">
+        <rect x="400" y="14" width="200" height="44" rx="4" fill="var(--claude-soft)" stroke="var(--claude)" stroke-width="1.5"/>
+        <text x="500" y="41" font-weight="600">Orchestrator (Opus)</text>
+        <g>
+          <rect x="30" y="110" width="190" height="50" rx="4" fill="var(--claude-soft)" stroke="var(--claude)" stroke-width="1.5"/><text x="125" y="131" font-weight="600">Research agent</text><text x="125" y="149" fill="var(--muted)" font-size="12">illegal moves · prior art</text>
+          <rect x="270" y="110" width="190" height="50" rx="4" fill="var(--claude-soft)" stroke="var(--claude)" stroke-width="1.5"/><text x="365" y="131" font-weight="600">Context agent</text><text x="365" y="149" fill="var(--muted)" font-size="12">context/ · knowledge/</text>
+          <rect x="540" y="110" width="190" height="50" rx="4" fill="var(--claude-soft)" stroke="var(--claude)" stroke-width="1.5"/><text x="635" y="131" font-weight="600">Engine agent</text><text x="635" y="149" fill="var(--muted)" font-size="12">llm.py · engine/</text>
+          <rect x="780" y="110" width="190" height="50" rx="4" fill="var(--claude-soft)" stroke="var(--claude)" stroke-width="1.5"/><text x="875" y="131" font-weight="600">Match agent</text><text x="875" y="149" fill="var(--muted)" font-size="12">match/ · cli.py</text>
+        </g>
+        <g stroke="currentColor" stroke-width="1.3" fill="none">
+          <path d="M470,58 L125,108" marker-end="url(#b)"/><path d="M490,58 L365,108" marker-end="url(#b)"/>
+          <path d="M510,58 L635,108" marker-end="url(#b)"/><path d="M530,58 L875,108" marker-end="url(#b)"/>
+        </g>
+        <text x="300" y="80" fill="var(--muted)" font-size="12">dispatch with owned files</text>
+        <rect x="300" y="200" width="400" height="40" rx="4" fill="var(--py-soft)" stroke="var(--py)" stroke-width="1.5"/>
+        <text x="500" y="225" font-weight="600">wiki/  index.md · log.md · pages/*   +   types.py contracts</text>
+        <g stroke="var(--py)" stroke-width="1.3" fill="none" stroke-dasharray="4 3">
+          <path d="M125,160 V220 H298"/><path d="M365,160 V198"/><path d="M635,160 V198"/><path d="M875,160 V220 H702"/>
+        </g>
+        <text x="500" y="182" fill="var(--py)" font-size="12">read index first · write pages + log line back</text>
+      </g>
+    </svg>
+    </div>
+    <figcaption>Each agent owns a disjoint set of files and codes against the shared contracts in <span class="mono">types.py</span>. The wiki lets a later agent, or this session after its context is compacted, pick up decisions and gotchas without re-deriving them.</figcaption>
+  </figure>
+</section>
+
+<section id="results">
+  <span class="eyebrow">Test run</span>
+  <h2>First results</h2>
+  <p id="results-text">Pending test run.</p>
+</section>
+</main>

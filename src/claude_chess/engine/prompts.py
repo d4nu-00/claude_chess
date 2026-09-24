@@ -1,0 +1,102 @@
+"""Prompt builders for the proposer, evaluator and naive player.
+
+Every prompt contains FEN + ASCII board + move history. Strategic context
+(render_context) only when use_context=True; the legal-move list is a
+separate toggle (show_legal_moves) — see wiki/pages/decisions.md.
+"""
+
+from __future__ import annotations
+
+import chess
+
+PROPOSER_SYSTEM = """You are the move-proposal module of a chess engine. A separate search \
+module will play out your candidates on a real board and evaluate them, so propose a \
+DIVERSE set of plausible, strong moves (include forcing moves: checks, captures, threats).
+Before proposing, briefly check: which pieces are hanging (both sides)? what does the \
+opponent threaten? any checks/captures available?
+Reply with ONLY a JSON object, no prose outside it:
+{"thinking": "<= 2 short sentences", "candidates": [{"move": "<SAN>", "reason": "<few words>", "prior": <0.0-1.0>}]}
+Moves must be legal in Standard Algebraic Notation (e.g. Nf3, exd5, O-O, e8=Q+). \
+Priors are your confidence each move is best; they should roughly sum to 1."""
+
+EVALUATOR_SYSTEM = """You are the evaluation module of a chess engine. Judge the given \
+position statically as a strong grandmaster would.
+FIRST check tactics: pieces that are hanging or can be won by the side to move, checks, \
+forks, pins, mate threats. Remember the side to move can act first. THEN weigh material \
+(pawn=100, knight/bishop≈300-325, rook=500, queen=900), king safety, activity and structure.
+Reply with ONLY a JSON object, no prose outside it:
+{"eval_cp": <integer, centipawns from WHITE's point of view: positive = White better>, "reason": "<one short sentence>"}"""
+
+NAIVE_SYSTEM = """You are a strong chess player. Choose the best move for the side to move.
+Reply with ONLY a JSON object, no prose outside it:
+{"thinking": "<= 2 short sentences", "move": "<SAN>"}
+The move must be legal, in Standard Algebraic Notation (e.g. Nf3, exd5, O-O, e8=Q+)."""
+
+
+def move_history_san(board: chess.Board) -> str:
+    """Moves played so far as numbered SAN (from the board's move stack)."""
+    if not board.move_stack:
+        return "(none — starting position)" if board.fen() == chess.STARTING_FEN else "(none given)"
+    root = board.root()
+    return root.variation_san(board.move_stack)
+
+
+def legal_moves_san(board: chess.Board) -> list[str]:
+    return [board.san(m) for m in board.legal_moves]
+
+
+def _context_block(board: chess.Board, include_legal_moves: bool) -> str:
+    from claude_chess.context import build_context, render_context  # lazy: owned by another module
+
+    ctx = build_context(board, include_legal_moves=include_legal_moves)
+    return render_context(ctx, include_legal_moves=include_legal_moves)
+
+
+def position_block(board: chess.Board, use_context: bool, show_legal_moves: bool) -> str:
+    side = "White" if board.turn == chess.WHITE else "Black"
+    parts = [
+        f"FEN: {board.fen()}",
+        f"Side to move: {side}",
+        "Board (uppercase = White, lowercase = Black, rank 8 at top):",
+        str(board),
+        f"Moves so far: {move_history_san(board)}",
+    ]
+    if use_context:
+        # Legal moves are appended by us below, so the context never carries them itself.
+        parts.append("## Position analysis\n" + _context_block(board, include_legal_moves=False))
+    if show_legal_moves:
+        parts.append("Legal moves: " + " ".join(legal_moves_san(board)))
+    return "\n".join(parts)
+
+
+def proposer_prompt(board: chess.Board, n: int, use_context: bool, show_legal_moves: bool,
+                    feedback: str = "") -> str:
+    side = "White" if board.turn == chess.WHITE else "Black"
+    p = position_block(board, use_context, show_legal_moves)
+    p += f"\n\nPropose the {n} best candidate moves for {side}."
+    if feedback:
+        p += "\n\n" + feedback
+    return p
+
+
+def evaluator_prompt(board: chess.Board, use_context: bool) -> str:
+    # Evaluator never needs the legal-move list: it judges, it doesn't move.
+    p = position_block(board, use_context, show_legal_moves=False)
+    return p + "\n\nEvaluate this position (eval_cp from WHITE's point of view)."
+
+
+def naive_prompt(board: chess.Board, show_legal_moves: bool, feedback: str = "") -> str:
+    side = "White" if board.turn == chess.WHITE else "Black"
+    p = position_block(board, use_context=False, show_legal_moves=show_legal_moves)
+    p += f"\n\nYou play {side}. Choose your move."
+    if feedback:
+        p += "\n\n" + feedback
+    return p
+
+
+def illegal_feedback(board: chess.Board, errors: list[str]) -> str:
+    return (
+        "Your previous answer contained no legal move:\n- " + "\n- ".join(errors)
+        + "\nThe complete list of legal moves is: " + " ".join(legal_moves_san(board))
+        + "\nPick only from that list."
+    )
