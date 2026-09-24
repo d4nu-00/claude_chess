@@ -69,3 +69,8 @@ silently match nothing (empty labels, missing ACPL).
 - Live dashboard: `uv run python scripts/live_status.py PREFIX --expected N --loop 20` rewrites
   `experiments/PREFIX/LIVE.md` + `live.html` (auto-refresh) with the cross table so far,
   % complete, API cost, ETA and in-progress games. No LLM calls.
+- `--only-games 1,2`: re-run specific game indices with the same opening/colour assignment
+  (used to replace exp1 games that failed at engine start-up). Rerun runs are labelled
+  `<label>-rerun`; `report` groups by config + Maia level, so they merge automatically.
+- Engines get `ENGINE_START_TIMEOUT = 120 s` (baselines.py) to start: python-chess's 10 s default
+  failed 8 exp1 games (`game failed: TimeoutError()`) with ~20 parallel games + analysis running.

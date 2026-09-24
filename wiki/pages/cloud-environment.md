@@ -36,3 +36,6 @@ cd /tmp/lc0 && meson setup build/release --buildtype=release --wrap-mode=nodownl
   such as a run's `meta.json`).
 - `runs/` is gitignored; results persist via `db/games.sqlite` (commit it) and
   `wiki/pages/results.md`. Exported datasets go under `datasets/`.
+- Heavy parallelism (≈20 games × lc0 + Stockfish referee, plus analysis) on 4 cores made engine
+  start-up exceed python-chess's 10 s timeout → whole games failed before move 1. Fixed with a
+  120 s start timeout; still prefer ≤ 12 concurrent games here.

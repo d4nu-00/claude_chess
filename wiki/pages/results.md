@@ -37,6 +37,23 @@ Run `20260924_210922_hybrid2-haiku-vs-maia1100`, Haiku 4.5, thinking off, --boar
   unavailable in the sandbox — would have been exact on a normal machine).
 - Tablebase + Lichess unreachable here; K+P rules in context were the only endgame help.
 
+## 2026-09-24 — offline suite A/B: context v2 vs v3 (Haiku, 100 positions)
+Suite `suites/v1.jsonl` (100 positions from our games, half "hard"; SF depth 14 labels; built by
+`claude-chess suite build`). One decision per position, paired. (Code on branch `ctx-v3`,
+merged after exp1.)
+
+| player | mean cp loss | SF best played | blunders ≥200 | proposer recall (SF best among Claude's candidates) | $/position |
+|---|---|---|---|---|---|
+| naive Haiku | 471 | 14% | 66% | 14% | 0.0019 |
+| harness, context v2 | 177 | 39% | 23% | 49% | 0.0082 |
+| harness, context v3 | **160** | 40% | **17%** | **68%** | 0.0093 |
+
+- Harness vs naive: −294 cp/position, paired permutation p = 5e-5.
+- v3 vs v2: −17 cp (p = 0.35, n.s.); blunders 10 fixed vs 4 new (McNemar p = 0.18, n.s.);
+  **proposer recall 22 gained vs 3 lost (McNemar p = 0.0002)** — the legal-move material check
+  and last-move/relations context make Claude propose the right move far more often.
+- Cost +13%/position. Next: a larger suite to resolve blunder rate, then v3 in games.
+
 ## 2026-09-24 — hybrid v3 alpha-beta (`--search alphabeta`) vs Maia-1100, 8 games
 Run `20260924_213321_hybrid-ab-haiku-vs-maia1100`, same settings as v2 (Haiku, thinking off,
 --board-read; threat agent supplies replies).

@@ -56,6 +56,27 @@ damaging first), **futility** (material + cap ≤ alpha ⇒ refuted, no call), *
 **root futility**. The first candidate's leaves run in parallel (YBWC); the rest
 sequentially so cutoffs fire. Smoke: 7 leaves, 4 evaluated, 3 pruned; ~$0.018/move Haiku.
 
+## Terminology (to avoid confusion)
+"The engine"/"the search" in this project's notes means OUR pure-Python **tactical search**
+(`engine/tactical.py`: material-only alpha-beta + quiescence, piece values + mate, no positional
+knowledge). **Stockfish is never consulted during a Claude decision** — it is only an opponent,
+the resign-adjudication referee, and the post-game analyser. Say "Python tactical search" in
+reports to users.
+
+## Measuring reliance on the tactical search (added 2026-09-24)
+`match/stats.py: classify_decision` labels every harness move from `decisions.jsonl["search"]`:
+Claude's #1 candidate played / overruled (vetoed or verified-threat refuted), played move proposed
+by Claude vs **added by the search**, fail-low, decided without Claude's positional call. Shown in
+`claude-chess report` and the live dashboard. exp1 (thinking off):
+
+| config | moves | #1 played | #1 overruled | added by search | fail-low | no Claude value call |
+|---|---|---|---|---|---|---|
+| haiku-harness | 408 | 39% | 43% | 13% | 20% | 38% |
+| sonnet-harness | 764 | 48% | 27% | 5% | 7% | 23% |
+
+Stronger model → less reliance. Track this whenever the harness or model changes: a gain that
+comes only from "added by search" is Python playing chess, not Claude.
+
 ## What it deliberately is NOT
 No Stockfish, no positional heuristics in Python: the search knows only piece values
 (100/320/330/500/900) and mate. Positional sacrifices >1 pawn are vetoed by design —
