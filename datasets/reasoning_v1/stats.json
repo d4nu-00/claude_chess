@@ -1,0 +1,36 @@
+{
+  "positions": 2384,
+  "calls": 4665,
+  "sft": 2339,
+  "preference_pairs": 1664,
+  "runs": [
+    "20260924_203947_hybrid-ctx-haiku-vs-maia1100",
+    "20260924_203947_naive-haiku-vs-maia1100",
+    "20260924_210922_hybrid2-haiku-vs-maia1100",
+    "20260924_213321_hybrid-ab-haiku-vs-maia1100",
+    "20260924_215601_exp1-sonnet-harness-maia1100",
+    "20260924_215601_exp1-sonnet-harness-maia1300",
+    "20260924_215601_exp1-sonnet-harness-maia1500",
+    "20260924_215601_exp1-sonnet-harness-maia1700",
+    "20260924_215601_exp1-sonnet-harness-maia1900",
+    "20260924_220324_exp1-sonnet-naive-maia1500",
+    "20260924_220324_exp1-sonnet-naive-maia1900",
+    "20260924_220524_exp1-haiku-harness-maia1100",
+    "20260924_220524_exp1-haiku-harness-maia1900",
+    "20260924_220526_exp1-haiku-harness-maia1500",
+    "20260924_221601_exp1-haiku-naive-maia1100",
+    "20260924_221631_exp1-haiku-naive-maia1500",
+    "20260924_221735_exp1-haiku-naive-maia1900",
+    "20260924_222457_exp1-haiku-harness-maia1100-rerun",
+    "20260924_222457_exp1-sonnet-naive-maia1100-rerun",
+    "20260924_222457_exp1-sonnet-naive-maia1500-rerun",
+    "20260924_222457_exp1-sonnet-naive-maia1900-rerun"
+  ],
+  "splits": {
+    "train": 1833,
+    "val": 355,
+    "test": 196
+  },
+  "positions_with_full_traces": 1883,
+  "sft_cp_loss_lt_100": 1854
+}

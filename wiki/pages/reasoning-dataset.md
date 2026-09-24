@@ -33,3 +33,12 @@ Code: `src/claude_chess/dataset.py`, CLI `claude-chess dataset [run_dir...] --ou
 
 ## Caveat
 User confirmed use complies with the Anthropic terms they are on (2026-09-24).
+
+## Export v1 (2026-09-24) — `datasets/reasoning_v1/`
+`claude-chess dataset --out datasets/reasoning_v1` over all runs: **2,384 positions**
+(1,976 harness, 408 naive; 1,883 with full agent traces), splits train/val/test
+1,833/355/196 by game; **2,339 SFT examples** (1,854 with cp_loss < 100 — filter on
+`quality.cp_loss`); **1,664 preference pairs**; 1.8 MB gzipped raw calls. Models: Haiku 4.5 and
+Sonnet 5, thinking off. Every position has Stockfish labels.
+Gotcha fixed before export: `move_analysis.jsonl` stores `game` as a string (see
+[[match-and-analysis]]); without normalising, all labels were silently empty.
