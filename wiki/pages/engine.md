@@ -58,3 +58,12 @@ Wall time ≈ 3 sequential rounds at d2 (propose, replies, leaves) thanks to the
   $0.0027, 5.9 s wall (CLI startup dominates).
 - Tests use a FakeLLM keyed on (system prompt, FEN) because calls are parallel and
   order-scripted fakes would be nondeterministic.
+
+## Hybrid mode (`tactical=True`, CLI `hybrid-ctx|hybrid-noctx`) — added 2026-09-24
+Propose (Claude) → material alpha-beta + quiescence on each candidate and on every
+forcing move (`engine/tactical.py`) → mate? play it → veto candidates > `tac_margin`
+worse → one survivor? play it → else ONE batched `COMPARE_SYSTEM` call scores survivors
+positionally (±`pos_cap`), final = material swing + positional. `depth` is ignored.
+Rationale and principles: [[computer-chess-principles]]. `Candidate.score_cp` in this mode
+is that combined score; `line` = [move, engine's best reply].
+Also new: eval transposition table (d1/d2 `_evaluate`), `board_read` probe ([[board-vision]]).

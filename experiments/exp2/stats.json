@@ -1,0 +1,61 @@
+{
+  "configs": {
+    "haiku-harness-ctx3": {
+      "games": 12,
+      "score": 7.5,
+      "elo": 1659,
+      "elo_ci95": [
+        1321,
+        2043
+      ],
+      "acpl": 72.03931118443332,
+      "cost_usd": 4.46018,
+      "usd_per_game": 0.3716816666666667,
+      "usd_per_move": 0.009311440501043843,
+      "claude_moves": 479,
+      "seconds_per_move": 12.428183716075157,
+      "reliance": {
+        "moves": 479,
+        "top_played": 310,
+        "top_overruled": 75,
+        "claude_proposed": 454,
+        "search_added": 11,
+        "fail_low": 71,
+        "no_claude_value": 125
+      }
+    },
+    "haiku-naive": {
+      "games": 12,
+      "score": 0.0,
+      "elo": -10,
+      "elo_ci95": [
+        -10,
+        -10
+      ],
+      "acpl": 223.45986351611353,
+      "cost_usd": 0.22095,
+      "usd_per_game": 0.018412500000000002,
+      "usd_per_move": 0.0017535714285714286,
+      "claude_moves": 126,
+      "seconds_per_move": 3.6746031746031744
+    }
+  },
+  "tests": {
+    "haiku-harness-ctx3 vs haiku-naive": {
+      "levels": [
+        1100,
+        1500,
+        1900
+      ],
+      "games": [
+        12,
+        12
+      ],
+      "delta_score": 0.625,
+      "p_permutation": 0.0024998750062496873,
+      "lr_stat": 20.661430801364993,
+      "p_lr": 5.480898889935648e-06,
+      "p_mann_whitney_acpl": 0.0002755038114342694
+    }
+  }
+}

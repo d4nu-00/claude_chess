@@ -29,6 +29,7 @@ import time as _time
 import chess
 import chess.engine
 
+from claude_chess.match.baselines import ENGINE_START_TIMEOUT
 from claude_chess.types import MoveDecision
 
 LC0_PATH = os.environ.get("LC0_PATH") or shutil.which("lc0") or "/opt/homebrew/bin/lc0"
@@ -71,7 +72,8 @@ class MaiaPlayer:
 
     def _get_engine(self) -> chess.engine.SimpleEngine:
         if self._engine is None:
-            eng = chess.engine.SimpleEngine.popen_uci([self.path, f"--weights={self.weights}"])
+            eng = chess.engine.SimpleEngine.popen_uci([self.path, f"--weights={self.weights}"],
+                                                      timeout=ENGINE_START_TIMEOUT)
             # Threads=1 + a small cache: many parallel games must not oversubscribe the CPU/GPU.
             try:
                 eng.configure({"Threads": 1, "NNCacheSize": 200000})

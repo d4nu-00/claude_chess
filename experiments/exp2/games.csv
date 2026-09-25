@@ -1,0 +1,25 @@
+run,game,config,model,harness,level,color,result,score,termination,plies,acpl,cost_usd,claude_moves,claude_seconds
+20260924_223313_exp2-haiku-harness-maia1100,3,haiku-harness-ctx3,haiku,True,1100,black,1/2-1/2,0.5,"repetition",53,49.91304347826087,0.20941,23,289.4
+20260924_223313_exp2-haiku-harness-maia1100,2,haiku-harness-ctx3,haiku,True,1100,white,1-0,1.0,"checkmate",65,46.8,0.28238,30,382.2
+20260924_223313_exp2-haiku-harness-maia1100,0,haiku-harness-ctx3,haiku,True,1100,white,1-0,1.0,"adjudication (resign: SF +3345cp for 6 plies)",119,39.8421052631579,0.54905,57,693.5
+20260924_223313_exp2-haiku-harness-maia1100,1,haiku-harness-ctx3,haiku,True,1100,black,0-1,1.0,"adjudication (resign: SF -3694cp for 6 plies)",140,82.97014925373135,0.702,67,852.2
+20260924_223313_exp2-haiku-harness-maia1500,3,haiku-harness-ctx3,haiku,True,1500,black,0-1,1.0,"checkmate",54,32.0,0.23518,24,318.6
+20260924_223313_exp2-haiku-harness-maia1500,1,haiku-harness-ctx3,haiku,True,1500,black,1-0,0.0,"adjudication (resign: SF +1083cp for 6 plies)",79,109.25714285714285,0.28157,35,443.6
+20260924_223313_exp2-haiku-harness-maia1500,2,haiku-harness-ctx3,haiku,True,1500,white,0-1,0.0,"adjudication (resign: SF -1614cp for 6 plies)",82,110.07894736842105,0.32405,38,469.9
+20260924_223313_exp2-haiku-harness-maia1500,0,haiku-harness-ctx3,haiku,True,1500,white,0-1,0.0,"adjudication (resign: SF -9992cp for 6 plies)",147,58.82857142857143,0.61776,70,806.0
+20260924_223313_exp2-haiku-harness-maia1900,2,haiku-harness-ctx3,haiku,True,1900,white,0-1,0.0,"adjudication (resign: SF -9999cp for 6 plies)",44,189.10526315789474,0.18757,19,282.6
+20260924_223313_exp2-haiku-harness-maia1900,1,haiku-harness-ctx3,haiku,True,1900,black,0-1,1.0,"checkmate",62,48.357142857142854,0.28717,28,379.3
+20260924_223313_exp2-haiku-harness-maia1900,3,haiku-harness-ctx3,haiku,True,1900,black,0-1,1.0,"adjudication (resign: SF -1194cp for 6 plies)",60,56.925925925925924,0.27229,27,389.7
+20260924_223313_exp2-haiku-harness-maia1900,0,haiku-harness-ctx3,haiku,True,1900,white,1-0,1.0,"checkmate",127,40.39344262295082,0.51175,61,646.1
+20260924_224419_exp2-haiku-naive-maia1100,2,haiku-naive,haiku,False,1100,white,0-1,0.0,"adjudication (resign: SF -1305cp for 6 plies)",16,290.2,0.00867,5,19.3
+20260924_224419_exp2-haiku-naive-maia1100,3,haiku-naive,haiku,False,1100,black,1-0,0.0,"adjudication (resign: SF +1198cp for 6 plies)",23,326.125,0.01396,8,29.1
+20260924_224419_exp2-haiku-naive-maia1100,0,haiku-naive,haiku,False,1100,white,0-1,0.0,"adjudication (resign: SF -1162cp for 6 plies)",36,102.66666666666667,0.02604,15,54.0
+20260924_224419_exp2-haiku-naive-maia1100,1,haiku-naive,haiku,False,1100,black,1-0,0.0,"adjudication (resign: SF +1527cp for 6 plies)",38,107.5,0.02793,16,56.0
+20260924_224519_exp2-haiku-naive-maia1500,1,haiku-naive,haiku,False,1500,black,1-0,0.0,"adjudication (resign: SF +1226cp for 6 plies)",21,198.66666666666666,0.00997,6,21.7
+20260924_224519_exp2-haiku-naive-maia1500,0,haiku-naive,haiku,False,1500,white,0-1,0.0,"adjudication (resign: SF -9998cp for 6 plies)",28,180.9,0.02004,10,41.0
+20260924_224519_exp2-haiku-naive-maia1500,2,haiku-naive,haiku,False,1500,white,0-1,0.0,"adjudication (resign: SF -9995cp for 6 plies)",34,371.64285714285717,0.02514,14,52.8
+20260924_224519_exp2-haiku-naive-maia1500,3,haiku-naive,haiku,False,1500,black,1-0,0.0,"checkmate",37,164.33333333333334,0.02582,15,53.8
+20260924_224617_exp2-haiku-naive-maia1900,2,haiku-naive,haiku,False,1900,white,0-1,0.0,"adjudication (resign: SF -1446cp for 6 plies)",16,296.6,0.00851,5,18.4
+20260924_224617_exp2-haiku-naive-maia1900,1,haiku-naive,haiku,False,1900,black,1-0,0.0,"adjudication (resign: SF +1117cp for 6 plies)",25,164.11111111111111,0.01549,9,32.9
+20260924_224617_exp2-haiku-naive-maia1900,3,haiku-naive,haiku,False,1900,black,1-0,0.0,"adjudication (resign: SF +9996cp for 6 plies)",29,224.27272727272728,0.01896,11,40.2
+20260924_224617_exp2-haiku-naive-maia1900,0,haiku-naive,haiku,False,1900,white,0-1,0.0,"checkmate",30,254.5,0.02042,12,43.8

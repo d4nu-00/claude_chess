@@ -50,3 +50,42 @@ that side, else draw. Termination string records the eval, e.g. `adjudication (p
   processes are never shared across `--parallel` threads. Adjudication/analysis open their own.
 - If both specs produce the same name (e.g. random vs random) they get `#A`/`#B` suffixes.
 - CPL from short/weak analysis is noisy: use >= depth 12 and many games before concluding.
+
+## Gotcha: game id types differ between files (found 2026-09-24)
+`move_analysis.jsonl` writes `"game": "7"` (string); `decisions.jsonl`, `traces.jsonl`,
+`games.jsonl` write `7` (int). Any join must normalise with `int(...)` — otherwise joins
+silently match nothing (empty labels, missing ACPL).
+
+## Resign adjudication and experiment reports (added 2026-09-24)
+- `--resign-cp N --resign-plies K`: a per-game Stockfish referee (depth 12 / 0.2 s per ply)
+  ends the game once the eval stays beyond ±N for K plies (cutechess/TCEC style). Saves the
+  long tail of decided games; never influences a player's move.
+- `--opening-offset i`: start the opening rotation at i (vary openings across matches while
+  keeping both arms of an experiment paired).
+- `claude-chess report PREFIX --out experiments/PREFIX`: cross table (per Maia level), score,
+  performance Elo (MLE + bootstrap CI), ACPL, cost ($, $/game, $/move), s/move, and
+  harness-vs-naive tests (stratified permutation, likelihood ratio, Mann-Whitney on ACPL).
+  Code: `match/stats.py`. Experiment driver: `scripts/exp_harness_vs_naive.sh`.
+- Live dashboard: `uv run python scripts/live_status.py PREFIX --expected N --loop 20` rewrites
+  `experiments/PREFIX/LIVE.md` + `live.html` (auto-refresh) with the cross table so far,
+  % complete, API cost, ETA and in-progress games. No LLM calls.
+- `--only-games 1,2`: re-run specific game indices with the same opening/colour assignment
+  (used to replace exp1 games that failed at engine start-up). Rerun runs are labelled
+  `<label>-rerun`; `report` groups by config + Maia level, so they merge automatically.
+- Engines get `ENGINE_START_TIMEOUT = 120 s` (baselines.py) to start: python-chess's 10 s default
+  failed 8 exp1 games (`game failed: TimeoutError()`) with ~20 parallel games + analysis running.
+
+## Offline position test suite (`claude-chess suite`, `src/claude_chess/suite.py`)
+- `suite build --n 100 --out suites/v1.jsonl`: positions where Claude moved in past runs (half
+  "hard": the move played lost ≥150cp), deduped by EPD, full move history kept (context v3 needs
+  the last move), Stockfish depth-14 best move + eval as labels.
+- `suite run SUITE --player SPEC [player opts] --out suites/results/X.jsonl`: one decision per
+  position (8 threads), scored afterwards by Stockfish: mean cp loss (cap 1000), SF-best hit,
+  blunder rate (≥200), proposer recall (SF best among Claude's own candidates), $/pos, s/pos.
+- `suite compare A B`: paired sign-flip permutation test on cp loss. For binary metrics use an
+  exact McNemar on discordant pairs (see [[results]]).
+- ≈ $0.9 per 100 positions for the Haiku harness — use it before spending on games.
+- Game viewer: `uv run python scripts/game_viewer.py RUN_DIR --game N --out file.html` — board
+  (blue arrow = move played, green = Stockfish best from post-game analysis, never shown to
+  Claude), clickable eval graph, and per Claude move: proposer thinking, candidates (reason,
+  prior, material score, positional score, verdict), compare thinking, threat-agent replies.

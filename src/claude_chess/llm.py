@@ -78,8 +78,16 @@ class ClaudeCLI:
         timeout: float = 180.0,
         retries: int = 2,
         executable: str = "claude",
+        thinking_tokens: int | None = None,
     ) -> None:
         self.model = model
+        # Extended-thinking budget per call (env MAX_THINKING_TOKENS). None = CLI default,
+        # which lets Haiku think for ~10k+ tokens on a chess prompt (~$0.09, minutes/call).
+        # 0 disables thinking. See wiki/pages/llm-backend.md.
+        self.thinking_tokens = thinking_tokens
+        self._env = None
+        if thinking_tokens is not None:
+            self._env = {**os.environ, "MAX_THINKING_TOKENS": str(int(thinking_tokens))}
         self.timeout = timeout
         self.retries = retries
         self.executable = executable
@@ -112,6 +120,7 @@ class ClaudeCLI:
                     text=True,
                     timeout=self.timeout,
                     cwd=self._cwd,
+                    env=self._env,
                 )
                 data = json.loads(proc.stdout)
                 if data.get("is_error") or proc.returncode != 0:
@@ -143,7 +152,7 @@ class ClaudeCLI:
     def _once(self, system: str, prompt: str) -> LLMResponse:
         t0 = time.monotonic()
         proc = subprocess.run(self._cmd(system), input=prompt, capture_output=True, text=True,
-                              timeout=self.timeout, cwd=self._cwd)
+                              timeout=self.timeout, cwd=self._cwd, env=self._env)
         data = json.loads(proc.stdout)
         if data.get("is_error") or proc.returncode != 0:
             raise LLMError(f"claude -p error rc={proc.returncode}: {str(data.get('result'))[:300]}")
@@ -200,14 +209,15 @@ class AnthropicLLM:
         return resp
 
 
-def make_llm(model: str = "sonnet", backend: str = "auto"):
-    """backend: "auto" (SDK if ANTHROPIC_API_KEY set, else CLI), "cli", or "sdk"."""
+def make_llm(model: str = "sonnet", backend: str = "auto", thinking_tokens: int | None = None):
+    """backend: "auto" (SDK if ANTHROPIC_API_KEY set, else CLI), "cli", or "sdk".
+    thinking_tokens applies to the CLI backend only (the SDK path never enables thinking)."""
     if backend == "auto":
         backend = "sdk" if os.environ.get("ANTHROPIC_API_KEY") else "cli"
     if backend == "sdk":
         return AnthropicLLM(model)
     if backend == "cli":
-        return ClaudeCLI(model)
+        return ClaudeCLI(model, thinking_tokens=thinking_tokens)
     raise ValueError(f"unknown backend {backend!r}")
 
 

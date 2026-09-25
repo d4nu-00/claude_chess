@@ -41,6 +41,12 @@ class PositionContext:
     piece_activity: list[str] = field(default_factory=list)
     tactics: list[str] = field(default_factory=list)  # hanging pieces, checks, pins
     concepts: list[str] = field(default_factory=list)  # retrieved KB guidance
+    character: list[str] = field(default_factory=list)  # middlegame type, pawn breaks, imbalances
+    endgame: list[str] = field(default_factory=list)  # ending type, K+P rules, tablebase
+    # v3 (context-research): relations, what the last move changed, tactical temperature
+    relations: list[str] = field(default_factory=list)
+    last_move: list[str] = field(default_factory=list)
+    temperature: int | None = None
     legal_moves_san: list[str] = field(default_factory=list)
 
 
@@ -68,6 +74,15 @@ class MoveDecision:
     forfeit_reason: str | None = None
     note: str = ""
     forced_random: bool = False  # all retries failed -> uniform-random legal move played
+    # Claude's own report of the position (piece placement, threats, hanging pieces) scored
+    # against the real board — see engine/boardread.py. None unless board_read is enabled.
+    board_read: dict | None = None
+    # Structured search facts per candidate (tactical score, verified refutations, positional
+    # score, vetoes, alpha-beta stats) — the engine-verified half of the dataset.
+    search_info: dict = field(default_factory=dict)
+    # Every LLM call made for this decision: {role, prompt, response, cost_usd, seconds, fen}.
+    # Written to traces.jsonl (not decisions.jsonl) by the match runner.
+    traces: list[dict] = field(default_factory=list)
 
 
 class Player(Protocol):

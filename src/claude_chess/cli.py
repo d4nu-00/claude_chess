@@ -9,7 +9,7 @@ from typing import Any, Callable
 
 import chess
 
-SPEC_HELP = ("naive | engine-ctx | engine-noctx | stockfish:ELO | stockfish-skill:N | "
+SPEC_HELP = ("naive | engine-ctx | engine-noctx | hybrid-ctx | hybrid-noctx | stockfish:ELO | stockfish-skill:N | "
              "maia:RATING (1100..1900, step 100) | random")
 
 
@@ -32,21 +32,33 @@ def make_player_factory(spec: str, args: Any, seed: int = 0) -> Callable[[], Any
         from claude_chess.match.maia import MaiaPlayer
         rating = int(spec.split(":", 1)[1])
         return lambda: MaiaPlayer(rating=rating)
-    if spec in ("naive", "engine-ctx", "engine-noctx"):
+    if spec in ("naive", "engine-ctx", "engine-noctx", "hybrid-ctx", "hybrid-noctx"):
         def factory():
             from claude_chess.engine.players import ClaudeEnginePlayer, NaiveClaudePlayer
             from claude_chess.llm import make_llm
-            llm = make_llm(args.model, backend=args.backend)
+            llm = make_llm(args.model, backend=args.backend, thinking_tokens=args.thinking)
             legal = not args.no_legal_moves
             if spec == "naive":
-                p = NaiveClaudePlayer(llm, show_legal_moves=legal)
+                p = NaiveClaudePlayer(llm, show_legal_moves=legal, board_read=args.board_read)
                 p.name = f"naive({args.model})"
+            elif spec.startswith("hybrid"):
+                ctx = spec == "hybrid-ctx"
+                p = ClaudeEnginePlayer(llm, use_context=ctx, n_candidates=args.candidates,
+                                       show_legal_moves=legal, illegal_policy=args.illegal_policy,
+                                       max_retries=args.max_retries, tactical=True,
+                                       tac_depth=args.tac_depth, tac_margin=args.tac_margin,
+                                       board_read=args.board_read, threat_agent=args.threat_agent,
+                                       tablebase=not args.no_tablebase, search=args.search,
+                                       ctx_version=args.ctx_version)
+                ab = ",ab" if args.search == "alphabeta" else ""
+                thr = ",threat" if args.threat_agent or args.search == "alphabeta" else ""
+                p.name = f"{spec}(t{args.tac_depth}{thr}{ab},{args.model})"
             else:
                 ctx = spec == "engine-ctx"
                 p = ClaudeEnginePlayer(llm, use_context=ctx, depth=args.depth,
                                        n_candidates=args.candidates, n_replies=args.replies,
                                        show_legal_moves=legal, illegal_policy=args.illegal_policy,
-                                       max_retries=args.max_retries)
+                                       max_retries=args.max_retries, board_read=args.board_read)
                 p.name = f"{spec}(d{args.depth},{args.model})"
             return p
         return factory
@@ -83,9 +95,16 @@ def cmd_match(args: argparse.Namespace) -> None:
     rd = play_match(fa, fb, args.games, args.max_plies,
                     openings=None if args.no_openings else OPENINGS, parallel=args.parallel,
                     label=label, runs_root=args.runs_root, analyze=not args.no_analysis,
-                    analysis_depth=args.analysis_depth,
-                    meta={"white_spec": args.white, "black_spec": args.black, "model": args.model,
+                    analysis_depth=args.analysis_depth, resign_cp=args.resign_cp,
+                    resign_plies=args.resign_plies, opening_offset=args.opening_offset,
+                    only_games=[int(x) for x in args.only_games.split(",")] if args.only_games else None,
+                    meta={"resign_cp": args.resign_cp, "resign_plies": args.resign_plies,
+                          "opening_offset": args.opening_offset, "white_spec": args.white, "black_spec": args.black, "model": args.model,
                           "depth": args.depth, "candidates": args.candidates, "replies": args.replies,
+                          "tac_depth": args.tac_depth, "tac_margin": args.tac_margin,
+                          "thinking": args.thinking, "board_read": args.board_read,
+                          "threat_agent": args.threat_agent, "tablebase": not args.no_tablebase,
+                          "search": args.search, "ctx_version": args.ctx_version,
                           "illegal_policy": args.illegal_policy, "argv": sys.argv[1:]})
     print(f"run dir: {rd}")
 
@@ -151,6 +170,59 @@ def cmd_db(args: argparse.Namespace) -> None:
         raise SystemExit("db: choose a subcommand (ingest/stats/export/query)")
 
 
+def cmd_dataset(args: argparse.Namespace) -> None:
+    from pathlib import Path
+
+    from claude_chess.dataset import export
+    root = Path(args.runs_root)
+    dirs = [Path(d) for d in args.run_dir] or sorted(p for p in root.iterdir()
+                                                     if p.is_dir() and not p.name.startswith("_"))
+    stats = export(dirs, Path(args.out), with_context=args.with_context)
+    import json
+    print(json.dumps(stats, indent=2))
+
+
+def cmd_report(args: argparse.Namespace) -> None:
+    from claude_chess.match.stats import report
+    report(args.runs_root, args.prefix, args.out)
+    from pathlib import Path
+    print(Path(args.out, "crosstable.md").read_text())
+
+
+def cmd_suite(args: argparse.Namespace) -> None:
+    import json
+
+    from claude_chess import suite
+    if args.suite_cmd == "build":
+        print(f"{suite.build(args.runs_root, args.out, n=args.n, seed=args.seed)} positions -> {args.out}")
+    elif args.suite_cmd == "run":
+        factory = make_player_factory(args.player, args, seed=1)
+        print(json.dumps(suite.run(args.suite, factory, args.out, workers=args.workers), indent=2))
+    else:
+        print(json.dumps(suite.compare(args.a, args.b), indent=2))
+
+
+def _add_player_args(p: argparse.ArgumentParser) -> None:
+    """Player-construction options shared by `suite run` (mirrors `match`)."""
+    p.add_argument("--model", default="sonnet")
+    p.add_argument("--backend", default="auto")
+    p.add_argument("--thinking", type=int, default=None)
+    p.add_argument("--depth", type=int, default=1)
+    p.add_argument("--candidates", type=int, default=4)
+    p.add_argument("--replies", type=int, default=2)
+    p.add_argument("--illegal-policy", default="random")
+    p.add_argument("--max-retries", type=int, default=3)
+    p.add_argument("--no-legal-moves", action="store_true")
+    p.add_argument("--board-read", action="store_true")
+    p.add_argument("--tac-depth", type=int, default=2)
+    p.add_argument("--tac-margin", type=int, default=100)
+    p.add_argument("--threat-agent", action="store_true")
+    p.add_argument("--no-tablebase", action="store_true")
+    p.add_argument("--search", choices=("compare", "alphabeta"), default="compare")
+    p.add_argument("--ctx-version", type=int, default=2, choices=(2, 3))
+    p.add_argument("--sf-time", type=float, default=0.05)
+
+
 def main(argv: list[str] | None = None) -> None:
     ap = argparse.ArgumentParser(prog="claude-chess")
     sub = ap.add_subparsers(dest="cmd", required=True)
@@ -167,9 +239,33 @@ def main(argv: list[str] | None = None) -> None:
     m.add_argument("--depth", type=int, default=1)
     m.add_argument("--candidates", type=int, default=4)
     m.add_argument("--replies", type=int, default=2)
+    m.add_argument("--tac-depth", type=int, default=2,
+                   help="hybrid: full-width plies of material search after each candidate")
+    m.add_argument("--tac-margin", type=int, default=100,
+                   help="hybrid: veto candidates this many cp worse (material) than the best")
     m.add_argument("--illegal-policy", default="random")
     m.add_argument("--max-retries", type=int, default=3)
+    m.add_argument("--thinking", type=int, default=None,
+                   help="CLI backend: max extended-thinking tokens per call (0 = off; default = CLI default)")
+    m.add_argument("--threat-agent", action="store_true",
+                   help="hybrid: extra Claude call names refutations; Python verifies them")
+    m.add_argument("--search", choices=("compare", "alphabeta"), default="compare",
+                   help="hybrid: 1-ply batched positional compare, or depth-2 alpha-beta over "
+                        "Claude positional leaves (implies the threat agent for replies)")
+    m.add_argument("--ctx-version", type=int, default=2, choices=(2, 3),
+                   help="hybrid: 3 = relations, last-move changes, per-move deltas, material check")
+    m.add_argument("--no-tablebase", action="store_true", help="hybrid: don't play tablebase moves")
+    m.add_argument("--board-read", action="store_true",
+                   help="Claude also reports piece placement/threats; scored vs the real board")
     m.add_argument("--no-legal-moves", action="store_true", help="hide legal-move list from Claude")
+    m.add_argument("--resign-cp", type=int, default=None,
+                   help="referee: end the game once SF eval stays beyond ±N cp for --resign-plies plies")
+    m.add_argument("--resign-plies", type=int, default=6)
+    m.add_argument("--opening-offset", type=int, default=0,
+                   help="start the opening rotation at this index (vary openings across matches)")
+    m.add_argument("--only-games", default=None,
+                   help="comma-separated game indices to play (re-run failed games with the same "
+                        "opening/colour assignment), e.g. 1,2")
     m.add_argument("--no-openings", action="store_true", help="start every game from the initial position")
     m.add_argument("--no-analysis", action="store_true")
     m.add_argument("--analysis-depth", type=int, default=12)
@@ -185,6 +281,38 @@ def main(argv: list[str] | None = None) -> None:
     c = sub.add_parser("context", help="print render_context for a FEN or move list")
     c.add_argument("position")
     c.set_defaults(func=cmd_context)
+
+    x = sub.add_parser("dataset", help="export Claude reasoning traces as a training dataset")
+    x.add_argument("run_dir", nargs="*", help="run directories (default: every run under --runs-root)")
+    x.add_argument("--runs-root", default="runs")
+    x.add_argument("--out", default="datasets/reasoning")
+    x.add_argument("--with-context", action="store_true",
+                   help="include the rendered context block in SFT inputs")
+    x.set_defaults(func=cmd_dataset)
+
+    r = sub.add_parser("report", help="cross table + Elo + harness significance tests for an experiment")
+    r.add_argument("prefix", help="substring of the experiment's run directory names")
+    r.add_argument("--runs-root", default="runs")
+    r.add_argument("--out", required=True, help="output dir (crosstable.md, games.csv, stats.json)")
+    r.set_defaults(func=cmd_report)
+
+    su = sub.add_parser("suite", help="offline position test suite: build / run / compare")
+    ssub = su.add_subparsers(dest="suite_cmd", required=True)
+    sb = ssub.add_parser("build", help="sample positions from past runs, label with Stockfish")
+    sb.add_argument("--runs-root", default="runs")
+    sb.add_argument("--out", default="suites/v1.jsonl")
+    sb.add_argument("--n", type=int, default=100)
+    sb.add_argument("--seed", type=int, default=0)
+    sr = ssub.add_parser("run", help="one decision per position with a player, scored by Stockfish")
+    sr.add_argument("suite")
+    sr.add_argument("--player", required=True, help=SPEC_HELP)
+    sr.add_argument("--out", required=True)
+    sr.add_argument("--workers", type=int, default=8)
+    _add_player_args(sr)
+    sc = ssub.add_parser("compare", help="paired permutation test between two suite result files")
+    sc.add_argument("a")
+    sc.add_argument("b")
+    su.set_defaults(func=cmd_suite)
 
     d = sub.add_parser("db", help="query the permanent games database (db/games.sqlite)")
     d.add_argument("--db-path", default="db/games.sqlite")

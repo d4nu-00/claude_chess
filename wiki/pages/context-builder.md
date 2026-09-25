@@ -27,6 +27,37 @@ per position (test asserts <50ms avg). Code: `src/claude_chess/context/`, data: 
   Top 3 go into `ctx.concepts` plus the opening-family plan from
   `knowledge/openings_plans.md` (`match:` name prefixes, longest wins) and named-structure plans.
 
+- `character.py` (middlegame/opening only) — **centre type** (open / closed / dynamic /
+  mobile / semi-open, Pachman-Silman) with its standard plan; for closed centres the
+  **pawn-chain direction** (which wing to play on); **pawn breaks** (levers) for both sides;
+  opposite-wing kings race; **imbalances**: bishops vs knights judged against the
+  structure, **space** (pawn-controlled squares in the enemy half, diff ≥3), development lead.
+- `endgame.py` (endgame only) — **ending type** (pawn / rook / queen / knight / B-vs-N /
+  same- or opposite-coloured bishops / mixed) + textbook guidance; **K+P rules** computed
+  exactly: rule of the square (who can catch each passer, side to move counted), **key
+  squares** (rook-pawn special case), **opposition** (direct/distant/diagonal, who holds it),
+  outside passed pawns; lone-minor-can't-win; **tablebase** verdict + best moves.
+- `tablebase.py` — ≤7 pieces: local Syzygy (`$SYZYGY_PATH` or `engines/syzygy`) then the
+  Lichess API (`CLAUDE_CHESS_TB_ONLINE=0` disables; one failure disables for the process).
+  **Blocked in the cloud sandbox** (egress policy) — works on a normal machine. Tests force
+  it offline via `tests/conftest.py`.
+
+- **Context v3** (`build_context(version=3)`, player `ctx_version=3`, CLI `--ctx-version 3`;
+  `context/relations.py`) — from [[context-research]]:
+  - *Opponent's last move*: what it attacks (flags undefended targets), discovered attacks,
+    pieces it stopped defending, new threats (null-move SEE captures).
+  - *Piece relations*: attackers/defenders of every attacked piece, loose pieces, OVERLOADED
+    sole defenders — targets "knows where pieces are, not what they attack".
+  - *Tactical temperature* (winning captures, own en-prise pieces, checks): SHARP positions
+    put last move/tactics/relations first and trim strategy; quiet ones do the reverse.
+  - Only the top-1 concept page (Guidance was ~45% of tokens and generic).
+  - Prompt-level (engine/prompts.py, v3 only): the proposer gets a **material check of every
+    legal move** (Python tactical search depth 1: "wins material" / "LOSES material", or "the
+    only moves that don't lose" when most do); compare/threat options get `move_delta`
+    ("rescues Qb3", "IGNORES the threat to Qd3", "allows checks", "weakens own king shelter").
+  - Hybrid fail-low widens to all legal moves whenever every Claude candidate loses material.
+  - v2 output is unchanged when version=2 (asserted in tests/test_context_v3.py).
+
 ## Why these choices
 - Everything is phrased as short sentences naming the colour ("White isolated pawn(s): d4")
   so the prompt is unambiguous regardless of side to move.
@@ -36,6 +67,10 @@ per position (test asserts <50ms avg). Code: `src/claude_chess/context/`, data: 
   only rank. Otherwise e.g. `bad-bishop` dragged in the Stonewall page.
 
 ## Gotchas
+- **Not thread-safe on a shared board**: `build_context` (tactics/SEE) push/pops moves on the
+  board it is given. Two threads building context from the same `chess.Board` corrupt it
+  (seen as a forfeit: "push() expects move to be pseudo-legal"). Always pass `board.copy()`
+  to anything that runs in parallel.
 - SEE is a simple swap-off with least-valuable legal recapture; ignores x-ray subtleties
   beyond what re-computing attackers after each push gives (it does handle batteries).
 - Bad bishop requires ≥2 of its own central pawns *fixed by enemy pawns*; otherwise every

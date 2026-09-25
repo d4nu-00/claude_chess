@@ -104,3 +104,21 @@ def test_cli_parse_position():
     assert parse_position("1. e4 e5 2. Nf3").fen() == chess.Board(
         "rnbqkbnr/pppp1ppp/8/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R b KQkq - 1 2").fen()
     assert parse_position(chess.STARTING_FEN).fen() == chess.STARTING_FEN
+
+
+def test_resign_adjudication_ends_decided_game():
+    import shutil
+
+    import pytest
+
+    from claude_chess.match.baselines import STOCKFISH_PATH, RandomPlayer, StockfishPlayer
+    from claude_chess.match.runner import play_game
+    if not shutil.which(STOCKFISH_PATH) and not __import__("os").path.exists(STOCKFISH_PATH):
+        pytest.skip("stockfish not installed")
+    sf, rnd = StockfishPlayer(skill=20, time=0.02), RandomPlayer(seed=3)
+    try:
+        rec = play_game(sf, rnd, max_plies=300, resign_cp=800, resign_plies=4)
+    finally:
+        sf.close()
+    assert rec.result == "1-0" and "resign" in rec.termination
+    assert rec.game.end().board().ply() < 150

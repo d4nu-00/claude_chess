@@ -1,0 +1,57 @@
+run,game,config,model,harness,level,color,result,score,termination,plies,acpl,cost_usd,claude_moves,claude_seconds
+20260924_215601_exp1-sonnet-harness-maia1100,2,sonnet-harness,sonnet,True,1100,white,1-0,1.0,"checkmate",31,32.84615384615385,0.40577,13,266.3
+20260924_215601_exp1-sonnet-harness-maia1100,3,sonnet-harness,sonnet,True,1100,black,0-1,1.0,"checkmate",76,24.771428571428572,1.0928,35,597.7
+20260924_215601_exp1-sonnet-harness-maia1100,1,sonnet-harness,sonnet,True,1100,black,1/2-1/2,0.5,"repetition",109,41.450980392156865,1.86686,51,976.6
+20260924_215601_exp1-sonnet-harness-maia1100,0,sonnet-harness,sonnet,True,1100,white,1/2-1/2,0.5,"insufficient",111,63.79245283018868,1.97893,53,1016.7
+20260924_215601_exp1-sonnet-harness-maia1300,1,sonnet-harness,sonnet,True,1300,black,0-1,1.0,"checkmate",46,49.1578947368421,0.65672,19,369.3
+20260924_215601_exp1-sonnet-harness-maia1300,2,sonnet-harness,sonnet,True,1300,white,1-0,1.0,"checkmate",77,34.083333333333336,1.25728,36,769.2
+20260924_215601_exp1-sonnet-harness-maia1300,0,sonnet-harness,sonnet,True,1300,white,0-1,0.0,"adjudication (resign: SF -1121cp for 6 plies)",120,49.232142857142854,1.91143,56,1034.9
+20260924_215601_exp1-sonnet-harness-maia1300,3,sonnet-harness,sonnet,True,1300,black,1/2-1/2,0.5,"repetition",150,37.291666666666664,2.70369,72,1201.4
+20260924_215601_exp1-sonnet-harness-maia1500,2,sonnet-harness,sonnet,True,1500,white,1-0,1.0,"checkmate",51,52.869565217391305,0.70194,23,408.6
+20260924_215601_exp1-sonnet-harness-maia1500,0,sonnet-harness,sonnet,True,1500,white,1-0,1.0,"checkmate",59,14.653846153846153,0.82892,26,489.3
+20260924_215601_exp1-sonnet-harness-maia1500,1,sonnet-harness,sonnet,True,1500,black,1/2-1/2,0.5,"repetition",105,31.895833333333332,1.95807,48,999.0
+20260924_215601_exp1-sonnet-harness-maia1500,3,sonnet-harness,sonnet,True,1500,black,1-0,0.0,"adjudication (resign: SF +3499cp for 6 plies)",143,51.161764705882355,2.09426,68,1119.9
+20260924_215601_exp1-sonnet-harness-maia1700,2,sonnet-harness,sonnet,True,1700,white,1/2-1/2,0.5,"repetition",62,23.142857142857142,0.87988,28,507.9
+20260924_215601_exp1-sonnet-harness-maia1700,0,sonnet-harness,sonnet,True,1700,white,1-0,1.0,"checkmate",65,48.55172413793103,1.02191,29,561.1
+20260924_215601_exp1-sonnet-harness-maia1700,3,sonnet-harness,sonnet,True,1700,black,1-0,0.0,"adjudication (resign: SF +3714cp for 6 plies)",102,76.02083333333333,1.6384,48,932.2
+20260924_215601_exp1-sonnet-harness-maia1700,1,sonnet-harness,sonnet,True,1700,black,1-0,0.0,"adjudication (resign: SF +3341cp for 6 plies)",117,56.611111111111114,1.88739,54,981.0
+20260924_215601_exp1-sonnet-harness-maia1900,2,sonnet-harness,sonnet,True,1900,white,0-1,0.0,"adjudication (resign: SF -9996cp for 6 plies)",51,82.52173913043478,0.70188,23,433.5
+20260924_215601_exp1-sonnet-harness-maia1900,0,sonnet-harness,sonnet,True,1900,white,0-1,0.0,"adjudication (resign: SF -9999cp for 6 plies)",54,71.75,0.85601,24,469.9
+20260924_215601_exp1-sonnet-harness-maia1900,1,sonnet-harness,sonnet,True,1900,black,1/2-1/2,0.5,"repetition",59,33.69230769230769,0.89466,26,558.1
+20260924_215601_exp1-sonnet-harness-maia1900,3,sonnet-harness,sonnet,True,1900,black,1/2-1/2,0.5,"repetition",71,47.15625,0.99635,32,559.4
+20260924_220324_exp1-sonnet-naive-maia1500,0,sonnet-naive,sonnet,False,1500,white,0-1,0.0,"checkmate",40,131.0,0.12088,16,81.4
+20260924_220324_exp1-sonnet-naive-maia1500,3,sonnet-naive,sonnet,False,1500,black,1-0,0.0,"adjudication (resign: SF +9998cp for 6 plies)",52,130.30434782608697,0.17636,23,102.9
+20260924_220324_exp1-sonnet-naive-maia1900,3,sonnet-naive,sonnet,False,1900,black,1-0,0.0,"adjudication (resign: SF +1079cp for 6 plies)",35,82.0,0.10633,14,72.5
+20260924_220324_exp1-sonnet-naive-maia1900,2,sonnet-naive,sonnet,False,1900,white,0-1,0.0,"adjudication (resign: SF -1230cp for 6 plies)",42,101.44444444444444,0.13738,18,83.8
+20260924_220324_exp1-sonnet-naive-maia1900,0,sonnet-naive,sonnet,False,1900,white,0-1,0.0,"adjudication (resign: SF -1399cp for 6 plies)",42,86.72222222222223,0.14195,18,86.0
+20260924_220524_exp1-haiku-harness-maia1100,3,haiku-harness,haiku,True,1100,black,1-0,0.0,"adjudication (resign: SF +3807cp for 6 plies)",77,135.0,0.26061,35,516.3
+20260924_220524_exp1-haiku-harness-maia1100,2,haiku-harness,haiku,True,1100,white,0-1,0.0,"adjudication (resign: SF -4075cp for 6 plies)",86,71.25,0.33454,40,581.8
+20260924_220524_exp1-haiku-harness-maia1100,1,haiku-harness,haiku,True,1100,black,0-1,1.0,"adjudication (resign: SF -3504cp for 6 plies)",92,57.627906976744185,0.4071,43,634.9
+20260924_220524_exp1-haiku-harness-maia1900,1,haiku-harness,haiku,True,1900,black,0-1,1.0,"checkmate",46,44.45,0.13731,20,306.1
+20260924_220524_exp1-haiku-harness-maia1900,3,haiku-harness,haiku,True,1900,black,1-0,0.0,"checkmate",49,109.42857142857143,0.17755,21,366.3
+20260924_220524_exp1-haiku-harness-maia1900,0,haiku-harness,haiku,True,1900,white,1-0,1.0,"checkmate",73,62.8235294117647,0.31797,34,527.1
+20260924_220524_exp1-haiku-harness-maia1900,2,haiku-harness,haiku,True,1900,white,0-1,0.0,"adjudication (resign: SF -9997cp for 6 plies)",84,77.8974358974359,0.38195,39,617.8
+20260924_220526_exp1-haiku-harness-maia1500,3,haiku-harness,haiku,True,1500,black,1/2-1/2,0.5,"repetition",49,32.04761904761905,0.18544,21,351.2
+20260924_220526_exp1-haiku-harness-maia1500,1,haiku-harness,haiku,True,1500,black,0-1,1.0,"checkmate",62,86.25925925925925,0.23493,27,453.8
+20260924_220526_exp1-haiku-harness-maia1500,2,haiku-harness,haiku,True,1500,white,0-1,0.0,"adjudication (resign: SF -4085cp for 6 plies)",110,76.8076923076923,0.44073,52,859.9
+20260924_220526_exp1-haiku-harness-maia1500,0,haiku-harness,haiku,True,1500,white,1-0,1.0,"adjudication (resign: SF +3600cp for 6 plies)",159,85.75,0.69081,76,1057.2
+20260924_221601_exp1-haiku-naive-maia1100,2,haiku-naive,haiku,False,1100,white,0-1,0.0,"adjudication (resign: SF -1305cp for 6 plies)",16,290.2,0.00841,5,19.3
+20260924_221601_exp1-haiku-naive-maia1100,0,haiku-naive,haiku,False,1100,white,0-1,0.0,"adjudication (resign: SF -1198cp for 6 plies)",21,144.75,0.01416,8,34.2
+20260924_221601_exp1-haiku-naive-maia1100,3,haiku-naive,haiku,False,1100,black,1-0,0.0,"adjudication (resign: SF +1525cp for 6 plies)",27,139.1,0.01956,10,47.0
+20260924_221601_exp1-haiku-naive-maia1100,1,haiku-naive,haiku,False,1100,black,1-0,0.0,"adjudication (resign: SF +1390cp for 6 plies)",45,87.21052631578948,0.03798,19,85.2
+20260924_221631_exp1-haiku-naive-maia1500,0,haiku-naive,haiku,False,1500,white,0-1,0.0,"adjudication (resign: SF -1206cp for 6 plies)",20,389.5,0.01061,6,24.7
+20260924_221631_exp1-haiku-naive-maia1500,1,haiku-naive,haiku,False,1500,black,1-0,0.0,"adjudication (resign: SF +1175cp for 6 plies)",19,229.2,0.01025,5,24.3
+20260924_221631_exp1-haiku-naive-maia1500,2,haiku-naive,haiku,False,1500,white,0-1,0.0,"adjudication (resign: SF -1160cp for 6 plies)",28,144.54545454545453,0.01868,11,43.1
+20260924_221631_exp1-haiku-naive-maia1500,3,haiku-naive,haiku,False,1500,black,1-0,0.0,"adjudication (resign: SF +9997cp for 6 plies)",53,107.95652173913044,0.04152,23,103.7
+20260924_221735_exp1-haiku-naive-maia1900,3,haiku-naive,haiku,False,1900,black,1-0,0.0,"adjudication (resign: SF +1358cp for 6 plies)",21,219.0,0.01267,7,36.4
+20260924_221735_exp1-haiku-naive-maia1900,1,haiku-naive,haiku,False,1900,black,1-0,0.0,"checkmate",27,263.4,0.01738,10,47.3
+20260924_221735_exp1-haiku-naive-maia1900,2,haiku-naive,haiku,False,1900,white,0-1,0.0,"adjudication (resign: SF -1157cp for 6 plies)",28,299.1818181818182,0.01903,11,51.1
+20260924_221735_exp1-haiku-naive-maia1900,0,haiku-naive,haiku,False,1900,white,0-1,0.0,"adjudication (resign: SF -1308cp for 6 plies)",36,101.06666666666666,0.02548,15,64.1
+20260924_222457_exp1-haiku-harness-maia1100-rerun,0,haiku-harness,haiku,True,1100,white,1-0,1.0,"checkmate",53,22.75,0.182,24,232.2
+20260924_222457_exp1-sonnet-naive-maia1100-rerun,0,sonnet-naive,sonnet,False,1100,white,0-1,0.0,"adjudication (resign: SF -1321cp for 6 plies)",32,135.0,0.09837,13,48.0
+20260924_222457_exp1-sonnet-naive-maia1100-rerun,1,sonnet-naive,sonnet,False,1100,black,1-0,0.0,"adjudication (resign: SF +1111cp for 6 plies)",33,140.30769230769232,0.10509,13,51.2
+20260924_222457_exp1-sonnet-naive-maia1100-rerun,3,sonnet-naive,sonnet,False,1100,black,1-0,0.0,"adjudication (resign: SF +1271cp for 6 plies)",39,85.3125,0.11975,16,61.0
+20260924_222457_exp1-sonnet-naive-maia1100-rerun,2,sonnet-naive,sonnet,False,1100,white,0-1,0.0,"adjudication (resign: SF -9995cp for 6 plies)",42,103.16666666666667,0.14789,18,71.1
+20260924_222457_exp1-sonnet-naive-maia1500-rerun,2,sonnet-naive,sonnet,False,1500,white,0-1,0.0,"checkmate",34,146.0,0.1059,14,53.1
+20260924_222457_exp1-sonnet-naive-maia1500-rerun,1,sonnet-naive,sonnet,False,1500,black,1-0,0.0,"adjudication (resign: SF +1267cp for 6 plies)",56,46.125,0.1807,24,84.1
+20260924_222457_exp1-sonnet-naive-maia1900-rerun,1,sonnet-naive,sonnet,False,1900,black,1-0,0.0,"checkmate",41,192.23529411764707,0.12798,17,59.8

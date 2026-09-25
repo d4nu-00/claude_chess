@@ -1,0 +1,116 @@
+{
+  "configs": {
+    "haiku-harness": {
+      "games": 12,
+      "score": 6.5,
+      "elo": 1552,
+      "elo_ci95": [
+        1153,
+        1960
+      ],
+      "acpl": 71.84100119409057,
+      "cost_usd": 3.75094,
+      "usd_per_game": 0.31257833333333335,
+      "usd_per_move": 0.00868273148148148,
+      "claude_moves": 432,
+      "seconds_per_move": 15.056944444444445,
+      "reliance": {
+        "moves": 432,
+        "top_played": 177,
+        "top_overruled": 181,
+        "claude_proposed": 367,
+        "search_added": 55,
+        "fail_low": 80,
+        "no_claude_value": 168
+      }
+    },
+    "haiku-naive": {
+      "games": 12,
+      "score": 0.0,
+      "elo": -10,
+      "elo_ci95": [
+        -10,
+        -10
+      ],
+      "acpl": 201.2592489540716,
+      "cost_usd": 0.23573,
+      "usd_per_game": 0.019644166666666667,
+      "usd_per_move": 0.0018133076923076922,
+      "claude_moves": 130,
+      "seconds_per_move": 4.464615384615384
+    },
+    "sonnet-harness": {
+      "games": 20,
+      "score": 10.5,
+      "elo": 1528,
+      "elo_ci95": [
+        1332,
+        1716
+      ],
+      "acpl": 46.132694259617054,
+      "cost_usd": 26.33315,
+      "usd_per_game": 1.3166575,
+      "usd_per_move": 0.03446747382198953,
+      "claude_moves": 764,
+      "seconds_per_move": 18.654450261780106,
+      "reliance": {
+        "moves": 764,
+        "top_played": 365,
+        "top_overruled": 204,
+        "claude_proposed": 714,
+        "search_added": 36,
+        "fail_low": 50,
+        "no_claude_value": 173
+      }
+    },
+    "sonnet-naive": {
+      "games": 12,
+      "score": 0.0,
+      "elo": -10,
+      "elo_ci95": [
+        -10,
+        -10
+      ],
+      "acpl": 114.96818063206331,
+      "cost_usd": 1.5685799999999999,
+      "usd_per_game": 0.130715,
+      "usd_per_move": 0.007689117647058823,
+      "claude_moves": 204,
+      "seconds_per_move": 4.190686274509804
+    }
+  },
+  "tests": {
+    "haiku": {
+      "levels": [
+        1100,
+        1500,
+        1900
+      ],
+      "games": [
+        12,
+        12
+      ],
+      "delta_score": 0.5416666666666666,
+      "p_permutation": 0.011949402529873506,
+      "lr_stat": 16.344841176971126,
+      "p_lr": 5.2799691187980874e-05,
+      "p_mann_whitney_acpl": 0.0001386794054294888
+    },
+    "sonnet": {
+      "levels": [
+        1100,
+        1500,
+        1900
+      ],
+      "games": [
+        12,
+        12
+      ],
+      "delta_score": 0.5416666666666666,
+      "p_permutation": 0.0010499475026248687,
+      "lr_stat": 16.344841176971094,
+      "p_lr": 5.279969118798172e-05,
+      "p_mann_whitney_acpl": 0.0001748865925420936
+    }
+  }
+}

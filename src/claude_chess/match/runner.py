@@ -29,6 +29,7 @@ from claude_chess.types import MoveDecision, Player
 
 ADJUDICATION_CP = 300
 ADJUDICATION_LIMIT = chess.engine.Limit(depth=16, time=1.0)
+RESIGN_LIMIT = chess.engine.Limit(depth=12, time=0.2)  # per-ply referee check (resign_cp)
 
 _print_lock = threading.Lock()
 
@@ -72,6 +73,8 @@ def decision_row(board: chess.Board, player: str, d: MoveDecision, game_id: int)
         "cost": d.cost_usd, "seconds": round(d.seconds, 3),
         "forfeit_reason": d.forfeit_reason, "note": d.note,
         "forced_random": getattr(d, "forced_random", False),
+        "board_read": getattr(d, "board_read", None),
+        "search": getattr(d, "search_info", None) or None,
     }
 
 
@@ -131,6 +134,8 @@ def play_game(
     event: str = "claude_chess match",
     stockfish_path: str | None = None,
     verbose: bool = False,
+    resign_cp: int | None = None,
+    resign_plies: int = 6,
 ) -> GameRecord:
     """Play one game. `max_plies` caps total plies (book included); at the cap the
     position is adjudicated by Stockfish. `on_move(row)` is called after every
@@ -141,6 +146,10 @@ def play_game(
     book_plies = board.ply()
     decisions: list[dict[str, Any]] = []
     result, termination = "*", ""
+    # Resign adjudication (cutechess/TCEC style): Stockfish is only the referee here — it
+    # ends games that are decided, it never sees or influences a player's choice.
+    referee = open_stockfish(stockfish_path) if resign_cp else None
+    streak_side, streak = None, 0
 
     while True:
         outcome = board.outcome(claim_draw=True)
@@ -150,6 +159,15 @@ def play_game(
         if board.ply() >= max_plies:
             result, termination = adjudicate(board, stockfish_path)
             break
+        if referee is not None and board.ply() > book_plies:
+            cp = referee.analyse(board, RESIGN_LIMIT)["score"].white().score(mate_score=10000)
+            side = "1-0" if cp >= resign_cp else "0-1" if cp <= -resign_cp else None
+            streak = streak + 1 if side is not None and side == streak_side else (1 if side else 0)
+            streak_side = side
+            if side is not None and streak >= resign_plies:
+                result = side
+                termination = f"adjudication (resign: SF {cp:+d}cp for {streak} plies)"
+                break
         player = white if board.turn == chess.WHITE else black
         t0 = time.monotonic()
         try:
@@ -169,6 +187,8 @@ def play_game(
             d.san = board.san(d.move)
         row = decision_row(board, player.name, d, game_id)
         row["own_eval"] = _own_eval(d)
+        if getattr(d, "traces", None):
+            row["_traces"] = d.traces  # popped by the run-dir writer into traces.jsonl
         decisions.append(row)
         if on_move:
             on_move(row)
@@ -178,6 +198,8 @@ def play_game(
             break
         board.push(d.move)
 
+    if referee is not None:
+        referee.quit()
     game = chess.pgn.Game.from_board(board)
     h = game.headers
     h["Event"] = event
@@ -247,6 +269,10 @@ def play_match(
     meta: dict[str, Any] | None = None,
     quiet: bool = False,
     db_path: str | Path | None = None,
+    resign_cp: int | None = None,
+    resign_plies: int = 6,
+    opening_offset: int = 0,
+    only_games: list[int] | None = None,
 ) -> Path:
     """Play `games` games; A is White in even-numbered games (0, 2, ...). Each opening is
     used twice in a row (once per colour). Factories are called per game so no engine
@@ -284,11 +310,18 @@ def play_match(
         a, b = player_a_factory(), player_b_factory()
         a.name, b.name = names["a"], names["b"]
         white, black = (a, b) if i % 2 == 0 else (b, a)
-        oname, omoves = (opening_list[(i // 2) % len(opening_list)] if opening_list else (None, None))
+        oname, omoves = (opening_list[(i // 2 + opening_offset) % len(opening_list)]
+                         if opening_list else (None, None))
 
         def on_move(row: dict[str, Any]) -> None:
+            traces = row.pop("_traces", None)
             with file_lock, dec_path.open("a") as f:
                 f.write(json.dumps(row) + "\n")
+            if traces:
+                with file_lock, (rd / "traces.jsonl").open("a") as f:
+                    for k, t in enumerate(traces):
+                        f.write(json.dumps({"game": row["game"], "ply": row["ply"], "player": row["player"],
+                                            "call": k, **t}) + "\n")
             if not quiet:
                 ev = f" own={row['own_eval']:+.0f}" if row.get("own_eval") is not None else ""
                 ill = f" illegal={len(row['illegal_attempts'])}" if row["illegal_attempts"] else ""
@@ -298,7 +331,8 @@ def play_match(
 
         try:
             rec = play_game(white, black, max_plies, omoves, on_move, opening_name=oname,
-                            game_id=i, event=f"claude_chess {label}")
+                            game_id=i, event=f"claude_chess {label}",
+                            resign_cp=resign_cp, resign_plies=resign_plies)
         finally:
             _close(a)
             _close(b)
@@ -320,11 +354,11 @@ def play_match(
         return rec
 
     if parallel <= 1:
-        for i in range(games):
+        for i in (only_games or range(games)):
             run_one(i)
     else:
         with ThreadPoolExecutor(max_workers=parallel) as ex:
-            futs = [ex.submit(run_one, i) for i in range(games)]
+            futs = [ex.submit(run_one, i) for i in (only_games or range(games))]
             for fut in as_completed(futs):
                 exc = fut.exception()
                 if exc:

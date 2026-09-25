@@ -22,4 +22,9 @@ reads this index first and writes back what it learns. Pages are small and singl
 - [match-and-analysis](pages/match-and-analysis.md) — runner, adjudication, metrics (match agent)
 - [results](pages/results.md) — experiment results
 - [infra-failures](pages/infra-failures.md) — rate limits / backend errors abort games; never scored as illegal moves
+- [computer-chess-principles](pages/computer-chess-principles.md) — hybrid search: quiescence, full-width tactical veto, batched positional eval
+- [board-vision](pages/board-vision.md) — `--board-read`: Claude reports pieces/threats, scored vs the real board
+- [reasoning-dataset](pages/reasoning-dataset.md) — traces of every agent call + engine-verified facts → SFT/DPO dataset for a move-explainer
+- [context-research](pages/context-research.md) — how to get MORE RELEVANT context: data (coverage vs salience), literature, ranked plan
+- [cloud-environment](pages/cloud-environment.md) — rebuilding Stockfish/lc0 in the cloud sandbox, blocked hosts, agent gotchas
 - [maia-calibration](pages/maia-calibration.md) — Maia (human-like lc0 nets) as opponents, Lichess rating table, performance-rating stats (maia agent)
