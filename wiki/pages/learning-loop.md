@@ -27,8 +27,7 @@ versioned KB `knowledge_learned/`. The hand-written `knowledge/` is never modifi
 - `claude-chess kb status` · `kb export DIR --version N` (rebuild any past version) ·
   `kb retire ID` (lessons are immutable; retire instead of editing).
 - Measuring it: freeze version N (`kb export`), learn over a batch, then A/B vN vs vN+k from the
-  same openings / on the position suite (`suite run` with `--learned-kb`... via env
-  `CLAUDE_CHESS_LEARNED_KB=<dir>`).
+  same openings, or on the position suite with `CLAUDE_CHESS_LEARNED_KB=<dir> claude-chess suite run ...`.
 
 ## Gotchas
 - **Stockfish is not deterministic across calls** (hash state): the gate memoises cp loss per
