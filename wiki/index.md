@@ -12,6 +12,7 @@ reads this index first and writes back what it learns. Pages are small and singl
 4. Record *why*, not just *what*. Code structure lives in the code; the wiki holds reasoning.
 
 ## Pages
+- **[status-and-next-steps](pages/status-and-next-steps.md) — START HERE when resuming: results, lessons, next steps**
 - [architecture](pages/architecture.md) — the pipeline, module ownership, data flow
 - [decisions](pages/decisions.md) — design decisions log with rationale
 - [llm-backend](pages/llm-backend.md) — how we call Claude (CLI vs SDK), latency, cost

@@ -4,7 +4,7 @@ Harness where Claude plays chess like an engine: a context builder describes the
 position, Claude proposes candidate moves, a search layer plays them out on a real
 board and Claude evaluates the leaves. Experiment: does context improve play?
 
-**Start here: read `wiki/index.md`.** It is the shared, agent-maintained knowledge base
+**Start here: read `wiki/index.md`, then `wiki/pages/status-and-next-steps.md` (latest handoff).** It is the shared, agent-maintained knowledge base
 (LLM-Wiki pattern). If you learn something non-obvious, add or update a page in
 `wiki/pages/`, link it from `wiki/index.md`, and append one line to `wiki/log.md`.
 
