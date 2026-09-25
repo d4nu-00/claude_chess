@@ -91,6 +91,9 @@ def build_context(board: chess.Board, include_legal_moves: bool = True, version:
     ctx.concepts = concept_lines
     ctx.tags = sorted(tags)
     ctx.lessons = [f"{les.title}: " + " ".join(les.summary) for les in _learned.retrieve(tags, k=1)]
+    if version >= 4:
+        from .motifs import motifs
+        ctx.motifs = motifs(board)
     if version >= 3:
         ctx.relations = relations(board)
         ctx.last_move = last_move(board)
@@ -140,12 +143,14 @@ def render_context(ctx: PositionContext, include_legal_moves: bool = True) -> st
         tac = ("Tactics (side to move first)", ctx.tactics, 10)
         eg = ("Endgame", ctx.endgame, 10)
         if hot:
-            sections = [last, tac, rel, eg, ("Middlegame character & imbalances", ctx.character, 3),
+            mot = ("Tactical motifs", ctx.motifs, 6)
+            sections = [last, tac, mot, rel, eg, ("Middlegame character & imbalances", ctx.character, 3),
                         ("King safety", ctx.king_safety, 4), ("Pawn structure", ctx.pawn_structure, 4),
                         ("Piece activity", ctx.piece_activity, 3),
                         ("Lessons from your past games", ctx.lessons, 1), ("Guidance", ctx.concepts, 2)]
         else:
-            sections = [last, tac, ("Middlegame character & imbalances", ctx.character, 8), eg,
+            sections = [last, tac, ("Tactical motifs", ctx.motifs, 4),
+                        ("Middlegame character & imbalances", ctx.character, 8), eg,
                         ("Pawn structure", ctx.pawn_structure, 8), rel, ("King safety", ctx.king_safety, 4),
                         ("Piece activity", ctx.piece_activity, 4),
                         ("Lessons from your past games", ctx.lessons, 1), ("Guidance", ctx.concepts, 3)]

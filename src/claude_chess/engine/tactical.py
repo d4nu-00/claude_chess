@@ -8,6 +8,14 @@ hangs a piece or allows mate. See wiki/pages/computer-chess-principles.md.
 
 Scores are centipawns from the SIDE TO MOVE's view (negamax), mate = ±(MATE_CP - ply).
 No Stockfish anywhere (wiki/pages/decisions.md).
+
+NOTE — material is not the only thing that matters. This search counts pieces, so a real
+sacrifice (material given up for an attack on the king, the initiative, a passed pawn,
+a lasting bind) looks like a plain loss here. That is a *blind spot of this module*, not
+a verdict: when Claude proposes a move as a sacrifice and names the compensation, the
+hybrid player exempts it from the material veto and lets Claude's positional judgement
+award compensation (up to the material given) — see ClaudeEnginePlayer._veto/_compare.
+Only a verified forced mate against the mover still vetoes a declared sacrifice.
 """
 
 from __future__ import annotations

@@ -128,7 +128,19 @@ class NaiveClaudePlayer:
         self.illegal_policy = illegal_policy
         self.max_retries = max_retries
         self.rng = random.Random(seed)
+        self.book = False  # opening book (set by the CLI's --book)
         self.name = name or f"naive[{getattr(llm, 'model', '?')},legal={int(show_legal_moves)}]"
+
+    def _book(self, board: chess.Board, t0: float) -> MoveDecision | None:
+        """Opening book (ECO main lines): known theory costs no Claude calls. Off by default."""
+        if not self.book:
+            return None
+        from claude_chess.context.book import book_move
+        mv = book_move(board, self.rng)
+        if mv is None:
+            return None
+        return MoveDecision(move=mv, san=board.san(mv), llm_calls=0, seconds=time.monotonic() - t0, note="book")
+
 
     def choose_move(self, board: chess.Board) -> MoveDecision:
         tally = _Tally(self.llm)
@@ -138,6 +150,8 @@ class NaiveClaudePlayer:
 
     def _choose(self, board: chess.Board, tally: _Tally) -> MoveDecision:
         t0 = time.monotonic()
+        if (bk := self._book(board, t0)) is not None:
+            return bk
         illegal: list[str] = []
         feedback = ""
         for _ in range(self.max_retries + 1):
@@ -196,6 +210,7 @@ class ClaudeEnginePlayer:
         self.max_retries = max_retries
         self.max_workers = max_workers
         self.rng = random.Random(seed)
+        self.book = False  # opening book (set by the CLI's --book)
         self.tactical = tactical
         self.board_read = board_read
         self.threat_agent = threat_agent  # hybrid only: extra Claude call hunting refutations
@@ -256,7 +271,10 @@ class ClaudeEnginePlayer:
                 prior = min(1.0, max(0.0, float(it.get("prior", 0.0))))
             except (TypeError, ValueError):
                 prior = 0.0
-            legal.append((Candidate(san=board.san(mv), reason=str(it.get("reason", "")), prior=prior), mv))
+            sac = it.get("sacrifice") in (True, "true", "yes", 1)
+            legal.append((Candidate(san=board.san(mv), reason=str(it.get("reason", "")), prior=prior,
+                                    sacrifice=sac, compensation=str(it.get("compensation", "")) if sac else ""),
+                          mv))
         legal.sort(key=lambda cm: -cm[0].prior)  # stable: ties keep proposer order
         return legal[:n], bad, data
 
@@ -304,6 +322,16 @@ class ClaudeEnginePlayer:
 
     # search ---------------------------------------------------------------
 
+    def _book(self, board: chess.Board, t0: float) -> MoveDecision | None:
+        """Opening book (ECO main lines): known theory costs no Claude calls. Off by default."""
+        if not self.book:
+            return None
+        from claude_chess.context.book import book_move
+        mv = book_move(board, self.rng)
+        if mv is None:
+            return None
+        return MoveDecision(move=mv, san=board.san(mv), llm_calls=0, seconds=time.monotonic() - t0, note="book")
+
     def choose_move(self, board: chess.Board) -> MoveDecision:
         tally = _Tally(self.llm)
         dec = self._choose(board.copy(), tally)
@@ -312,6 +340,8 @@ class ClaudeEnginePlayer:
 
     def _choose(self, board: chess.Board, tally: _Tally) -> MoveDecision:
         t0 = time.monotonic()
+        if (bk := self._book(board, t0)) is not None:
+            return bk
         if self.tactical:
             legal = list(board.legal_moves)
             if len(legal) == 1:  # forced move: no need to think
@@ -650,9 +680,21 @@ class ClaudeEnginePlayer:
         return best
 
     def _veto(self, pool, tscore, notes, info=None):
+        """Drop candidates materially worse than the best by more than tac_margin — except
+        declared sacrifices (material is not everything; Claude judges the compensation in
+        _compare), which only a forced mate against the mover can veto."""
         best_t = max(tscore[m] for _, m in pool)
-        keep = [(c, m) for c, m in pool if tscore[m] >= best_t - self.tac_margin]
-        vetoed = [c.san for c, m in pool if tscore[m] < best_t - self.tac_margin]
+
+        def ok(c, m) -> bool:
+            if tscore[m] >= best_t - self.tac_margin:
+                return True
+            return c.sacrifice and tscore[m] > -tactical.MATE_BAND
+
+        keep = [(c, m) for c, m in pool if ok(c, m)]
+        vetoed = [c.san for c, m in pool if not ok(c, m)]
+        spared = [c.san for c, m in keep if tscore[m] < best_t - self.tac_margin]
+        if spared:
+            notes.append("sacrifice kept " + ",".join(spared))
         if vetoed:
             notes.append("vetoed " + ",".join(vetoed))
             for san in vetoed:
@@ -711,7 +753,9 @@ class ClaudeEnginePlayer:
             b.push(m)
             v = verdicts[m]
             options.append((c.san, v.score, v.refutation, b.fen()))
-        prompt = prompts.compare_prompt(board, options, self.use_context, v=self.ctx_version)
+        sacs = {c.san: (c.compensation or "not stated") for c, m in survivors
+                if c.sacrifice and verdicts[m].score < 0}
+        prompt = prompts.compare_prompt(board, options, self.use_context, v=self.ctx_version, sacrifices=sacs)
         by_san = {c.san: m for c, m in survivors}
         for _ in range(2):
             try:
@@ -721,8 +765,12 @@ class ClaudeEnginePlayer:
                     mv, _why = parse_move(board, str(it.get("move", "")))
                     if mv is None or mv not in by_san.values():
                         continue
-                    sc = int(round(float(it.get("score", 0))))
-                    out[mv] = max(-self.pos_cap, min(self.pos_cap, sc))
+                    sc = max(-self.pos_cap, min(self.pos_cap, int(round(float(it.get("score", 0))))))
+                    san = next(c.san for c, m in survivors if m == mv)
+                    if san in sacs:  # compensation can pay back at most the material given up
+                        comp = int(round(float(it.get("compensation_cp", 0) or 0)))
+                        sc += max(0, min(-verdicts[mv].score, comp))
+                    out[mv] = sc
                 if not out:
                     raise ValueError("no usable scores")
                 return {m: out.get(m, 0) for _, m in survivors}

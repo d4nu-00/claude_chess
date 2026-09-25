@@ -87,3 +87,12 @@ per position (test asserts <50ms avg). Code: `src/claude_chess/context/`, data: 
 - New opening family plan: add a `## Family` + `match:` section to `openings_plans.md`.
 - Tests: `tests/test_context.py` (Berlin, transposition, IQP, Carlsbad, passer, hanging
   piece, threats, mate-in-1, SEE, timing, render, random-game fuzz).
+
+## v4 = v3 + named tactical motifs (2026-09-25)
+`context/motifs.py`, rendered as "Tactical motifs": pins (absolute; relative only to K/Q/R or
+an undefended piece), skewers, forks (moving piece must be safe on its square, targets = king,
+more valuable or undefended pieces), discovered attacks/checks, overloaded sole defenders,
+weak back rank (no flight square), trapped pieces (attacked, every move loses it by SEE).
+Both sides: side to move's chances, then "Against X" including the opponent's forks/discoveries
+as if it were their move (null move). Names the geometry only; never claims a motif wins —
+the tactical search and Claude decide. `--ctx-version 4`; v3 output unchanged.

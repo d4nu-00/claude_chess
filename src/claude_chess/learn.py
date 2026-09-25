@@ -439,6 +439,63 @@ def drift_evidence(seg: dict, les: dict) -> list[str]:
     return ev
 
 
+# ── caches (persistent, knowledge_learned/cache/cache.sqlite) ──────────────
+#
+# 1. Stockfish scores per (FEN, move, depth): identical moves always get identical scores
+#    (SF is not deterministic across calls) and nothing is analysed twice.
+# 2. Replayed decisions per (player config, KB contents, position+history, sample #):
+#    the baseline arm of the gate is the same for every lesson gated against the same KB,
+#    and a --regate reuses both arms. The KB key is a hash of the lesson texts, so any
+#    change to the KB (new/retired lesson) is a different key.
+
+
+class Cache:
+    def __init__(self, kb: Path):
+        import sqlite3
+        d = kb / "cache"
+        d.mkdir(parents=True, exist_ok=True)
+        self._db = sqlite3.connect(d / "cache.sqlite", timeout=30, check_same_thread=False)
+        self._db.execute("PRAGMA journal_mode=WAL")
+        self._db.execute("CREATE TABLE IF NOT EXISTS kv (k TEXT PRIMARY KEY, v TEXT)")
+        import threading
+        self._lock = threading.Lock()
+        self.hits = self.misses = 0
+
+    def get(self, key: str):
+        with self._lock:
+            row = self._db.execute("SELECT v FROM kv WHERE k = ?", (key,)).fetchone()
+        if row is None:
+            self.misses += 1
+            return None
+        self.hits += 1
+        return json.loads(row[0])
+
+    def put(self, key: str, value) -> None:
+        with self._lock:
+            self._db.execute("INSERT OR REPLACE INTO kv VALUES (?, ?)", (key, json.dumps(value)))
+            self._db.commit()
+
+    def close(self) -> None:
+        self._db.close()
+
+
+def kb_fingerprint(kb: Path | None) -> str:
+    """Hash of the active lessons' texts (what the player would actually see)."""
+    import hashlib
+    if kb is None:
+        return "none"
+    h = hashlib.sha256()
+    for les in learned.load(kb):
+        h.update(les.id.encode())
+        h.update((kb / "lessons" / f"{les.id}.md").read_bytes())
+    return h.hexdigest()[:16]
+
+
+def _pos_key(it: dict) -> str:
+    import hashlib
+    return hashlib.sha256(" ".join(it["history_uci"]).encode()).hexdigest()[:16]
+
+
 # ── gate ────────────────────────────────────────────────────────────────────
 
 
@@ -491,55 +548,81 @@ def select_controls(pool: list[dict], cand_kb: Path, lesson_id: str, ctx_version
         learned.set_active(None)
 
 
-def replay(items: list[dict], factory: Callable[[], Any], kb: Path | None, repeats: int, workers: int = 4
-           ) -> list[list[str | None]]:
-    """Play each item `repeats` times with the learned KB set to `kb`. Returns SANs."""
+def replay(items: list[dict], factory: Callable[[], Any], kb: Path | None, repeats: int, workers: int = 4,
+           cache: "Cache | None" = None) -> list[list[str | None]]:
+    """Play each item `repeats` times with the learned KB set to `kb`. Returns SANs.
+    Cached per (player config, KB contents, position+history, sample #)."""
     learned.set_active(kb)
     try:
-        def one(job: tuple[int, int]) -> tuple[int, str | None]:
-            i, _ = job
+        probe = factory()
+        pname = getattr(probe, "name", type(probe).__name__)
+        if hasattr(probe, "close"):
+            probe.close()
+        fp = kb_fingerprint(kb)
+        out: list[list[str | None]] = [[None] * repeats for _ in items]
+        jobs = []
+        for i, it in enumerate(items):
+            for r in range(repeats):
+                key = f"move|{pname}|{fp}|{_pos_key(it)}|{r}"
+                hit = cache.get(key) if cache else None
+                if hit is not None:
+                    out[i][r] = hit["san"]
+                else:
+                    jobs.append((i, r, key))
+
+        def one(job: tuple[int, int, str]) -> tuple[int, int, str, str | None]:
+            i, r, key = job
             p = factory()
             try:
-                return i, p.choose_move(_board(items[i]["history_uci"])).san
+                return i, r, key, p.choose_move(_board(items[i]["history_uci"])).san
             finally:
                 if hasattr(p, "close"):
                     p.close()
-        jobs = [(i, r) for i in range(len(items)) for r in range(repeats)]
-        out: list[list[str | None]] = [[] for _ in items]
+
         with ThreadPoolExecutor(max_workers=workers) as ex:
-            for i, san in ex.map(one, jobs):
-                out[i].append(san)
+            for i, r, key, san in ex.map(one, jobs):
+                out[i][r] = san
+                if cache and san is not None:
+                    cache.put(key, {"san": san})
         return out
     finally:
         learned.set_active(None)
 
 
 def gate(targets: list[dict], controls: list[dict], factory: Callable[[], Any], base_kb: Path, cand_kb: Path,
-         eng: chess.engine.SimpleEngine, repeats: int = 3, min_gain: float = 50, max_harm: float = 25) -> dict:
+         eng: chess.engine.SimpleEngine, repeats: int = 3, min_gain: float = 50, max_harm: float = 25,
+         cache: "Cache | None" = None) -> dict:
     """Replay targets (×repeats) and controls (×1) with baseline KB vs KB+lesson.
     gain = mean cp-loss improvement over targets; harm = mean worsening over controls."""
     items = targets + controls
     for it in items:
         if "sf_eval" not in it:
-            it["sf_eval"] = eng.analyse(_board(it["history_uci"]), chess.engine.Limit(depth=14))["score"] \
-                .relative.score(mate_score=10000)
-    reps = [repeats] * len(targets) + [1] * len(controls)
+            key = f"sfeval|14|{it['fen']}"
+            hit = cache.get(key) if cache else None
+            if hit is None:
+                hit = eng.analyse(_board(it["history_uci"]), chess.engine.Limit(depth=14))["score"] \
+                    .relative.score(mate_score=10000)
+                if cache:
+                    cache.put(key, hit)
+            it["sf_eval"] = hit
 
     # Score each (position, move) once: Stockfish is not deterministic across calls (hash state),
     # and the same move must get the same score in both arms or the noise reads as harm/gain.
-    memo: dict[tuple[str, str | None], int] = {}
-
     def loss(it: dict, san: str | None) -> int:
-        key = (it["fen"], san)
-        if key not in memo:
-            memo[key] = _cp_loss(eng, _board(it["history_uci"]), san, it["sf_eval"])
-        return memo[key]
+        key = f"cpl|14|{it['fen']}|{san}"
+        hit = cache.get(key) if cache else None
+        if hit is None:
+            hit = _cp_loss(eng, _board(it["history_uci"]), san, it["sf_eval"])
+            if cache:
+                cache.put(key, hit)
+        return hit
 
-    def losses(sans: list[list[str | None]]) -> list[float]:
-        return [sum(loss(it, s) for s in ss) / len(ss) for it, ss in zip(items, sans)]
+    def losses(kb: Path) -> list[float]:
+        t = replay(targets, factory, kb, repeats, cache=cache)
+        c = replay(controls, factory, kb, 1, cache=cache) if controls else []
+        return [sum(loss(it, x) for x in ss) / len(ss) for it, ss in zip(items, t + c)]
 
-    base = losses(_expand(replay(_flatten(items, reps), factory, base_kb, 1), reps))
-    cand = losses(_expand(replay(_flatten(items, reps), factory, cand_kb, 1), reps))
+    base, cand = losses(base_kb), losses(cand_kb)
     nt = len(targets)
     tb, tc = sum(base[:nt]) / nt, sum(cand[:nt]) / nt
     gain = tb - tc
@@ -553,19 +636,6 @@ def gate(targets: list[dict], controls: list[dict], factory: Callable[[], Any], 
             "target_base_cpl": round(tb),
             "target_cand_cpl": round(tc), "target_repeats": repeats, "controls": len(controls),
             "control_mean_delta": round(harm, 1)}
-
-
-def _flatten(items: list[dict], reps: list[int]) -> list[dict]:
-    return [it for it, r in zip(items, reps) for _ in range(r)]
-
-
-def _expand(sans: list[list[str | None]], reps: list[int]) -> list[list[str | None]]:
-    flat = [s[0] for s in sans]
-    out, i = [], 0
-    for r in reps:
-        out.append(flat[i:i + r])
-        i += r
-    return out
 
 
 # ── orchestration ───────────────────────────────────────────────────────────
@@ -644,7 +714,7 @@ def _submit(kind: str, les: dict, source: str, learner: str, evidence: list[str]
                 ctx["log"](f"[learn] gating {lesson_id} ({kind}): {len(shown)}/{len(targets)} target(s) "
                            f"×{repeats} + {len(controls)} controls")
                 gate_res = gate(shown, controls, ctx["factory"], kb, cand, ctx["eng"], repeats,
-                                min_gain, cfg["gate_max_harm"])
+                                min_gain, cfg["gate_max_harm"], cache=ctx.get("cache"))
                 gate_res["targets_proposed"] = len(targets)
     res["gate"] = gate_res
     if (gate_res is None or gate_res["accepted"]) and not ctx["dry_run"]:
@@ -679,8 +749,9 @@ def learn_from_run(run_dir: str | Path, learner: str, factory: Callable[[], Any]
     log(f"[learn] {learner} in {run_dir.name}: {len(mistakes)} mistake(s) ≥{cfg['min_cp']}cp, "
         f"{len(drifts)} slow-drift stretch(es) ≥{cfg['drift_min_total']}cp")
     eng = open_stockfish()
+    cache = Cache(kb)
     ctx = {"kb": kb, "cfg": cfg, "run_dir": run_dir, "learner": learner, "factory": factory,
-           "ctx_version": ctx_version, "eng": eng, "dry_run": dry_run, "log": log}
+           "ctx_version": ctx_version, "eng": eng, "dry_run": dry_run, "log": log, "cache": cache}
 
     def ask(system: str, prompt: str, src: str) -> dict | None:
         try:
@@ -722,6 +793,8 @@ def learn_from_run(run_dir: str | Path, learner: str, factory: Callable[[], Any]
             report["results"].append(res)
     finally:
         eng.quit()
+        report["cache"] = {"hits": cache.hits, "misses": cache.misses}
+        cache.close()
     report["kb_version_after"] = learned.version(kb)
     (run_dir / "learn_report.json").write_text(json.dumps(report, indent=2, default=str))
     with (kb / "CHANGELOG.md").open("a") as f:
@@ -746,7 +819,7 @@ def regate(lesson_id: str, factory: Callable[[], Any], ctx_version: int = 3, kb:
     eng = open_stockfish()
     try:
         ctx = {"kb": kb, "cfg": cfg, "run_dir": Path(p["run_dir"]), "learner": p["learner"], "factory": factory, "ctx_version": ctx_version, "eng": eng,
-               "dry_run": False, "log": log}
+               "dry_run": False, "log": log, "cache": Cache(kb)}
         mistake = p["kind"] == "mistake"
         res = _submit(p["kind"], p["lesson"], p["source"], p["learner"],
                       p["evidence"] + [f"Re-gate of {lesson_id}"], p["targets"], ctx,
@@ -754,6 +827,7 @@ def regate(lesson_id: str, factory: Callable[[], Any], ctx_version: int = 3, kb:
                       cfg["gate_min_gain"] if mistake else cfg["drift_min_gain"])
     finally:
         eng.quit()
+        ctx["cache"].close()
     with (kb / "CHANGELOG.md").open("a") as f:
         f.write(f"- {time.strftime('%Y-%m-%d')} {res['lesson_id']} [{p['kind']}] {res['outcome']} "
                 f"(re-gate of {lesson_id}): {p['lesson']['title']}\n")

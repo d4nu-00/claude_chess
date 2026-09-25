@@ -67,6 +67,9 @@ def make_player_factory(spec: str, args: Any, seed: int = 0) -> Callable[[], Any
                                        show_legal_moves=legal, illegal_policy=args.illegal_policy,
                                        max_retries=args.max_retries, board_read=args.board_read)
                 p.name = f"{spec}(d{args.depth},{args.model})"
+            if getattr(args, "book", False):
+                p.book = True
+                p.name = p.name[:-1] + ",book)" if p.name.endswith(")") else p.name + "+book"
             return p
         return factory
     raise SystemExit(f"unknown player spec {spec!r}; expected {SPEC_HELP}")
@@ -117,7 +120,7 @@ def cmd_match(args: argparse.Namespace) -> None:
                           "thinking": args.thinking, "board_read": args.board_read,
                           "threat_agent": args.threat_agent, "tablebase": not args.no_tablebase,
                           "search": args.search, "ctx_version": args.ctx_version,
-                          "illegal_policy": args.illegal_policy,
+                          "illegal_policy": args.illegal_policy, "book": args.book,
                           "learned_kb": str(learned.active()) if learned.active() else None,
                           "learned_kb_version": learned.version(), "argv": sys.argv[1:]})
     print(f"run dir: {rd}")
@@ -217,7 +220,7 @@ def cmd_context(args: argparse.Namespace) -> None:
     from claude_chess.context import build_context, render_context
     board = parse_position(args.position)
     print(board.fen())
-    print(render_context(build_context(board)))
+    print(render_context(build_context(board, version=args.ctx_version)))
 
 
 def cmd_db(args: argparse.Namespace) -> None:
@@ -318,8 +321,9 @@ def _add_player_args(p: argparse.ArgumentParser) -> None:
     p.add_argument("--threat-agent", action="store_true")
     p.add_argument("--no-tablebase", action="store_true")
     p.add_argument("--search", choices=("compare", "alphabeta"), default="compare")
-    p.add_argument("--ctx-version", type=int, default=2, choices=(2, 3))
+    p.add_argument("--ctx-version", type=int, default=2, choices=(2, 3, 4))
     p.add_argument("--sf-time", type=float, default=0.05)
+    p.add_argument("--book", action="store_true")
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -351,7 +355,7 @@ def build_parser() -> argparse.ArgumentParser:
     m.add_argument("--search", choices=("compare", "alphabeta"), default="compare",
                    help="hybrid: 1-ply batched positional compare, or depth-2 alpha-beta over "
                         "Claude positional leaves (implies the threat agent for replies)")
-    m.add_argument("--ctx-version", type=int, default=2, choices=(2, 3),
+    m.add_argument("--ctx-version", type=int, default=2, choices=(2, 3, 4),
                    help="hybrid: 3 = relations, last-move changes, per-move deltas, material check")
     m.add_argument("--no-tablebase", action="store_true", help="hybrid: don't play tablebase moves")
     m.add_argument("--board-read", action="store_true",
@@ -370,6 +374,8 @@ def build_parser() -> argparse.ArgumentParser:
     m.add_argument("--analysis-depth", type=int, default=12)
     m.add_argument("--sf-time", type=float, default=0.05, help="Stockfish player seconds/move")
     m.add_argument("--runs-root", default="runs")
+    m.add_argument("--book", action="store_true",
+                   help="Claude players play ECO main-line book moves without calls while in book")
     m.add_argument("--learned-kb", default=None,
                    help="use the learned KB while playing: 'default' (knowledge_learned/) or a dir")
     m.add_argument("--no-learn", action="store_true",
@@ -383,6 +389,7 @@ def build_parser() -> argparse.ArgumentParser:
 
     c = sub.add_parser("context", help="print render_context for a FEN or move list")
     c.add_argument("position")
+    c.add_argument("--ctx-version", type=int, default=3, choices=(2, 3, 4))
     c.set_defaults(func=cmd_context)
 
     x = sub.add_parser("dataset", help="export Claude reasoning traces as a training dataset")

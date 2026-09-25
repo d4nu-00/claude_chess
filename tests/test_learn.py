@@ -228,3 +228,34 @@ def test_find_drifts_collapse_review_ranks_first(tmp_path):
     assert seg["kind"] == "collapse"
     assert [m["ply"] for m in seg["moves"]] == [5, 7, 9, 11]  # last equal (>= -60) up to the collapse
     assert seg["ended_by"]["ply"] == 13 and seg["total_cpl"] == 350
+
+
+@pytest.mark.skipif(shutil.which("stockfish") is None and not Path("/opt/homebrew/bin/stockfish").exists(),
+                    reason="needs stockfish")
+def test_gate_second_run_is_served_from_cache(tmp_path):
+    from claude_chess.match.baselines import open_stockfish
+    calls = {"n": 0}
+
+    class Counting(ScriptedPlayer):
+        def choose_move(self, board):
+            calls["n"] += 1
+            return super().choose_move(board)
+
+    kb = tmp_path / "kb"
+    learn.ensure_kb(kb)
+    cand = tmp_path / "cand"
+    shutil.copytree(kb, cand)
+    _lesson(cand, "L001-x", [build_context(_board(SCHOLAR), version=3).tags[0]])
+    target = {"fen": _board(SCHOLAR).fen(), "history_uci": SCHOLAR, "src": "r:0:6", "game": 0}
+    eng = open_stockfish()
+    try:
+        cache = learn.Cache(kb)
+        r1 = learn.gate([dict(target)], [], lambda: Counting(), kb, cand, eng, repeats=2, cache=cache)
+        first = calls["n"]
+        r2 = learn.gate([dict(target)], [], lambda: Counting(), kb, cand, eng, repeats=2, cache=cache)
+        cache.close()
+    finally:
+        eng.quit()
+    assert first == 2 * 2  # 2 arms × 2 repeats
+    assert calls["n"] == first  # second run: every decision served from the cache
+    assert r1["target_base_cpl"] == r2["target_base_cpl"] and r1["accepted"] == r2["accepted"]

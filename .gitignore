@@ -7,3 +7,4 @@ engines/
 logs/
 experiments/*/LIVE.md
 experiments/*/live.html
+knowledge_learned/cache/

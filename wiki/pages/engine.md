@@ -67,3 +67,17 @@ positionally (±`pos_cap`), final = material swing + positional. `depth` is igno
 Rationale and principles: [[computer-chess-principles]]. `Candidate.score_cp` in this mode
 is that combined score; `line` = [move, engine's best reply].
 Also new: eval transposition table (d1/d2 `_evaluate`), `board_read` probe ([[board-vision]]).
+
+## Sacrifices (2026-09-25)
+The tactical search counts material only, so a real sacrifice looks like a blunder to it.
+The proposer may mark a candidate `"sacrifice": true, "compensation": "..."`. Declared
+sacrifices are exempt from the material veto (only a verified forced mate against the mover
+still vetoes them); the compare call sees them marked SACRIFICE and returns
+`compensation_cp`, capped at the material given up, added to the positional score. So a
+sacrifice wins only if Claude judges the compensation to outweigh the material.
+
+## Opening book (`--book`, off by default)
+`context/book.py`: ECO lines → per-position count of named lines passing through; book
+moves = continuations with ≥50% of the top count, weighted by count (main lines, never an
+obscure sideline; no engine involved). 0 Claude calls while in book; out of book (and every
+endgame) Claude decides. Players named `...,book)`.

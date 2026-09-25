@@ -36,3 +36,26 @@ versioned KB `knowledge_learned/`. The hand-written `knowledge/` is never modifi
 - The gate is small-n: a target ×3 and ≤4 controls. It filters bad lessons; it does not prove good ones.
 - Keep experiments frozen: never run measured experiments with a KB that's changing.
 - Rendered as its own section (cap 1 lesson/position) so it never displaces Guidance lines.
+
+## Slow drift and collapse reviews (2026-09-25)
+Single-move mistakes miss games where Claude is slowly outplayed. `find_drifts` adds:
+- **collapse**: the game turned for good (learner eval ≤ -300 from some move on) → review from
+  the last roughly-equal position (≥ -60) up to that point, bigger mistakes included. Ranked first.
+- **drift**: runs of sub-100cp moves summing ≥150cp (split at big mistakes, cut once lost).
+The review prompt shows the stretch's moves, engine eval vs Claude's own eval per move, engine
+preferences, Claude's stated reasons, engine lines at the costliest moves, start/end context.
+Output: narrative ("how it got there"), turning point, misconception, one positional lesson.
+Gate: top-3 cp-loss moves of the stretch ×2, min gain 20cp. **Targets are filtered to positions
+where the lesson is actually shown** (first run showed a lesson measured partly where it never
+appeared). `learn RUN --regate ID` re-gates a stored proposal (proposals.jsonl) without regenerating.
+
+## Provenance
+Every lesson and proposal carries its source game: DB game id, full PGN, players, result,
+judge (Stockfish version + depth), harness commit, player config, KB version at learning — so
+stronger models/engines can re-judge lessons later even though runs/ is git-ignored.
+Lesson ids number every proposal (accepted or not): L001, L002, ...
+
+## Caching
+`knowledge_learned/cache/cache.sqlite` (git-ignored): Stockfish scores per (FEN, move, depth)
+and replayed decisions per (player config, KB-content hash, position+history, sample #). The
+baseline arm is reused across lessons gated against the same KB; a re-gate reuses both arms.

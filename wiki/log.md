@@ -26,3 +26,4 @@
 - 2026-09-24 hybrid agent: collated Opus's thoughts (experiments/opus/opus_thoughts.md): uses v3 material check explicitly, textbook technique, stalemate awareness; recurring error: recaptures described as 'wins outright' (also Sonnet). Added to [[reasoning-dataset]] known errors.
 - 2026-09-25 orchestrator: added Maia-3 (maia3:ELO) opponents + sanity calibration vs maia-1900; Opus harness vs maia3:2700 game started. See [[maia-calibration]].
 - 2026-09-25 orchestrator: learning loop + learned KB (knowledge_learned/), learn/kb CLI, gate memoises SF scores. See [[learning-loop]].
+- 2026-09-25 orchestrator: sacrifices (declared, compensation-capped), --book, context v4 motifs, learn caching, collapse/drift reviews, provenance, Ollama backend. See [[engine]], [[context-builder]], [[learning-loop]].

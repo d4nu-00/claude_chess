@@ -17,7 +17,11 @@ opponent threaten? any checks/captures available?
 Reply with ONLY a JSON object, no prose outside it:
 {"thinking": "<= 2 short sentences", "candidates": [{"move": "<SAN>", "reason": "<few words>", "prior": <0.0-1.0>}]}
 Moves must be legal in Standard Algebraic Notation (e.g. Nf3, exd5, O-O, e8=Q+). \
-Priors are your confidence each move is best; they should roughly sum to 1."""
+Priors are your confidence each move is best; they should roughly sum to 1.
+Material is not everything. If you deliberately give up material because you judge the \
+compensation to be enough (attack on the king, initiative, passed pawn, lasting bind), add \
+"sacrifice": true and "compensation": "<what you get>" to that candidate — the engine's \
+material counter will otherwise treat it as a blunder."""
 
 EVALUATOR_SYSTEM = """You are the evaluation module of a chess engine. Judge the given \
 position statically as a strong grandmaster would.
@@ -35,8 +39,12 @@ options on positional merit (piece activity and coordination, king safety, pawn 
 plans, initiative, long-term weaknesses, whether the engine's shown reply is really harmless).
 Score every option relative to the others, from the point of view of the side to move: \
 -150 (clearly worst) .. +150 (clearly best).
+Options marked SACRIFICE give up material on purpose; the engine counts only the material. \
+For each of them also give "compensation_cp": how much of the material given up you judge \
+is really paid back (initiative, attack, structure) — 0 if the sacrifice is unsound, up to \
+the full amount if it is fully justified. Be honest: most speculative sacrifices are unsound.
 Reply with ONLY a JSON object, no prose outside it:
-{"thinking": "<= 2 short sentences", "scores": [{"move": "<SAN exactly as listed>", "score": <int -150..150>, "reason": "<few words>"}]}"""
+{"thinking": "<= 2 short sentences", "scores": [{"move": "<SAN exactly as listed>", "score": <int -150..150>, "compensation_cp": <int, sacrifices only>, "reason": "<few words>"}]}"""
 
 THREAT_SYSTEM = """You are the tactical watchdog of a chess engine: the OPPONENT's advocate. \
 For each candidate move, find the opponent's MOST DANGEROUS reply in the position after it. \
@@ -171,8 +179,10 @@ def _deltas(board: chess.Board, san: str) -> str:
 
 
 def compare_prompt(board: chess.Board, options: list[tuple[str, int, str, str]],
-                   use_context: bool, v: int = 2) -> str:
-    """options: (san, material swing for the mover in cp, engine's best reply SAN, FEN after move)."""
+                   use_context: bool, v: int = 2, sacrifices: dict[str, str] | None = None) -> str:
+    """options: (san, material swing for the mover in cp, engine's best reply SAN, FEN after move).
+    sacrifices: {san: claimed compensation} for moves the proposer declared as sacrifices."""
+    sacrifices = sacrifices or {}
     side = "White" if board.turn == chess.WHITE else "Black"
     p = position_block(board, use_context, show_legal_moves=False, compact=True, v=v)
     lines = []
@@ -180,7 +190,9 @@ def compare_prompt(board: chess.Board, options: list[tuple[str, int, str, str]],
         mat = f"{swing:+d}cp" if swing else "level"
         rep = f"; engine's best reply {reply}" if reply else ""
         delta = _deltas(board, san) if v >= 3 else ""
-        lines.append(f"{i}. {san} — material after forcing play: {mat}{rep}{delta}; FEN after {san}: {fen}")
+        sac = (f" — SACRIFICE (gives up {-swing}cp; claimed compensation: {sacrifices[san]})"
+               if san in sacrifices and swing < 0 else "")
+        lines.append(f"{i}. {san}{sac} — material after forcing play: {mat}{rep}{delta}; FEN after {san}: {fen}")
     return (p + f"\n\nCandidate moves for {side} (all tactically checked by the engine):\n"
             + "\n".join(lines) + f"\n\nScore each option for {side}.")
 

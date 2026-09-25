@@ -51,6 +51,7 @@ class PositionContext:
     # learning loop: position tags (for lesson retrieval) and lessons from the learned KB
     tags: list[str] = field(default_factory=list)
     lessons: list[str] = field(default_factory=list)  # empty unless the learned KB is active
+    motifs: list[str] = field(default_factory=list)  # v4: named tactical motifs (pins, forks, ...)
 
 
 # ── Decision layer ──────────────────────────────────────────────────────────
@@ -63,6 +64,8 @@ class Candidate:
     prior: float = 0.0  # proposer's confidence 0..1
     score_cp: float | None = None  # backed-up search score, from mover's view
     line: list[str] = field(default_factory=list)  # principal variation in SAN
+    sacrifice: bool = False  # proposer deliberately gives up material for compensation
+    compensation: str = ""  # what the proposer expects in return (attack, initiative, ...)
 
 
 @dataclass

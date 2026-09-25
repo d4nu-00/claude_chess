@@ -172,3 +172,73 @@ def test_alphabeta_cutoff_skips_claude_calls():
     assert d.search_info["candidates"]["d4"]["ab_value"] <= -100
     roles = [t["role"] for t in d.traces]
     assert roles[0] == "proposer" and "threat" in roles and "positional" in roles
+
+
+# ── sacrifices: material is not everything ──────────────────────────────────
+
+
+def _pool(board, *specs):
+    out = []
+    for san, sac in specs:
+        out.append((Candidate(san=san, sacrifice=sac, compensation="attack" if sac else ""), board.parse_san(san)))
+    return out
+
+
+def test_veto_spares_declared_sacrifice_but_not_into_mate():
+    b = chess.Board()
+    p = ClaudeEnginePlayer(Fake(cands()), use_context=False, tactical=True, tac_margin=100)
+    pool = _pool(b, ("e4", False), ("Nf3", True), ("d4", False))
+    m = {c.san: mv for c, mv in pool}
+    tscore = {m["e4"]: 0, m["Nf3"]: -320, m["d4"]: -320}
+    notes = []
+    keep = [c.san for c, _ in p._veto(pool, tscore, notes)]
+    assert keep == ["e4", "Nf3"] and any("sacrifice kept Nf3" in n for n in notes)
+    tscore[m["Nf3"]] = -tactical.MATE_CP + 3  # a "sacrifice" that walks into mate is still vetoed
+    assert [c.san for c, _ in p._veto(pool, tscore, [])] == ["e4"]
+
+
+def test_compare_awards_compensation_capped_at_material_given():
+    b = chess.Board()
+    seen = {}
+
+    class CmpLLM:
+        model = "fake"
+
+        def complete(self, system, prompt, max_tokens=1024):
+            seen["prompt"] = prompt
+            return LLMResponse(text=json.dumps({"scores": [
+                {"move": "e4", "score": 20}, {"move": "Nf3", "score": 0, "compensation_cp": 500}]}))
+
+    p = ClaudeEnginePlayer(CmpLLM(), use_context=False, tactical=True)
+    from claude_chess.engine.players import _Tally
+    pool = _pool(b, ("e4", False), ("Nf3", True))
+    m = {c.san: mv for c, mv in pool}
+    verdicts = {m["e4"]: tactical.MoveVerdict(m["e4"], 0), m["Nf3"]: tactical.MoveVerdict(m["Nf3"], -300)}
+    pos = p._compare(_Tally(p.llm), b, pool, verdicts)
+    assert "SACRIFICE (gives up 300cp; claimed compensation: attack)" in seen["prompt"]
+    assert pos[m["e4"]] == 20 and pos[m["Nf3"]] == 300  # 0 positional + compensation capped at 300
+    # final hybrid score = material + positional: -300 + 300 = 0 < 20 → e4 still preferred here
+
+
+def test_proposer_parses_sacrifice_flag():
+    b = chess.Board()
+    llm = Fake(json.dumps({"candidates": [{"move": "e4", "prior": 0.5},
+                                          {"move": "Nf3", "prior": 0.5, "sacrifice": True, "compensation": "init"}]}))
+    p = ClaudeEnginePlayer(llm, use_context=False, tactical=True)
+    from claude_chess.engine.players import _Tally
+    legal, _, _ = p._propose_once(_Tally(llm), b, 4, "")
+    by = {c.san: c for c, _ in legal}
+    assert by["Nf3"].sacrifice and by["Nf3"].compensation == "init" and not by["e4"].sacrifice
+
+
+def test_book_moves_cost_no_calls_and_stop_out_of_book():
+    llm = Fake(cands(("a3", 1.0)), naive=json.dumps({"move": "a3"}))
+    for p in (ClaudeEnginePlayer(llm, use_context=False, tactical=True, seed=1), NaiveClaudePlayer(llm, seed=1)):
+        p.book = True
+        d = p.choose_move(chess.Board())
+        assert d.note == "book" and d.llm_calls == 0 and d.san in ("e4", "d4")
+    off = chess.Board("4k3/8/8/8/8/8/4P3/4K3 w - - 0 1")  # K+P ending: never in book → Claude decides
+    p = ClaudeEnginePlayer(Fake(cands(("e4", 1.0))), use_context=False, tactical=True)
+    p.book = True
+    assert p.choose_move(off).note != "book"
+    assert not ClaudeEnginePlayer(llm, use_context=False).book  # off by default
