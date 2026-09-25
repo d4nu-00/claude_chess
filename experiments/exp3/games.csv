@@ -1,0 +1,13 @@
+run,game,config,model,harness,level,color,result,score,termination,plies,acpl,cost_usd,claude_moves,claude_seconds
+20260925_125704_exp3-haiku-harness-maia1100,0,haiku-harness-ctx4,haiku,True,1100,white,1/2-1/2,0.5,"repetition",44,46.421052631578945,0.19728,19,210.8
+20260925_125704_exp3-haiku-harness-maia1100,2,haiku-harness-ctx4,haiku,True,1100,white,1-0,1.0,"adjudication (resign: SF +1125cp for 6 plies)",47,40.61904761904762,0.18549,21,218.8
+20260925_125704_exp3-haiku-harness-maia1100,1,haiku-harness-ctx4,haiku,True,1100,black,0-1,1.0,"checkmate",78,31.666666666666668,0.30253,36,335.2
+20260925_125704_exp3-haiku-harness-maia1100,3,haiku-harness-ctx4,haiku,True,1100,black,1/2-1/2,0.5,"stalemate",143,34.39705882352941,0.51675,68,594.6
+20260925_125704_exp3-haiku-harness-maia1500,1,haiku-harness-ctx4,haiku,True,1500,black,0-1,1.0,"checkmate",88,53.85,0.42878,40,445.8
+20260925_125704_exp3-haiku-harness-maia1500,3,haiku-harness-ctx4,haiku,True,1500,black,1-0,0.0,"checkmate",103,61.645833333333336,0.38915,48,448.1
+20260925_125704_exp3-haiku-harness-maia1500,0,haiku-harness-ctx4,haiku,True,1500,white,0-1,0.0,"checkmate",128,61.46666666666667,0.47662,60,552.0
+20260925_125704_exp3-haiku-harness-maia1500,2,haiku-harness-ctx4,haiku,True,1500,white,0-1,0.0,"adjudication (resign: SF -9994cp for 6 plies)",166,117.4625,0.71608,80,809.4
+20260925_125704_exp3-haiku-harness-maia1900,3,haiku-harness-ctx4,haiku,True,1900,black,1-0,0.0,"checkmate",45,175.68421052631578,0.14297,19,180.1
+20260925_125704_exp3-haiku-harness-maia1900,2,haiku-harness-ctx4,haiku,True,1900,white,1/2-1/2,0.5,"repetition",52,27.82608695652174,0.21619,23,258.6
+20260925_125704_exp3-haiku-harness-maia1900,1,haiku-harness-ctx4,haiku,True,1900,black,0-1,1.0,"checkmate",110,73.67307692307692,0.47743,52,532.7
+20260925_125704_exp3-haiku-harness-maia1900,0,haiku-harness-ctx4,haiku,True,1900,white,1/2-1/2,0.5,"insufficient",135,43.184615384615384,0.47004,65,553.6

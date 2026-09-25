@@ -37,6 +37,26 @@ Run `20260924_210922_hybrid2-haiku-vs-maia1100`, Haiku 4.5, thinking off, --boar
   unavailable in the sandbox — would have been exact on a normal machine).
 - Tablebase + Lichess unreachable here; K+P rules in context were the only endgame help.
 
+## 2026-09-25 — exp3: context v4 (named tactical motifs) in games (Haiku, Maia 1100/1500/1900, 4 games each)
+Report `experiments/exp3/`. Same openings/colours/settings as exp1/exp2 (paired), played locally
+via `claude -p`. Harness also includes the new declared-sacrifice path (see [[engine]]).
+
+| Haiku config | 1100 | 1500 | 1900 | total | Elo (95% CI) | ACPL | blunder rate | $/game | s/move |
+|---|---|---|---|---|---|---|---|---|---|
+| harness ctx v3 (exp2) | 3.5/4 | 1/4 | 3/4 | 7.5/12 | 1659 (1321–2043) | 72 | 4.8% | 0.37 | 12.4 |
+| harness ctx v4 (exp3) | 3/4 | 1/4 | 2/4 | 6/12 | 1500 (1233–1833) | 64 | 3.6% | 0.38 | 9.7 |
+
+- v4 vs v3, paired by opening/colour/level: −0.125 points/game (p = 0.62); per-game ACPL −8
+  (p = 0.67); 6/12 identical results → **no measurable difference at n = 12**. Directionally:
+  fewer ≥300cp blunders (4.8% → 3.6%), faster moves (12.4 → 9.7 s), same cost.
+- Reliance: Claude's #1 played 55% (v3 65%), overruled 17% (16%), fail-low 18% (15%).
+- **Sacrifice path barely matters with Haiku**: 39 declared "sacrifices" survived the veto, but
+  Haiku labels loosely (e.g. Kxa6, Rgd8) and its own compare step awarded too little
+  compensation for 38 of them; 1 was played (55…Rxe6, −800 material in a fail-low position,
+  −415cp by SF). Watch this with Opus, which declares sacrifices more deliberately.
+- To separate motifs from sacrifices and get power: ≥40 paired games per arm, or the offline
+  position suite (paired, much cheaper) — see [[context-research]].
+
 ## 2026-09-24 — showcase: Opus 5.5 + harness (ctx v3, threat agent) vs Maia-1900, 1 game
 Run `20260924_225106_opus-harness-vs-maia1900`; viewer `experiments/opus/game_opus_vs_maia1900.html`
 (`scripts/game_viewer.py`). Opus as White, Ruy Lopez Exchange, **won** (resign adjudication at

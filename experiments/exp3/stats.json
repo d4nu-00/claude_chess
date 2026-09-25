@@ -1,0 +1,29 @@
+{
+  "configs": {
+    "haiku-harness-ctx4": {
+      "games": 12,
+      "score": 6.0,
+      "elo": 1500,
+      "elo_ci95": [
+        1233,
+        1833
+      ],
+      "acpl": 63.99140129427937,
+      "cost_usd": 4.51931,
+      "usd_per_game": 0.37660916666666666,
+      "usd_per_move": 0.008510941619585688,
+      "claude_moves": 531,
+      "seconds_per_move": 9.679284369114876,
+      "reliance": {
+        "moves": 480,
+        "top_played": 264,
+        "top_overruled": 82,
+        "claude_proposed": 442,
+        "search_added": 21,
+        "fail_low": 85,
+        "no_claude_value": 103
+      }
+    }
+  },
+  "tests": {}
+}
