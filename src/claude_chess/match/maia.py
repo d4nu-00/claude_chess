@@ -100,3 +100,72 @@ class MaiaPlayer:
 
     def __del__(self):  # best effort
         self.close()
+
+
+# ── Maia-3 (CSSLab, ICLR 2026 "Chessformer") ───────────────────────────────
+#
+# One transformer conditioned on a continuous Elo (0..5000, interpolated between two
+# learned embeddings), instead of Maia-1's nine separate nets. Installed as a separate
+# uv tool so torch stays out of this project's venv:
+#
+#     uv tool install --python 3.12 git+https://github.com/CSSLab/maia3
+#
+# Weights download from Hugging Face (UofTCSSLab/Maia3-{5M,23M,79M}) on first use.
+# Default temperature 0 = argmax, matching Maia-1 + lc0 nodes=1 (top policy move); the
+# upstream default is 1.0 (sampling), which is more human-like but noisier.
+# Elo far outside the human training data is extrapolation — calibrate before trusting it.
+
+MAIA3_PATH = os.environ.get("MAIA3_PATH") or shutil.which("maia3-uci") or os.path.expanduser(
+    "~/.local/bin/maia3-uci")
+MAIA3_MODELS = ("maia3-5m", "maia3-23m", "maia3-79m")
+MAIA3_START_TIMEOUT = 600  # first run downloads weights
+
+
+class Maia3Player:
+    """Maia-3 at a given Elo, policy-only (nodes=1), via its own UCI wrapper."""
+
+    def __init__(self, elo: int, model: str = "maia3-23m", temperature: float = 0.0,
+                 device: str | None = None, path: str | None = None):
+        self._engine: chess.engine.SimpleEngine | None = None
+        if model not in MAIA3_MODELS:
+            raise ValueError(f"unknown Maia-3 model {model!r}; have {MAIA3_MODELS}")
+        if not 0 <= elo <= 5000:
+            raise ValueError("Maia-3 Elo must be within 0..5000")
+        self.elo, self.model, self.temperature = elo, model, temperature
+        self.device = device or os.environ.get("MAIA3_DEVICE", "mps")
+        self.path = path or MAIA3_PATH
+        if not os.path.exists(self.path):
+            raise FileNotFoundError(f"maia3-uci not found at {self.path}. Install with:\n"
+                                    "uv tool install --python 3.12 git+https://github.com/CSSLab/maia3")
+        size = model.removeprefix("maia3-")
+        self.name = f"maia3-{elo}" + ("" if size == "23m" else f"({size})") + \
+                    ("" if temperature == 0 else f"[T{temperature:g}]")
+
+    def _get_engine(self) -> chess.engine.SimpleEngine:
+        if self._engine is None:
+            cmd = [self.path, "--model", self.model, "--use-uci-history", "--elo", str(self.elo),
+                   "--temperature", str(self.temperature), "--device", self.device]
+            if self.device == "cpu":
+                cmd.append("--no-use-amp")
+            self._engine = chess.engine.SimpleEngine.popen_uci(cmd, timeout=MAIA3_START_TIMEOUT)
+        return self._engine
+
+    def choose_move(self, board: chess.Board) -> MoveDecision:
+        t0 = _time.monotonic()
+        # --use-uci-history: the engine sees the move list, so pass the full game board.
+        res = self._get_engine().play(board, chess.engine.Limit(nodes=1))
+        mv = res.move
+        return MoveDecision(move=mv, san=board.san(mv) if mv else None,
+                            seconds=_time.monotonic() - t0,
+                            forfeit_reason=None if mv else "engine returned no move")
+
+    def close(self) -> None:
+        if self._engine is not None:
+            try:
+                self._engine.quit()
+            except Exception:
+                pass
+            self._engine = None
+
+    def __del__(self):
+        self.close()

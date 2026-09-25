@@ -10,7 +10,7 @@ from typing import Any, Callable
 import chess
 
 SPEC_HELP = ("naive | engine-ctx | engine-noctx | hybrid-ctx | hybrid-noctx | stockfish:ELO | stockfish-skill:N | "
-             "maia:RATING (1100..1900, step 100) | random")
+             "maia:RATING (1100..1900, step 100) | maia3:ELO[:5m|23m|79m][:T] (Maia-3, any Elo) | random")
 
 
 def make_player_factory(spec: str, args: Any, seed: int = 0) -> Callable[[], Any]:
@@ -28,6 +28,13 @@ def make_player_factory(spec: str, args: Any, seed: int = 0) -> Callable[[], Any
         from claude_chess.match.baselines import StockfishPlayer
         elo = int(spec.split(":", 1)[1]) if ":" in spec else None
         return lambda: StockfishPlayer(elo=elo, time=args.sf_time)
+    if spec.startswith("maia3:"):
+        from claude_chess.match.maia import Maia3Player
+        parts = spec.split(":")[1:]  # ELO [, size [, temperature]]
+        elo = int(parts[0])
+        model = f"maia3-{parts[1]}" if len(parts) > 1 and parts[1] else "maia3-23m"
+        temp = float(parts[2]) if len(parts) > 2 else 0.0
+        return lambda: Maia3Player(elo=elo, model=model, temperature=temp)
     if spec.startswith("maia:"):
         from claude_chess.match.maia import MaiaPlayer
         rating = int(spec.split(":", 1)[1])
