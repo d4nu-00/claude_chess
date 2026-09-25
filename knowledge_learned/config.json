@@ -1,0 +1,14 @@
+{
+  "learner_models": [
+    "claude-opus-5-5",
+    "opus"
+  ],
+  "auto_learn": true,
+  "min_cp": 100,
+  "max_lessons_per_run": 2,
+  "gate": true,
+  "gate_repeats": 3,
+  "gate_controls": 4,
+  "gate_min_gain": 50,
+  "gate_max_harm": 25
+}

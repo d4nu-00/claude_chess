@@ -24,3 +24,5 @@
 - 2026-09-24 hybrid agent: exp2 done — Haiku harness ctx v3 7.5/12 vs ctx v2 6.5/12 (p=0.85, same ACPL 72); naive 0/24; ctx v3 cuts reliance on the tactical search (Claude's #1 played 41%→65%, overruled 42%→16%, search-added 13%→2%). See [[results]].
 - 2026-09-24 hybrid agent: Opus 5.5 + harness (ctx v3) beat Maia-1900 in 1 game — ACPL 19.7, search overruled Opus once in 52 moves, $5.53; added scripts/game_viewer.py. See [[results]].
 - 2026-09-24 hybrid agent: collated Opus's thoughts (experiments/opus/opus_thoughts.md): uses v3 material check explicitly, textbook technique, stalemate awareness; recurring error: recaptures described as 'wins outright' (also Sonnet). Added to [[reasoning-dataset]] known errors.
+- 2026-09-25 orchestrator: added Maia-3 (maia3:ELO) opponents + sanity calibration vs maia-1900; Opus harness vs maia3:2700 game started. See [[maia-calibration]].
+- 2026-09-25 orchestrator: learning loop + learned KB (knowledge_learned/), learn/kb CLI, gate memoises SF scores. See [[learning-loop]].

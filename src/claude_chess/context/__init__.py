@@ -9,6 +9,7 @@ import chess
 
 from ..types import PositionContext
 from . import concepts as _concepts
+from . import learned as _learned
 from .character import imbalances, middlegame_character
 from .endgame import endgame_info
 from .relations import last_move, relations, temperature
@@ -88,6 +89,8 @@ def build_context(board: chess.Board, include_legal_moves: bool = True, version:
     for page in _concepts.retrieve(tags, k=1 if version >= 3 else 3):
         concept_lines.append(f"{page.title}: " + " ".join(page.summary))
     ctx.concepts = concept_lines
+    ctx.tags = sorted(tags)
+    ctx.lessons = [f"{les.title}: " + " ".join(les.summary) for les in _learned.retrieve(tags, k=1)]
     if version >= 3:
         ctx.relations = relations(board)
         ctx.last_move = last_move(board)
@@ -126,6 +129,7 @@ def render_context(ctx: PositionContext, include_legal_moves: bool = True) -> st
         ("Pawn structure", ctx.pawn_structure, 12),
         ("King safety", ctx.king_safety, 4),
         ("Piece activity", ctx.piece_activity, 5),
+        ("Lessons from your past games", ctx.lessons, 1),
         ("Guidance", ctx.concepts, 6),
     ]
     if ctx.temperature is not None:  # v3: budget context by how tactical the position is
@@ -138,11 +142,13 @@ def render_context(ctx: PositionContext, include_legal_moves: bool = True) -> st
         if hot:
             sections = [last, tac, rel, eg, ("Middlegame character & imbalances", ctx.character, 3),
                         ("King safety", ctx.king_safety, 4), ("Pawn structure", ctx.pawn_structure, 4),
-                        ("Piece activity", ctx.piece_activity, 3), ("Guidance", ctx.concepts, 2)]
+                        ("Piece activity", ctx.piece_activity, 3),
+                        ("Lessons from your past games", ctx.lessons, 1), ("Guidance", ctx.concepts, 2)]
         else:
             sections = [last, tac, ("Middlegame character & imbalances", ctx.character, 8), eg,
                         ("Pawn structure", ctx.pawn_structure, 8), rel, ("King safety", ctx.king_safety, 4),
-                        ("Piece activity", ctx.piece_activity, 4), ("Guidance", ctx.concepts, 3)]
+                        ("Piece activity", ctx.piece_activity, 4),
+                        ("Lessons from your past games", ctx.lessons, 1), ("Guidance", ctx.concepts, 3)]
     for title, items, cap in sections:
         if not items:
             continue

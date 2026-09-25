@@ -48,6 +48,9 @@ class PositionContext:
     last_move: list[str] = field(default_factory=list)
     temperature: int | None = None
     legal_moves_san: list[str] = field(default_factory=list)
+    # learning loop: position tags (for lesson retrieval) and lessons from the learned KB
+    tags: list[str] = field(default_factory=list)
+    lessons: list[str] = field(default_factory=list)  # empty unless the learned KB is active
 
 
 # ── Decision layer ──────────────────────────────────────────────────────────

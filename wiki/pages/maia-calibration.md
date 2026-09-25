@@ -125,3 +125,26 @@ Even 40 games leaves +-~110 Elo of uncertainty. Run matches in batches of 20-40+
 games per Maia weight before treating the estimate as meaningful, and prefer
 several weight classes (a "performance vs. the whole Maia ladder") over a single
 opponent.
+
+## Maia-3 (added 2026-09-25)
+CSSLab's Maia-3 ("Chessformer", ICLR 2026, github.com/CSSLab/maia3): one transformer
+conditioned on a *continuous* Elo (0–5000, linear blend of two learned embeddings) instead
+of nine separate nets. Spec: `maia3:ELO[:5m|23m|79m][:T]`, default 23M, temperature 0
+(argmax, matching Maia-1 + lc0 nodes=1; upstream default T=1 samples). Installed as an
+isolated uv tool (`uv tool install --python 3.12 git+https://github.com/CSSLab/maia3`) so
+torch stays out of the project venv; weights auto-download from HF `UofTCSSLab/Maia3-23M`.
+~3 s load, ~30–100 ms/move on MPS.
+
+Sanity vs Maia-1 `maia:1900` (8 games each, argmax, 23M):
+
+| Maia-3 Elo | score vs maia-1900 | Maia-3 ACPL |
+|---|---|---|
+| 1900 | 6.5/8 | 39.6 |
+| 2300 | 6.5/8 (0 losses) | 34.7 |
+| 2700 | 8/8 | 21.4 |
+
+Takeaways: the Elo knob is a real strength gradient; Maia-3 is stronger than Maia-1 *at the
+same nominal Elo* (partly argmax of a better policy); nominal values above the human training
+range are extrapolation — the "2700" label is NOT a Lichess/FIDE rating. No Lichess bot
+anchors Maia-3 yet; its scale is only relative to maia-1900 here. Runs:
+`runs/*_maia3-{1900,2300,2700}-vs-maia1900`.

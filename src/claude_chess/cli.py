@@ -94,7 +94,12 @@ def parse_position(text: str) -> chess.Board:
 
 
 def cmd_match(args: argparse.Namespace) -> None:
+    from claude_chess.context import learned
     from claude_chess.match.openings import OPENINGS
+    learned.set_active(args.learned_kb)
+    if args.learned_kb:  # threads inherit the module global; subprocesses inherit the env var
+        import os
+        os.environ["CLAUDE_CHESS_LEARNED_KB"] = str(learned.active())
     from claude_chess.match.runner import play_match
     fa = make_player_factory(args.white, args, seed=1)
     fb = make_player_factory(args.black, args, seed=2)
@@ -112,8 +117,91 @@ def cmd_match(args: argparse.Namespace) -> None:
                           "thinking": args.thinking, "board_read": args.board_read,
                           "threat_agent": args.threat_agent, "tablebase": not args.no_tablebase,
                           "search": args.search, "ctx_version": args.ctx_version,
-                          "illegal_policy": args.illegal_policy, "argv": sys.argv[1:]})
+                          "illegal_policy": args.illegal_policy,
+                          "learned_kb": str(learned.active()) if learned.active() else None,
+                          "learned_kb_version": learned.version(), "argv": sys.argv[1:]})
     print(f"run dir: {rd}")
+    if not args.no_learn and not args.no_analysis:
+        _auto_learn(rd, args)
+
+
+CLAUDE_SPECS = ("naive", "engine-ctx", "engine-noctx", "hybrid-ctx", "hybrid-noctx")
+
+
+def _learner_setup(args: argparse.Namespace, learner: str | None = None):
+    """(learner model, factory for the learner's player, llm for lesson writing) from match args."""
+    from claude_chess.llm import make_llm
+    spec = next((s for s in (args.white, args.black) if s in CLAUDE_SPECS), None)
+    if spec is None:
+        return None
+    factory = make_player_factory(spec, args, seed=7)
+    return learner or args.model, factory, make_llm(args.model, backend=args.backend)
+
+
+def _auto_learn(rd, args: argparse.Namespace) -> None:
+    from claude_chess import learn
+    cfg = learn.load_config()
+    if not cfg.get("auto_learn") or args.model not in cfg["learner_models"]:
+        return
+    setup = _learner_setup(args)
+    if setup:
+        model, factory, llm = setup
+        learn.learn_from_run(rd, model, factory, llm, ctx_version=args.ctx_version)
+
+
+def cmd_learn(args: argparse.Namespace) -> None:
+    import json
+    from pathlib import Path
+
+    from claude_chess import learn
+    from claude_chess.context import learned
+    meta = json.loads((Path(args.run_dir) / "meta.json").read_text())
+    margs = build_parser().parse_args(meta["argv"])  # same player config as the game
+    setup = _learner_setup(margs, args.learner)
+    if setup is None:
+        sys.exit("no Claude player in this run")
+    model, factory, llm = setup
+    kb = learned.resolve(args.kb) or learned.DEFAULT_DIR
+    cfg = {}
+    if args.no_gate:
+        cfg["gate"] = False
+    if args.max_lessons:
+        cfg["max_lessons_per_run"] = args.max_lessons
+    rep = learn.learn_from_run(args.run_dir, model, factory, llm, ctx_version=margs.ctx_version,
+                               kb=kb, cfg=cfg, dry_run=args.dry_run)
+    print(json.dumps({k: v for k, v in rep.items() if k != "results"}, indent=2))
+
+
+def cmd_kb(args: argparse.Namespace) -> None:
+    import shutil
+    from pathlib import Path
+
+    from claude_chess import learn
+    from claude_chess.context import learned
+    kb = learned.resolve(args.kb) or learned.DEFAULT_DIR
+    learn.ensure_kb(kb)
+    man = learned.read_manifest(kb)
+    if args.kb_cmd == "status":
+        print(f"{kb}: version {man['version']}, {len(learned.load(kb))} active lesson(s), "
+              f"{len(list((kb / 'rejected').glob('*.md')))} rejected")
+        for les in learned.load(kb):
+            print(f"  {les.id}  [{', '.join(les.tags)}]  {les.title}")
+    elif args.kb_cmd == "export":
+        if not args.arg:
+            sys.exit("usage: claude-chess kb export DIR [--version N]")
+        v = man["version"] if args.version is None else args.version
+        out = Path(args.arg)
+        (out / "lessons").mkdir(parents=True, exist_ok=True)
+        ids = learned.ids_at_version(kb, v)
+        for i in ids:
+            shutil.copy(kb / "lessons" / f"{i}.md", out / "lessons" / f"{i}.md")
+        learned.write_manifest(out, {"version": v, "history": [h for h in man["history"] if h["version"] <= v]})
+        print(f"exported version {v} ({len(ids)} lessons) -> {out}  (play with --learned-kb {out})")
+    else:
+        if not args.arg:
+            sys.exit("usage: claude-chess kb retire LESSON_ID")
+        from claude_chess.learn import _commit
+        print(f"retired {args.arg}; KB version {_commit(kb, 'retire', args.arg, {})}")
 
 
 def cmd_analyze(args: argparse.Namespace) -> None:
@@ -230,7 +318,7 @@ def _add_player_args(p: argparse.ArgumentParser) -> None:
     p.add_argument("--sf-time", type=float, default=0.05)
 
 
-def main(argv: list[str] | None = None) -> None:
+def build_parser() -> argparse.ArgumentParser:
     ap = argparse.ArgumentParser(prog="claude-chess")
     sub = ap.add_subparsers(dest="cmd", required=True)
 
@@ -278,6 +366,10 @@ def main(argv: list[str] | None = None) -> None:
     m.add_argument("--analysis-depth", type=int, default=12)
     m.add_argument("--sf-time", type=float, default=0.05, help="Stockfish player seconds/move")
     m.add_argument("--runs-root", default="runs")
+    m.add_argument("--learned-kb", default=None,
+                   help="use the learned KB while playing: 'default' (knowledge_learned/) or a dir")
+    m.add_argument("--no-learn", action="store_true",
+                   help="don't run the learning loop after the match (it runs only for learner models)")
     m.set_defaults(func=cmd_match)
 
     a = sub.add_parser("analyze", help="(re)analyse a run dir")
@@ -345,7 +437,27 @@ def main(argv: list[str] | None = None) -> None:
 
     d.set_defaults(func=cmd_db)
 
-    args = ap.parse_args(argv)
+    le = sub.add_parser("learn", help="learning loop: distil the learner model's mistakes in a run "
+                        "into gated lessons in knowledge_learned/")
+    le.add_argument("run_dir")
+    le.add_argument("--learner", default=None, help="model id whose moves to learn from (default: run's model)")
+    le.add_argument("--no-gate", action="store_true", help="accept lessons without the replay gate")
+    le.add_argument("--dry-run", action="store_true", help="write proposals to rejected/, change nothing")
+    le.add_argument("--max-lessons", type=int, default=None)
+    le.add_argument("--kb", default=None, help="learned KB dir (default knowledge_learned/)")
+    le.set_defaults(func=cmd_learn)
+
+    kb = sub.add_parser("kb", help="inspect / export / retire lessons in the learned KB")
+    kb.add_argument("kb_cmd", choices=("status", "export", "retire"))
+    kb.add_argument("arg", nargs="?", help="export: target dir; retire: lesson id")
+    kb.add_argument("--version", type=int, default=None, help="export: KB version to materialise")
+    kb.add_argument("--kb", default=None)
+    kb.set_defaults(func=cmd_kb)
+    return ap
+
+
+def main(argv: list[str] | None = None) -> None:
+    args = build_parser().parse_args(argv)
     args.func(args)
 
 
