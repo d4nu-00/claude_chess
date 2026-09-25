@@ -27,4 +27,6 @@ for model in $MODELS; do
   done
 done
 mkdir -p logs
-printf '%s\n' "${jobs[@]}" | xargs -P "$JOBS" -I{} bash -c '{} > "logs/$(echo "{}" | grep -o "label [^ ]*" | cut -d" " -f2).log" 2>&1'
+# One job per argument (-0 -n 1), no -I: BSD/macOS xargs caps -I replacements at 255 bytes.
+printf '%s\0' "${jobs[@]}" | xargs -0 -P "$JOBS" -n 1 bash -c \
+  'label=$(echo "$1" | grep -o "label [^ ]*" | cut -d" " -f2); eval "$1" > "logs/$label.log" 2>&1' _
