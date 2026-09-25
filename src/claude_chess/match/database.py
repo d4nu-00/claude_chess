@@ -24,6 +24,7 @@ from __future__ import annotations
 import datetime as _dt
 import io
 import json
+import os
 import re
 import sqlite3
 import subprocess
@@ -33,7 +34,7 @@ from typing import Any, Iterable
 import chess
 import chess.pgn
 
-DEFAULT_DB_PATH = Path("db/games.sqlite")
+DEFAULT_DB_PATH = Path(os.environ.get("CLAUDE_CHESS_DB", "db/games.sqlite"))  # tests point this elsewhere
 DEFAULT_PGN_PATH = Path("db/all_games.pgn")
 
 INACCURACY, MISTAKE, BLUNDER = 50, 100, 300

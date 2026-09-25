@@ -145,6 +145,86 @@ def test_learn_from_run_gates_lessons(tmp_path, helped, expect):
     if expect == "accepted":
         assert res["gate"]["target_base_cpl"] >= 500 and res["gate"]["target_cand_cpl"] < 100
         assert learned.read_manifest(kb)["version"] == 1 and len(learned.load(kb)) == 1
+        text = next((kb / "lessons").glob("*.md")).read_text()
+        assert "## Source game" in text and '"db_game_id": "r1:0"' in text and "Qxf7#" in text
+        prop = json.loads((kb / "proposals.jsonl").read_text().splitlines()[0])
+        assert prop["source_game"]["db_game_id"] == "r1:0" and prop["targets"][0]["src"] == "r1:0:6"
     else:
         assert learned.read_manifest(kb)["version"] == 0 and list((kb / "rejected").glob("*.md"))
     assert (rd / "learn_report.json").exists()
+
+
+# ── slow drift ──────────────────────────────────────────────────────────────
+
+RUY = ["e2e4", "e7e5", "g1f3", "b8c6", "f1b5", "a7a6", "b5a4", "g8f6", "e1g1", "f8e7",
+       "f1e1", "b7b5", "a4b3", "d7d6", "c2c3", "e8g8", "h2h3", "c6a5"]
+
+
+def _write_drift_run(rd: Path, cpls: dict[int, int], eval_before: dict[int, int] | None = None) -> None:
+    rd.mkdir(parents=True)
+    g = chess.pgn.Game()
+    node, b = g, chess.Board()
+    dec, ana = [], []
+    for i, u in enumerate(RUY, start=1):
+        mv = chess.Move.from_uci(u)
+        san = b.san(mv)
+        player = "hybrid(fake-opus)" if i % 2 == 1 else "maia3-2700"
+        dec.append({"game": 0, "ply": i, "fen": b.fen(), "player": player, "san": san,
+                    "candidates": [{"san": san, "reason": "plan"}], "own_eval": 30})
+        ana.append({"game": "0", "ply": i, "player": player, "san": san, "cpl": cpls.get(i, 0),
+                    "eval_before": (eval_before or {}).get(i, 20), "eval_after": 0, "best_move": "x"})
+        b.push(mv)
+        node = node.add_variation(mv)
+    g.headers["Round"] = "0"
+    (rd / "games.pgn").write_text(str(g) + "\n\n")
+    (rd / "decisions.jsonl").write_text("".join(json.dumps(d) + "\n" for d in dec))
+    (rd / "move_analysis.jsonl").write_text("".join(json.dumps(a) + "\n" for a in ana))
+
+
+def test_find_drifts_segment_before_blunder(tmp_path):
+    rd = tmp_path / "r"
+    # White (learner) leaks 30-50cp for five moves, then blunders at ply 11
+    _write_drift_run(rd, {1: 30, 3: 40, 5: 50, 7: 40, 9: 45, 11: 300, 13: 10})
+    (seg,) = learn.find_drifts(rd, "fake-opus", min_total=150, min_moves=4)
+    assert [m["ply"] for m in seg["moves"]] == [1, 3, 5, 7, 9]
+    assert seg["total_cpl"] == 205 and seg["ended_by"] == {"ply": 11, "san": "Re1", "cpl": 300}
+    # opponent moves never count, and the post-blunder tail (1 move) is too short
+    assert all(m["player"] == "hybrid(fake-opus)" for m in seg["moves"])
+
+
+def test_find_drifts_thresholds_and_lost_positions(tmp_path):
+    rd = tmp_path / "a"
+    _write_drift_run(rd, {1: 20, 3: 20, 5: 20, 7: 20, 9: 20})  # 100 total: below threshold
+    assert learn.find_drifts(rd, "fake-opus", min_total=150) == []
+    rd2 = tmp_path / "b"
+    # same leaks but the game was already lost from ply 5: segment is cut there
+    _write_drift_run(rd2, {1: 60, 3: 60, 5: 60, 7: 60, 9: 60}, eval_before={5: -900, 7: -950, 9: -990})
+    assert learn.find_drifts(rd2, "fake-opus", min_total=100, min_moves=2)[0]["total_cpl"] == 120
+
+
+@pytest.mark.skipif(shutil.which("stockfish") is None and not Path("/opt/homebrew/bin/stockfish").exists(),
+                    reason="needs stockfish")
+def test_drift_prompt_has_sequence_and_tags(tmp_path):
+    from claude_chess.match.baselines import open_stockfish
+    rd = tmp_path / "r"
+    _write_drift_run(rd, {1: 30, 3: 40, 5: 50, 7: 40, 9: 45, 11: 300})
+    (seg,) = learn.find_drifts(rd, "fake-opus")
+    eng = open_stockfish()
+    try:
+        prompt, tags, targets = learn.drift_prompt(seg, eng, 3, tmp_path / "kb", n_targets=3)
+    finally:
+        eng.quit()
+    assert "1. e4 e5 2. Nf3" in prompt and "total lost 205 cp" in prompt
+    assert "Right after this stretch you played Re1" in prompt
+    assert [t["ply"] for t in targets] == [5, 9, 3] and tags
+
+
+def test_find_drifts_collapse_review_ranks_first(tmp_path):
+    rd = tmp_path / "r"
+    # equal until ply 5, then big mistakes take the learner to -350 for good from ply 13
+    ev = {1: 20, 3: -10, 5: -40, 7: -120, 9: -200, 11: -280, 13: -350, 15: -420, 17: -500}
+    _write_drift_run(rd, {5: 30, 7: 110, 9: 90, 11: 120, 13: 20, 15: 30, 17: 25}, eval_before=ev)
+    (seg,) = learn.find_drifts(rd, "fake-opus", min_total=150, min_moves=3)
+    assert seg["kind"] == "collapse"
+    assert [m["ply"] for m in seg["moves"]] == [5, 7, 9, 11]  # last equal (>= -60) up to the collapse
+    assert seg["ended_by"]["ply"] == 13 and seg["total_cpl"] == 350

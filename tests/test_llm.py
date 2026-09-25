@@ -70,3 +70,16 @@ def test_make_llm_backend(monkeypatch):
     assert isinstance(llm, AnthropicLLM) and llm.model == "claude-opus-5-5"
     with pytest.raises(ValueError):
         make_llm("sonnet", backend="nope")
+
+
+def test_make_llm_ollama_routes_by_prefix():
+    from claude_chess.llm import OllamaLLM
+    llm = make_llm("ollama:qwen3:8b")
+    assert isinstance(llm, OllamaLLM) and llm.model == "qwen3:8b"
+    assert isinstance(make_llm("qwen3:8b", backend="ollama"), OllamaLLM)
+
+
+def test_ollama_unreachable_is_llm_unavailable():
+    from claude_chess.llm import OllamaLLM
+    with pytest.raises(LLMUnavailable):
+        OllamaLLM("x", host="http://127.0.0.1:9", timeout=2).complete("s", "p")

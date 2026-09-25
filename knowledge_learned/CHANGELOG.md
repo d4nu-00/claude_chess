@@ -1,0 +1,3 @@
+- 2026-09-25 L001-kicking-a-piece-that-is-already-trading-gains-no accepted (from 20260925_085019_opus-harness-vs-maia3-2700:0:27, c3 -185cp): Kicking a piece that is already trading gains no tempo
+- 2026-09-25 L002-in-rook-endings-don-t-make-your-rook-a-passive-g rejected (target gain 0 < 50) (from 20260925_085019_opus-harness-vs-maia3-2700:0:43, Rd1 -168cp): In rook endings, don't make your rook a passive guard of a weak pawn
+- 2026-09-25 L002-queenless-and-worse-centralise-the-king-don-t-li [collapse] rejected (target gain 8 < 20) (from 20260925_085019_opus-harness-vs-maia3-2700:0:27-43, collapse -637cp): Queenless and worse: centralise the king, don't liquidate

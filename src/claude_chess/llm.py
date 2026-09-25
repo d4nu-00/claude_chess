@@ -209,9 +209,57 @@ class AnthropicLLM:
         return resp
 
 
+class OllamaLLM:
+    """Local model via an Ollama server (default http://localhost:11434) — free plumbing tests.
+
+    Use `--model ollama:qwen3:8b`. Replies are forced to JSON (`format: json`), which every
+    harness prompt asks for anyway; Qwen3's thinking mode is off for speed. Cost is 0.
+    Local 8B models play weak chess: use this to exercise the harness, not to measure Claude.
+    """
+
+    def __init__(self, model: str = "qwen3:8b", host: str | None = None, timeout: float = 300.0,
+                 think: bool = False) -> None:
+        self.model = model
+        self.host = (host or os.environ.get("OLLAMA_HOST") or "http://localhost:11434").rstrip("/")
+        if not self.host.startswith("http"):
+            self.host = "http://" + self.host
+        self.timeout = timeout
+        self.think = think
+        self.counters = _Counters()
+
+    def complete(self, system: str, prompt: str, max_tokens: int = 1024) -> LLMResponse:
+        import urllib.error
+        import urllib.request
+        body = json.dumps({
+            "model": self.model, "stream": False, "format": "json", "think": self.think,
+            "keep_alive": "30m", "options": {"num_predict": max(max_tokens, 256)},
+            "messages": [{"role": "system", "content": system}, {"role": "user", "content": prompt}],
+        }).encode()
+        req = urllib.request.Request(f"{self.host}/api/chat", data=body,
+                                     headers={"Content-Type": "application/json"})
+        t0 = time.monotonic()
+        try:
+            with urllib.request.urlopen(req, timeout=self.timeout) as r:
+                data = json.loads(r.read())
+        except (urllib.error.URLError, TimeoutError, OSError) as e:
+            raise LLMUnavailable(f"ollama at {self.host}: {e}") from e
+        if "error" in data:
+            raise LLMUnavailable(f"ollama: {data['error']}")
+        resp = LLMResponse(text=data.get("message", {}).get("content", ""), cost_usd=0.0,
+                           input_tokens=int(data.get("prompt_eval_count") or 0),
+                           output_tokens=int(data.get("eval_count") or 0), seconds=time.monotonic() - t0)
+        self.counters.record(resp)
+        return resp
+
+
 def make_llm(model: str = "sonnet", backend: str = "auto", thinking_tokens: int | None = None):
-    """backend: "auto" (SDK if ANTHROPIC_API_KEY set, else CLI), "cli", or "sdk".
+    """backend: "auto" (SDK if ANTHROPIC_API_KEY set, else CLI), "cli", "sdk", or "ollama".
+    A model named "ollama:<name>" always uses the local Ollama backend.
     thinking_tokens applies to the CLI backend only (the SDK path never enables thinking)."""
+    if model.startswith("ollama:"):
+        return OllamaLLM(model.split(":", 1)[1])
+    if backend == "ollama":
+        return OllamaLLM(model)
     if backend == "auto":
         backend = "sdk" if os.environ.get("ANTHROPIC_API_KEY") else "cli"
     if backend == "sdk":

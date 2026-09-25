@@ -1,4 +1,21 @@
 {
-  "version": 0,
-  "history": []
+  "version": 1,
+  "history": [
+    {
+      "version": 1,
+      "action": "add",
+      "lesson": "L001-kicking-a-piece-that-is-already-trading-gains-no",
+      "at": "2026-09-25T09:05:26",
+      "source": "20260925_085019_opus-harness-vs-maia3-2700:0:27",
+      "gate": {
+        "accepted": true,
+        "reason": "accepted",
+        "target_base_cpl": 191,
+        "target_cand_cpl": 127,
+        "target_repeats": 3,
+        "controls": 4,
+        "control_mean_delta": 0.0
+      }
+    }
+  ]
 }

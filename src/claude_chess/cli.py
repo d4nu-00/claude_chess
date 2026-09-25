@@ -162,10 +162,14 @@ def cmd_learn(args: argparse.Namespace) -> None:
         sys.exit("no Claude player in this run")
     model, factory, llm = setup
     kb = learned.resolve(args.kb) or learned.DEFAULT_DIR
+    if args.regate:
+        res = learn.regate(args.regate, factory, ctx_version=margs.ctx_version, kb=kb)
+        print(json.dumps({k: res[k] for k in ("lesson_id", "outcome", "gate")}, indent=2, default=str))
+        return
     cfg = {}
     if args.no_gate:
         cfg["gate"] = False
-    if args.max_lessons:
+    if args.max_lessons is not None:
         cfg["max_lessons_per_run"] = args.max_lessons
     rep = learn.learn_from_run(args.run_dir, model, factory, llm, ctx_version=margs.ctx_version,
                                kb=kb, cfg=cfg, dry_run=args.dry_run)
@@ -445,6 +449,8 @@ def build_parser() -> argparse.ArgumentParser:
     le.add_argument("--dry-run", action="store_true", help="write proposals to rejected/, change nothing")
     le.add_argument("--max-lessons", type=int, default=None)
     le.add_argument("--kb", default=None, help="learned KB dir (default knowledge_learned/)")
+    le.add_argument("--regate", default=None, metavar="LESSON_ID",
+                    help="re-run the gate for a stored proposal instead of learning from the run")
     le.set_defaults(func=cmd_learn)
 
     kb = sub.add_parser("kb", help="inspect / export / retire lessons in the learned KB")
