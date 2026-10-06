@@ -1,0 +1,60 @@
+{
+ "n_test": 100,
+ "student": {
+  "n": 100,
+  "format_ok": 1.0,
+  "verifier_ok": 0.95,
+  "concept_f1_vs_teacher": 0.4253333333333332,
+  "idea_words": 11.93,
+  "teacher_idea_words": 12.46,
+  "flags": {
+   "material_claim": 4,
+   "bad_ref": 1
+  }
+ },
+ "base": {
+  "n": 100,
+  "format_ok": 0.0,
+  "verifier_ok": 0.0,
+  "concept_f1_vs_teacher": 0.0,
+  "idea_words": 0.0,
+  "teacher_idea_words": 12.46,
+  "flags": {
+   "missing": 700,
+   "bad_concepts": 100,
+   "bad_difficulty": 100
+  }
+ },
+ "judge_student_vs_teacher": {
+  "n": 100,
+  "first_wins": 0.0,
+  "ties": 0.0,
+  "second_wins": 1.0,
+  "first_correct": 0.0,
+  "second_correct": 0.93,
+  "cost_usd": 2.234
+ },
+ "judge_student_vs_base": {
+  "n": 100,
+  "first_wins": 0.65,
+  "ties": 0.22,
+  "second_wins": 0.13,
+  "first_correct": 0.04,
+  "second_correct": 0.03,
+  "cost_usd": 2.493
+ },
+ "transfer": {
+  "no_hint": {
+   "accuracy": 0.64,
+   "n": 100
+  },
+  "teacher_idea": {
+   "accuracy": 0.9,
+   "n": 100
+  },
+  "student_idea": {
+   "accuracy": 0.88,
+   "n": 100
+  }
+ }
+}

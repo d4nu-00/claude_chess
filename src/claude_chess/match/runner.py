@@ -71,7 +71,7 @@ def decision_row(board: chess.Board, player: str, d: MoveDecision, game_id: int)
         "candidates": [asdict(c) for c in d.candidates],
         "illegal_attempts": list(d.illegal_attempts), "calls": d.llm_calls,
         "cost": d.cost_usd, "seconds": round(d.seconds, 3),
-        "forfeit_reason": d.forfeit_reason, "note": d.note,
+        "forfeit_reason": d.forfeit_reason, "note": d.note, "ts": time.time(),
         "forced_random": getattr(d, "forced_random", False),
         "board_read": getattr(d, "board_read", None),
         "search": getattr(d, "search_info", None) or None,
@@ -273,6 +273,8 @@ def play_match(
     resign_plies: int = 6,
     opening_offset: int = 0,
     only_games: list[int] | None = None,
+    start_moves: dict[int, list[str]] | None = None,
+    opening_fn: Callable[[int], tuple[str | None, list[str]]] | None = None,
 ) -> Path:
     """Play `games` games; A is White in even-numbered games (0, 2, ...). Each opening is
     used twice in a row (once per colour). Factories are called per game so no engine
@@ -312,6 +314,10 @@ def play_match(
         white, black = (a, b) if i % 2 == 0 else (b, a)
         oname, omoves = (opening_list[(i // 2 + opening_offset) % len(opening_list)]
                          if opening_list else (None, None))
+        if opening_fn:  # pair index: both colours of a pair play the same opening
+            oname, omoves = opening_fn(i // 2)
+        if start_moves and i in start_moves:  # resumed game: replay saved moves as "book"
+            oname, omoves = "resumed", start_moves[i]
 
         def on_move(row: dict[str, Any]) -> None:
             traces = row.pop("_traces", None)

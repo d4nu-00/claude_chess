@@ -107,6 +107,8 @@ class LLMResponse:
     input_tokens: int = 0
     output_tokens: int = 0
     seconds: float = 0.0
+    thinking: str = ""  # thinking text, when the backend exposes it
+    thinking_tokens: int = 0
 
 
 class LLM(Protocol):

@@ -1,0 +1,5135 @@
+{
+ "adapter": "/Users/danu/development/claude_chess/data/models/joint_D",
+ "eval": {
+  "explain": 0.292,
+  "move_only": 0.304,
+  "instinct": 0.256,
+  "recall6": 0.776,
+  "fallback": 0.0,
+  "n": 250,
+  "rows": [
+   {
+    "fen": "rn1q1rk1/pbppppbp/1p3np1/3P4/2P5/5NP1/PP2PPBP/RNBQ1RK1 b - - 0 1",
+    "best": "b8a6",
+    "explain": "c7c6",
+    "move_only": "d7d6",
+    "instinct": "d7d6",
+    "idea": "Break open d5 so the rooks can hit the centre."
+   },
+   {
+    "fen": "r1b3k1/p1p2ppp/1bp1r3/1p6/PP6/2Pq1B2/3P1PPP/R1BQ1RK1 b - - 0 1",
+    "best": "b5a4",
+    "explain": "d3c3",
+    "move_only": "d3c3",
+    "instinct": "d3c3",
+    "idea": "Take the pawn that is attacking your king, then trade queens."
+   },
+   {
+    "fen": "8/3k4/8/4Q3/5N2/4K3/8/8 w - - 0 1",
+    "best": "e5e6",
+    "explain": "e5f6",
+    "move_only": "f4d5",
+    "instinct": "e5f6",
+    "idea": "Bring the loose queen back to the centre before Black's king pins."
+   },
+   {
+    "fen": "8/8/3kb3/8/3KQ3/8/8/8 b - - 0 1",
+    "best": "e6f7",
+    "explain": "d6e7",
+    "move_only": "e6d7",
+    "instinct": "e6d7",
+    "idea": "Bring the king back to the centre so the queen can hit the loose e-pawn."
+   },
+   {
+    "fen": "8/8/8/8/1p2K3/2k5/8/6R1 w - - 0 1",
+    "best": "e4e3",
+    "explain": "e4e3",
+    "move_only": "e4e3",
+    "instinct": "e4e3",
+    "idea": "Bring the king back to the centre before Black's pawns open lines."
+   },
+   {
+    "fen": "6k1/4nrp1/2q1b3/b2pBpQ1/2pP4/p1P5/P1B2PP1/1R3NK1 w - - 0 1",
+    "best": "b1b8",
+    "explain": "b1b8",
+    "move_only": "b1b8",
+    "instinct": "b1b8",
+    "idea": "Check the king off g8, then grab the loose c3-pawn."
+   },
+   {
+    "fen": "8/8/2k5/2Q5/3K4/1b6/8/8 b - - 0 1",
+    "best": "c6d7",
+    "explain": "c6b7",
+    "move_only": "c6b7",
+    "instinct": "c6d7",
+    "idea": "Step the king out of the check toward the centre, then use the extra material."
+   },
+   {
+    "fen": "r3qk2/pb3pnQ/1p5R/1Np5/2P5/1P2PP1P/PB4PK/8 w - - 0 1",
+    "best": "h7g7",
+    "explain": "b2g7",
+    "move_only": "b5d6",
+    "instinct": "b2g7",
+    "idea": "Take the hanging knight with check, then grab the loose c5-pawn."
+   },
+   {
+    "fen": "rnb1kr2/1p1p1pQp/4p2B/1pq5/2P1n3/P4P2/1P4PP/R3KB1R b KQq - 0 1",
+    "best": "e4f6",
+    "explain": "c5f2",
+    "move_only": "c5f2",
+    "instinct": "c5f2",
+    "idea": "Check the loose e1-knight and hit the loose f3-pawn at once."
+   },
+   {
+    "fen": "r1bq1rk1/1p1n2pp/p2p4/3Pppb1/2P5/2NBBP2/PP1Q2PP/R4RK1 b - - 0 1",
+    "best": "g5e3",
+    "explain": "f5f4",
+    "move_only": "f5f4",
+    "instinct": "g5e3",
+    "idea": "Save the attacked bishop with tempo on the loose e3-bishop."
+   },
+   {
+    "fen": "1rbq1rk1/p3ppbp/3p1np1/2p5/4P3/2PPB1PP/P3QPB1/R2N1RK1 b - - 0 1",
+    "best": "d8a5",
+    "explain": "f6d7",
+    "move_only": "c8a6",
+    "instinct": "c8a6",
+    "idea": "Develop the kingside knight toward d7, then use the open files."
+   },
+   {
+    "fen": "rn2kb1r/1pq2ppp/p2p1n2/4pP2/5P2/2N2Q2/PPP3PP/R1B1KB1R b KQkq - 0 1",
+    "best": "e5e4",
+    "explain": "b8c6",
+    "move_only": "b8d7",
+    "instinct": "b8c6",
+    "idea": "Develop the attacked knight with tempo on f4, then use the half-open files."
+   },
+   {
+    "fen": "rnbq1rk1/pp2ppbp/6p1/2pQP3/6n1/2N2N2/PPP1BPPP/R1B2RK1 b - - 0 1",
+    "best": "d8d5",
+    "explain": "d8d5",
+    "move_only": "b8c6",
+    "instinct": "d8d5",
+    "idea": "Take the attacking queen with the queen, then trade queens."
+   },
+   {
+    "fen": "3k4/pp2r3/2p3p1/3pRnP1/3P3p/P2R3P/1PP1Nr2/2K5 w - - 0 1",
+    "best": "e5e7",
+    "explain": "e5e7",
+    "move_only": "e5e7",
+    "instinct": "e5e7",
+    "idea": "Take the attacking rook with the rook, then trade down."
+   },
+   {
+    "fen": "rnbqkbnr/pp3ppp/3pp3/2pP4/2P5/8/PP2PPPP/RNBQKBNR w KQkq - 0 1",
+    "best": "e2e4",
+    "explain": "e2e4",
+    "move_only": "g1f3",
+    "instinct": "e2e4",
+    "idea": "Kick the e6-pawn with tempo, then use the d5-pawn's weakness."
+   },
+   {
+    "fen": "r1bqkbnr/1pp3pp/p4p2/2p1p3/4P3/2P2N1P/PP1P1PP1/RNBQK2R w KQkq - 0 1",
+    "best": "d2d4",
+    "explain": "d2d4",
+    "move_only": "d2d4",
+    "instinct": "d2d4",
+    "idea": "Break open the centre with d4 to hit the loose e5-pawn."
+   },
+   {
+    "fen": "8/p1pk4/8/2Q5/4p1bb/1P2P3/P1Pr4/5K2 w - - 0 1",
+    "best": "c5b5",
+    "explain": "c5b5",
+    "move_only": "c5b5",
+    "instinct": "c5b5",
+    "idea": "Check the loose d7-knight and hit the loose d2-rook with the queen."
+   },
+   {
+    "fen": "r1bq1rk1/bpp2ppp/p1np1n2/4p3/P1B1P3/2PPBN2/1P3PPP/RN1Q1RK1 w - - 0 1",
+    "best": "e3a7",
+    "explain": "b1d2",
+    "move_only": "b1d2",
+    "instinct": "b1d2",
+    "idea": "Develop the queenside so the rooks hit the loose e5-pawn."
+   },
+   {
+    "fen": "3R4/8/8/8/4K3/2p5/4k3/8 w - - 0 1",
+    "best": "d8c8",
+    "explain": "d8d3",
+    "move_only": "d8d3",
+    "instinct": "d8e8",
+    "idea": "Bring the loose rook back to the centre before Black's pawns."
+   },
+   {
+    "fen": "4r3/pp2kp2/3p2p1/4p3/7Q/5P2/PPP5/2K5 b - - 0 1",
+    "best": "e7e6",
+    "explain": "e7e6",
+    "move_only": "e7e6",
+    "instinct": "g6g5",
+    "idea": "Block the check with a pawn so the king stays safe."
+   },
+   {
+    "fen": "8/3Q4/6k1/2N5/8/4K3/8/8 w - - 0 1",
+    "best": "e3f4",
+    "explain": "e3e4",
+    "move_only": "c5e4",
+    "instinct": "e3f4",
+    "idea": "Bring the king back to the centre before Black's king opens it."
+   },
+   {
+    "fen": "Q7/1R2qpkp/2r1r1p1/2R5/3Pp3/4P1P1/5PP1/6K1 b - - 0 1",
+    "best": "c6c5",
+    "explain": "c6c5",
+    "move_only": "c6c5",
+    "instinct": "c6c5",
+    "idea": "Take the free rook. Never leave a piece behind."
+   },
+   {
+    "fen": "1k6/5Q2/4N3/8/8/4K3/8/8 w - - 0 1",
+    "best": "e6c5",
+    "explain": "e3e4",
+    "move_only": "e3e4",
+    "instinct": "e3d4",
+    "idea": "Bring the king back to the centre before Black's pawns."
+   },
+   {
+    "fen": "r1b1k2r/pp1p1p1p/1qn1pBp1/4P3/1b6/1BQ5/PPP2PPP/RN2K1NR b KQkq - 0 1",
+    "best": "e8g8",
+    "explain": "b4c3",
+    "move_only": "b4c3",
+    "instinct": "b4c3",
+    "idea": "Take the free queen. The bishop attacks it anyway."
+   },
+   {
+    "fen": "r4k1r/p2pp2p/3N1np1/2p5/3b4/8/PPP2BPP/R4RK1 w - - 0 1",
+    "best": "f2d4",
+    "explain": "f2d4",
+    "move_only": "f2d4",
+    "instinct": "f2d4",
+    "idea": "Take the loose d4-bishop, then use the extra material."
+   },
+   {
+    "fen": "8/1k6/5N2/2Q5/3K4/8/8/8 w - - 0 1",
+    "best": "f6d5",
+    "explain": "c5d6",
+    "move_only": "c5d6",
+    "instinct": "c5d6",
+    "idea": "Bring the queen back to the d-file so it hits the loose f6-knight."
+   },
+   {
+    "fen": "r1bqkb1r/ppp3pp/2np1n2/4pP2/2B5/3P1Q2/PPP1NPPP/RNB1K2R b KQkq - 0 1",
+    "best": "e5e4",
+    "explain": "f8e7",
+    "move_only": "d6d5",
+    "instinct": "c8f5",
+    "idea": "Develop the c8-bishop to hit the loose c4-bishop and the doubled pawns."
+   },
+   {
+    "fen": "r2qr1k1/2p2p2/p1b1pb1Q/np6/3P4/P1P5/1P3PPP/RB3RK1 w - - 0 1",
+    "best": "b1h7",
+    "explain": "h6h7",
+    "move_only": "h6h7",
+    "instinct": "h6h7",
+    "idea": "Check the loose king first; don't give back material."
+   },
+   {
+    "fen": "r2k1bnr/pppBpppp/3p4/3PN3/4P3/8/PPP2PPP/RNBbK2R w KQ - 0 1",
+    "best": "e5f7",
+    "explain": "e5f7",
+    "move_only": "e5f7",
+    "instinct": "e5f7",
+    "idea": "Take the loose f7-pawn with check, then grab d6."
+   },
+   {
+    "fen": "r2q1rk1/1pp1bppp/p2pb3/4P3/3Q4/1PN5/1PP2PPP/R1B1R1K1 w - - 0 1",
+    "best": "e5d6",
+    "explain": "e5d6",
+    "move_only": "e5d6",
+    "instinct": "e5d6",
+    "idea": "Break open d6 with tempo, then use the extra material."
+   },
+   {
+    "fen": "3k4/1Q6/3K4/8/8/7b/8/8 b - - 0 1",
+    "best": "h3g4",
+    "explain": "h3f1",
+    "move_only": "h3f1",
+    "instinct": "h3g2",
+    "idea": "Block the check with the loose bishop so it is safe."
+   },
+   {
+    "fen": "r1bqk2r/pp2n2p/2n1pp2/2bp4/7P/2NB1NB1/PPP2PP1/R2QK2R w KQkq - 0 1",
+    "best": "d1e2",
+    "explain": "c3a4",
+    "move_only": "c3a4",
+    "instinct": "e1g1",
+    "idea": "Break the pin by putting the knight on a4, then grab the loose c5-bishop."
+   },
+   {
+    "fen": "1r4k1/5ppp/3Np3/8/3n1P2/4nBP1/7P/R6K w - - 0 1",
+    "best": "a1a8",
+    "explain": "f3d1",
+    "move_only": "f3d1",
+    "instinct": "a1a8",
+    "idea": "Save the attacked bishop with tempo on the loose rook."
+   },
+   {
+    "fen": "2b5/1p3k2/5p2/p1NPp1p1/P3P3/6KP/6P1/8 b - - 0 1",
+    "best": "b7b6",
+    "explain": "b7b6",
+    "move_only": "f7e7",
+    "instinct": "b7b6",
+    "idea": "Break open the d5 pawn so the king can run away."
+   },
+   {
+    "fen": "r4rk1/2p3pp/p1Qb2b1/3p4/3P1q2/PP4P1/1B2BP1P/R4RK1 b - - 0 1",
+    "best": "f4d2",
+    "explain": "f4d2",
+    "move_only": "f4d2",
+    "instinct": "f4e4",
+    "idea": "Save the attacked queen with tempo on the loose e2-bishop."
+   },
+   {
+    "fen": "r1bqkbnr/ppp2ppp/2n5/1B1pp2Q/8/2N1P3/PPPP1PPP/R1B1K1NR b KQkq - 0 1",
+    "best": "d8d6",
+    "explain": "c8d7",
+    "move_only": "c8d7",
+    "instinct": "g8f6",
+    "idea": "Develop the c8-bishop and keep the e5 pawn shield intact."
+   },
+   {
+    "fen": "rnbqk1nr/pppp1ppp/8/2bNp3/2P5/5N2/PP1PPPPP/R1BQKB1R b KQkq - 0 1",
+    "best": "c7c6",
+    "explain": "g8f6",
+    "move_only": "d7d6",
+    "instinct": "c7c6",
+    "idea": "Develop the attacked knight with tempo on d5, then use the half-open files."
+   },
+   {
+    "fen": "r1bk3r/p4ppp/2p1p3/8/4p3/2P5/P1P2PPP/R1BR2K1 b - - 0 1",
+    "best": "d8e7",
+    "explain": "d8e7",
+    "move_only": "d8e7",
+    "instinct": "d8c7",
+    "idea": "Block the check with the king so it is safe."
+   },
+   {
+    "fen": "8/8/8/1k2Q3/3K4/7b/8/8 b - - 0 1",
+    "best": "b5c6",
+    "explain": "b5b6",
+    "move_only": "b5b6",
+    "instinct": "b5b6",
+    "idea": "Step the king off the back rank so it is safe."
+   },
+   {
+    "fen": "r2q1rk1/3bbppp/3p1n2/2p5/pp1NPBPP/3Q1PN1/PPP5/1K1R3R w - - 0 1",
+    "best": "d4f5",
+    "explain": "d4e2",
+    "move_only": "d4f5",
+    "instinct": "d4f5",
+    "idea": "Block the diagonal so the knight keeps guarding d8."
+   },
+   {
+    "fen": "r3kbnr/1bq2ppp/p1p5/1p2p3/P3P3/2N2B2/1PP1QPPP/R1B2RK1 b kq - 0 1",
+    "best": "g8f6",
+    "explain": "g8f6",
+    "move_only": "e8c8",
+    "instinct": "b5b4",
+    "idea": "Develop the kingside knight toward f6, then castle and use the space."
+   },
+   {
+    "fen": "r2qk2r/p4ppp/2p2n2/3bp1B1/8/2P3P1/P3PPBP/R2QK2R w KQkq - 0 1",
+    "best": "e1g1",
+    "explain": "e1g1",
+    "move_only": "e1g1",
+    "instinct": "e1g1",
+    "idea": "Save the attacked bishop with tempo on d5, then grab the loose e5-pawn."
+   },
+   {
+    "fen": "8/3k4/8/4Q3/4N3/4K3/8/8 w - - 0 1",
+    "best": "e4c5",
+    "explain": "e4f6",
+    "move_only": "e4f6",
+    "instinct": "e4f6",
+    "idea": "Bring the loose knight back to the centre before Black's king pins."
+   },
+   {
+    "fen": "r1bqk1nr/pp1pppbp/2n3p1/2p5/2P1P3/3P2P1/PP3PBP/RNBQK1NR b KQkq - 0 1",
+    "best": "a7a6",
+    "explain": "d7d6",
+    "move_only": "d7d6",
+    "instinct": "d7d6",
+    "idea": "Kick the loose b2-pawn with tempo, then use the d-file rooks."
+   },
+   {
+    "fen": "8/3k4/8/5P2/7p/2K4B/Pr4P1/8 b - - 0 1",
+    "best": "b2a2",
+    "explain": "b2a2",
+    "move_only": "b2a2",
+    "instinct": "b2a2",
+    "idea": "Take the pawn that is attacking your rook."
+   },
+   {
+    "fen": "r4rk1/pp2npp1/n1p2q1p/8/4P3/b1N1BP2/1PP1QP1P/1K1R1B1R w - - 0 1",
+    "best": "e3d4",
+    "explain": "b2a3",
+    "move_only": "e3d4",
+    "instinct": "b2a3",
+    "idea": "Take the loose bishop on a3, then use the rooks to hit the exposed queen."
+   },
+   {
+    "fen": "1r4k1/5ppp/3R4/p3p1b1/4P3/1r3P2/1P4PP/1K3B1R w - - 0 1",
+    "best": "b1a1",
+    "explain": "f1d3",
+    "move_only": "f1c4",
+    "instinct": "f1c4",
+    "idea": "Develop the king away from the centre, then use the extra material."
+   },
+   {
+    "fen": "5rk1/p4ppp/bq1N4/2npP3/r2N3Q/2R3P1/P4P1P/3R2K1 b - - 0 1",
+    "best": "c5e6",
+    "explain": "a4a2",
+    "move_only": "a4a2",
+    "instinct": "a4d4",
+    "idea": "Take the pawn that is attacking your knight."
+   },
+   {
+    "fen": "r4rk1/p4p1p/1p1q2p1/1b1Pp3/8/8/PPQ2PPP/RB3RK1 w - - 0 1",
+    "best": "f1d1",
+    "explain": "f1d1",
+    "move_only": "f1d1",
+    "instinct": "f1d1",
+    "idea": "Block the diagonal so the rook guards d5 and the queen."
+   },
+   {
+    "fen": "rnbq1rk1/p2pppbp/5np1/1ppP2B1/2P5/2N1P3/PP2BPPP/R2QK1NR b KQ - 0 1",
+    "best": "b5b4",
+    "explain": "b5b4",
+    "move_only": "b5b4",
+    "instinct": "b5b4",
+    "idea": "Kick the c4-pawn so the queen can hit the loose c3-knight."
+   },
+   {
+    "fen": "r1b2rk1/p5pp/4p3/2pp1n2/5B2/3P2P1/PqP1N2P/R3QRK1 w - - 0 1",
+    "best": "g3g4",
+    "explain": "a1b1",
+    "move_only": "a1b1",
+    "instinct": "a1b1",
+    "idea": "Block the diagonal so the rook guards the queen."
+   },
+   {
+    "fen": "rnbqkb1r/ppp1pp1p/5np1/3p4/8/2NP4/PPPBPPPP/R2QKBNR w KQkq - 0 1",
+    "best": "g2g3",
+    "explain": "e2e4",
+    "move_only": "g1f3",
+    "instinct": "e2e4",
+    "idea": "Break open d5 so the knight on f3 hits it."
+   },
+   {
+    "fen": "1r1q1rk1/b1p2ppp/p1np1n2/Pp2p3/3PP1b1/1BP1BN2/1P1N1PPP/R2Q1RK1 w - - 0 1",
+    "best": "d4e5",
+    "explain": "d4e5",
+    "move_only": "d4e5",
+    "instinct": "h2h3",
+    "idea": "Kick the loose c6-knight with tempo, then use the d-pawn to rip open lines."
+   },
+   {
+    "fen": "1r2n3/3k2p1/p1p1p1p1/2Pp1p2/1P6/3KPP1P/P2B2P1/2R5 w - - 0 1",
+    "best": "d2c3",
+    "explain": "e3e4",
+    "move_only": "d3d4",
+    "instinct": "d3d4",
+    "idea": "Break open the d5 pawn and hit the loose d-pawn at once."
+   },
+   {
+    "fen": "4Rr1k/6p1/4R1Bp/rn6/1p6/6P1/5P1P/6K1 b - - 0 1",
+    "best": "a5a1",
+    "explain": "a5a1",
+    "move_only": "a5a1",
+    "instinct": "a5a1",
+    "idea": "Check the king first, then grab the loose e8-rook."
+   },
+   {
+    "fen": "r3rb2/6pk/pn4p1/np2p1B1/3p2Q1/8/PP3PP1/R3R1K1 b - - 0 1",
+    "best": "a5c4",
+    "explain": "a5c6",
+    "move_only": "a5c6",
+    "instinct": "e8e6",
+    "idea": "Block the check with the loose knight so it is safe."
+   },
+   {
+    "fen": "r1bqk2r/ppp1bppp/2np1n2/4p3/2B1PP2/3P4/PPP1N1PP/R1BQK1NR b KQkq - 0 1",
+    "best": "d6d5",
+    "explain": "e5f4",
+    "move_only": "e8g8",
+    "instinct": "e8g8",
+    "idea": "Break the pin by grabbing f4, then castle quickly."
+   },
+   {
+    "fen": "7n/6k1/7p/5pp1/1R2p3/4NrPP/5PK1/8 b - - 0 1",
+    "best": "h8g6",
+    "explain": "h8f7",
+    "move_only": "h8f7",
+    "instinct": "h8f7",
+    "idea": "Develop the f3-knight to hit f5, then trade into a safe endgame."
+   },
+   {
+    "fen": "rn1qkb1r/p1p2ppp/bp2pn2/3p4/2PP4/5NP1/PP1NPP1P/R1BQKB1R w KQkq - 0 1",
+    "best": "f1g2",
+    "explain": "c4d5",
+    "move_only": "d1a4",
+    "instinct": "f1g2",
+    "idea": "Break open d5 so the queen can hit the loose d-pawn."
+   },
+   {
+    "fen": "rn1qkbnr/pp3ppp/2p1p3/3p1b2/2PP1B2/4P3/PP3PPP/RN1QKBNR w KQkq - 0 1",
+    "best": "d1b3",
+    "explain": "b1c3",
+    "move_only": "g1f3",
+    "instinct": "b1c3",
+    "idea": "Develop the attacked knight with tempo on d5, then use the d5 pawn to win material."
+   },
+   {
+    "fen": "r2qkb1r/pp2pppp/2n2n2/2pp4/3P1Pb1/2PBPN2/PP4PP/RNBQK2R b KQkq - 0 1",
+    "best": "e7e6",
+    "explain": "c5c4",
+    "move_only": "c5c4",
+    "instinct": "e7e6",
+    "idea": "Break the d4 pawn chain before it locks down your king."
+   },
+   {
+    "fen": "8/5k2/8/8/3Q4/3NK3/8/8 w - - 0 1",
+    "best": "d3e5",
+    "explain": "d4d6",
+    "move_only": "d4d6",
+    "instinct": "d4d6",
+    "idea": "Bring the queen back to the d-file so it guards the d-pawn."
+   },
+   {
+    "fen": "2rr2k1/p3qp1p/1p4p1/n1pbPQ2/3p1P2/P5P1/1P1NP1BP/2R2RK1 w - - 0 1",
+    "best": "f5h3",
+    "explain": "f5h3",
+    "move_only": "f5h3",
+    "instinct": "g2d5",
+    "idea": "Save the attacked queen with tempo on the diagonal."
+   },
+   {
+    "fen": "r1bq1rk1/1pppbpp1/p1n2n1p/4p3/2B1P3/P1NP1N2/1PP2PPP/R1BQ1RK1 w - - 0 1",
+    "best": "c1e3",
+    "explain": "h2h3",
+    "move_only": "c3d5",
+    "instinct": "h2h3",
+    "idea": "Kick the f7-pawn before it lands on f8."
+   },
+   {
+    "fen": "r1bqk2r/pppp1ppp/2n2n2/4p3/2B1P3/P1P2N2/2PP1PPP/R1BQ1RK1 b kq - 0 1",
+    "best": "e8g8",
+    "explain": "f6e4",
+    "move_only": "f6e4",
+    "instinct": "f6e4",
+    "idea": "Take the pawn that is attacking your knight."
+   },
+   {
+    "fen": "3Q4/5p1k/p1r3p1/2P4p/PP5P/8/K2R1q2/8 b - - 0 1",
+    "best": "f2f1",
+    "explain": "f2f4",
+    "move_only": "f2f5",
+    "instinct": "f2d2",
+    "idea": "Save the attacked queen with tempo on the d-file."
+   },
+   {
+    "fen": "r1bqk2r/p2p1ppp/2p1p3/3nP3/1bB5/2N5/PPP2PPP/R1BQK2R w KQkq - 0 1",
+    "best": "d1g4",
+    "explain": "c4d5",
+    "move_only": "d1d3",
+    "instinct": "e1g1",
+    "idea": "Save the attacked knight with tempo on d5, then castle."
+   },
+   {
+    "fen": "rnbqk2r/ppp2ppp/8/3pP3/1b1Pn3/3B4/PP1B1PPP/RN1QK1NR b KQkq - 0 1",
+    "best": "e4d2",
+    "explain": "c7c5",
+    "move_only": "b4d2",
+    "instinct": "b4d2",
+    "idea": "Break the d4-pawn chain before it locks down the centre."
+   },
+   {
+    "fen": "8/2k5/Q7/8/4K3/3N4/8/8 w - - 0 1",
+    "best": "e4e5",
+    "explain": "e4e5",
+    "move_only": "e4e5",
+    "instinct": "e4d5",
+    "idea": "Bring the king back to the centre before Black's pawns open it."
+   },
+   {
+    "fen": "rnbq1rk1/pp2bppp/4pn2/2Pp4/2P2B2/2N2N2/PP2PPPP/2RQKB1R b K - 0 1",
+    "best": "d5c4",
+    "explain": "e7c5",
+    "move_only": "e7c5",
+    "instinct": "e7c5",
+    "idea": "Take the pawn that is loose, then use the extra material."
+   },
+   {
+    "fen": "r1b1k2r/pppp1Npp/2n5/4p3/2B1n2q/4K1P1/PPPP3P/RNBQ3R b kq - 0 1",
+    "best": "e4g3",
+    "explain": "h4e7",
+    "move_only": "h4f6",
+    "instinct": "h4f6",
+    "idea": "Save the attacked queen with tempo on the loose d6 knight."
+   },
+   {
+    "fen": "8/8/8/1p3k2/1P1P4/2K5/8/8 w - - 0 1",
+    "best": "d4d5",
+    "explain": "c3d3",
+    "move_only": "c3d3",
+    "instinct": "c3d3",
+    "idea": "Bring the king back to the centre before pushing d5."
+   },
+   {
+    "fen": "8/8/8/4P1K1/5p2/4kP2/8/8 b - - 0 1",
+    "best": "e3f3",
+    "explain": "e3f3",
+    "move_only": "e3f3",
+    "instinct": "e3f3",
+    "idea": "Take the pawn that is attacking your king."
+   },
+   {
+    "fen": "8/8/8/5K2/8/3k4/1Q6/2q5 w - - 0 1",
+    "best": "b2c1",
+    "explain": "b2c1",
+    "move_only": "b2c1",
+    "instinct": "b2c1",
+    "idea": "Take the attacking queen with the queen, then use the half-open files."
+   },
+   {
+    "fen": "8/2N5/1K6/8/3Q4/8/4k3/8 w - - 0 1",
+    "best": "d4e4",
+    "explain": "c7d5",
+    "move_only": "b6c5",
+    "instinct": "c7d5",
+    "idea": "Bring the stranded knight back to the centre before Black's king pins."
+   },
+   {
+    "fen": "8/8/4K3/8/8/3pk3/8/3R4 w - - 0 1",
+    "best": "d1h1",
+    "explain": "e6e5",
+    "move_only": "e6e5",
+    "instinct": "e6d5",
+    "idea": "Step the king off the d-file so Black can never castle."
+   },
+   {
+    "fen": "r3k2r/1p3ppp/3pbn2/1Nb1p3/2P1P3/1p4NP/RP2QPP1/2B1K2R b - - 0 1",
+    "best": "b3a2",
+    "explain": "a8a2",
+    "move_only": "a8a2",
+    "instinct": "a8a2",
+    "idea": "Recapture with the pawn so the rook stays active."
+   },
+   {
+    "fen": "8/k7/2Q5/2K5/8/3N4/8/8 w - - 0 1",
+    "best": "c5b5",
+    "explain": "d3b4",
+    "move_only": "d3b4",
+    "instinct": "d3b4",
+    "idea": "Bring the loose knight back to the centre before Black's king pins."
+   },
+   {
+    "fen": "3R4/r1r1kppp/p3p3/1p6/6N1/1PbR2P1/P3PPKP/8 b - - 0 1",
+    "best": "h7h5",
+    "explain": "h7h5",
+    "move_only": "c3a5",
+    "instinct": "h7h5",
+    "idea": "Block the checks with a pawn so the bishop stays active."
+   },
+   {
+    "fen": "rn2k1nr/1bqpbppp/p3p3/4P3/1p1N4/3B4/PPP2PPP/RNBQR1K1 b kq - 0 1",
+    "best": "e7c5",
+    "explain": "d7d6",
+    "move_only": "b8c6",
+    "instinct": "b8c6",
+    "idea": "Break open the d-file with d6, then use the half-open files."
+   },
+   {
+    "fen": "k7/3K4/1Pp5/8/8/8/8/8 w - - 0 1",
+    "best": "d7c7",
+    "explain": "d7c6",
+    "move_only": "d7c6",
+    "instinct": "d7c7",
+    "idea": "Take the pawn that is attacking your king."
+   },
+   {
+    "fen": "8/1k6/4b3/1KQ5/8/8/8/8 b - - 0 1",
+    "best": "e6d7",
+    "explain": "e6d7",
+    "move_only": "e6d7",
+    "instinct": "e6d7",
+    "idea": "Check the loose e6-bishop and bring the king to safety."
+   },
+   {
+    "fen": "8/6R1/P1p1k3/2P5/1NK3p1/6p1/8/8 b - - 0 1",
+    "best": "g3g2",
+    "explain": "e6e5",
+    "move_only": "e6e5",
+    "instinct": "g3g2",
+    "idea": "Block the check with the king so it is safe."
+   },
+   {
+    "fen": "r3kb1r/pp1b1ppp/1qn1p2n/3pP3/3P4/2N2N2/PPB2PPP/R1BQK2R b KQkq - 0 1",
+    "best": "h6f5",
+    "explain": "f8b4",
+    "move_only": "h6f5",
+    "instinct": "h6f5",
+    "idea": "Develop the kingside knight toward f5, then use the half-open files."
+   },
+   {
+    "fen": "8/6Q1/8/3k4/8/3NK3/8/8 w - - 0 1",
+    "best": "g7d7",
+    "explain": "g7d4",
+    "move_only": "g7d4",
+    "instinct": "g7e7",
+    "idea": "Bring the queen back to the centre before Black's pawns."
+   },
+   {
+    "fen": "8/8/8/5Pk1/1p6/p4N2/K7/4q3 b - - 0 1",
+    "best": "g5f6",
+    "explain": "g5g4",
+    "move_only": "g5g4",
+    "instinct": "g5g4",
+    "idea": "Block the check with the king so it is safe."
+   },
+   {
+    "fen": "8/8/K1k5/p4r2/P7/8/5p2/2R5 b - - 0 1",
+    "best": "c6d6",
+    "explain": "f5c5",
+    "move_only": "c6d6",
+    "instinct": "f5c5",
+    "idea": "Block the check with the rook so it is safe."
+   },
+   {
+    "fen": "8/3P2k1/4K3/8/3r3p/8/8/8 w - - 0 1",
+    "best": "e6e7",
+    "explain": "d7d8q",
+    "move_only": "d7d8q",
+    "instinct": "d7d8q",
+    "idea": "Promote the d-pawn to a queen, then use the extra material."
+   },
+   {
+    "fen": "r3kb1r/pp1q1ppp/2n1p3/3p4/2pPnB1N/2P1P3/PP3PPP/R2QKB1R w KQkq - 0 1",
+    "best": "h4f3",
+    "explain": "f2f3",
+    "move_only": "h4f3",
+    "instinct": "f2f3",
+    "idea": "Kick the e4-knight with tempo, then use the extra material."
+   },
+   {
+    "fen": "rnbqk1nr/pppp1pbp/4p1p1/8/2B1P3/5Q2/PPP1NPPP/RNB1K2R w KQkq - 0 1",
+    "best": "h2h4",
+    "explain": "b1c3",
+    "move_only": "e1g1",
+    "instinct": "f3f7",
+    "idea": "Develop the queenside with tempo on the loose f7-pawn."
+   },
+   {
+    "fen": "3r2k1/7p/1p1PNRp1/p3P3/1pr5/6P1/P5KP/8 b - - 0 1",
+    "best": "d8b8",
+    "explain": "c4c2",
+    "move_only": "c4c2",
+    "instinct": "c4c2",
+    "idea": "Check the loose d8-rook and grab the loose e5-pawn before it is lost."
+   },
+   {
+    "fen": "2rr1bk1/5pp1/pP4np/1pp1p3/4P3/2P1BN2/1P3PPP/R2R2K1 b - - 0 1",
+    "best": "d8d1",
+    "explain": "d8d1",
+    "move_only": "d8d1",
+    "instinct": "d8d1",
+    "idea": "Take the free rook, then use the d-file rooks to hit White's loose pawns."
+   },
+   {
+    "fen": "r3r1k1/1bq2ppp/2pbp3/p7/4BP2/3Q4/PPPB2PP/1R3RK1 b - - 0 1",
+    "best": "f7f5",
+    "explain": "f7f5",
+    "move_only": "f7f5",
+    "instinct": "d6c5",
+    "idea": "Block the check with a pawn so the bishop stays active."
+   },
+   {
+    "fen": "r1bq1rk1/pppp1ppp/2n2n2/8/1b1NP3/2N2P2/PPP3PP/R1BQKB1R w KQ - 0 1",
+    "best": "d4c6",
+    "explain": "f1d3",
+    "move_only": "d4c6",
+    "instinct": "d4c6",
+    "idea": "Develop the c3-knight and keep the c6-knight on the diagonal."
+   },
+   {
+    "fen": "2k5/8/2P5/1K6/3R4/8/8/1r6 w - - 0 1",
+    "best": "d4b4",
+    "explain": "b5a6",
+    "move_only": "b5c4",
+    "instinct": "b5a6",
+    "idea": "Block the check with the king so it is safe."
+   },
+   {
+    "fen": "rn1q1rk1/ppp1ppbp/3p1np1/8/3P2b1/2P1PNB1/PP2BPPP/RN1QK2R b KQ - 0 1",
+    "best": "c7c5",
+    "explain": "c7c5",
+    "move_only": "b8d7",
+    "instinct": "c7c5",
+    "idea": "Break open the d-pawn shield with c5, then use the extra material."
+   },
+   {
+    "fen": "r1br3k/pp4b1/4p2p/3P2p1/2BpPp2/5P2/PP3BPP/2KR3R b - - 0 1",
+    "best": "e6e5",
+    "explain": "e6e5",
+    "move_only": "e6d5",
+    "instinct": "e6d5",
+    "idea": "Break open the d-file with tempo, then use the d-file and the queenside pawns."
+   },
+   {
+    "fen": "8/3nB3/1p4p1/1K1k3p/P4P2/8/7P/8 w - - 0 1",
+    "best": "e7a3",
+    "explain": "f4f5",
+    "move_only": "e7f8",
+    "instinct": "f4f5",
+    "idea": "Break open the g6-pawn and hit the loose pawns at once."
+   },
+   {
+    "fen": "1nr2k2/1p1nNppp/p7/3p4/3P4/P3R2P/1P2qPP1/3R1BK1 w - - 0 1",
+    "best": "e3e2",
+    "explain": "e3e2",
+    "move_only": "f1e2",
+    "instinct": "f1e2",
+    "idea": "Take the loose queen with the rook, then trade down toward a safe endgame."
+   },
+   {
+    "fen": "r1bqkb1r/pp3ppp/2n2n2/8/2P1p3/3P1N2/PP3PPP/RNBQKB1R w KQkq - 0 1",
+    "best": "d3e4",
+    "explain": "d3e4",
+    "move_only": "d3e4",
+    "instinct": "d3e4",
+    "idea": "Take the pawn that is attacking your knight, then trade it off."
+   },
+   {
+    "fen": "8/p5p1/1p3p2/5k2/2P5/1P2KP1P/8/8 b - - 0 1",
+    "best": "a7a5",
+    "explain": "g7g6",
+    "move_only": "f5e5",
+    "instinct": "f5e5",
+    "idea": "Kick the h4-pawn before it lands on h5."
+   },
+   {
+    "fen": "6k1/4Q3/8/8/4K3/3N4/8/8 w - - 0 1",
+    "best": "d3f4",
+    "explain": "e4d5",
+    "move_only": "e4d5",
+    "instinct": "d3e5",
+    "idea": "Bring the king back to the centre before Black's king runs away."
+   },
+   {
+    "fen": "2rq1r1k/1p1b1p1p/p3pb1Q/1n4p1/1PnP4/P5P1/1BR1PPBP/6K1 w - - 0 1",
+    "best": "g2e4",
+    "explain": "g2b7",
+    "move_only": "g2b7",
+    "instinct": "h6f6",
+    "idea": "Take the loose pawn on b7 and keep the b2 bishop."
+   },
+   {
+    "fen": "8/4Qq1k/1p2b2P/2np4/r7/8/1BP3P1/4R1K1 w - - 0 1",
+    "best": "e1e6",
+    "explain": "e1e6",
+    "move_only": "e1e6",
+    "instinct": "e7f7",
+    "idea": "Take the loose e6-bishop, then use the extra material."
+   },
+   {
+    "fen": "8/6k1/5Q2/6K1/8/8/b7/8 b - - 0 1",
+    "best": "g7h7",
+    "explain": "g7g8",
+    "move_only": "g7g8",
+    "instinct": "g7g8",
+    "idea": "Step the king off the back rank so the queen guards the d-file."
+   },
+   {
+    "fen": "rnbq2nr/pppkp1b1/7p/3p1p1Q/3P3p/2N1PN2/PPP2PPP/R3KB1R w KQ - 0 1",
+    "best": "h5f7",
+    "explain": "h5f5",
+    "move_only": "f3e5",
+    "instinct": "f3e5",
+    "idea": "Take the pawn that is loose, then trade queens to drag Black's king away."
+   },
+   {
+    "fen": "r1q1r1k1/1ppb1pb1/3p3p/pN1N4/2P1PPp1/4R1Pn/PP1Q2B1/5R1K b - - 0 1",
+    "best": "d7b5",
+    "explain": "c7c6",
+    "move_only": "d7b5",
+    "instinct": "d7b5",
+    "idea": "Block the d5-knight's diagonal so it can never hit c7."
+   },
+   {
+    "fen": "r4rk1/pp2ppbp/3p2p1/q1pPn1B1/1PP2P2/P1n4P/4B1P1/1R1QK2R w K - 0 1",
+    "best": "b4a5",
+    "explain": "b4a5",
+    "move_only": "b4a5",
+    "instinct": "b4a5",
+    "idea": "Take the free queen. Don't give back material."
+   },
+   {
+    "fen": "r3kb1r/pp1b1pp1/n3pnq1/1N4Bp/7P/2P2B2/PP3P2/RN1QK2R w KQkq - 0 1",
+    "best": "d1e2",
+    "explain": "f3b7",
+    "move_only": "f3b7",
+    "instinct": "b5c7",
+    "idea": "Take the free pawn, then use the extra material to win back the piece."
+   },
+   {
+    "fen": "r2RNk2/1p1b1p1p/p3p1p1/2p1P1B1/8/2P4P/P1q2P1P/4R1K1 w - - 0 1",
+    "best": "d8a8",
+    "explain": "d8a8",
+    "move_only": "d8a8",
+    "instinct": "g5h6",
+    "idea": "Take the free rook with the material, then use the bishop pair."
+   },
+   {
+    "fen": "2rr2k1/1p1qnppp/p7/5b2/2PpN3/PP5P/2PQ1BP1/4RRK1 w - - 0 1",
+    "best": "f2h4",
+    "explain": "f2d4",
+    "move_only": "d2f4",
+    "instinct": "e4f6",
+    "idea": "Take the pawn that is attacking your knight, then use the extra material."
+   },
+   {
+    "fen": "2kr1b1r/ppp4p/4q1p1/4Pp2/8/2pP1Q2/P1P3PP/R1B2R1K w - - 0 1",
+    "best": "a1b1",
+    "explain": "f3b7",
+    "move_only": "c1f4",
+    "instinct": "f3b7",
+    "idea": "Take the pawn that is attacking e5, then trade queens."
+   },
+   {
+    "fen": "3r1r2/p4p1k/1p4pp/1P2p2Q/4P3/6R1/q4PPP/5RK1 w - - 0 1",
+    "best": "h5e5",
+    "explain": "g3g6",
+    "move_only": "g3g6",
+    "instinct": "g3g6",
+    "idea": "Take the pawn that is attacking your queen."
+   },
+   {
+    "fen": "r1bqk1nr/pppp1ppp/2n5/8/4Pp2/2N2Q2/PPPP2PP/R1B1KBR1 w Qkq - 0 1",
+    "best": "d2d3",
+    "explain": "f3f4",
+    "move_only": "f3f4",
+    "instinct": "d2d4",
+    "idea": "Take the pawn that is attacking your queen."
+   },
+   {
+    "fen": "8/8/8/1k6/3QN3/4K3/8/8 w - - 0 1",
+    "best": "d4c5",
+    "explain": "e4d6",
+    "move_only": "e4d6",
+    "instinct": "e4d6",
+    "idea": "Bring the stranded knight back to the centre before Black's king."
+   },
+   {
+    "fen": "r3k2r/p4pp1/2p2n2/n1b4p/3q4/2P2B2/PP1P1pPP/RNBQ1R1K b kq - 0 1",
+    "best": "d4d6",
+    "explain": "d4d3",
+    "move_only": "d4d3",
+    "instinct": "d4d3",
+    "idea": "Block the check with the queen so it still guards the d-file."
+   },
+   {
+    "fen": "8/6K1/8/8/2Q5/8/1p6/3k4 w - - 0 1",
+    "best": "c4d3",
+    "explain": "c4d3",
+    "move_only": "c4d3",
+    "instinct": "c4e4",
+    "idea": "Bring the queen back to the centre so it hits the loose d1-knight."
+   },
+   {
+    "fen": "8/8/8/3R4/r5P1/4p1K1/4k3/8 b - - 0 1",
+    "best": "e2e1",
+    "explain": "a4g4",
+    "move_only": "e2f1",
+    "instinct": "a4g4",
+    "idea": "Take the pawn that is attacking your king, then trade into a safe rook ending."
+   },
+   {
+    "fen": "rnbqk2r/pp3ppp/3b1n2/4p1B1/3p4/1B1P1N2/PPP2PPP/RN1QK2R w KQkq - 0 1",
+    "best": "e1g1",
+    "explain": "c2c3",
+    "move_only": "e1g1",
+    "instinct": "e1g1",
+    "idea": "Break open the d-file with c3 so the queen can hit d8."
+   },
+   {
+    "fen": "r1b1r1k1/1p1nqppp/p3p3/3p4/3B4/2PBP3/PP3PPP/R2Q1RK1 w - - 0 1",
+    "best": "f2f4",
+    "explain": "e3e4",
+    "move_only": "d1h5",
+    "instinct": "e3e4",
+    "idea": "Break open the d-pawn chain with tempo, then use the extra material."
+   },
+   {
+    "fen": "8/1p2kp2/2bpp2b/1Nr4p/pR2P1pP/P1P2nP1/K1P2P2/3R1B2 w - - 0 1",
+    "best": "b5d6",
+    "explain": "b5d6",
+    "move_only": "b5d6",
+    "instinct": "b5d4",
+    "idea": "Take the pawn that threatens your c3-pawn."
+   },
+   {
+    "fen": "2r1k1nr/pp3ppp/1q2p3/3p1b2/1P1Q4/P1N2N2/2P1BPPP/2R1K2R w Kk - 0 1",
+    "best": "d4g7",
+    "explain": "d4g7",
+    "move_only": "d4g7",
+    "instinct": "d4g7",
+    "idea": "Take the pawn that is attacking your queen, then cash in the extra material."
+   },
+   {
+    "fen": "r3k2r/pppq1ppp/3p4/3Nn1b1/3QPP2/1P4P1/PBP4P/2KR3R b kq - 0 1",
+    "best": "g5h6",
+    "explain": "g5h6",
+    "move_only": "g5h6",
+    "instinct": "e5f3",
+    "idea": "Save the attacked bishop with tempo on the loose f4-pawn."
+   },
+   {
+    "fen": "r5k1/1b3ppp/p1nbr2q/2p5/4p3/1P2PNP1/P1N1QP1P/B1RR2K1 w - - 0 1",
+    "best": "f3h4",
+    "explain": "f3d2",
+    "move_only": "f3d2",
+    "instinct": "f3e1",
+    "idea": "Save the attacked knight with tempo on d6, then grab the loose d6-bishop."
+   },
+   {
+    "fen": "5k2/8/5P2/6K1/8/8/8/8 b - - 0 1",
+    "best": "f8f7",
+    "explain": "f8e8",
+    "move_only": "f8e8",
+    "instinct": "f8g8",
+    "idea": "Block the f-pawn with the king so it stays a threat."
+   },
+   {
+    "fen": "k7/7K/8/8/Pp6/1P6/8/8 b - - 0 1",
+    "best": "a8b7",
+    "explain": "a8b7",
+    "move_only": "a8b7",
+    "instinct": "a8a7",
+    "idea": "Bring the king back to the centre before it is lost."
+   },
+   {
+    "fen": "3QR3/p1r2p2/1p2ppk1/2p1q1p1/2P4P/1P2P1P1/P4P2/6K1 w - - 0 1",
+    "best": "g3g4",
+    "explain": "h4h5",
+    "move_only": "e8g8",
+    "instinct": "h4h5",
+    "idea": "Check the king off g6, then grab the loose g5-pawn."
+   },
+   {
+    "fen": "8/8/k7/2Q5/8/4K3/8/4N3 w - - 0 1",
+    "best": "c5b4",
+    "explain": "e1d3",
+    "move_only": "e1d3",
+    "instinct": "e1d3",
+    "idea": "Develop the d3-knight to hit the loose d4-knight."
+   },
+   {
+    "fen": "r1bqk2r/p1pn1p1p/1p3np1/8/8/3BPNB1/P1PN1PPP/Q3K2R w Kkq - 0 1",
+    "best": "g3h4",
+    "explain": "e3e4",
+    "move_only": "e1g1",
+    "instinct": "e1g1",
+    "idea": "Break the pin by grabbing the loose f6-knight, then castle."
+   },
+   {
+    "fen": "1k1r2nr/pppb2p1/5p1p/1P2p3/P1B1q3/1QB4P/2P2PP1/1R2R2K b - - 0 1",
+    "best": "e4f4",
+    "explain": "e4h4",
+    "move_only": "e4h4",
+    "instinct": "e4e1",
+    "idea": "Save the attacked queen with tempo on f2, then grab the loose c4-bishop."
+   },
+   {
+    "fen": "rnbqk1nr/ppp1ppbp/6p1/8/N2p4/1P4P1/P1PPPPBP/R1BQK1NR b KQkq - 0 1",
+    "best": "b8c6",
+    "explain": "g8f6",
+    "move_only": "g8f6",
+    "instinct": "e7e5",
+    "idea": "Develop the attacked knight with tempo on Bc6."
+   },
+   {
+    "fen": "8/1p1R4/6k1/pr1p4/3P2KP/5P2/8/8 b - - 0 1",
+    "best": "b5b6",
+    "explain": "b5b4",
+    "move_only": "g6f6",
+    "instinct": "a5a4",
+    "idea": "Block the check with the rook so it defends d5."
+   },
+   {
+    "fen": "8/5p2/7k/p5Rp/3p1P1P/2bK4/8/8 w - - 0 1",
+    "best": "g5g8",
+    "explain": "f4f5",
+    "move_only": "d3e4",
+    "instinct": "g5h5",
+    "idea": "Push the passed pawn forward to gain space and pressure on Black's king."
+   },
+   {
+    "fen": "r1bqkbnr/pppp1ppp/2n5/4p3/2P5/8/PP1PPPPP/RNBQKBNR b KQkq - 0 1",
+    "best": "g8e7",
+    "explain": "d7d5",
+    "move_only": "d7d5",
+    "instinct": "g8f6",
+    "idea": "Break open the centre with d5 to drag the king out."
+   },
+   {
+    "fen": "r1b3rk/pp3Q1p/4pP2/4N1p1/7P/8/P2q1PP1/2R3KR w - - 0 1",
+    "best": "f7h7",
+    "explain": "f7h7",
+    "move_only": "f7h7",
+    "instinct": "e5g6",
+    "idea": "Check the loose h8-knight and grab g5 before it is lost."
+   },
+   {
+    "fen": "r4rk1/pp1qppbp/2n5/3p1p2/3P1BPN/2P4P/PPQK1P2/R6R b - - 0 1",
+    "best": "e7e5",
+    "explain": "f5g4",
+    "move_only": "f5g4",
+    "instinct": "e7e5",
+    "idea": "Take the pawn that is attacking your g-pawn."
+   },
+   {
+    "fen": "rnbk1bnr/pp3ppp/8/4p3/2B1P3/8/PP3PPP/RNB1K1NR b KQ - 0 1",
+    "best": "f8b4",
+    "explain": "g8f6",
+    "move_only": "d8e8",
+    "instinct": "b8c6",
+    "idea": "Develop the attacked knight with tempo on e4, then castle."
+   },
+   {
+    "fen": "8/4k3/R7/p4p2/2r2P2/5K2/7P/3B4 b - - 0 1",
+    "best": "c4c1",
+    "explain": "c4c3",
+    "move_only": "c4c3",
+    "instinct": "c4c3",
+    "idea": "Check the king first, then grab the loose a5-pawn."
+   },
+   {
+    "fen": "2k5/ppp4p/4r3/4b3/1nP5/4P1PP/PP3P2/1RB2K2 w - - 0 1",
+    "best": "c1d2",
+    "explain": "a2a3",
+    "move_only": "a2a3",
+    "instinct": "a2a3",
+    "idea": "Kick the b4-knight with tempo, then use the extra material."
+   },
+   {
+    "fen": "r2qkb1r/pbpnpppp/1p3n2/3p4/3P4/3BPN2/PPPNQPPP/R1B1K2R b KQkq - 0 1",
+    "best": "f6e4",
+    "explain": "c7c5",
+    "move_only": "c7c5",
+    "instinct": "g7g6",
+    "idea": "Break open the d4-e3 diagonal so the rooks hit the same diagonal."
+   },
+   {
+    "fen": "2r2rk1/3N1pp1/pq2p3/1p6/4Q3/4RP2/P5PP/4R1K1 b - - 0 1",
+    "best": "b6c6",
+    "explain": "b6e3",
+    "move_only": "c8c1",
+    "instinct": "c8c1",
+    "idea": "Take the free rook with the queen, then trade down."
+   },
+   {
+    "fen": "2kr1b1r/pppb1ppp/8/3p4/3P3q/3BBQ2/PPP2PPP/R4RK1 b - - 0 1",
+    "best": "d7e6",
+    "explain": "c7c6",
+    "move_only": "f8d6",
+    "instinct": "d7g4",
+    "idea": "Block the d5-pawn with a pawn so it stays a target."
+   },
+   {
+    "fen": "r2qk2r/ppp1bppp/2np1n2/4p3/3PP1b1/2P2N2/PP2BPPP/RNBQ1RK1 b kq - 0 1",
+    "best": "e8g8",
+    "explain": "f6e4",
+    "move_only": "f6e4",
+    "instinct": "f6e4",
+    "idea": "Take the pawn that is attacking your bishop."
+   },
+   {
+    "fen": "8/8/8/1k1K3Q/8/3N4/8/8 w - - 0 1",
+    "best": "h5h6",
+    "explain": "d3c5",
+    "move_only": "d5d4",
+    "instinct": "h5e5",
+    "idea": "Bring the loose knight back to the centre before Black's checks."
+   },
+   {
+    "fen": "nq3rk1/3bbp1p/p2p2p1/1p1Pp1B1/1P2P3/1B3N1P/P2Q1PP1/2R3K1 b - - 0 1",
+    "best": "e7g5",
+    "explain": "e7g5",
+    "move_only": "e7g5",
+    "instinct": "e7g5",
+    "idea": "Take the loose g5-bishop, then trade on g5 to drag White's queen away."
+   },
+   {
+    "fen": "r3k2r/1p2b1pp/3pPpn1/3Bp3/Pp2P3/2q1BQ2/5PPP/R1R3K1 b kq - 0 1",
+    "best": "c3b2",
+    "explain": "c3a1",
+    "move_only": "g6h4",
+    "instinct": "e8g8",
+    "idea": "Take the free rook with the queen, then trade down."
+   },
+   {
+    "fen": "r1bqk2r/ppp2ppp/2p5/2b5/4P1n1/3P4/PPP1BPPP/RNBQ1RK1 b kq - 0 1",
+    "best": "h7h5",
+    "explain": "d8h4",
+    "move_only": "d8h4",
+    "instinct": "d8h4",
+    "idea": "Save the attacked knight with tempo on f1, then grab the loose f2-pawn."
+   },
+   {
+    "fen": "rnbqk2r/pp3ppp/2p5/3np3/1bB5/2NP1Q2/PPP1NPPP/R1B1K2R b KQkq - 0 1",
+    "best": "c8e6",
+    "explain": "c8e6",
+    "move_only": "e8g8",
+    "instinct": "e8g8",
+    "idea": "Develop the d5 knight so it hits the loose c3-knight."
+   },
+   {
+    "fen": "4k3/8/2pK4/1bPpP3/3Pp3/4P3/8/8 w - - 0 1",
+    "best": "d6c7",
+    "explain": "d6e6",
+    "move_only": "d6e6",
+    "instinct": "e5e6",
+    "idea": "Bring the king back to the centre so it guards the pawns."
+   },
+   {
+    "fen": "rnbqkbnr/pp1p1ppp/2p1p3/8/4P3/2N5/PPPP1PPP/R1BQKBNR w KQkq - 0 1",
+    "best": "d2d4",
+    "explain": "d2d4",
+    "move_only": "d2d4",
+    "instinct": "d2d4",
+    "idea": "Kick the loose h7-pawn and keep the king in the centre."
+   },
+   {
+    "fen": "r1bq2k1/pP3p1p/6p1/8/3b2P1/1QN1r3/PP3KPP/3R1B1R b - - 0 1",
+    "best": "d8f6",
+    "explain": "d8h4",
+    "move_only": "d8h4",
+    "instinct": "d8h4",
+    "idea": "Check the king first, then grab the loose g4-pawn."
+   },
+   {
+    "fen": "2r3k1/1b3p1p/1p2pB2/8/p2nPR2/6P1/2r1P1BP/7K w - - 0 1",
+    "best": "h2h4",
+    "explain": "f6d4",
+    "move_only": "f4g4",
+    "instinct": "f4h4",
+    "idea": "Take the loose d4-knight with the bishop, then use the extra material."
+   },
+   {
+    "fen": "r1b1kb1r/pp3ppp/1qn1pn2/3p4/3P1B2/P3P3/1PQ2PPP/RN2KBNR w KQkq - 0 1",
+    "best": "b1c3",
+    "explain": "b1c3",
+    "move_only": "b1c3",
+    "instinct": "b1c3",
+    "idea": "Develop the queenside with tempo on the loose c6-knight."
+   },
+   {
+    "fen": "r1b1kb1r/pp1n1ppp/1qn1p3/2ppP3/3P4/2PB4/PP1NNPPP/R1BQK2R w KQkq - 0 1",
+    "best": "d2f3",
+    "explain": "f2f4",
+    "move_only": "d2f3",
+    "instinct": "e1g1",
+    "idea": "Block the d4-pawn with a pawn so it stays safe."
+   },
+   {
+    "fen": "r1bqk2r/ppp1bppp/2np1n2/4p3/3PP3/2P2N2/PPQ1BPPP/RNB1K2R b KQkq - 0 1",
+    "best": "a7a5",
+    "explain": "e5d4",
+    "move_only": "e8g8",
+    "instinct": "e8g8",
+    "idea": "Break open the d4-pawn and free the c8-bishop."
+   },
+   {
+    "fen": "1Q6/8/8/k1K5/8/3N4/8/8 w - - 0 1",
+    "best": "b8a7",
+    "explain": "b8a7",
+    "move_only": "b8a7",
+    "instinct": "b8b2",
+    "idea": "Bring the queen back to the a5 diagonal so Black can never castle."
+   },
+   {
+    "fen": "r1b1kbnr/ppppqp1p/2n3p1/4p3/2B5/2N1PQ2/PPPP1PPP/R1B1K1NR b KQkq - 0 1",
+    "best": "g8f6",
+    "explain": "g8f6",
+    "move_only": "g8f6",
+    "instinct": "f8g7",
+    "idea": "Develop the c8-bishop and keep the d7-pawn shield intact."
+   },
+   {
+    "fen": "r1bq1rk1/p1p3bp/3p1np1/3Pp3/NPP1PpP1/3Q1P2/6BP/R1B2RK1 b - - 0 1",
+    "best": "f6e8",
+    "explain": "a7a5",
+    "move_only": "c8a6",
+    "instinct": "a8b8",
+    "idea": "Break open the centre with a pawn so White can't use the space."
+   },
+   {
+    "fen": "1N6/8/4k3/1Q6/8/4K3/8/8 w - - 0 1",
+    "best": "e3f4",
+    "explain": "e3d4",
+    "move_only": "e3e4",
+    "instinct": "e3d4",
+    "idea": "Bring the king to d4 so it is safe from checks."
+   },
+   {
+    "fen": "8/8/8/8/6K1/1Rp5/3k4/8 w - - 0 1",
+    "best": "b3b8",
+    "explain": "g4f3",
+    "move_only": "g4f3",
+    "instinct": "g4f3",
+    "idea": "Bring the king back to the centre before retreating the rooks."
+   },
+   {
+    "fen": "r2q1rk1/1pp1nppp/3pbn2/pBb1p3/4P3/2PP1N2/PP1N1PPP/R1BQR1K1 w - - 0 1",
+    "best": "d3d4",
+    "explain": "d3d4",
+    "move_only": "b5a4",
+    "instinct": "a2a4",
+    "idea": "Kick the c5-bishop with tempo, then use the d4-pawn to open lines."
+   },
+   {
+    "fen": "8/8/8/3k2p1/6P1/4P3/5K2/8 w - - 0 1",
+    "best": "f2e1",
+    "explain": "f2e2",
+    "move_only": "f2e2",
+    "instinct": "f2g3",
+    "idea": "Bring the king back to the centre so it guards the pawns."
+   },
+   {
+    "fen": "r2qkbnr/ppp3p1/2n2p2/3pp2p/3P2bP/4P1B1/PPP2PP1/RN1QKBNR w KQkq - 0 1",
+    "best": "f1e2",
+    "explain": "f1e2",
+    "move_only": "f1e2",
+    "instinct": "f1e2",
+    "idea": "Save the attacked queen with tempo on the loose g4-bishop."
+   },
+   {
+    "fen": "r1b1r1k1/1p3ppp/p1qb2n1/3p4/3Q4/1P3N1P/PBP1BPP1/R3R1K1 b - - 0 1",
+    "best": "f7f6",
+    "explain": "e8e2",
+    "move_only": "e8e2",
+    "instinct": "e8e2",
+    "idea": "Take the loose e2 bishop, then trade queens to drag White's king out."
+   },
+   {
+    "fen": "r1b2rk1/ppq2pp1/2p1pb1p/8/3P4/2P1PN1P/P1Q1BPP1/R4RK1 w - - 0 1",
+    "best": "c2e4",
+    "explain": "f1b1",
+    "move_only": "f1b1",
+    "instinct": "f1b1",
+    "idea": "Kick the f6-bishop with tempo, then grab the loose f6-pawn."
+   },
+   {
+    "fen": "rnbqkbnr/pppp1ppp/8/4p3/2P5/8/PP1PPPPP/RNBQKBNR w KQkq - 0 1",
+    "best": "g2g3",
+    "explain": "d2d4",
+    "move_only": "d2d4",
+    "instinct": "b1c3",
+    "idea": "Break open the e-pawn shield with d4, then use the open file and active pieces."
+   },
+   {
+    "fen": "rnbqk2r/ppp1bppp/8/3pP3/3Pn3/5N2/PPP3PP/RNBQKB1R w KQkq d6 0 1",
+    "best": "e5d6",
+    "explain": "f1d3",
+    "move_only": "f1d3",
+    "instinct": "f1d3",
+    "idea": "Develop the queenside with tempo on the loose e7-bishop."
+   },
+   {
+    "fen": "8/8/1k6/3Q4/8/3NK3/8/8 w - - 0 1",
+    "best": "d5d6",
+    "explain": "e3e4",
+    "move_only": "e3e4",
+    "instinct": "e3d4",
+    "idea": "Bring the king to d4 so it is safe from checks."
+   },
+   {
+    "fen": "8/4N2k/4Q3/5K2/8/8/8/8 w - - 0 1",
+    "best": "f5g5",
+    "explain": "f5g5",
+    "move_only": "f5g5",
+    "instinct": "f5f6",
+    "idea": "Bring the king to the second rank so it is safe."
+   },
+   {
+    "fen": "rnbq1rk1/pp3pb1/3p1npp/2pp4/2P1P3/2N1BP2/PP2N1PP/R2QKB1R w KQ - 0 1",
+    "best": "c4d5",
+    "explain": "c4d5",
+    "move_only": "c4d5",
+    "instinct": "c4d5",
+    "idea": "Take the pawn that is attacking your c4-knight."
+   },
+   {
+    "fen": "rn1qkbnr/pp3ppp/4p3/2ppPb2/3P4/2P1B3/PP3PPP/RN1QKBNR w KQkq - 0 1",
+    "best": "f1b5",
+    "explain": "d4c5",
+    "move_only": "f1b5",
+    "instinct": "g1f3",
+    "idea": "Take the pawn that is attacking your knight."
+   },
+   {
+    "fen": "r1bqk2r/pp2bppp/2n1p3/4P3/2BpNB2/8/PP3PPP/R2Q1RK1 w kq - 0 1",
+    "best": "d1h5",
+    "explain": "e4d6",
+    "move_only": "e4d6",
+    "instinct": "e4d6",
+    "idea": "Check the loose e8-knight and hit the loose g7-pawn before Black's rooks open lines."
+   },
+   {
+    "fen": "1Q3nk1/3b1r2/2pr3q/3p4/1N1PpNpp/4P3/2R2PPP/2R3K1 b - - 0 1",
+    "best": "g4g3",
+    "explain": "h4h3",
+    "move_only": "f7f4",
+    "instinct": "f7f4",
+    "idea": "Break open the f4-knight so the rooks can hit the centre."
+   },
+   {
+    "fen": "rnb1k2r/ppp1ppbp/6p1/q6P/3P4/2N2N2/PP2PPP1/R2QKB1R b KQkq - 0 1",
+    "best": "c7c5",
+    "explain": "g6h5",
+    "move_only": "g6h5",
+    "instinct": "e8g8",
+    "idea": "Take the pawn that is attacking your loose knight."
+   },
+   {
+    "fen": "r3r1k1/1bpp1ppp/p2b4/8/P1p1PP1q/2NQ4/1PP3PP/R1B2RK1 w - - 0 1",
+    "best": "d3c4",
+    "explain": "d3c4",
+    "move_only": "d3c4",
+    "instinct": "d3c4",
+    "idea": "Take the pawn that is attacking your queen."
+   },
+   {
+    "fen": "rn1qkb1r/pp1bpppp/8/1B2p3/3P4/1QP5/P4PPP/R1B1K1NR b KQkq - 0 1",
+    "best": "e5d4",
+    "explain": "d8c7",
+    "move_only": "d8c7",
+    "instinct": "d7b5",
+    "idea": "Block the d4-pawn with the queen so it stays a threat."
+   },
+   {
+    "fen": "rnbq1rk1/ppp1ppbp/3p1np1/6N1/2PPP3/2N5/PP3PPP/R1BQKB1R b KQ - 0 1",
+    "best": "a7a5",
+    "explain": "c7c5",
+    "move_only": "c7c5",
+    "instinct": "c7c5",
+    "idea": "Break open the centre with c5 so White can never block it."
+   },
+   {
+    "fen": "8/2b5/5p2/P2k3p/1P3P1P/1B1K2P1/8/8 b - - 0 1",
+    "best": "d5c6",
+    "explain": "d5d6",
+    "move_only": "d5d6",
+    "instinct": "d5c6",
+    "idea": "Block the check with the loose c7-bishop so it stays a loose piece."
+   },
+   {
+    "fen": "5rk1/1q1pb1pp/4p3/1p1rPp2/p1nN1B1P/P1P3P1/1P2QP2/R3R1K1 w - - 0 1",
+    "best": "a1b1",
+    "explain": "h4h5",
+    "move_only": "a1d1",
+    "instinct": "a1d1",
+    "idea": "Kick the c4-knight with tempo, then grab the loose e6-pawn."
+   },
+   {
+    "fen": "rn1qkb1r/ppp2ppp/1n1p4/7b/2PP4/5N1P/PP3PP1/RNBQKB1R w KQkq - 0 1",
+    "best": "b1c3",
+    "explain": "b1c3",
+    "move_only": "b1c3",
+    "instinct": "g2g4",
+    "idea": "Develop the kingside knight toward the centre before Black's queenside pawns open lines."
+   },
+   {
+    "fen": "8/6Q1/2N5/3k4/8/4K3/8/8 w - - 0 1",
+    "best": "g7f6",
+    "explain": "g7f6",
+    "move_only": "g7f6",
+    "instinct": "g7e7",
+    "idea": "Save the attacked knight with tempo on d5, then grab the loose c6-pawn."
+   },
+   {
+    "fen": "r2qkb1r/1p3ppp/p1npbn2/4p3/4P3/2N3P1/PPP1NPBP/R1BQK2R w KQkq - 0 1",
+    "best": "c3d5",
+    "explain": "f2f4",
+    "move_only": "e1g1",
+    "instinct": "e1g1",
+    "idea": "Break open the d6-pawn so the bishop can hit it."
+   },
+   {
+    "fen": "r2q1rk1/pb1n2pp/3b1n2/1P2p3/2QpP3/2N2N2/PP3PPP/RBB2RK1 b - - 0 1",
+    "best": "g8h8",
+    "explain": "g8h8",
+    "move_only": "g8h8",
+    "instinct": "g8h8",
+    "idea": "Step the king off the back rank so the rooks stay active."
+   },
+   {
+    "fen": "rnbqkb1r/pp2pppp/5n2/3p4/3N1B2/4P3/PPP2PPP/RN1QKB1R b KQkq - 0 1",
+    "best": "b8d7",
+    "explain": "e7e5",
+    "move_only": "b8c6",
+    "instinct": "e7e5",
+    "idea": "Kick the d4-knight with tempo, then use the space and the d5 pawn."
+   },
+   {
+    "fen": "r2r2k1/6q1/1p2p2p/p1p1P1pP/2Pp1pQ1/P2P1P2/1P3P2/2R1R1K1 b - - 0 1",
+    "best": "g8f7",
+    "explain": "g7d7",
+    "move_only": "d8d7",
+    "instinct": "d8f8",
+    "idea": "Block the attack on e6 with the queen so it stays active."
+   },
+   {
+    "fen": "rq3knr/2b2pp1/2Q1p3/2PpP1Bp/3P4/3N1N2/P4PPP/5RK1 w - - 0 1",
+    "best": "f3h4",
+    "explain": "d3f4",
+    "move_only": "d3f4",
+    "instinct": "d3f4",
+    "idea": "Save the attacked pawn with tempo on the queen, then grab it."
+   },
+   {
+    "fen": "8/2kN4/8/3Q4/3K4/8/8/8 w - - 0 1",
+    "best": "d4c5",
+    "explain": "d4e5",
+    "move_only": "d4e4",
+    "instinct": "d4c5",
+    "idea": "Bring the king to e5 so the queen can hit c7."
+   },
+   {
+    "fen": "4kb1r/p2r2pp/4pB2/1B2p3/4P3/8/PPP2PPP/2KR4 b k - 0 1",
+    "best": "e8f7",
+    "explain": "g7f6",
+    "move_only": "e8f7",
+    "instinct": "g7f6",
+    "idea": "Take the free bishop, then trade into a safe, uncastled position."
+   },
+   {
+    "fen": "8/6pp/Pk6/8/3p4/3K4/6PP/8 w - - 0 1",
+    "best": "a6a7",
+    "explain": "d3d4",
+    "move_only": "d3d4",
+    "instinct": "d3d4",
+    "idea": "Take the pawn that threatens your own, then use the extra material."
+   },
+   {
+    "fen": "rnbqkb1r/pp3ppp/2p1p3/3p2P1/2PPn2P/5N2/PP2PP2/RNBQKB1R b KQkq - 0 1",
+    "best": "f8b4",
+    "explain": "c6c5",
+    "move_only": "f8b4",
+    "instinct": "c6c5",
+    "idea": "Break open the centre with c5 so the d5-pawn falls."
+   },
+   {
+    "fen": "rn1q1rk1/ppp1ppbp/3p1np1/8/2PPP1b1/2N1BN2/PP2BPPP/R2QK2R b KQ - 0 1",
+    "best": "c7c5",
+    "explain": "c7c5",
+    "move_only": "b8c6",
+    "instinct": "g4f3",
+    "idea": "Break open the centre with c5 so the knight can hit d4."
+   },
+   {
+    "fen": "r3k2r/ppp3pp/2n2p2/3qpb2/8/2BP1N2/PPP2PPP/R2Q1RK1 b kq - 0 1",
+    "best": "f5g4",
+    "explain": "e8c8",
+    "move_only": "e8c8",
+    "instinct": "e8c8",
+    "idea": "Break the pin on the f3-knight and free the loose rook."
+   },
+   {
+    "fen": "1R1K4/k1n5/1p6/1P6/8/8/8/8 w - - 0 1",
+    "best": "b8a8",
+    "explain": "d8c7",
+    "move_only": "d8c7",
+    "instinct": "d8c7",
+    "idea": "Take the loose c7-knight with the rook."
+   },
+   {
+    "fen": "r1bqk2r/1pp2pbp/p1n3p1/3n4/B2P4/5N2/PP3PPP/RNBQ1RK1 w kq - 0 1",
+    "best": "a4c6",
+    "explain": "a4b3",
+    "move_only": "b1c3",
+    "instinct": "f1e1",
+    "idea": "Develop the c1-bishop to guard d4 and hit the loose c6-knight."
+   },
+   {
+    "fen": "r1bq1rk1/p1p2p2/1p1p3p/n3p1pn/2PPP3/P1PB1P2/2Q1NBPP/R4RK1 b - - 0 1",
+    "best": "c8e6",
+    "explain": "f7f5",
+    "move_only": "h5f4",
+    "instinct": "h5f4",
+    "idea": "Break open the d4-pawn shield and hit the loose d4-pawn."
+   },
+   {
+    "fen": "8/8/1pk1K3/p7/P7/8/8/5B2 w - - 0 1",
+    "best": "f1b5",
+    "explain": "f1c4",
+    "move_only": "e6e5",
+    "instinct": "f1c4",
+    "idea": "Develop the f1-bishop and use the half-open files before Black's king opens."
+   },
+   {
+    "fen": "6k1/2r1bppp/4p3/p7/P7/4P1P1/5P1P/3R1BK1 b - - 0 1",
+    "best": "g7g6",
+    "explain": "c7c3",
+    "move_only": "g8f8",
+    "instinct": "g8f8",
+    "idea": "Block the check with the loose rook so it is safe."
+   },
+   {
+    "fen": "rnbq1rk1/ppp1ppbp/5np1/1N1p4/3P1B2/4P3/PPP1BPPP/R2QK1NR b KQ - 0 1",
+    "best": "b8a6",
+    "explain": "c7c5",
+    "move_only": "b8a6",
+    "instinct": "c7c5",
+    "idea": "Break open the centre with c5 so the king is safe."
+   },
+   {
+    "fen": "8/2Q5/8/2NK4/1k6/8/8/8 w - - 0 1",
+    "best": "d5d4",
+    "explain": "c7d6",
+    "move_only": "c7d6",
+    "instinct": "c7b6",
+    "idea": "Bring the queen back to the centre before Black's king retreats."
+   },
+   {
+    "fen": "r4rk1/p1q1b1pp/2p1p3/2PpB3/Q7/2P5/PP3PPP/R3R1K1 b - - 0 1",
+    "best": "c7d7",
+    "explain": "e7c5",
+    "move_only": "c7e5",
+    "instinct": "c7e5",
+    "idea": "Take the loose c5-pawn now, then use the extra material."
+   },
+   {
+    "fen": "8/pp2k3/4P1pp/3B1p2/3K3P/P5P1/1r6/8 b - - 0 1",
+    "best": "b7b6",
+    "explain": "e7d6",
+    "move_only": "e7d6",
+    "instinct": "b2c2",
+    "idea": "Bring the king back to the centre so it is safe from checks."
+   },
+   {
+    "fen": "r4r2/1p2p1kp/3p1pp1/2nP4/p3P3/5P1P/PP2B1P1/2RR2K1 b - - 0 1",
+    "best": "f6f5",
+    "explain": "b7b5",
+    "move_only": "f8c8",
+    "instinct": "b7b5",
+    "idea": "Push the pawn to b5 so White can never get back the material."
+   },
+   {
+    "fen": "r2qk2r/ppp3pp/1bp2p2/2n1p3/4P3/1P1P1N2/1PP2PPP/R1BQ1RK1 w kq - 0 1",
+    "best": "f3d2",
+    "explain": "d3d4",
+    "move_only": "f3d2",
+    "instinct": "b3b4",
+    "idea": "Break open the centre with d4 to hit c5 and free the queenside."
+   },
+   {
+    "fen": "r3k1nr/pp3ppp/2n1p3/3pP3/1Pq5/2P2N2/PQ3PPP/RN3RK1 w kq - 0 1",
+    "best": "b1a3",
+    "explain": "b4b5",
+    "move_only": "b4b5",
+    "instinct": "b4b5",
+    "idea": "Kick the c6-knight with tempo, then use the half-open files."
+   },
+   {
+    "fen": "4r1k1/2p2ppb/1pn1q2p/4p3/1PP1n3/2B2NPP/1Q2PPBK/2R5 w - - 0 1",
+    "best": "b4b5",
+    "explain": "c3e1",
+    "move_only": "c3e1",
+    "instinct": "b4b5",
+    "idea": "Save the attacked bishop with tempo on c6, then use the half-open files."
+   },
+   {
+    "fen": "8/8/2Q5/4N3/3k1K2/8/8/8 w - - 0 1",
+    "best": "c6c4",
+    "explain": "c6d5",
+    "move_only": "c6c4",
+    "instinct": "c6c2",
+    "idea": "Check the king first, then grab the loose d-pawn."
+   },
+   {
+    "fen": "7k/4Q3/8/3N4/8/4K3/8/8 w - - 0 1",
+    "best": "d5c7",
+    "explain": "e3d4",
+    "move_only": "e3d4",
+    "instinct": "e3d4",
+    "idea": "Bring the king back to the centre before Black's king opens it."
+   },
+   {
+    "fen": "r1b4k/1p3p1p/2n2Np1/2p5/8/1P3PP1/P3Qq1P/2R1KR2 w - - 0 1",
+    "best": "f1f2",
+    "explain": "e1f2",
+    "move_only": "e1f2",
+    "instinct": "f1f2",
+    "idea": "Recapture with the king so the rooks stay active."
+   },
+   {
+    "fen": "R7/P4pk1/8/6P1/8/r7/6PK/8 b - - 0 1",
+    "best": "a3a2",
+    "explain": "a3a4",
+    "move_only": "a3a4",
+    "instinct": "a3a2",
+    "idea": "Bring the rook back to the centre so it hits the loose a7-pawn."
+   },
+   {
+    "fen": "2r2rk1/pb2bp1p/1p2p1p1/3PQ3/2q5/P4N2/1B3PPP/3R1RK1 b - - 0 1",
+    "best": "f7f6",
+    "explain": "e6d5",
+    "move_only": "e6d5",
+    "instinct": "c4d5",
+    "idea": "Take the pawn that threatens your queen, then use the extra material."
+   },
+   {
+    "fen": "rnbqkbnr/1p1p1ppp/p3p3/8/3pP3/2PB1N2/PP3PPP/RNBQK2R b KQkq - 0 1",
+    "best": "d4c3",
+    "explain": "d4c3",
+    "move_only": "d4c3",
+    "instinct": "d4c3",
+    "idea": "Break open the d4-pawn so the knight hits it."
+   },
+   {
+    "fen": "1k6/3Q4/8/8/1N6/4K3/8/8 w - - 0 1",
+    "best": "b4c6",
+    "explain": "b4c6",
+    "move_only": "b4c6",
+    "instinct": "e3d4",
+    "idea": "Check the loose d7-knight and bring the king to d4."
+   },
+   {
+    "fen": "8/6Q1/8/4Nk2/8/4K3/8/8 w - - 0 1",
+    "best": "e3d4",
+    "explain": "e3d4",
+    "move_only": "e3d4",
+    "instinct": "g7e7",
+    "idea": "Bring the king back to the centre before Black's pawns."
+   },
+   {
+    "fen": "6kr/pp3ppp/3N4/3bp3/1B6/6P1/PPP2P1q/2KR1B2 w - - 0 1",
+    "best": "d1d5",
+    "explain": "d1d5",
+    "move_only": "d1d5",
+    "instinct": "d1d5",
+    "idea": "Take the loose d5 bishop, then trade into a safe position."
+   },
+   {
+    "fen": "r2q1rk1/1b2bppp/ppnppn2/8/P3P3/1NN1BP2/1PP1B1PP/R2Q1RK1 w - - 0 1",
+    "best": "d1e1",
+    "explain": "g1h1",
+    "move_only": "b3d4",
+    "instinct": "d1d2",
+    "idea": "Step the king off the back rank so it is safe."
+   },
+   {
+    "fen": "rnb1kb1r/ppq1pp1p/7p/2PpP3/8/8/PPPN1PPP/R2QKBNR w KQkq - 0 1",
+    "best": "f2f4",
+    "explain": "g1f3",
+    "move_only": "f1b5",
+    "instinct": "f1b5",
+    "idea": "Save the attacked knight with tempo on the loose e8 king."
+   },
+   {
+    "fen": "r1bqkb1r/pp3pp1/4p2p/2Ppn3/6Q1/2NB4/PPP2PPP/R3K1NR w KQkq - 0 1",
+    "best": "d3b5",
+    "explain": "d3b5",
+    "move_only": "d3b5",
+    "instinct": "g4e2",
+    "idea": "Save the attacked queen with tempo on e5, then grab the loose c5-pawn."
+   },
+   {
+    "fen": "rn1qkb1r/pp2pppp/5n2/2pp1b2/3P1P2/2P1PN2/PP4PP/RNBQKB1R b KQkq - 0 1",
+    "best": "e7e6",
+    "explain": "e7e6",
+    "move_only": "b8c6",
+    "instinct": "b8c6",
+    "idea": "Block the d4-pawn with a pawn so it stays a threat."
+   },
+   {
+    "fen": "r1bqkb1r/1ppnnpp1/p2pp2p/8/3PP3/2PB1N2/PP2QPPP/RNB1K2R w KQkq - 0 1",
+    "best": "c1e3",
+    "explain": "b1d2",
+    "move_only": "e1g1",
+    "instinct": "e1g1",
+    "idea": "Develop the queenside with tempo on the d-file and hit the loose pawns."
+   },
+   {
+    "fen": "8/1p6/2bk4/p4p2/5P2/P2BK3/1P4P1/8 w - - 0 1",
+    "best": "d3f5",
+    "explain": "g2g3",
+    "move_only": "e3d4",
+    "instinct": "e3d4",
+    "idea": "Block the f5-pawn with g3 so the bishop stays active."
+   },
+   {
+    "fen": "rn1qkb1r/pp2p1pp/5n2/3p1b2/8/2N5/PP1PPPBP/R1BQK1NR w KQkq - 0 1",
+    "best": "d1b3",
+    "explain": "d1a4",
+    "move_only": "d1b3",
+    "instinct": "g1f3",
+    "idea": "Check the loose h8-rook and grab the loose d5-pawn before developing."
+   },
+   {
+    "fen": "8/3Q4/k7/4N3/8/4K3/8/8 w - - 0 1",
+    "best": "e3d4",
+    "explain": "e3d4",
+    "move_only": "e3e4",
+    "instinct": "e3d4",
+    "idea": "Bring the king back to the centre so it is safe from checks."
+   },
+   {
+    "fen": "r2qkbnr/1ppb1ppp/p1n1p3/1B1pP3/2PP4/8/PP3PPP/RNBQK1NR w KQkq - 0 1",
+    "best": "b5c6",
+    "explain": "b5c6",
+    "move_only": "b5c6",
+    "instinct": "b5c6",
+    "idea": "Take the loose c6-knight with the bishop, then trade down."
+   },
+   {
+    "fen": "r1bqk1nr/pp3pbp/2npp1p1/2p5/4P3/2NP2P1/PPP1NPBP/R1BQ1RK1 b kq - 0 1",
+    "best": "g8e7",
+    "explain": "g8f6",
+    "move_only": "g8e7",
+    "instinct": "g8e7",
+    "idea": "Develop the c8-bishop and keep the king in the centre."
+   },
+   {
+    "fen": "1k1r3r/pp1q2pp/2p2p2/b3p3/2P5/P3BQ2/1PB2PPP/R5K1 w - - 0 1",
+    "best": "b2b4",
+    "explain": "b2b4",
+    "move_only": "e3c5",
+    "instinct": "e3a7",
+    "idea": "Kick the loose a5-bishop and keep the rooks on."
+   },
+   {
+    "fen": "r2qk1nr/1bppbppp/p7/np6/4P3/2N2N2/PPB2PPP/R1BQ1RK1 b kq - 0 1",
+    "best": "d7d6",
+    "explain": "c7c5",
+    "move_only": "g8f6",
+    "instinct": "g8f6",
+    "idea": "Kick the c3-knight with tempo, then use the open file and the d7 weakness."
+   },
+   {
+    "fen": "8/7K/2Q5/8/8/8/1p1k4/8 w - - 0 1",
+    "best": "c6b5",
+    "explain": "c6e4",
+    "move_only": "c6e4",
+    "instinct": "c6c4",
+    "idea": "Bring the queen back to the centre so Black's king has no safe square."
+   },
+   {
+    "fen": "8/3N4/8/1Q6/3K1k2/8/8/8 w - - 0 1",
+    "best": "d7e5",
+    "explain": "b5d5",
+    "move_only": "b5d5",
+    "instinct": "b5d5",
+    "idea": "Bring the queen back to the centre so it hits the loose d-pawn."
+   },
+   {
+    "fen": "r6k/p1p1r2p/7B/1p4R1/3P4/2P4P/P1P3P1/5RK1 w - - 0 1",
+    "best": "h3h4",
+    "explain": "g5b5",
+    "move_only": "f1f8",
+    "instinct": "f1f8",
+    "idea": "Take the loose pawn and keep the rooks on."
+   },
+   {
+    "fen": "2rq1rk1/1b1nbppp/1p2p3/pP1p4/Q1PN4/P5P1/1B1NPPBP/R4RK1 b - - 0 1",
+    "best": "d5c4",
+    "explain": "b7a8",
+    "move_only": "d7c5",
+    "instinct": "d7c5",
+    "idea": "Block the d4-knight's diagonal so it can hit the loose e6-pawn."
+   },
+   {
+    "fen": "2r2k1r/1p2p3/p1bp4/3N1pPp/3R1Pn1/3B4/PPPK2P1/5R2 b - - 0 1",
+    "best": "e7e6",
+    "explain": "e7e6",
+    "move_only": "e7e6",
+    "instinct": "c6d5",
+    "idea": "Break the d5-knight's attack with tempo on d4."
+   },
+   {
+    "fen": "r1n1kb1r/ppqb1ppp/4p3/n2pP3/3P4/PpP2N2/3NBPPP/1RBQR1K1 w kq - 0 1",
+    "best": "e2d3",
+    "explain": "d2b3",
+    "move_only": "d2b3",
+    "instinct": "d2b3",
+    "idea": "Take the loose pawn on b3 before it escapes."
+   },
+   {
+    "fen": "8/2K1k3/2PR4/8/8/8/2r5/8 w - - 0 1",
+    "best": "d6g6",
+    "explain": "c7b6",
+    "move_only": "c7b6",
+    "instinct": "d6d7",
+    "idea": "Bring the king back to the centre so the rook guards the d-file."
+   },
+   {
+    "fen": "1K6/1P6/8/q1k5/8/8/8/8 b - - 0 1",
+    "best": "c5c6",
+    "explain": "c5d6",
+    "move_only": "c5d6",
+    "instinct": "c5c6",
+    "idea": "Bring the king to the second rank so it guards the queen."
+   },
+   {
+    "fen": "2rkn2r/p2q2pp/bp1p1p2/n1pPpP2/P1P1P1P1/2PBB2R/4Q2P/R4NK1 b - - 0 1",
+    "best": "d8c7",
+    "explain": "e8c7",
+    "move_only": "d8c7",
+    "instinct": "a6b7",
+    "idea": "Develop the a5-pawn and keep the king near the centre."
+   },
+   {
+    "fen": "2br1r1k/4nPp1/p1p4p/4p1P1/P3P2P/2PqNQ2/3N2RK/R7 w - - 0 1",
+    "best": "g5h6",
+    "explain": "g5h6",
+    "move_only": "a1d1",
+    "instinct": "g5h6",
+    "idea": "Break open the e-pawn and hit the centre before Black's pawns."
+   },
+   {
+    "fen": "8/6K1/8/Q7/8/1k6/1p6/8 w - - 0 1",
+    "best": "a5f5",
+    "explain": "a5d2",
+    "move_only": "a5d2",
+    "instinct": "a5d2",
+    "idea": "Bring the queen back to the centre so it hits the loose b3-knight."
+   },
+   {
+    "fen": "r1b1k2r/ppp1qp1p/2p2np1/8/3QP3/5N2/PPP2PPP/RN2K2R w KQkq - 0 1",
+    "best": "b1c3",
+    "explain": "b1c3",
+    "move_only": "b1c3",
+    "instinct": "b1c3",
+    "idea": "Block the diagonal with the knight so the queen keeps guarding e4."
+   },
+   {
+    "fen": "rn1q1rk1/pp2bppp/2p5/3p1b2/2PPn3/3B1N2/PPQ2PPP/RNB1R1K1 b - - 0 1",
+    "best": "f5g6",
+    "explain": "b8d7",
+    "move_only": "b8d7",
+    "instinct": "f8e8",
+    "idea": "Develop the e4-knight and keep the e-file closed to White's rooks."
+   },
+   {
+    "fen": "8/4K3/8/3pk3/8/8/3R4/8 b - - 0 1",
+    "best": "d5d4",
+    "explain": "e5e4",
+    "move_only": "e5e4",
+    "instinct": "e5e4",
+    "idea": "Block the check with the king so it is safe."
+   },
+   {
+    "fen": "8/3k4/Q7/8/3N4/4K3/8/8 w - - 0 1",
+    "best": "a6c6",
+    "explain": "a6f6",
+    "move_only": "e3e4",
+    "instinct": "a6f6",
+    "idea": "Bring the queen back to the centre before Black's pawns open lines."
+   },
+   {
+    "fen": "8/6K1/5p2/8/8/6k1/6P1/8 b - - 0 1",
+    "best": "f6f5",
+    "explain": "g3g2",
+    "move_only": "g3g2",
+    "instinct": "g3g2",
+    "idea": "Take the pawn that is attacking your king."
+   },
+   {
+    "fen": "4r2r/pRp2qkp/2B3p1/8/8/5Q2/P2b1PPP/5RK1 w - - 0 1",
+    "best": "f3f7",
+    "explain": "c6e8",
+    "move_only": "c6e8",
+    "instinct": "c6e8",
+    "idea": "Take the free rook with the bishop, then trade queens."
+   },
+   {
+    "fen": "8/pK6/7p/5p2/1P6/7k/P7/8 w - - 0 1",
+    "best": "b7a7",
+    "explain": "b7a7",
+    "move_only": "b7a7",
+    "instinct": "b4b5",
+    "idea": "Take the pawn that is loose, then use the extra material."
+   },
+   {
+    "fen": "6k1/4Q3/8/5K2/6N1/8/8/8 w - - 0 1",
+    "best": "g4f6",
+    "explain": "f5g6",
+    "move_only": "f5g6",
+    "instinct": "f5g6",
+    "idea": "Bring the king to the second rank so the queen can hit the loose g8-knight."
+   },
+   {
+    "fen": "r1bq1rk1/pp1p1ppp/2nb1n2/1Bp1p3/4P3/2NP1N1P/PPP2PP1/R1BQ1RK1 b - - 0 1",
+    "best": "a7a6",
+    "explain": "h7h6",
+    "move_only": "d6c7",
+    "instinct": "a7a6",
+    "idea": "Block the diagonal so the queen keeps guarding the king."
+   },
+   {
+    "fen": "r1bq1rk1/4bppp/p2ppn2/8/Np1BP1PP/5P2/PPPQ4/2KR1B1R b - - 0 1",
+    "best": "a8b8",
+    "explain": "d6d5",
+    "move_only": "d6d5",
+    "instinct": "e6e5",
+    "idea": "Break open the d-file with d5 so the queen can hit the loose d4-bishop."
+   },
+   {
+    "fen": "r1bqr1k1/p4pp1/2p1nb1p/3p4/N2P4/3BP3/P1Q1NPPP/R4RK1 b - - 0 1",
+    "best": "c8d7",
+    "explain": "c8a6",
+    "move_only": "c8b7",
+    "instinct": "e6g5",
+    "idea": "Block the d4-pawn with a pawn so it stays a threat."
+   },
+   {
+    "fen": "7K/5k2/7P/8/8/8/8/8 b - - 0 1",
+    "best": "f7g6",
+    "explain": "f7g6",
+    "move_only": "f7g6",
+    "instinct": "f7g6",
+    "idea": "Bring the king back to the centre so it guards the pawns."
+   },
+   {
+    "fen": "r2qkb1r/1p2nppp/p1n1p3/3pP3/3P4/3QBN2/PP3PPP/RN3RK1 w kq - 0 1",
+    "best": "b1c3",
+    "explain": "b1c3",
+    "move_only": "b1c3",
+    "instinct": "b1c3",
+    "idea": "Develop the queenside with tempo on the loose e7-knight."
+   }
+  ]
+ },
+ "puzzle": {
+  "explain": 0.68,
+  "move_only": 0.752,
+  "instinct": 0.628,
+  "recall6": 0.928,
+  "fallback": 0.0,
+  "n": 250,
+  "rows": [
+   {
+    "fen": "3rr1k1/ppp2ppp/6b1/3P4/2nBnq2/P2Q1P2/1P4PP/RB3RK1 w - - 0 22",
+    "best": "f3e4",
+    "explain": "f3e4",
+    "move_only": "f3e4",
+    "instinct": "f3e4",
+    "idea": "Take the knight that is attacking your d5-pawn."
+   },
+   {
+    "fen": "r2qk2r/ppp2pp1/2nbb2p/1B1Q4/P7/5N2/1PP2PPP/R1B1R1K1 b kq - 2 13",
+    "best": "d6h2",
+    "explain": "d6h2",
+    "move_only": "d6h2",
+    "instinct": "d6h2",
+    "idea": "Take the free pawn first, then use the extra material."
+   },
+   {
+    "fen": "2r2b1r/p3R1pp/kqp5/3p1P2/8/1Q6/PpP2P1P/4R1K1 w - - 8 25",
+    "best": "b3a4",
+    "explain": "b3a4",
+    "move_only": "b3a4",
+    "instinct": "b3a4",
+    "idea": "Check the loose a6-knight and grab the loose b2-pawn."
+   },
+   {
+    "fen": "2k5/5R2/1pP1P1K1/1Pn5/8/4r3/8/8 w - - 3 54",
+    "best": "e6e7",
+    "explain": "f7f8",
+    "move_only": "f7f8",
+    "instinct": "f7f8",
+    "idea": "Block the check with the rook so it is safe."
+   },
+   {
+    "fen": "2r5/pp3k1p/3QpP2/3p4/4b2K/1P5P/P7/5q2 w - - 2 41",
+    "best": "d6e7",
+    "explain": "d6d7",
+    "move_only": "d6d7",
+    "instinct": "d6e7",
+    "idea": "Check the king first, then grab the loose e6-pawn."
+   },
+   {
+    "fen": "2k5/p1p3pp/2p5/5p2/8/4NK1P/PPPrr1P1/4R2R b - - 1 19",
+    "best": "e2f2",
+    "explain": "e2f2",
+    "move_only": "e2f2",
+    "instinct": "e2f2",
+    "idea": "Check the loose e3-knight and grab the loose f5-pawn."
+   },
+   {
+    "fen": "5rk1/p4ppp/8/5b2/PP1P2n1/5NQ1/2q3BP/R5RK b - - 6 28",
+    "best": "g4f2",
+    "explain": "g4f2",
+    "move_only": "g4f2",
+    "instinct": "g4f2",
+    "idea": "Check the king first, then grab the loose a4-pawn."
+   },
+   {
+    "fen": "r5k1/p1p1R1bp/1p1p2p1/5q2/2NP3P/2P4P/PP3r2/R1BQ2K1 b - - 3 21",
+    "best": "a8f8",
+    "explain": "f5h3",
+    "move_only": "a8f8",
+    "instinct": "f5h3",
+    "idea": "Take the pawn that is attacking your loose c7-pawn."
+   },
+   {
+    "fen": "8/1p1R3P/p2P3K/P7/1k5P/7q/8/8 w - - 7 68",
+    "best": "h7h8q",
+    "explain": "d7b7",
+    "move_only": "d7b7",
+    "instinct": "d7b7",
+    "idea": "Take the free pawn, then use the rook to hit the loose b-pawn."
+   },
+   {
+    "fen": "3qr1k1/p6p/1pn3p1/2pNpr2/2P5/1P1PQ2P/PB3RP1/6K1 w - - 0 29",
+    "best": "f2f5",
+    "explain": "f2f5",
+    "move_only": "f2f5",
+    "instinct": "f2f5",
+    "idea": "Take the free rook on f5, then use the queenside majority."
+   },
+   {
+    "fen": "rr4k1/pQ2bppp/4p3/3nPq2/2P5/1R3N2/P4PPP/5RK1 w - - 1 20",
+    "best": "b7b8",
+    "explain": "c4d5",
+    "move_only": "b7b8",
+    "instinct": "c4d5",
+    "idea": "Take the loose d5-knight with the pawn, then use the extra material."
+   },
+   {
+    "fen": "1r3r1k/p5bp/3N2p1/2pQ4/4P2q/P2R3P/1PP2P2/1K3R2 b - - 0 24",
+    "best": "b8b2",
+    "explain": "f8f2",
+    "move_only": "f8f2",
+    "instinct": "b8b2",
+    "idea": "Take the pawn that is attacking your c5-pawn."
+   },
+   {
+    "fen": "8/2p5/p1k5/Pp4p1/1P2K1P1/7P/8/8 b - - 2 45",
+    "best": "c6d6",
+    "explain": "c6d6",
+    "move_only": "c6d6",
+    "instinct": "c6d6",
+    "idea": "Bring the king back to the centre before it is lost."
+   },
+   {
+    "fen": "3r4/8/1R6/3pn2k/PP1N1p2/5P2/3K4/8 b - - 0 41",
+    "best": "e5c4",
+    "explain": "e5c4",
+    "move_only": "e5c4",
+    "instinct": "e5c4",
+    "idea": "Check the loose d2-knight and hit the loose b6-rook with the same piece."
+   },
+   {
+    "fen": "2r4r/1q2kp2/p2Rp1bp/1p2Q3/8/2P3P1/PP4PK/5R2 w - - 3 26",
+    "best": "d6e6",
+    "explain": "d6e6",
+    "move_only": "d6e6",
+    "instinct": "f1f7",
+    "idea": "Take the pawn that is attacking your king, then trade queens."
+   },
+   {
+    "fen": "8/p4Qk1/2p4r/3qP2P/P7/1P3RP1/5PK1/8 b - - 0 36",
+    "best": "d5f7",
+    "explain": "d5f7",
+    "move_only": "d5f7",
+    "instinct": "d5f7",
+    "idea": "Take the checking queen with the queen, then trade queens."
+   },
+   {
+    "fen": "r2q1rk1/4nppn/2p5/p3N2p/Np2P3/1P1P3P/1PP3P1/R1Q2RK1 b - - 0 20",
+    "best": "d8d4",
+    "explain": "d8d4",
+    "move_only": "d8d4",
+    "instinct": "d8d4",
+    "idea": "Check the loose e5-knight and grab the loose pawns before it lands."
+   },
+   {
+    "fen": "r1bqrk2/p1p3p1/1p1b2P1/n2P1p1Q/8/3p4/PPPP1PP1/R1B2K1R w - - 3 17",
+    "best": "h5h8",
+    "explain": "h5h8",
+    "move_only": "h5h8",
+    "instinct": "h5h8",
+    "idea": "Check the king first, then grab d3."
+   },
+   {
+    "fen": "8/6R1/3r2p1/1PK1kp2/8/8/8/8 w - - 5 57",
+    "best": "g7e7",
+    "explain": "b5b6",
+    "move_only": "b5b6",
+    "instinct": "b5b6",
+    "idea": "Block the check with the rook so it is safe."
+   },
+   {
+    "fen": "7k/pp4p1/7p/2pPP2K/4Q2P/2P1P3/P4r2/6r1 w - - 5 33",
+    "best": "e5e6",
+    "explain": "d5d6",
+    "move_only": "d5d6",
+    "instinct": "d5d6",
+    "idea": "Block the check with the pawn so it is safe."
+   },
+   {
+    "fen": "3rrk2/pp3p2/6p1/3q4/4p1R1/PQ2P2R/1P4P1/7K w - - 0 32",
+    "best": "b3d5",
+    "explain": "g4g6",
+    "move_only": "b3d5",
+    "instinct": "b3b4",
+    "idea": "Take the pawn that threatens your queen, then trade queens."
+   },
+   {
+    "fen": "2r3k1/1p2r2p/p3P1pQ/8/6P1/Pq1B4/1PP5/2K2R2 w - - 1 31",
+    "best": "f1f8",
+    "explain": "d3g6",
+    "move_only": "d3g6",
+    "instinct": "d3c4",
+    "idea": "Take the pawn that threatens e6, then use the extra material."
+   },
+   {
+    "fen": "rq4rk/p5pp/1n5N/1p4P1/3P4/2P5/PP5P/R4RK1 w - - 0 27",
+    "best": "h6f7",
+    "explain": "h6f7",
+    "move_only": "h6f7",
+    "instinct": "h6f7",
+    "idea": "Check the king first, then grab the loose g8-rook."
+   },
+   {
+    "fen": "1r3rk1/pp2n2p/2p1p1pP/4QqP1/2PP1P2/1P2P3/P3K3/6RR w - - 2 25",
+    "best": "e5g7",
+    "explain": "e5g7",
+    "move_only": "e5g7",
+    "instinct": "e5g7",
+    "idea": "Check the king off g8, then grab e6 with the queen."
+   },
+   {
+    "fen": "8/6pk/8/5Pp1/p7/7P/1b1R2K1/8 b - - 4 44",
+    "best": "a4a3",
+    "explain": "a4a3",
+    "move_only": "a4a3",
+    "instinct": "a4a3",
+    "idea": "Block the d-file with a pawn so the rook keeps guarding the bishop."
+   },
+   {
+    "fen": "5R2/8/8/P6p/5p1k/5p1P/r4P2/6K1 b - - 3 48",
+    "best": "h4h3",
+    "explain": "a2a1",
+    "move_only": "h4h3",
+    "instinct": "a2a1",
+    "idea": "Check the loose king first; don't give back material."
+   },
+   {
+    "fen": "1k2r3/pp1q2p1/3p2Rp/8/4bP2/2Q4P/PP3RPK/4r3 w - - 4 29",
+    "best": "g6g7",
+    "explain": "g6d6",
+    "move_only": "g6g7",
+    "instinct": "c3c7",
+    "idea": "Take the pawn that is attacking your rook, then use the extra material."
+   },
+   {
+    "fen": "r4r1k/4Q1pp/p7/1p6/3qb3/1B4P1/P1P3PP/R4R1K b - - 4 24",
+    "best": "f8f2",
+    "explain": "f8f1",
+    "move_only": "a8d8",
+    "instinct": "f8f1",
+    "idea": "Take the attacking rook with check, then grab the loose g2-pawn."
+   },
+   {
+    "fen": "r2q1rk1/5p2/2pp1Pp1/pnb1p1P1/1p2P1bp/3P4/PPP1N1BK/R1BQ1R2 w - - 1 20",
+    "best": "g2f3",
+    "explain": "f1h1",
+    "move_only": "f1h1",
+    "instinct": "f1h1",
+    "idea": "Block the check with the loose rook so it is safe."
+   },
+   {
+    "fen": "3r3k/4r3/5R2/p1p5/P1B5/1P1p3P/4p2K/4R3 b - - 1 45",
+    "best": "d3d2",
+    "explain": "d3d2",
+    "move_only": "d3d2",
+    "instinct": "d3d2",
+    "idea": "Kick the e1-rook with tempo, then grab the loose e2-pawn."
+   },
+   {
+    "fen": "2r1r1k1/5p1p/pp4p1/4BQ2/q7/P7/2n2PPP/2R2RK1 w - - 0 29",
+    "best": "f5f6",
+    "explain": "f5f7",
+    "move_only": "f5c8",
+    "instinct": "f5c8",
+    "idea": "Save the attacked queen with tempo on f7, then grab the loose c2-knight."
+   },
+   {
+    "fen": "3r2r1/5Qbk/2qN3p/p1n3p1/PpP1p3/1P1p2BP/5PP1/1R2R1K1 w - - 6 36",
+    "best": "f7f5",
+    "explain": "f7f5",
+    "move_only": "f7f5",
+    "instinct": "f7f5",
+    "idea": "Check the king off the e-file before grabbing e4."
+   },
+   {
+    "fen": "8/8/7p/4k3/P1R4P/5K2/1rp2P2/8 b - - 2 38",
+    "best": "e5d5",
+    "explain": "b2b3",
+    "move_only": "b2b3",
+    "instinct": "b2b3",
+    "idea": "Bring the loose rook back to the centre before it is lost."
+   },
+   {
+    "fen": "8/pR6/5pk1/3Bp2p/7P/2n1PKP1/1r3P2/8 b - - 3 33",
+    "best": "b2b7",
+    "explain": "c3d5",
+    "move_only": "b2b7",
+    "instinct": "e5e4",
+    "idea": "Take the loose d5-bishop, then use the extra material."
+   },
+   {
+    "fen": "6k1/5p2/p5p1/3B2QP/8/3b4/5qPK/8 w - - 0 42",
+    "best": "h5g6",
+    "explain": "h5g6",
+    "move_only": "h5g6",
+    "instinct": "g5g6",
+    "idea": "Take the pawn that threatens your queen, then use the extra material."
+   },
+   {
+    "fen": "2kr2n1/ppp2p1p/8/4Bq2/2P4P/1P2PPb1/P2PK3/RN1Q3R b - - 0 16",
+    "best": "f5d3",
+    "explain": "f5e5",
+    "move_only": "f5e5",
+    "instinct": "f5d3",
+    "idea": "Take the loose e5-bishop, then bring the queen to d3."
+   },
+   {
+    "fen": "3nk1r1/prq2pp1/4N2p/3pP2Q/1bpP4/4B1P1/P4RPP/5RK1 b - - 0 26",
+    "best": "d8e6",
+    "explain": "d8e6",
+    "move_only": "d8e6",
+    "instinct": "d8e6",
+    "idea": "Take the attacking knight with the pawn so the queen keeps guarding d8."
+   },
+   {
+    "fen": "R7/6p1/4p3/4Pk1p/8/p1K1P2P/5rP1/8 w - - 0 35",
+    "best": "a8f8",
+    "explain": "a8f8",
+    "move_only": "a8f8",
+    "instinct": "e3e4",
+    "idea": "Check the king first, then grab the loose e5-pawn."
+   },
+   {
+    "fen": "r3k1r1/pp1bbp1p/2pp4/3P3p/2P1PQ2/1P1B1N1P/P4qPK/R4R2 b q - 1 19",
+    "best": "f2g2",
+    "explain": "g8g2",
+    "move_only": "g8g2",
+    "instinct": "f2g2",
+    "idea": "Check the king first, then grab the loose g2-pawn."
+   },
+   {
+    "fen": "6k1/6b1/p1p3pp/2pP1p2/3p4/3P1NBQ/Pr3PPP/6K1 b - - 0 26",
+    "best": "b2b1",
+    "explain": "b2b1",
+    "move_only": "b2b1",
+    "instinct": "b2b1",
+    "idea": "Check the king off the back rank before grabbing d5."
+   },
+   {
+    "fen": "k6r/p2rqp1p/Q2p1n2/2p5/2NBP3/8/P1P2PPP/6K1 w - - 0 22",
+    "best": "c4b6",
+    "explain": "c4b6",
+    "move_only": "c4b6",
+    "instinct": "a6c8",
+    "idea": "Fork the d7 rook and the f6 knight, then grab d6."
+   },
+   {
+    "fen": "5Q2/7p/4ppp1/7k/4nP1B/2P1q2P/6PK/8 w - - 14 45",
+    "best": "g2g4",
+    "explain": "g2g4",
+    "move_only": "g2g4",
+    "instinct": "g2g4",
+    "idea": "Check the king first, then grab loose pawns with tempo."
+   },
+   {
+    "fen": "2r2rk1/pp3pp1/q3p2p/3pP3/3P1P2/1PbnB2P/P1RQ2P1/3R2K1 w - - 0 22",
+    "best": "c2c3",
+    "explain": "c2c3",
+    "move_only": "c2c3",
+    "instinct": "c2c3",
+    "idea": "Recapture with the rook so the queen keeps guarding d4."
+   },
+   {
+    "fen": "r3kb1r/ppp2pp1/5n2/4q2p/4N3/1P3P2/P3Q1PP/1N2RK2 w kq - 1 18",
+    "best": "e4f6",
+    "explain": "e4f6",
+    "move_only": "e4f6",
+    "instinct": "e4f6",
+    "idea": "Take the attacking knight with check, then grab the loose h5-pawn."
+   },
+   {
+    "fen": "4r1k1/1R3p2/p5NQ/8/2qr4/8/5PPP/5RK1 b - - 0 28",
+    "best": "c4f1",
+    "explain": "c4f1",
+    "move_only": "c4f1",
+    "instinct": "c4f1",
+    "idea": "Check the king first, then grab the loose g6-knight."
+   },
+   {
+    "fen": "r2r2k1/5pp1/pp3n2/2p2Q2/P6P/2pP4/1P1q1P2/1R4RK w - - 0 26",
+    "best": "f5f6",
+    "explain": "f5f6",
+    "move_only": "f5f6",
+    "instinct": "g1g7",
+    "idea": "Take the loose f6-knight with the queen, then trade queens."
+   },
+   {
+    "fen": "8/8/5pkp/4rR2/6PK/7P/8/8 b - - 11 52",
+    "best": "e5f5",
+    "explain": "e5f5",
+    "move_only": "e5f5",
+    "instinct": "e5f5",
+    "idea": "Take the free rook. Don't give back material."
+   },
+   {
+    "fen": "5rk1/2Q2n1p/4p3/1p1p3N/1P1q1p2/P6P/8/5R1K w - - 2 32",
+    "best": "f1g1",
+    "explain": "h5f6",
+    "move_only": "f1f4",
+    "instinct": "h5f6",
+    "idea": "Check the king off the back rank before grabbing f4."
+   },
+   {
+    "fen": "8/8/1R5p/5K2/6PP/8/1pkr4/8 b - - 1 62",
+    "best": "d2d4",
+    "explain": "d2d6",
+    "move_only": "d2d6",
+    "instinct": "d2d8",
+    "idea": "Bring the rook back to the centre so it hits the loose b6-rook."
+   },
+   {
+    "fen": "r1b2rk1/ppp2ppp/2p5/6q1/2BP4/5Q2/PPP2PPb/RN2RK2 w - - 0 12",
+    "best": "f3f7",
+    "explain": "f3f7",
+    "move_only": "f3f7",
+    "instinct": "f3f7",
+    "idea": "Check the king first, then grab the loose f7-pawn."
+   },
+   {
+    "fen": "8/1p1bkppp/8/pB6/5P2/4K1P1/r6P/2R5 w - - 4 27",
+    "best": "c1c7",
+    "explain": "b5d7",
+    "move_only": "c1c7",
+    "instinct": "b5d7",
+    "idea": "Take the loose d7-bishop, then use the extra material to win it back."
+   },
+   {
+    "fen": "2r4r/pp2kppQ/5qn1/2p1p1B1/2PpP3/PP1P4/2K2PR1/8 w - - 13 30",
+    "best": "h7g7",
+    "explain": "g5f6",
+    "move_only": "h7g7",
+    "instinct": "g5f6",
+    "idea": "Take the loose queen with check, then grab g7."
+   },
+   {
+    "fen": "8/6p1/ppn2p2/2k1pr2/8/P7/2PN1P1P/3R2K1 w - - 0 29",
+    "best": "d2e4",
+    "explain": "d2e4",
+    "move_only": "d2e4",
+    "instinct": "d2e4",
+    "idea": "Check the loose f5-rook and grab the loose e5-pawn before Black's checks."
+   },
+   {
+    "fen": "r1b4k/pp4pp/8/4p3/4nr2/2P1N3/PP4PP/RN1R2K1 w - - 0 20",
+    "best": "d1d8",
+    "explain": "d1d8",
+    "move_only": "d1d8",
+    "instinct": "d1d8",
+    "idea": "Check the king off d8, then mate on the second rank."
+   },
+   {
+    "fen": "2k4r/pp4pp/3R4/4N1Bq/6n1/8/PPP1BPP1/5RK1 b - - 0 17",
+    "best": "h5h2",
+    "explain": "h5h2",
+    "move_only": "h5g5",
+    "instinct": "h5h2",
+    "idea": "Check the loose e5-knight and bring the queen to h2."
+   },
+   {
+    "fen": "r1b2rk1/pp2npbp/1q1p2p1/8/1n2PP2/P1NB1N2/1PPBQ1PP/2KR3R b - - 0 12",
+    "best": "b4a2",
+    "explain": "b4a2",
+    "move_only": "b4a2",
+    "instinct": "b4d3",
+    "idea": "Check the loose king first, then grab the loose c2-pawn."
+   },
+   {
+    "fen": "8/8/p7/k2b1P2/6B1/4K3/8/8 w - - 1 56",
+    "best": "e3d4",
+    "explain": "e3d4",
+    "move_only": "e3d4",
+    "instinct": "f5f6",
+    "idea": "Bring the king back to the centre so it guards the d5-bishop."
+   },
+   {
+    "fen": "5rk1/pp4pp/2b1pr2/2q1N3/2P3R1/1P4QP/P5P1/4R2K b - - 6 26",
+    "best": "f6f1",
+    "explain": "f6f1",
+    "move_only": "f6f1",
+    "instinct": "f6f1",
+    "idea": "Check the king first, then grab the loose e5-knight."
+   },
+   {
+    "fen": "r4rk1/pp3ppp/1qb2n2/2bp1NB1/8/5N2/PPP2PPP/R2QR1K1 w - - 5 14",
+    "best": "g5f6",
+    "explain": "f5e7",
+    "move_only": "f5e7",
+    "instinct": "f5e7",
+    "idea": "Check the king first, then grab the loose f6-knight."
+   },
+   {
+    "fen": "r1bq1b1r/pp4pp/2n1k3/3Bp3/8/5Q2/PPPP1PPP/RNB1K2R b KQ - 0 11",
+    "best": "d8d5",
+    "explain": "d8d5",
+    "move_only": "d8d5",
+    "instinct": "d8d5",
+    "idea": "Take the checking bishop with the queen, then trade down."
+   },
+   {
+    "fen": "r1bqrbk1/1p3p2/p1n2n1Q/3p4/3P4/2NB1N1P/PP3PP1/R3R1K1 w - - 1 16",
+    "best": "e1e8",
+    "explain": "e1e8",
+    "move_only": "h6g5",
+    "instinct": "e1e8",
+    "idea": "Take the free rook on e8, then use the extra material."
+   },
+   {
+    "fen": "4bk2/PQ6/4q3/7p/8/8/6K1/5B2 b - - 0 53",
+    "best": "e8c6",
+    "explain": "e6g4",
+    "move_only": "e8c6",
+    "instinct": "e6g4",
+    "idea": "Check the loose king first, then grab the loose b7-knight."
+   },
+   {
+    "fen": "6k1/b4rpp/p2p4/P2p4/6Pq/2Q2p1P/5P2/R3R1K1 w - - 1 29",
+    "best": "e1e8",
+    "explain": "c3c8",
+    "move_only": "e1e8",
+    "instinct": "c3c8",
+    "idea": "Check the loose king and grab the loose f3-pawn before it is lost."
+   },
+   {
+    "fen": "2r2rk1/5ppp/p2Pp3/4P1R1/1p5q/1P3Q2/2p2PP1/2R3K1 w - - 0 28",
+    "best": "f3f6",
+    "explain": "g5g3",
+    "move_only": "g5g3",
+    "instinct": "d6d7",
+    "idea": "Save the attacked rook with tempo on the loose g7-pawn."
+   },
+   {
+    "fen": "k7/pp3r2/8/2p5/3pP1PK/PP1P3P/2Pn4/6R1 b - - 6 46",
+    "best": "d2f3",
+    "explain": "d2f3",
+    "move_only": "d2f3",
+    "instinct": "d2f3",
+    "idea": "Check the loose f7-rook and grab the loose e4-pawn before it is lost."
+   },
+   {
+    "fen": "2kr3r/pBq1bppp/1p3n2/2p1p3/2P2B2/2NP2P1/PP2PP1P/R2Q1R1K b - - 0 13",
+    "best": "c7b7",
+    "explain": "c7b7",
+    "move_only": "c8b8",
+    "instinct": "c7b7",
+    "idea": "Take the checking bishop with the queen, then trade down toward a safe corner."
+   },
+   {
+    "fen": "r3qrk1/1p3pp1/p3bn1p/2p1Q2P/4P3/2N2PN1/PP2B1P1/1K1R3R b - - 0 21",
+    "best": "e6a2",
+    "explain": "e6a2",
+    "move_only": "e6a2",
+    "instinct": "e6a2",
+    "idea": "Take the pawn that is attacking your king, then trade queens."
+   },
+   {
+    "fen": "r7/4k3/3R2K1/4PP2/8/p5p1/8/8 w - - 5 47",
+    "best": "f5f6",
+    "explain": "f5f6",
+    "move_only": "d6d7",
+    "instinct": "f5f6",
+    "idea": "Check the loose rook with tempo, then grab the loose pawns."
+   },
+   {
+    "fen": "3r1r1k/p1b1qpp1/1pp2n1p/5Q2/3BP3/2N2P1P/PPP3P1/3RR2K b - - 3 20",
+    "best": "d8d4",
+    "explain": "d8d4",
+    "move_only": "d8d4",
+    "instinct": "d8d4",
+    "idea": "Take the loose d4-bishop with the rook, then use the half-open files."
+   },
+   {
+    "fen": "r3k2r/1bq2ppp/p3p3/2P5/1P1N2n1/4B3/P1P2PPP/1R1Q1RK1 b kq - 0 15",
+    "best": "c7h2",
+    "explain": "c7h2",
+    "move_only": "c7h2",
+    "instinct": "c7h2",
+    "idea": "Check the king first, then grab the loose h2-pawn."
+   },
+   {
+    "fen": "r7/2p2pbk/6pp/2qPP3/Pr3PPP/2N2Q2/1NK5/1R6 w - - 3 34",
+    "best": "b2d3",
+    "explain": "b2d3",
+    "move_only": "b2d3",
+    "instinct": "b2d3",
+    "idea": "Bring the attacked knight back to d3, then use the d-file and the queenside pawns."
+   },
+   {
+    "fen": "8/8/8/8/8/1p2k3/1Kp5/4N3 b - - 6 58",
+    "best": "e3d2",
+    "explain": "c2c1q",
+    "move_only": "e3e2",
+    "instinct": "c2c1q",
+    "idea": "Promote the attacked knight to a queen, then use the extra material."
+   },
+   {
+    "fen": "5r1k/2p3pp/8/1PQB4/p7/2Pq2bP/P5P1/6K1 w - - 0 32",
+    "best": "c5f8",
+    "explain": "c5f8",
+    "move_only": "c5f8",
+    "instinct": "c5f8",
+    "idea": "Check the king first, then grab the loose c7-pawn."
+   },
+   {
+    "fen": "5r1r/ppk3pp/2n5/1BP2Q2/4pN2/6P1/PP1q3P/R5K1 w - - 3 21",
+    "best": "f4e6",
+    "explain": "f4d5",
+    "move_only": "f4d5",
+    "instinct": "f5d7",
+    "idea": "Take the loose c6-knight, then use the extra material to win it."
+   },
+   {
+    "fen": "r1b2r1k/pp1n2p1/2pq3p/3pN3/3PBP2/1Q2P1P1/PP3R1P/4R1K1 b - - 0 25",
+    "best": "d5e4",
+    "explain": "d5e4",
+    "move_only": "d5e4",
+    "instinct": "d5e4",
+    "idea": "Take the loose e4 bishop, then use the extra material."
+   },
+   {
+    "fen": "r5k1/1pp3p1/p1Rq3p/3p4/3r4/P4B1P/1P1Q1PP1/3R2K1 b - - 0 19",
+    "best": "d4d2",
+    "explain": "d4d2",
+    "move_only": "d4d2",
+    "instinct": "d4d2",
+    "idea": "Take the free piece, then trade queens to drag White's rooks off."
+   },
+   {
+    "fen": "4r1k1/Rb5p/1P1B2p1/6P1/8/3n1pN1/6P1/6K1 b - - 1 38",
+    "best": "e8e1",
+    "explain": "e8e1",
+    "move_only": "g8g7",
+    "instinct": "e8e1",
+    "idea": "Check the king first, then grab the loose g2-pawn."
+   },
+   {
+    "fen": "2r2k2/pq2br1p/1p4pP/8/1P6/1Q3p1R/P5P1/B2R1K2 w - - 0 26",
+    "best": "h3f3",
+    "explain": "h3f3",
+    "move_only": "h3f3",
+    "instinct": "h3f3",
+    "idea": "Take the pawn that threatens your king, then trade queens to drag Black's rooks off."
+   },
+   {
+    "fen": "r1b1n1k1/ppp3bp/1n1p3r/3Ppp2/1PP5/1N1B1PPq/PB1QN2P/R4RK1 b - - 2 18",
+    "best": "h3h2",
+    "explain": "e5e4",
+    "move_only": "e8f6",
+    "instinct": "e5e4",
+    "idea": "Break open the d3-bishop's long diagonal with ...e4, then use the half-open files."
+   },
+   {
+    "fen": "rn1qk1nr/pbp2ppp/1p6/3Pp3/1b6/2N5/PP3PPP/R1BQKBNR w KQkq - 1 8",
+    "best": "d1a4",
+    "explain": "d1a4",
+    "move_only": "d1a4",
+    "instinct": "d1a4",
+    "idea": "Check the loose b4-bishop and hit the loose e5-pawn before grabbing material."
+   },
+   {
+    "fen": "2r4k/3r2pp/8/5Q2/1B2q3/PP6/2P3PP/1K3R2 b - - 3 39",
+    "best": "d7d1",
+    "explain": "d7d1",
+    "move_only": "d7d1",
+    "instinct": "e4c2",
+    "idea": "Take the free pawn, then trade queens to drag White's rooks off."
+   },
+   {
+    "fen": "Q7/1n3pk1/1q4p1/3Pp3/8/1P4P1/2r2PB1/2R1R1K1 b - - 1 35",
+    "best": "b6f2",
+    "explain": "b6f2",
+    "move_only": "b6f2",
+    "instinct": "b6f2",
+    "idea": "Check the king first, then grab the loose f2-pawn."
+   },
+   {
+    "fen": "r3b1k1/1p5p/p2bq3/1p1pN3/3Ppr2/PQ6/1B2P2P/3RR2K w - - 0 26",
+    "best": "b3g3",
+    "explain": "b3d5",
+    "move_only": "b3g3",
+    "instinct": "b3d5",
+    "idea": "Take the pawn that is attacking your queen."
+   },
+   {
+    "fen": "r2r2k1/1b1nb1p1/p3p2p/1ppq1pN1/8/2PPBP2/PPB1Q1PP/3R1R1K w - - 0 20",
+    "best": "c2b3",
+    "explain": "c2b3",
+    "move_only": "c2b3",
+    "instinct": "g5e6",
+    "idea": "Save the attacked knight with tempo on d8, then grab the loose e6-pawn."
+   },
+   {
+    "fen": "4q1k1/4rpp1/p1pb3p/1p1n1Q2/3P4/2P2N1P/PPB2PP1/R1B3K1 b - - 0 19",
+    "best": "e7e1",
+    "explain": "e7e1",
+    "move_only": "e7e1",
+    "instinct": "e7e1",
+    "idea": "Check the king off the e-file before grabbing pawns."
+   },
+   {
+    "fen": "8/8/1R5p/6pk/3Kpp2/1p4PP/2b2P2/8 w - - 0 52",
+    "best": "g3g4",
+    "explain": "g3g4",
+    "move_only": "g3g4",
+    "instinct": "g3g4",
+    "idea": "Check the king off the back rank before grabbing f4."
+   },
+   {
+    "fen": "8/8/2r5/5k2/1p4p1/2p3P1/P1K1RP2/8 b - - 9 56",
+    "best": "c6e6",
+    "explain": "f5g5",
+    "move_only": "c6c4",
+    "instinct": "b4b3",
+    "idea": "Bring the king back to the centre so it guards the rooks."
+   },
+   {
+    "fen": "r4rk1/6q1/4p3/1Bpb1p2/PP3Qpp/4P3/5PPP/2RR2K1 b - - 0 30",
+    "best": "e6e5",
+    "explain": "e6e5",
+    "move_only": "e6e5",
+    "instinct": "c5b4",
+    "idea": "Break open the centre with tempo, then use the extra material."
+   },
+   {
+    "fen": "Q7/p4pkP/3p2p1/2p2nK1/2P5/1P6/P1qp3R/4r3 w - - 5 35",
+    "best": "h7h8b",
+    "explain": "a8f8",
+    "move_only": "h7h8q",
+    "instinct": "a8f8",
+    "idea": "Check the king first, then bring the queen to h8 to win the material."
+   },
+   {
+    "fen": "8/p5p1/5p1p/3k4/PPn4P/2K3P1/3N1P2/8 b - - 4 52",
+    "best": "c4d2",
+    "explain": "c4d2",
+    "move_only": "c4d2",
+    "instinct": "c4d2",
+    "idea": "Take the attacking knight, then trade into a safe, open position."
+   },
+   {
+    "fen": "6k1/1p3ppp/p7/1P2b3/P7/3rB1P1/2r2PKP/1R3R2 b - - 0 24",
+    "best": "d3e3",
+    "explain": "d3e3",
+    "move_only": "d3e3",
+    "instinct": "d3e3",
+    "idea": "Take the loose e3 bishop with the rook."
+   },
+   {
+    "fen": "3r2k1/4R1pp/p4p2/8/2q2P1Q/8/1P4PP/3rR2K b - - 3 29",
+    "best": "c4f1",
+    "explain": "c4f1",
+    "move_only": "c4f1",
+    "instinct": "d1e1",
+    "idea": "Check the king first, then grab the loose e1-rook."
+   },
+   {
+    "fen": "8/8/8/1p2p3/p1k4p/6RP/1PK3P1/8 b - - 0 49",
+    "best": "h4g3",
+    "explain": "h4g3",
+    "move_only": "h4g3",
+    "instinct": "h4g3",
+    "idea": "Take the free rook. The g3-rook is hanging."
+   },
+   {
+    "fen": "8/p1p5/1p1pk1p1/1P3p2/P1PP3P/5pP1/6K1/8 w - - 0 32",
+    "best": "g2f3",
+    "explain": "g2f3",
+    "move_only": "g2f3",
+    "instinct": "g2f3",
+    "idea": "Take the checking pawn with the king, then use the extra material."
+   },
+   {
+    "fen": "8/6pk/7p/8/Q2P4/1p6/2r2P2/5K2 b - - 0 58",
+    "best": "c2c1",
+    "explain": "c2c1",
+    "move_only": "c2c1",
+    "instinct": "c2c1",
+    "idea": "Check the king first, then grab the loose f2-pawn."
+   },
+   {
+    "fen": "8/2b2ppk/2P4p/8/1B4P1/1P5P/1R3P2/1KR4q b - - 2 36",
+    "best": "h1e4",
+    "explain": "h1e4",
+    "move_only": "h1e4",
+    "instinct": "h1c1",
+    "idea": "Check the loose h3-pawn and grab the loose c6-pawn before cashing in."
+   },
+   {
+    "fen": "3rq2r/ppp1b1pp/2n1bk2/2Q1N3/8/2P1P3/PP1N1PPP/1K1R3R w - - 1 20",
+    "best": "d2e4",
+    "explain": "d2e4",
+    "move_only": "d2e4",
+    "instinct": "d2e4",
+    "idea": "Check the loose f6-knight and hit the loose c6-knight before grabbing the loose c5-queen."
+   },
+   {
+    "fen": "2r2rk1/5pp1/p1b2n1p/1pb1qP1N/2pp2Q1/P6P/BPP3PN/4RR1K w - - 2 25",
+    "best": "g4g7",
+    "explain": "g4g7",
+    "move_only": "g4g7",
+    "instinct": "g4g7",
+    "idea": "Check first, then grab the loose f6-knight with tempo."
+   },
+   {
+    "fen": "r4rk1/pp4p1/1q5p/3p1p2/3n4/P4Q2/1PB2PPP/3RR1K1 w - - 0 20",
+    "best": "f3d5",
+    "explain": "f3d5",
+    "move_only": "f3d5",
+    "instinct": "f3d5",
+    "idea": "Take the pawn that is attacking your queen, then trade queens."
+   },
+   {
+    "fen": "2r2rk1/p6p/1p2p2q/2n3p1/3Q3P/1P6/P1P1BP2/1K4R1 w - - 0 22",
+    "best": "g1g5",
+    "explain": "g1g5",
+    "move_only": "g1g5",
+    "instinct": "g1g5",
+    "idea": "Take the pawn that is attacking your queen, then trade queens."
+   },
+   {
+    "fen": "2k3r1/6qp/3p1p2/1p2p3/1P2P3/2PPB3/6PP/R4RK1 w - - 0 32",
+    "best": "a1a8",
+    "explain": "a1a8",
+    "move_only": "a1a8",
+    "instinct": "a1a8",
+    "idea": "Check the loose king and grab the loose pawns with the rook."
+   },
+   {
+    "fen": "1r1r2k1/pb3ppp/1p6/2pq4/1P1P1N2/6P1/P4P1P/2RQR1K1 b - - 1 21",
+    "best": "d5h1",
+    "explain": "d5d4",
+    "move_only": "d5d4",
+    "instinct": "d5d4",
+    "idea": "Take the pawn that threatens your queen."
+   },
+   {
+    "fen": "4r1rk/4qpb1/p2p3p/1p1Pn2R/8/2P4Q/PP2B1PP/5RK1 w - - 0 25",
+    "best": "h5h6",
+    "explain": "h5h6",
+    "move_only": "h5h6",
+    "instinct": "h5h6",
+    "idea": "Check the king first, then grab the loose f7-pawn."
+   },
+   {
+    "fen": "r3q1k1/5b2/2p3rQ/8/pP1B4/P1P4P/1KP2P2/8 w - - 3 39",
+    "best": "h6h8",
+    "explain": "h6h8",
+    "move_only": "h6h8",
+    "instinct": "h6h8",
+    "idea": "Check the king first, then grab the loose g6-rook."
+   },
+   {
+    "fen": "r3kbr1/ppp2p1p/3p4/8/2BPPn1q/1NP2PRb/PP6/R3B1QK b q - 0 19",
+    "best": "h3g2",
+    "explain": "g8g3",
+    "move_only": "h3g2",
+    "instinct": "g8g3",
+    "idea": "Check the king first; don't give back material."
+   },
+   {
+    "fen": "5rk1/p3pp1p/bqB3p1/3P4/1Q6/b3N3/r4PPP/3RR1K1 w - - 0 24",
+    "best": "b4b6",
+    "explain": "b4b6",
+    "move_only": "b4b6",
+    "instinct": "b4b6",
+    "idea": "Take the free queen, then trade queens to drag the loose c6-bishop."
+   },
+   {
+    "fen": "r2q1rk1/p5bp/3p2P1/2pn2p1/1p5Q/3P1R1P/PPP1N1P1/R5K1 w - - 0 18",
+    "best": "h4h7",
+    "explain": "h4h7",
+    "move_only": "h4h7",
+    "instinct": "h4c4",
+    "idea": "Check the king first, then grab the loose d5-knight."
+   },
+   {
+    "fen": "r4r1k/p7/1p1p2P1/3Pp2n/3n4/7Q/PP4PP/R1B2RK1 b - - 0 23",
+    "best": "d4e2",
+    "explain": "d4e2",
+    "move_only": "d4e2",
+    "instinct": "d4e2",
+    "idea": "Check the king first, then grab the loose h5-knight."
+   },
+   {
+    "fen": "3rr3/5k2/p1p1p3/2PnBp2/1P3Pp1/P2R2P1/6K1/3R4 b - - 1 37",
+    "best": "d5e3",
+    "explain": "d5e3",
+    "move_only": "d5e3",
+    "instinct": "d5e3",
+    "idea": "Check the loose d-file and hit the loose e-file with the rooks."
+   },
+   {
+    "fen": "8/p3r1k1/2p3p1/3rPb2/1P3P2/P5K1/1B5R/8 w - - 14 44",
+    "best": "e5e6",
+    "explain": "e5e6",
+    "move_only": "e5e6",
+    "instinct": "b2d4",
+    "idea": "Check the loose rook with tempo, then grab the loose e-pawn."
+   },
+   {
+    "fen": "rn2k1nr/ppp2p2/4B2p/4b1pQ/3qPp2/8/PPP3PP/RNB1K2R w KQkq - 0 10",
+    "best": "h5f7",
+    "explain": "h5f7",
+    "move_only": "h5f7",
+    "instinct": "h5f7",
+    "idea": "Take the pawn that is attacking your bishop."
+   },
+   {
+    "fen": "2kr4/ppp2Rpr/2p5/4P3/3P2P1/2P3b1/PP1N2P1/R5K1 b - - 2 20",
+    "best": "d8h8",
+    "explain": "g3e5",
+    "move_only": "d8h8",
+    "instinct": "g3h2",
+    "idea": "Take the pawn that is attacking your king, then bring the rook to h8."
+   },
+   {
+    "fen": "8/Q2bkBpp/1N1b4/8/7K/4PN2/P1q3PP/8 b - - 12 37",
+    "best": "c2e4",
+    "explain": "g7g5",
+    "move_only": "c2g2",
+    "instinct": "g7g5",
+    "idea": "Check the king first, then grab the loose g2-pawn."
+   },
+   {
+    "fen": "R7/8/P7/8/8/5p2/r4k2/3K4 b - - 1 45",
+    "best": "f2f1",
+    "explain": "a2a1",
+    "move_only": "a2a1",
+    "instinct": "a2a1",
+    "idea": "Check the loose rook with tempo, then grab the loose a6-pawn."
+   },
+   {
+    "fen": "R1R5/5pk1/4p1pp/4P3/4PK2/1bPr4/1P4PP/8 b - - 1 30",
+    "best": "g6g5",
+    "explain": "g6g5",
+    "move_only": "g6g5",
+    "instinct": "g6g5",
+    "idea": "Check the king first, then use the extra material to win back."
+   },
+   {
+    "fen": "6k1/4q1p1/pp6/2p1br1P/3p4/PP1PpB2/1KP3Q1/6R1 w - - 2 36",
+    "best": "h5h6",
+    "explain": "f3d5",
+    "move_only": "f3d5",
+    "instinct": "f3d5",
+    "idea": "Check the loose f5-rook and hit the exposed king with the bishop."
+   },
+   {
+    "fen": "5r2/pr3k2/1pq1p1pQ/4Pp2/3P3R/8/7P/5RK1 w - - 4 29",
+    "best": "f1c1",
+    "explain": "h6h7",
+    "move_only": "h6h7",
+    "instinct": "h6h7",
+    "idea": "Check the king first, then grab the loose f5-pawn."
+   },
+   {
+    "fen": "5r2/4ppkp/6p1/8/8/3K4/r4PPP/3R1B1R b - - 2 22",
+    "best": "f8d8",
+    "explain": "a2f2",
+    "move_only": "f8d8",
+    "instinct": "f8b8",
+    "idea": "Take the loose f2-pawn and keep the rook near the king."
+   },
+   {
+    "fen": "1qbr4/R3nkpp/1p2pp2/1B6/1P1P4/Q4N2/5PPP/6K1 w - - 9 24",
+    "best": "f3e5",
+    "explain": "f3e5",
+    "move_only": "f3e5",
+    "instinct": "f3e5",
+    "idea": "Check the king first, then grab the loose e7-knight."
+   },
+   {
+    "fen": "5rk1/5p2/6pp/8/3Q4/1B3p2/P3q2P/2R3K1 b - - 0 41",
+    "best": "e2g2",
+    "explain": "e2g2",
+    "move_only": "e2g2",
+    "instinct": "e2g2",
+    "idea": "Check the king out of its corner, then grab the loose d4-pawn."
+   },
+   {
+    "fen": "6k1/p5p1/3q1pNp/2p5/4Q3/P1P3P1/1P3PKP/3r4 w - - 3 36",
+    "best": "e4e8",
+    "explain": "e4e8",
+    "move_only": "e4e8",
+    "instinct": "e4e8",
+    "idea": "Check the king first, then grab the loose pawns."
+   },
+   {
+    "fen": "rn1qk2r/pppbb1pp/4p3/4P3/2P3n1/2N2N1P/PP4P1/R1BQKB1R b KQkq - 0 10",
+    "best": "e7h4",
+    "explain": "e7h4",
+    "move_only": "e7h4",
+    "instinct": "e7h4",
+    "idea": "Check the loose knight and keep the loose bishop near the king."
+   },
+   {
+    "fen": "rn2Qbk1/ppp2ppp/8/8/2P3b1/3P1qP1/P2B1P1P/R3R1K1 w - - 2 19",
+    "best": "e8f8",
+    "explain": "d2f4",
+    "move_only": "d2f4",
+    "instinct": "d2g5",
+    "idea": "Block the check with the loose bishop so it is safe."
+   },
+   {
+    "fen": "r1b4r/pp4pp/2pqk3/3np3/2BPQ3/2P1P3/6PP/2R2RK1 w - - 1 18",
+    "best": "e4g4",
+    "explain": "e4f5",
+    "move_only": "e4f5",
+    "instinct": "d4e5",
+    "idea": "Check the king first, then grab the loose e5-pawn."
+   },
+   {
+    "fen": "r5k1/1RR2p1p/4p1p1/8/3r4/2P3P1/4KP2/6b1 w - - 0 29",
+    "best": "c3d4",
+    "explain": "c3d4",
+    "move_only": "c3d4",
+    "instinct": "c3d4",
+    "idea": "Take the free rook. The d4-rook is loose."
+   },
+   {
+    "fen": "r5k1/p4p1p/1p2p1p1/6P1/3r1P2/1P1b4/P4KPR/7R w - - 0 30",
+    "best": "h2h7",
+    "explain": "f2e3",
+    "move_only": "f2e3",
+    "instinct": "f2e3",
+    "idea": "Step the king off the d-file so the rooks guard f4."
+   },
+   {
+    "fen": "6k1/pp4bp/6p1/3Pp3/4q3/4P1Pb/P2B3P/2RQ1RK1 b - - 0 22",
+    "best": "e4g2",
+    "explain": "e4g2",
+    "move_only": "e4d5",
+    "instinct": "e4g2",
+    "idea": "Check the king first, then grab d5 with the queen."
+   },
+   {
+    "fen": "8/p7/p1P5/1k1p1b1P/3K4/8/8/8 w - - 3 45",
+    "best": "c6c7",
+    "explain": "d4d5",
+    "move_only": "d4d5",
+    "instinct": "c6c7",
+    "idea": "Take the pawn that threatens your c6-pawn."
+   },
+   {
+    "fen": "r4rk1/p4ppp/1p1qpn2/2P5/P3Q3/5N2/1PP2PPP/R2R2K1 b - - 0 15",
+    "best": "d6d1",
+    "explain": "d6d1",
+    "move_only": "d6d1",
+    "instinct": "f6e4",
+    "idea": "Take the free queen. Don't give back material."
+   },
+   {
+    "fen": "3rnr1k/4Npp1/p2q3p/1p6/8/P4RP1/1P2QP1P/3R2K1 b - - 1 34",
+    "best": "d6d1",
+    "explain": "d6d1",
+    "move_only": "d6d1",
+    "instinct": "d6d1",
+    "idea": "Take the free rook with the queen, then trade queens."
+   },
+   {
+    "fen": "2r1r1k1/pp1bppbp/2n2np1/q2Np3/2B5/5NBP/PP2QPP1/R2R2K1 w - - 0 15",
+    "best": "d5f6",
+    "explain": "f3e5",
+    "move_only": "d5f6",
+    "instinct": "d5f6",
+    "idea": "Take the loose e5-pawn now, then use the extra material."
+   },
+   {
+    "fen": "r3k2r/p1p1bpp1/4p3/4P1p1/q3N3/1Rp1P2P/2Q2PP1/4K2R w Kkq - 0 23",
+    "best": "b3b8",
+    "explain": "e4c3",
+    "move_only": "e4d6",
+    "instinct": "e4d6",
+    "idea": "Take the pawn that threatens Ne4, then use the extra material."
+   },
+   {
+    "fen": "r2qkb1r/pp3ppp/4bn2/2p1QP2/3pP3/3P4/PPP1N1PP/RNB2RK1 b kq - 0 12",
+    "best": "f8d6",
+    "explain": "f8d6",
+    "move_only": "f8d6",
+    "instinct": "f8d6",
+    "idea": "Break the pin by putting the knight on d7, then grab the loose f5-pawn."
+   },
+   {
+    "fen": "8/5p2/2k4p/p2pP1p1/1P1K2P1/2P4P/8/8 b - - 0 40",
+    "best": "a5a4",
+    "explain": "a5b4",
+    "move_only": "c6b5",
+    "instinct": "a5b4",
+    "idea": "Break open the centre with tempo, then use the extra material."
+   },
+   {
+    "fen": "2r3k1/R4ppp/1pN1p3/3pP3/5n2/8/P5PP/6K1 w - - 3 25",
+    "best": "c6e7",
+    "explain": "c6e7",
+    "move_only": "c6e7",
+    "instinct": "c6e7",
+    "idea": "Check the loose knight and grab the loose f4-knight before it escapes."
+   },
+   {
+    "fen": "r4rk1/ppq2pBp/2pbp3/8/2B5/2nP3P/PPPnRP2/6RK w - - 0 19",
+    "best": "g7e5",
+    "explain": "g7f6",
+    "move_only": "g7c3",
+    "instinct": "g7f6",
+    "idea": "Check the loose d2-knight and bring the rook to d2."
+   },
+   {
+    "fen": "5r1k/4b1p1/p2pqnBp/1p3Q2/5P2/2P1B3/PP3P1K/R7 b - - 5 28",
+    "best": "f6g4",
+    "explain": "f6g4",
+    "move_only": "f6g4",
+    "instinct": "f6g4",
+    "idea": "Check the loose f6-knight and grab the loose f5-queen."
+   },
+   {
+    "fen": "r3rnk1/1p3ppp/p7/3p1q2/1P6/P1P2BR1/7P/R5QK w - - 0 26",
+    "best": "g3g7",
+    "explain": "g3g7",
+    "move_only": "g3g7",
+    "instinct": "f3g4",
+    "idea": "Take the loose pawn on g7, then mate the king with the rooks."
+   },
+   {
+    "fen": "3r1kn1/3B1r2/7p/p1R4p/3R4/4PbP1/PP3P2/6K1 w - - 5 41",
+    "best": "d7e6",
+    "explain": "d7e6",
+    "move_only": "d7e6",
+    "instinct": "d7e6",
+    "idea": "Save the attacked bishop with tempo on f7, then grab a5."
+   },
+   {
+    "fen": "1r1qkb1r/ppp1np2/3p3p/3N2p1/2PPp3/1Q2PbP1/PP3PBP/R1B1K1R1 w Qk - 3 15",
+    "best": "d5f6",
+    "explain": "d5f6",
+    "move_only": "d5f6",
+    "instinct": "d5f6",
+    "idea": "Check the king off e8, then grab the loose c7-pawn."
+   },
+   {
+    "fen": "2r3k1/1p3ppp/p7/4Q3/6PP/P2b3q/3B1P2/3RK3 w - - 1 27",
+    "best": "d2c3",
+    "explain": "e5e8",
+    "move_only": "e5e8",
+    "instinct": "d2g5",
+    "idea": "Block the mate with the queen so it is safe."
+   },
+   {
+    "fen": "5k2/p3p3/2p1Pr2/PpNb1qQp/1PpP2pP/2P3P1/6PK/4R3 b - - 8 44",
+    "best": "f5g5",
+    "explain": "f5g5",
+    "move_only": "f5g5",
+    "instinct": "f5g5",
+    "idea": "Take the free piece first, then trade queens."
+   },
+   {
+    "fen": "6k1/6p1/7p/p1P5/2R5/3P1K1P/2r3P1/8 b - - 4 39",
+    "best": "c2c4",
+    "explain": "c2c4",
+    "move_only": "c2c4",
+    "instinct": "c2c4",
+    "idea": "Take the free rook, then trade into a safe, active position."
+   },
+   {
+    "fen": "6k1/p3bpp1/2p4p/2Pp1n2/P2PpPP1/4P3/2Q3P1/1NB1qNK1 b - - 0 28",
+    "best": "f5g3",
+    "explain": "e1f1",
+    "move_only": "f5h4",
+    "instinct": "e1f1",
+    "idea": "Take the attacking knight with the queen so it is safe."
+   },
+   {
+    "fen": "8/5k2/R4P2/P5K1/8/2p5/4r3/8 b - - 1 45",
+    "best": "e2e5",
+    "explain": "c3c2",
+    "move_only": "c3c2",
+    "instinct": "c3c2",
+    "idea": "Block the check with the rook so it is safe."
+   },
+   {
+    "fen": "6k1/3r1p1p/4bp2/p1r5/Q1n5/4P1P1/5PBP/2R3K1 b - - 0 26",
+    "best": "c4b2",
+    "explain": "c4d2",
+    "move_only": "d7d2",
+    "instinct": "c4d2",
+    "idea": "Block the check with the loose knight so it is safe."
+   },
+   {
+    "fen": "8/p4RP1/4pn2/1P2k2p/8/8/r4pK1/8 w - - 1 59",
+    "best": "f7f6",
+    "explain": "f7f6",
+    "move_only": "f7f6",
+    "instinct": "f7f6",
+    "idea": "Take the loose f6-knight and keep the rook on f7."
+   },
+   {
+    "fen": "3rr1k1/pp4pp/2p5/3P1PB1/3PP2n/P5NP/7P/R5K1 b - - 2 25",
+    "best": "h4f3",
+    "explain": "h4f3",
+    "move_only": "h4f3",
+    "instinct": "h4f3",
+    "idea": "Check the king first, then grab d5 with the pawn."
+   },
+   {
+    "fen": "r1b2rk1/1p3ppp/p1n1qb2/8/3N1B2/P5P1/1PQ1PPBP/3R1RK1 b - - 10 17",
+    "best": "c6d4",
+    "explain": "c6d4",
+    "move_only": "f6d4",
+    "instinct": "c6d4",
+    "idea": "Take the free piece first, then use the extra material."
+   },
+   {
+    "fen": "8/2p1p2p/1p3kp1/3P2R1/4P1PP/Pb6/8/6K1 b - - 0 33",
+    "best": "b3c4",
+    "explain": "e7e5",
+    "move_only": "h7h6",
+    "instinct": "e7e5",
+    "idea": "Push the attacked pawn forward to free the king."
+   },
+   {
+    "fen": "r2q2r1/p2k1pbQ/1pbpp3/1B6/3P1n2/5N2/PPP2PPP/1K1RR3 w - - 2 20",
+    "best": "b5c6",
+    "explain": "b5c6",
+    "move_only": "b5c6",
+    "instinct": "b5c6",
+    "idea": "Take the loose c6-bishop, then trade down toward a winning endgame."
+   },
+   {
+    "fen": "2k4r/ppp2ppp/2p5/2b1P3/6b1/P1N1B1P1/1PP2K1P/R2r1B1R b - - 4 16",
+    "best": "c5e3",
+    "explain": "d1a1",
+    "move_only": "d1a1",
+    "instinct": "d1a1",
+    "idea": "Take the free rook. It is attacking the loose c5-bishop."
+   },
+   {
+    "fen": "5q1k/pp4pp/1nr5/3p2P1/3Pp1BP/1PP1B3/P7/5RK1 w - - 0 26",
+    "best": "f1f8",
+    "explain": "f1f8",
+    "move_only": "f1f8",
+    "instinct": "f1f8",
+    "idea": "Check the king first, then grab the loose queen."
+   },
+   {
+    "fen": "4r1k1/pq1rb1pp/1p3p2/8/2pP1nP1/P1N4P/1P3B1K/1Q1RNR2 b - - 1 28",
+    "best": "e7d6",
+    "explain": "b7g2",
+    "move_only": "e7d6",
+    "instinct": "b7g2",
+    "idea": "Check the king first, then grab d4 before it becomes a target."
+   },
+   {
+    "fen": "5rk1/p2r1pp1/2p4p/4BP2/2B1b2P/8/PP1q1QP1/5R1K w - - 1 25",
+    "best": "f2g3",
+    "explain": "f2d2",
+    "move_only": "f2g3",
+    "instinct": "f2d2",
+    "idea": "Take the loose d2-queen, then trade queens to kill Black's attack."
+   },
+   {
+    "fen": "8/1P3k2/4p3/3pBpK1/3P1P2/7N/6p1/7r b - - 0 51",
+    "best": "h1h3",
+    "explain": "h1h3",
+    "move_only": "h1h3",
+    "instinct": "h1h3",
+    "idea": "Take the loose knight with the rook, then bring the rook back to h1."
+   },
+   {
+    "fen": "7Q/1p5q/p1p1p1k1/2Pp1rpp/1P1Bb3/P3P1P1/4B3/6K1 w - - 2 44",
+    "best": "e2h5",
+    "explain": "e2h5",
+    "move_only": "e2h5",
+    "instinct": "e2g4",
+    "idea": "Take the pawn that is attacking your queen, then bring the bishop to g4."
+   },
+   {
+    "fen": "r4k1r/pp1B1ppp/3N4/3Qn3/6P1/4P2P/PPq2P2/R3K2R b KQ - 0 15",
+    "best": "e5d3",
+    "explain": "c2b2",
+    "move_only": "e5d3",
+    "instinct": "e5d3",
+    "idea": "Take the loose d7-bishop, then use the extra material."
+   },
+   {
+    "fen": "8/8/6p1/1R1N4/3k4/5p2/7K/r7 b - - 5 52",
+    "best": "f3f2",
+    "explain": "f3f2",
+    "move_only": "d4e4",
+    "instinct": "f3f2",
+    "idea": "Push f2 to block the check and keep the king near the centre."
+   },
+   {
+    "fen": "6r1/8/5p1p/R5P1/4k3/6K1/7P/8 b - - 0 45",
+    "best": "g8g5",
+    "explain": "g8g5",
+    "move_only": "g8g5",
+    "instinct": "g8g5",
+    "idea": "Take the pawn that attacks your king, then trade into a safe rook ending."
+   },
+   {
+    "fen": "r5k1/1R3ppp/3q4/p7/P1r5/5QPP/5P2/6K1 w - - 0 39",
+    "best": "f3f7",
+    "explain": "b7f7",
+    "move_only": "f3f7",
+    "instinct": "f3f7",
+    "idea": "Take the pawn that is attacking your a4-knight."
+   },
+   {
+    "fen": "2r5/p6k/1P4R1/7q/3PBp2/6p1/PP1Q4/6K1 b - - 1 35",
+    "best": "c8c1",
+    "explain": "c8c1",
+    "move_only": "h5g6",
+    "instinct": "c8c1",
+    "idea": "Check the king first, then grab the loose pawns."
+   },
+   {
+    "fen": "5rk1/1R4pp/3b4/p2pq3/6p1/P3P3/1P1Q1PPP/2R3K1 b - - 0 24",
+    "best": "e5h2",
+    "explain": "e5h2",
+    "move_only": "e5h2",
+    "instinct": "e5h2",
+    "idea": "Take the pawn that is attacking your own pawns."
+   },
+   {
+    "fen": "2B3k1/1p3p2/2p3bP/4P3/1P6/2p1b3/2P4P/4R2K b - - 1 32",
+    "best": "g6e4",
+    "explain": "g6e4",
+    "move_only": "g6e4",
+    "instinct": "g6e4",
+    "idea": "Check the king first, then grab the loose c2-pawn."
+   },
+   {
+    "fen": "3r1rk1/ppp3pp/8/3Npq2/4R3/1Q6/PP4PP/4R1K1 b - - 4 19",
+    "best": "f5f2",
+    "explain": "f5f2",
+    "move_only": "f5f2",
+    "instinct": "f5f2",
+    "idea": "Check the king off g1, then grab the loose d5-knight."
+   },
+   {
+    "fen": "2b2rr1/2P1k3/4p3/2Q3n1/2P2b2/P6p/1P4P1/R4R1K b - - 1 37",
+    "best": "f4d6",
+    "explain": "e7d7",
+    "move_only": "e7e8",
+    "instinct": "f4d6",
+    "idea": "Step the king off the back rank so the bishop can hit the loose queen."
+   },
+   {
+    "fen": "3r2k1/p1p3pp/8/7n/1PN5/P2R1P2/4rP1P/3R2K1 b - - 0 28",
+    "best": "d8d3",
+    "explain": "d8d3",
+    "move_only": "d8d3",
+    "instinct": "d8d3",
+    "idea": "Take the attacking rook with the free rook, then trade down."
+   },
+   {
+    "fen": "8/6pk/1p4r1/p6p/P7/5q1P/1PQ3P1/3R2K1 w - - 0 40",
+    "best": "c2g6",
+    "explain": "c2g6",
+    "move_only": "c2g6",
+    "instinct": "c2g6",
+    "idea": "Take the free rook on g6, then trade queens."
+   },
+   {
+    "fen": "2kr4/2p5/pp2p3/8/4Q3/7P/q5P1/1R5K w - - 0 37",
+    "best": "e4a8",
+    "explain": "e4a8",
+    "move_only": "e4a8",
+    "instinct": "e4c6",
+    "idea": "Check the king off the second rank and grab the loose e6-pawn."
+   },
+   {
+    "fen": "6k1/6pp/2p2N2/1pPb4/3P1Q2/p1P4P/P4RPK/1q2r3 b - - 0 33",
+    "best": "g7f6",
+    "explain": "g7f6",
+    "move_only": "g7f6",
+    "instinct": "g7f6",
+    "idea": "Take the checking knight with the pawn, then trade down."
+   },
+   {
+    "fen": "r3r3/p1R3pk/2p5/3pP3/4b3/5QBP/P1q3P1/3R2K1 w - - 2 23",
+    "best": "f3h5",
+    "explain": "f3h5",
+    "move_only": "f3h5",
+    "instinct": "f3h5",
+    "idea": "Check the king off the back rank before it lands on e4."
+   },
+   {
+    "fen": "3r2k1/pp3p2/2p4R/2P1B1p1/1P2Pn1p/P4QPq/5P2/6K1 b - - 0 26",
+    "best": "d8d1",
+    "explain": "d8d1",
+    "move_only": "d8d1",
+    "instinct": "d8d1",
+    "idea": "Check the king off g1, then grab g3."
+   },
+   {
+    "fen": "1r6/p5kp/1pqbp1p1/2p2n2/3pN1P1/1P1P1Q1P/PBP2PK1/R7 b - - 0 25",
+    "best": "f5h4",
+    "explain": "f5h4",
+    "move_only": "f5h4",
+    "instinct": "f5h4",
+    "idea": "Check the king first, then grab the loose g4-knight."
+   },
+   {
+    "fen": "r2q2k1/pp3p1p/6p1/3B4/2NbP3/5P2/PP4PK/R4Q2 b - - 0 23",
+    "best": "d8h4",
+    "explain": "d8h4",
+    "move_only": "d8h4",
+    "instinct": "d8h4",
+    "idea": "Check the king first, then grab the loose b7-pawn."
+   },
+   {
+    "fen": "r1bq1r1k/pppnn1b1/3p2Q1/6NP/2PpN3/4P1B1/PP3PP1/R3K2R w KQ - 3 19",
+    "best": "g6h7",
+    "explain": "g6h7",
+    "move_only": "g6h7",
+    "instinct": "g5f7",
+    "idea": "Check the king first, then grab the loose d4-pawn."
+   },
+   {
+    "fen": "R7/2k4r/8/2p5/2K5/3p4/8/8 w - - 0 64",
+    "best": "a8a7",
+    "explain": "c4c5",
+    "move_only": "a8a7",
+    "instinct": "a8a7",
+    "idea": "Take the pawn that is attacking your king."
+   },
+   {
+    "fen": "r4r2/p5kp/5qp1/3RbpQ1/2B1p3/8/P1P3PP/5R1K w - - 1 29",
+    "best": "d5d7",
+    "explain": "d5d7",
+    "move_only": "d5d7",
+    "instinct": "d5d7",
+    "idea": "Check the king off g7, then grab the loose e5-bishop."
+   },
+   {
+    "fen": "r1b1r1k1/ppp2ppp/8/8/2NpP1n1/P2B1P2/1P2K1P1/R1BQR2q b - - 4 17",
+    "best": "h1g2",
+    "explain": "h1g2",
+    "move_only": "h1g2",
+    "instinct": "h1g2",
+    "idea": "Check the loose knight first; don't block with the queen."
+   },
+   {
+    "fen": "8/8/1rpk4/6R1/3p2P1/1B6/P1P4b/2K5 b - - 0 39",
+    "best": "h2f4",
+    "explain": "h2f4",
+    "move_only": "h2f4",
+    "instinct": "h2f4",
+    "idea": "Check the loose rook with the bishop so it is safe."
+   },
+   {
+    "fen": "r1bqkbnr/1pp2ppp/2np4/p2NpB2/2P3Q1/P3P3/1P1P1PPP/R1B1K1NR b KQkq - 1 8",
+    "best": "g8h6",
+    "explain": "g8f6",
+    "move_only": "g8f6",
+    "instinct": "c8f5",
+    "idea": "Develop the c8-bishop with tempo on f5, then use the half-open files."
+   },
+   {
+    "fen": "3q2k1/1pn1n3/p1p4Q/8/2Nr1p2/P3R2P/1P3PP1/6K1 w - - 0 40",
+    "best": "h6g5",
+    "explain": "e3e7",
+    "move_only": "e3e7",
+    "instinct": "e3e7",
+    "idea": "Block the checks with the rook so it is safe."
+   },
+   {
+    "fen": "8/5pk1/p3p1p1/1P4Pp/1P2QP1K/2q1P2P/8/8 b - - 0 33",
+    "best": "c3e1",
+    "explain": "c3e1",
+    "move_only": "a6b5",
+    "instinct": "a6b5",
+    "idea": "Check the king first, then grab the loose b5-pawn."
+   },
+   {
+    "fen": "2k2b1r/1p3ppp/p7/1Np5/2P1B3/1P2PPK1/r5PP/n2R4 w - - 0 20",
+    "best": "e4f5",
+    "explain": "e4f5",
+    "move_only": "e4f5",
+    "instinct": "e4f5",
+    "idea": "Check the loose king first, then use the extra material to grab loose pawns."
+   },
+   {
+    "fen": "2kr3r/1ppb1ppp/p2b1B2/3Nq3/4P3/1B3Q2/PPP2PPP/R4RK1 b - - 0 14",
+    "best": "e5h2",
+    "explain": "g7f6",
+    "move_only": "e5h2",
+    "instinct": "e5h2",
+    "idea": "Take the free pawn, then use the extra material to win back the bishop."
+   },
+   {
+    "fen": "r5k1/pp3pp1/7p/3p4/3NrbQ1/2P2R1P/PP4P1/4R2K b - - 0 22",
+    "best": "e4e1",
+    "explain": "e4e1",
+    "move_only": "e4e1",
+    "instinct": "e4e1",
+    "idea": "Take the free rook. It is attacking your king."
+   },
+   {
+    "fen": "8/3pk2p/5p2/r5p1/1P4P1/7P/5PK1/8 w - - 0 34",
+    "best": "b4a5",
+    "explain": "b4a5",
+    "move_only": "b4a5",
+    "instinct": "b4a5",
+    "idea": "Take the free rook. Never leave a piece behind."
+   },
+   {
+    "fen": "2r2rk1/5pp1/p4b2/B6p/3N4/P1PP1P1b/1P3K1P/RN2R3 b - - 2 20",
+    "best": "f6h4",
+    "explain": "f6h4",
+    "move_only": "f6h4",
+    "instinct": "f6h4",
+    "idea": "Check the king off f2, then grab d4 with the bishop."
+   },
+   {
+    "fen": "8/6pk/2N1P2p/5Q2/6q1/4b3/PP1r2PP/5R1K b - - 0 31",
+    "best": "g4f5",
+    "explain": "g4f5",
+    "move_only": "g4f5",
+    "instinct": "g4f5",
+    "idea": "Take the checking queen with the queen, then trade queens."
+   },
+   {
+    "fen": "r4rk1/pp1n1ppp/2pbpn2/q2p1b2/2PP4/1P2PN2/PB1QBPPP/R3KN1R b KQ - 4 10",
+    "best": "d6b4",
+    "explain": "d6b4",
+    "move_only": "d6b4",
+    "instinct": "d6b4",
+    "idea": "Save the attacked queen with tempo on d2, then grab d5."
+   },
+   {
+    "fen": "5r1k/5rp1/p1p4p/2P1p3/1P3nP1/PB1P4/1N4PP/1R3RK1 b - - 0 31",
+    "best": "f4e2",
+    "explain": "f4e2",
+    "move_only": "f4e2",
+    "instinct": "f4e2",
+    "idea": "Check the king off the f-file before it lands on g1."
+   },
+   {
+    "fen": "6k1/p6p/1p4pP/4p1P1/4P3/2Pq4/P1K5/8 w - - 0 50",
+    "best": "c2d3",
+    "explain": "c2d3",
+    "move_only": "c2d3",
+    "instinct": "c2d3",
+    "idea": "Take the checking queen with the king, then trade queens."
+   },
+   {
+    "fen": "5r1k/p5p1/2p1Q2p/4N3/8/1P3PK1/P1q3PP/8 w - - 2 36",
+    "best": "e5g6",
+    "explain": "e5g6",
+    "move_only": "e5g6",
+    "instinct": "e5g6",
+    "idea": "Check the loose f8-rook and grab h6 before it is lost."
+   },
+   {
+    "fen": "5k2/3R4/3p4/r4b1N/1p2p2b/pP6/P1P5/1K3R2 b - - 1 37",
+    "best": "e4e3",
+    "explain": "e4e3",
+    "move_only": "a5a8",
+    "instinct": "e4e3",
+    "idea": "Block the d6-pawn with a pawn so it stays a threat."
+   },
+   {
+    "fen": "2r1rb2/pb1R1p1k/1p3p1p/2P1qN2/8/6Q1/PP3PPP/R5K1 w - - 0 25",
+    "best": "d7f7",
+    "explain": "d7f7",
+    "move_only": "d7f7",
+    "instinct": "d7f7",
+    "idea": "Take the loose f7-pawn now, then use the rook to hit the loose b7-bishop."
+   },
+   {
+    "fen": "6k1/pp1q1ppp/3ppn2/8/3P4/4PN2/nP1N1PPP/2Q3K1 w - - 0 20",
+    "best": "c1c4",
+    "explain": "c1a1",
+    "move_only": "c1c8",
+    "instinct": "c1c8",
+    "idea": "Save the attacked queen with tempo on the loose knight."
+   },
+   {
+    "fen": "6k1/1pr2p1p/2q1pBp1/5r2/7Q/1P6/P1P1R2P/R1K5 b - - 6 33",
+    "best": "e6e5",
+    "explain": "f5f1",
+    "move_only": "f5f1",
+    "instinct": "f5f1",
+    "idea": "Check the loose f6-bishop and grab the loose e6-pawn before cashing in."
+   },
+   {
+    "fen": "rnb2rkb/pp5p/2p4P/3p4/2Pn2pN/2NBq3/PPQ3P1/R2K3R w - - 0 21",
+    "best": "d3h7",
+    "explain": "d3h7",
+    "move_only": "d3h7",
+    "instinct": "d3h7",
+    "idea": "Take the pawn that is attacking your queen, then trade queens."
+   },
+   {
+    "fen": "2br1rk1/4q1B1/ppnp3p/2p2pp1/2P5/PP2nN2/2Q1BPPP/3R1RK1 w - - 0 20",
+    "best": "g7f8",
+    "explain": "g7f8",
+    "move_only": "g7f8",
+    "instinct": "g7f8",
+    "idea": "Take the free rook with the bishop, then trade down."
+   },
+   {
+    "fen": "8/8/4p3/2P1P3/3K3p/8/6k1/8 w - - 1 40",
+    "best": "c5c6",
+    "explain": "d4e3",
+    "move_only": "d4e3",
+    "instinct": "c5c6",
+    "idea": "Block the h4-pawn's diagonal so the king can stay near the d4-knight."
+   },
+   {
+    "fen": "1k6/pp3pp1/2pPpbp1/Q2q4/3P4/8/PP3P2/1K1R4 w - - 2 27",
+    "best": "a5c7",
+    "explain": "a5c7",
+    "move_only": "a5c7",
+    "instinct": "a5c7",
+    "idea": "Check the king off b8, then grab the loose d4-pawn."
+   },
+   {
+    "fen": "r3n3/N4k1p/3p3q/3PpN2/PP2Pp1r/5Rb1/6PP/2R3QK b - - 5 34",
+    "best": "h4h2",
+    "explain": "h4h2",
+    "move_only": "h4h2",
+    "instinct": "h4h2",
+    "idea": "Take the pawn that is attacking your queen, then mate."
+   },
+   {
+    "fen": "1Q6/8/4kp2/1pPq1p1p/1P2b2P/p1P3P1/P4P2/2K5 w - - 11 49",
+    "best": "b8e8",
+    "explain": "b8e8",
+    "move_only": "b8e8",
+    "instinct": "b8e8",
+    "idea": "Check first, then grab the loose b5-pawn with the queen."
+   },
+   {
+    "fen": "8/8/5K2/5BP1/5k2/4p3/8/8 b - - 0 79",
+    "best": "e3e2",
+    "explain": "e3e2",
+    "move_only": "e3e2",
+    "instinct": "e3e2",
+    "idea": "Push the passed pawn forward to gain space and pressure on White's king."
+   },
+   {
+    "fen": "8/8/8/1R1r4/8/8/2p1K3/2k5 w - - 2 66",
+    "best": "b5d5",
+    "explain": "b5d5",
+    "move_only": "b5d5",
+    "instinct": "b5d5",
+    "idea": "Take the free rook. Never leave a piece behind."
+   },
+   {
+    "fen": "5k2/5ppp/3N4/2Pp4/3Pp1n1/4B3/1q3PPP/5RK1 w - - 5 29",
+    "best": "c5c6",
+    "explain": "c5c6",
+    "move_only": "c5c6",
+    "instinct": "c5c6",
+    "idea": "Block the check with a pawn so the rook still guards the d4-pawn."
+   },
+   {
+    "fen": "4k3/pR4Qp/4p3/7P/1p2b3/b7/5P1K/2r5 b - - 3 36",
+    "best": "c1h1",
+    "explain": "c1h1",
+    "move_only": "c1h1",
+    "instinct": "c1h1",
+    "idea": "Check the king first, then grab the loose b7-rook."
+   },
+   {
+    "fen": "8/8/7P/R4pn1/p4k2/8/6RK/r7 b - - 0 45",
+    "best": "g5f3",
+    "explain": "g5f3",
+    "move_only": "g5f3",
+    "instinct": "g5f3",
+    "idea": "Check the king off the f-file before grabbing pawns."
+   },
+   {
+    "fen": "8/R6p/7k/5Kp1/5P2/1Pb5/P6r/8 w - - 0 39",
+    "best": "f4g5",
+    "explain": "f4g5",
+    "move_only": "f4g5",
+    "instinct": "f4g5",
+    "idea": "Take the pawn that is attacking your king."
+   },
+   {
+    "fen": "4r1k1/pp3p1p/2p2Pp1/7q/8/3B4/PPP3PP/4R2K w - - 0 26",
+    "best": "e1e8",
+    "explain": "e1e8",
+    "move_only": "e1e8",
+    "instinct": "e1e8",
+    "idea": "Take the free rook. Black's rook on e8 is attacked, so grab it."
+   },
+   {
+    "fen": "8/p1pkr2p/1p6/8/3P4/P1P3bP/1P2R1P1/4R2K b - - 0 35",
+    "best": "g3e1",
+    "explain": "g3e1",
+    "move_only": "g3e1",
+    "instinct": "e7e2",
+    "idea": "Take the free rook, then use the extra material to win back the e2 rook."
+   },
+   {
+    "fen": "2k5/1pp4p/p7/8/4p3/P1pP3P/6PK/4R3 b - - 0 26",
+    "best": "e4d3",
+    "explain": "e4d3",
+    "move_only": "e4d3",
+    "instinct": "c3c2",
+    "idea": "Take the d3-pawn, then use the extra material to push the passed pawn."
+   },
+   {
+    "fen": "3r4/1R3pkp/8/2bN1p2/5N2/7P/r2n1PP1/5RK1 w - - 1 27",
+    "best": "f4e6",
+    "explain": "f4e6",
+    "move_only": "f4e6",
+    "instinct": "f4e6",
+    "idea": "Check the loose d8-rook and grab f7 before it is lost."
+   },
+   {
+    "fen": "r6k/pp4rp/4pQ2/3pP1qP/5N2/8/PP6/5R1K w - - 1 30",
+    "best": "f4g6",
+    "explain": "f4g6",
+    "move_only": "f4g6",
+    "instinct": "f4g6",
+    "idea": "Check the king first, then grab the loose e6-pawn."
+   },
+   {
+    "fen": "r2qr1k1/1p3p1p/pn1p4/2pP1R2/2Pbn3/2NQB2P/PP4P1/R3N1K1 b - - 2 17",
+    "best": "e4c3",
+    "explain": "d4e3",
+    "move_only": "e4c3",
+    "instinct": "e4c3",
+    "idea": "Take the loose c3-knight with the bishop, then trade down."
+   },
+   {
+    "fen": "2kr3r/pppqp3/2npP1pp/8/6P1/2b2N1P/PPPQ1P2/2K1RB1R b - - 0 16",
+    "best": "c3d2",
+    "explain": "c3d2",
+    "move_only": "c3d2",
+    "instinct": "c3d2",
+    "idea": "Take the free queen. Don't give back material."
+   },
+   {
+    "fen": "r2q3k/pbp2n1p/1p3b1B/3p1Q2/2P5/8/PP3PPP/R3R1K1 w - - 0 21",
+    "best": "e1e8",
+    "explain": "e1e8",
+    "move_only": "e1e8",
+    "instinct": "e1e8",
+    "idea": "Check the loose f7-knight and hit the loose d5-pawn before grabbing it."
+   },
+   {
+    "fen": "3r3r/1Qpk1pp1/8/7p/6qb/4P3/PPP2P2/R1B2R1K b - - 2 18",
+    "best": "g4h3",
+    "explain": "g4h3",
+    "move_only": "g4h3",
+    "instinct": "g4h3",
+    "idea": "Check the loose f1-rook and hit the exposed king with the queen."
+   },
+   {
+    "fen": "8/1pb3p1/p1p1p2p/2PpP1kb/PP1Pp3/4P3/4B1PP/4B1K1 w - - 6 26",
+    "best": "h2h4",
+    "explain": "e1h4",
+    "move_only": "g1f1",
+    "instinct": "e1h4",
+    "idea": "Check the loose h5-bishop and hit the exposed king at once."
+   },
+   {
+    "fen": "rn1qr1k1/pp3ppp/3P4/2p1Pb2/1bPBn3/P1N2N2/1P2QPPP/R3KB1R b KQ - 0 13",
+    "best": "c5d4",
+    "explain": "b4c3",
+    "move_only": "b4c3",
+    "instinct": "b4c3",
+    "idea": "Take the free piece, then trade down toward a safe corner."
+   },
+   {
+    "fen": "r4rk1/p1q2ppp/2p5/2P5/6n1/1B1Q2P1/PP3P1b/R1B1R2K b - - 0 25",
+    "best": "g4f2",
+    "explain": "g4f2",
+    "move_only": "g4f2",
+    "instinct": "g4f2",
+    "idea": "Take the pawn that is attacking your king, then trade queens."
+   },
+   {
+    "fen": "5r2/5pk1/4b1p1/1p1pPp1p/r2N1Q1P/P5R1/2q2PP1/R5K1 w - - 0 27",
+    "best": "g3g6",
+    "explain": "d4c2",
+    "move_only": "d4c2",
+    "instinct": "d4c2",
+    "idea": "Take the free queen. Keep the rooks on the d- and g-files."
+   },
+   {
+    "fen": "1k1r3r/pp1qbpp1/4p2p/3nP3/1n2Q3/P1N2N2/1P3PPP/R1BR2K1 b - - 0 16",
+    "best": "d5c3",
+    "explain": "d5c3",
+    "move_only": "d5c3",
+    "instinct": "d5c3",
+    "idea": "Save the attacked knight with tempo on the d1-rook."
+   },
+   {
+    "fen": "4r3/5ppp/1pQrkn1q/3p4/3PP3/2K2P2/PPP4P/4R2R w - - 1 22",
+    "best": "e4d5",
+    "explain": "e4d5",
+    "move_only": "e4d5",
+    "instinct": "e4e5",
+    "idea": "Take the pawn that threatens your queen, then use the extra material."
+   },
+   {
+    "fen": "r5k1/1bp2ppp/p7/1p6/1P1q4/P3rP2/2Q2nPP/R2R1N1K w - - 2 23",
+    "best": "c2f2",
+    "explain": "c2f2",
+    "move_only": "c2f2",
+    "instinct": "c2f2",
+    "idea": "Take the checking knight with the queen, then trade queens."
+   },
+   {
+    "fen": "r2k3r/pbpp1Q2/1pn5/2b1q1N1/8/2N5/PPP2PPP/3R1RK1 w - - 4 18",
+    "best": "f7d7",
+    "explain": "g5e6",
+    "move_only": "f7d7",
+    "instinct": "g5e6",
+    "idea": "Check the king first, then grab d7 with the rook."
+   },
+   {
+    "fen": "8/8/6B1/4kp2/4b1PP/4K3/8/8 b - - 0 43",
+    "best": "f5f4",
+    "explain": "f5g4",
+    "move_only": "f5f4",
+    "instinct": "f5g4",
+    "idea": "Take the pawn that is loose, then use the extra material."
+   },
+   {
+    "fen": "r1b1rbk1/1p1q1pp1/p6p/2p5/2P1N2B/P2B3P/1P3QP1/5R1K w - - 2 24",
+    "best": "e4f6",
+    "explain": "e4f6",
+    "move_only": "e4f6",
+    "instinct": "e4f6",
+    "idea": "Check the loose knight and grab the loose f7-pawn before it is lost."
+   },
+   {
+    "fen": "1r4k1/q5pp/Q4bp1/3p4/3P4/2P2N1P/5PP1/R5K1 b - - 0 33",
+    "best": "b8b1",
+    "explain": "b8b1",
+    "move_only": "b8b1",
+    "instinct": "b8b1",
+    "idea": "Check the king off g1, then grab the loose a6 queen."
+   },
+   {
+    "fen": "2k2b1r/pp2p1p1/2n3pp/4q3/3rNBPP/5Q2/PPP2P2/2KR3R b - - 1 17",
+    "best": "e5e4",
+    "explain": "e5e4",
+    "move_only": "e5e4",
+    "instinct": "e5f4",
+    "idea": "Take the loose e4 knight, then trade queens to drag White's queen away."
+   },
+   {
+    "fen": "8/2q3k1/5pP1/4pP2/8/P4P2/KPBp2r1/3Q4 w - - 4 41",
+    "best": "d1h1",
+    "explain": "d1d2",
+    "move_only": "d1h1",
+    "instinct": "d1d2",
+    "idea": "Take the pawn that is attacking your bishop."
+   },
+   {
+    "fen": "8/6k1/1R2pr2/6Kp/p6P/P7/1P2R3/8 b - - 0 43",
+    "best": "f6f5",
+    "explain": "f6f5",
+    "move_only": "f6f5",
+    "instinct": "f6f5",
+    "idea": "Check the loose king first; don't block with the rook."
+   },
+   {
+    "fen": "7r/Qppk1pp1/4p1qp/1P6/2P5/2b3Pb/P6P/R3R2K w - - 1 25",
+    "best": "a1d1",
+    "explain": "a7b7",
+    "move_only": "a1d1",
+    "instinct": "a7b7",
+    "idea": "Take the free pawn on b7, then use the extra material."
+   },
+   {
+    "fen": "6k1/6rp/p1Q5/2p1p3/3p3q/2PP3b/PP4P1/R6K w - - 0 26",
+    "best": "c6e8",
+    "explain": "c6e8",
+    "move_only": "c6e8",
+    "instinct": "c6e8",
+    "idea": "Check first, then grab the loose pawns with the queen."
+   },
+   {
+    "fen": "r5rk/pp3p1p/2p2P2/3p2Q1/4P3/7R/PqP3PP/5RK1 w - - 1 22",
+    "best": "h3h7",
+    "explain": "h3h7",
+    "move_only": "h3h7",
+    "instinct": "h3h7",
+    "idea": "Check the king first, then grab the loose h7-pawn."
+   },
+   {
+    "fen": "8/2k5/Q1b1p2p/2p5/8/2q4P/6P1/R6K b - - 0 38",
+    "best": "c3h3",
+    "explain": "c3h3",
+    "move_only": "c3h3",
+    "instinct": "c3h3",
+    "idea": "Check the king first, then grab the loose h3-pawn."
+   },
+   {
+    "fen": "Q7/8/3b2k1/5p2/6pK/6P1/8/8 b - - 0 50",
+    "best": "d6e7",
+    "explain": "d6e7",
+    "move_only": "d6e7",
+    "instinct": "d6e5",
+    "idea": "Check the king first; don't give back material."
+   },
+   {
+    "fen": "4rk2/ppp2p2/2n1rBq1/b5Np/3p3P/5Q2/PP1N1PP1/R3R1K1 b - - 4 26",
+    "best": "e6e1",
+    "explain": "e6e1",
+    "move_only": "e6e1",
+    "instinct": "e6e1",
+    "idea": "Take the free rook, then use the extra material to win back the exchange."
+   },
+   {
+    "fen": "8/8/8/8/8/2Q1K3/8/1q1k4 w - - 0 60",
+    "best": "c3d2",
+    "explain": "c3d2",
+    "move_only": "c3d2",
+    "instinct": "c3d4",
+    "idea": "Check the king out of its corner, then grab the loose b1 queen."
+   },
+   {
+    "fen": "2r1k3/6p1/4P3/2p3p1/1p5b/pP6/P1P1qBQ1/2K2R2 w - - 3 33",
+    "best": "f2c5",
+    "explain": "f2c5",
+    "move_only": "f2c5",
+    "instinct": "g2c6",
+    "idea": "Take the pawn that is attacking your king, then trade queens."
+   },
+   {
+    "fen": "3r4/p4p1p/2R1r1k1/5p2/2P2Q2/3P2Bq/P1P2P2/6K1 w - - 6 31",
+    "best": "g3h4",
+    "explain": "f4g5",
+    "move_only": "c6e6",
+    "instinct": "f4g5",
+    "idea": "Check the loose rook with the queen so it is safe."
+   },
+   {
+    "fen": "1r1q1rk1/5pp1/p3pn1p/3p4/8/b1N1BQ1P/1PP1RPP1/1R4K1 w - - 0 20",
+    "best": "b2a3",
+    "explain": "b2a3",
+    "move_only": "b2a3",
+    "instinct": "b2a3",
+    "idea": "Take the free bishop. The attack on b2 is undefended."
+   },
+   {
+    "fen": "rn1qk2r/pp4pp/2pbp1b1/8/3P4/2P3N1/P3Q1PP/R1B2RK1 w kq - 0 16",
+    "best": "e2e6",
+    "explain": "e2e6",
+    "move_only": "e2e6",
+    "instinct": "e2e6",
+    "idea": "Take the pawn that threatens your king, then trade queens to drag Black's king out."
+   },
+   {
+    "fen": "r4rk1/p3bppp/1q2pn2/1pp1B1N1/8/1PP3P1/P1Q2PbP/3RR1K1 w - - 0 19",
+    "best": "e5f6",
+    "explain": "g1g2",
+    "move_only": "g1g2",
+    "instinct": "g1g2",
+    "idea": "Take the loose bishop on g2, then use the extra material."
+   },
+   {
+    "fen": "1r4k1/6rp/p5R1/1pR2q2/8/P4P2/1P4PP/5K2 w - - 0 38",
+    "best": "g6g7",
+    "explain": "c5f5",
+    "move_only": "g6g7",
+    "instinct": "g6g7",
+    "idea": "Take the loose f5 queen, then use the extra material."
+   },
+   {
+    "fen": "4r3/8/P5Rp/2R2P2/1P3k2/2P5/5r2/2K5 b - - 4 48",
+    "best": "e8e1",
+    "explain": "e8e1",
+    "move_only": "e8e1",
+    "instinct": "e8e1",
+    "idea": "Check the loose f5-pawn and bring the loose rook back to the centre."
+   },
+   {
+    "fen": "r5rk/1p3p2/1p2p2p/3pP3/3P1b2/P1PB1R1P/1P2n3/R4N1K b - - 8 24",
+    "best": "g8g1",
+    "explain": "g8g1",
+    "move_only": "g8g1",
+    "instinct": "g8g1",
+    "idea": "Check the king first, then grab loose pawns with tempo."
+   },
+   {
+    "fen": "r2q1r1k/pp5n/1pnp3p/4pN2/4P1Q1/2P4P/PP3PP1/R3R1K1 w - - 2 18",
+    "best": "g4g7",
+    "explain": "g4g7",
+    "move_only": "g4g7",
+    "instinct": "g4g7",
+    "idea": "Check first, then use the extra material to win the h6 pawn."
+   },
+   {
+    "fen": "4r2k/7p/2p3pP/8/P7/1Pbq1b2/KQ6/2R5 w - - 0 40",
+    "best": "c1c3",
+    "explain": "b2c3",
+    "move_only": "c1c3",
+    "instinct": "b2c3",
+    "idea": "Take the loose bishop on c3, then trade queens to kill Black's attack."
+   },
+   {
+    "fen": "3r2k1/p2r2pp/2q2p2/P1R1p3/3PR3/5P1P/6P1/3Q2K1 b - - 0 27",
+    "best": "c6c5",
+    "explain": "e5d4",
+    "move_only": "c6c5",
+    "instinct": "e5d4",
+    "idea": "Take the pawn that is attacking your queen."
+   },
+   {
+    "fen": "N5nr/pp2kpQp/3pB3/2b1p3/3nP3/8/PPPP1qPP/R1BK2NR b - - 0 10",
+    "best": "f2f1",
+    "explain": "f2f1",
+    "move_only": "f2f1",
+    "instinct": "f2f1",
+    "idea": "Check the king first, then grab the loose e6 bishop."
+   }
+  ]
+ },
+ "ideas": {
+  "n": 100,
+  "true": 0.15,
+  "sound": 0.25,
+  "picked_best": 0.39,
+  "sound_when_best": 0.46153846153846156,
+  "cost_usd": 1.645,
+  "items": [
+   {
+    "true": false,
+    "sound": false,
+    "reason": "b6 isn't free: Bxg7 and Qxd5 win d5. Black remains down material. Nxd4 equalizes instead.",
+    "cost": 0.0164
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "Black is not in check, and Nc6 shields nothing. It ignores Qxh8 and Qxf7+; Rg8 was needed.",
+    "cost": 0.015052
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "Black is not in check, and e4 is not safe since Bxe4 takes. Ne4 really dodges the exf6 threat.",
+    "cost": 0.013628
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "a4 attacks b5 on the queenside and does not open the e-file. Black has no queen fork threat.",
+    "cost": 0.012028
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "Nc6 develops the b8-knight, not the f8-bishop. d5 is Black's own pawn, so there is no blockade.",
+    "cost": 0.012776000000000001
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "Neither knight guards e5 (only Bg7 does), and Bxd7 opens the long diagonal: Bxb7 wins the a8 rook.",
+    "cost": 0.015331999999999998
+   },
+   {
+    "true": false,
+    "sound": true,
+    "reason": "Bg3 does save the bishop from g5. But it makes no threat on the d-file; the Ne5 blocks the diagonal.",
+    "cost": 0.015712
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "No bishop on c8, and Na4 attacks nothing there. Moving the pinned knight lets ...Bxd2+ win White's queen.",
+    "cost": 0.017824
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "d5-knight isn't loose; e4 defends it. Nxd5 parries the threat to e7. No queen trade or king exposure follows.",
+    "cost": 0.016396
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "Nb6 goes to the edge, not the centre, and doesn't attack f4. The bishop isn't hit at all.",
+    "cost": 0.013352
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "Rxd4 captures the d4 bishop, not c4; c4 is Black's own pawn. Real point: exchange sac, then Bb4 attacks.",
+    "cost": 0.012088
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "The c6-knight is defended by b7. Nxc6 bxc6 is an even trade, so White wins no material.",
+    "cost": 0.012884000000000001
+   },
+   {
+    "true": true,
+    "sound": true,
+    "reason": "The d5 pawn attacks the c6 knight; exd5 removes it, parries the threat, and is the engine's best move.",
+    "cost": 0.012548
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "b3 holds White's bishop, not a pawn, and a2xb3 recaptures. Trading down while material behind is unjustified.",
+    "cost": 0.015936
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "There is no knight on g7, and e5 doesn't attack g7. No queen trade follows; Qxg7 just wins a pawn.",
+    "cost": 0.01392
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "The e4-knight isn't loose; d5 defends it. Nxe4 dxe4 Qxe4 actually wins the e4 pawn.",
+    "cost": 0.020744
+   },
+   {
+    "true": true,
+    "sound": false,
+    "reason": "Generic plan; ignores that Bd7 is needed to break the pin on c6, and d4 then falls.",
+    "cost": 0.018712
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "d4 attacks the c5 pawn, not a bishop; Bxd4 recaptures, so Black gains no extra material.",
+    "cost": 0.014044000000000001
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "Nf3 saves the knight from h6xg5, but it does not hit d6, gains no tempo, and cannot take d5.",
+    "cost": 0.015516
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "The g6 pawn doesn't threaten c3; the queen and Na4 do. Bxg6 hxg6 simply loses the bishop for a pawn.",
+    "cost": 0.017116
+   },
+   {
+    "true": true,
+    "sound": true,
+    "reason": "Bd7 does give check; Nbxd7 recaptures and develops, and the trades on e4/c3 reach equality.",
+    "cost": 0.013836
+   },
+   {
+    "true": false,
+    "sound": true,
+    "reason": "The bishop is on g3, not f4, and f2 defends it. Still, capturing it to win material is the real point.",
+    "cost": 0.017708
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "Nge5 saves the knight, but adds no attack on g5; Be7 already hit it. Nd4 wins material.",
+    "cost": 0.020772
+   },
+   {
+    "true": true,
+    "sound": true,
+    "reason": "The b3 knight does attack the d2 queen; axb3 removes it and is the engine's best move.",
+    "cost": 0.013075999999999999
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "The b1 knight isn't attacked, and Nc3 gains no tempo on b5. Its real point is simply development toward a4/outposts.",
+    "cost": 0.016116
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "e5 doesn't attack White's king and no queen trade follows. dxe5 opens the d-file, so ...Qxd3 wins the bishop.",
+    "cost": 0.017924000000000002
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "From c7 the queen doesn't hit e4; the e5 pawn blocks it. The d3 pawn guards e4, and Qc7 drops c5.",
+    "cost": 0.01578
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "Black isn't in check, and a knight on f5 doesn't attack c4. It actually pre-empts a discovered check along the f-file.",
+    "cost": 0.016912
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "Bb4 develops the f8-bishop, not c8. The idea misses the real point: pinning/attacking the c3 queen.",
+    "cost": 0.012628
+   },
+   {
+    "true": false,
+    "sound": true,
+    "reason": "Qg6+ doesn't hit h3, which the king defends anyway. Checking the exposed king immediately is the right idea.",
+    "cost": 0.018144
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "Nf3 develops the knight and blocks the b7-bishop's attack on h1; it neither moves the rook nor gains tempo.",
+    "cost": 0.01462
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "Nc6 develops the b8-knight, not f6; d6 is no king shield. The stated rationale misdescribes the move.",
+    "cost": 0.01494
+   },
+   {
+    "true": true,
+    "sound": true,
+    "reason": "Ne8 saves the knight and opens the g7 bishop, so e5 is attacked twice and defended once.",
+    "cost": 0.018959999999999998
+   },
+   {
+    "true": true,
+    "sound": true,
+    "reason": "gxh4 does win the pawn, and Nf3 defends h4. But Nxh4 is better, keeping White's kingside pawns intact.",
+    "cost": 0.015788
+   },
+   {
+    "true": false,
+    "sound": true,
+    "reason": "e4 is loose, but after Nxe4 White is still a pawn down, so there's no extra material to use.",
+    "cost": 0.016512000000000002
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "Nothing is pinned on c2, and c5 is defended by Bd4. b6 undermines c5 and opens the a-file instead.",
+    "cost": 0.020776
+   },
+   {
+    "true": true,
+    "sound": true,
+    "reason": "Correct: d5 attacks e6, and exd5 removes the attacker while winning back the pawn, restoring equality.",
+    "cost": 0.0127
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "White isn't in check. Nc3 really defends the loose Be4 against Rxe4; it blocks nothing.",
+    "cost": 0.016964
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "After exd4 no bishop stands on d4, and the f4 pawn blocks Qg4 from d4.",
+    "cost": 0.014692
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "White is not in check; the Nc3 already blocks b4. Qd3 really guards c3 against ...Nxc3 and ...Bxc3+.",
+    "cost": 0.01394
+   },
+   {
+    "true": false,
+    "sound": true,
+    "reason": "Nd2 does save the attacked knight and hits e4, but White is down material, not up.",
+    "cost": 0.015384
+   },
+   {
+    "true": true,
+    "sound": true,
+    "reason": "Nothing defends the queen on g4, so Nxg4 wins it outright. The resulting exchanges simplify into a winning endgame.",
+    "cost": 0.015776000000000002
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "No loose d4-pawn exists: d4 is White's own pawn, and d5 moves it away. Nxb5 was best.",
+    "cost": 0.014756
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "The f3 pawn attacks g2 and e2, not the e5 knight. gxf3 exf3 also exposes White's king.",
+    "cost": 0.015952
+   },
+   {
+    "true": false,
+    "sound": true,
+    "reason": "e4 does gain tempo on f3 and space, but both sides have the bishop pair, so it's no Black advantage.",
+    "cost": 0.015567999999999999
+   },
+   {
+    "true": true,
+    "sound": true,
+    "reason": "Qf4 checks along b8-f4; Ne5 blocks with the loose c4-knight, which the f6-queen defends on e5.",
+    "cost": 0.016792
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "g2 isn't loose: Rxg2+ checks to drive the king, then Re7 wins f7. No trading down follows.",
+    "cost": 0.020168
+   },
+   {
+    "true": false,
+    "sound": true,
+    "reason": "Winning the free a-pawn and saving the attacked queen is right; no queen trade follows, Qe6 blockades.",
+    "cost": 0.0184
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "The b4 pawn isn't free: Rb1xb7 wins it back. The idea also ignores that Black's queen is attacked by Re3.",
+    "cost": 0.016936
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "Rc8 blocks no diagonal, and the a7 knight isn't threatened. Leaving b8 abandons b7, so Bxb7 follows.",
+    "cost": 0.019268
+   },
+   {
+    "true": true,
+    "sound": true,
+    "reason": "Ra2 is undefended, so Bxa2 wins a free rook; trading down afterwards is a reasonable follow-up plan.",
+    "cost": 0.016564000000000002
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "Black has only one rook, and g4 is not central. Qg4 just hits f5 and misses the winning Qg7+.",
+    "cost": 0.016276
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "Bb3 leaves the d-file and gains no tempo, since it only hits e6, which f7 defends. Black keeps Rd1+ and the pressure.",
+    "cost": 0.018896
+   },
+   {
+    "true": false,
+    "sound": true,
+    "reason": "Ne7 doesn't hit h5 (Nf4 does), but saving the knight and pressuring d5 is relevant.",
+    "cost": 0.01858
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "The e5 pawn doesn't attack the queen; g6 does. Qxe5 forces no queen trade and misses the winning Qc8.",
+    "cost": 0.017604
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "Black is not in check. Bxf5 captures the knight; it blocks nothing, and the Black knight on g6 is not loose.",
+    "cost": 0.017904
+   },
+   {
+    "true": false,
+    "sound": true,
+    "reason": "Saving the attacked knight is relevant, but Nh6 gains no tempo; it lands where Bf4 hits it. Nxe5 is better.",
+    "cost": 0.017976000000000002
+   },
+   {
+    "true": true,
+    "sound": true,
+    "reason": "fxg4 does capture the knight, which attacks h2. Winning the piece and removing the Ne3 fork are good reasons.",
+    "cost": 0.016964
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "The g2 pawn doesn't attack Black's king, and Black's rook can't reach f1 past its own f7 pawn.",
+    "cost": 0.018096
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "Re1 blocks the check, but the rook isn't safe: Rxe1+ wins it. Kh2 mates instead.",
+    "cost": 0.0144
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "The knight is already central on d4. Ne6 puts it en prise to Re7, dropping a piece; Rfe8 was much better.",
+    "cost": 0.01818
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "Bd3 blocks nothing. The real threat is Bxd5, and the queen stays en prise after Bd3.",
+    "cost": 0.014339999999999999
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "Ng7+ checks but attacks no loose knight; it ignores 1.Be2#, which mates at once.",
+    "cost": 0.021764
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "Kf8 stays on the back rank. The real point is leaving the g-file and the Bc4 pin on f7.",
+    "cost": 0.015596
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "Not a free rook: Nxe2+ then Rxd8 wins the queen. The real reason is escaping Rc1 check.",
+    "cost": 0.019667999999999998
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "g7 is defended by the king, not loose. Qh7+ simply drops the queen to Nf8xh7.",
+    "cost": 0.017436
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "cxb5 is a capture, not a push. c5 holds Black's queen, not a pawn. The f3-bishop isn't pinned.",
+    "cost": 0.016252
+   },
+   {
+    "true": true,
+    "sound": true,
+    "reason": "Nothing defends d5, so Rxd5 wins it; the line trades queens into an equal endgame.",
+    "cost": 0.013384
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "Black isn't in check, so Nd2 blocks nothing. Its real point is forking the queen on b3 and rook on f1.",
+    "cost": 0.015532
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "a6 is an edge square, not the centre or a retreat. Nxf7 wins, and Black's pawns aren't opening lines.",
+    "cost": 0.015467999999999999
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "f6 isn't loose; Rf8 and Qe7 defend it. With Kg1 on the c5 diagonal, Qxe3+ follows. Kh1 first.",
+    "cost": 0.028840000000000005
+   },
+   {
+    "true": true,
+    "sound": true,
+    "reason": "Rook on e7 is undefended, so Bxe7 wins it cleanly; Nxb5 is slightly stronger, but both win.",
+    "cost": 0.014748
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "The b5 bishop is loose, but Rxb5 allows Bxh8. Black gains no material, so 'extra material' is false.",
+    "cost": 0.01966
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "Black's king on d8 is not in check, so Rb8 blocks nothing. The engine prefers e6, which traps Bf7.",
+    "cost": 0.014352
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "Qd4 doesn't blockade e6; e7 is the blocking square. Qd4 offers a queen trade, hits c4/b2, and guards e5.",
+    "cost": 0.016087999999999998
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "Kd8 sidesteps the check; it can't block. It also gives up the king's shelter, while Kf8 is safer.",
+    "cost": 0.016108
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "Re8+ captures nothing; d3 is White's own pawn. The idea misses the forced mating attack.",
+    "cost": 0.013008
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "d6 holds White's queen, not a loose pawn. Qe5+ is a check forcing the queen trade to parry mating threats.",
+    "cost": 0.012876
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "Rb2 keeps the rook active on White's second rank rather than centralizing it, and Re2 wasn't loose.",
+    "cost": 0.014116
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "The d4 pawn doesn't attack c6; the threat is Rc5xc6. Nxd4 drops the knight after Rxc8+ and Rxd4.",
+    "cost": 0.017568
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "Nb2 hits d1 and a4, not d5; the knight is unprotected and Kxb2 simply wins it.",
+    "cost": 0.016904
+   },
+   {
+    "true": false,
+    "sound": true,
+    "reason": "The rook isn't free: Rxe1+ recaptures the knight. Still, Nxe1 wins the exchange, a relevant reason.",
+    "cost": 0.018307999999999998
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "c5 hits the d4-queen, not the c3-knight, which b2 defends. The stated idea misreads the move's actual target.",
+    "cost": 0.01708
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "Be6 saves the bishop but hits d5, not e2. e4 holds a white pawn, not a loose knight.",
+    "cost": 0.015404000000000001
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "The f5 pawn attacks e6 and g6, not the h7 queen. The stated reason rests on a false threat.",
+    "cost": 0.01478
+   },
+   {
+    "true": true,
+    "sound": true,
+    "reason": "Black's c1 rook is undefended and attacks Re1; capturing wins it back and restores material equality.",
+    "cost": 0.014796
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "The queen never guards h7, and d4 blocks nothing. Rxh7# remains, so this does not parry the threat.",
+    "cost": 0.02096
+   },
+   {
+    "true": true,
+    "sound": true,
+    "reason": "Nxa1+ really wins the undefended rook with check, but it ignores Rb8 hanging to Bc7. Trading down while still behind is dubious.",
+    "cost": 0.023708
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "A king cannot block a check; Kf2 steps out of it. Its point is meeting Qg3+ with Rxg3.",
+    "cost": 0.017872
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "b3 isn't central, and Qb3+ just hangs the queen to Rxb3. The b8-rook simply takes it back.",
+    "cost": 0.023224
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "A knight on e3 doesn't attack f4. The f5-knight wasn't attacked, and e5 defends the f4-knight.",
+    "cost": 0.018852
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "f6 does attack e5, but after Bxf6+ Rxf6 the f6 rook is defended by the king. White is left down a piece.",
+    "cost": 0.018623999999999998
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "White has no rook; Rd1+ checks the king. No loose pawns are won; White's queen takes over with checks.",
+    "cost": 0.014748
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "The c6 knight attacks the b8 rook, not a bishop. The real issue is stopping White's mating threats with captures.",
+    "cost": 0.018608
+   },
+   {
+    "true": false,
+    "sound": true,
+    "reason": "The d6 bishop is genuinely loose and winning it is right, but White stays two pawns down, with no extra material.",
+    "cost": 0.01542
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "After h5+ the king can take on h5. g5 is defended by f6, and nothing can win it.",
+    "cost": 0.017092
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "A pawn on d5 attacks c4 and e4, not g5. The g5-bishop is also defended by Qd2, so it isn't loose.",
+    "cost": 0.013728
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "The d8 rook isn't free: Black recaptures with Kxd8 or Rhxd8, so it's an even trade.",
+    "cost": 0.013792
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "White isn't in check; Bxd5 is a bishop capture, not a pawn block. The idea misdescribes the position.",
+    "cost": 0.011524
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "Rf8 sits behind f6 and supports it rather than blocking it; the f6 pawn poses no threat.",
+    "cost": 0.017448
+   }
+  ],
+  "plays": [
+   {
+    "san": "axb6",
+    "idea": "Take the free pawn on b6, then use the extra material.",
+    "plan": "Activate the rooks with ...Rf8 and ...Rf8, and use the extra material."
+   },
+   {
+    "san": "Nc6",
+    "idea": "Block the check with the loose knight so it is safe.",
+    "plan": "Develop with Be7 and Bf5, then use the half-open files."
+   },
+   {
+    "san": "Ne4",
+    "idea": "Block the check with the knight so it is safe.",
+    "plan": "Activate the rooks with Rf8 and Rf1, then use the half-open files."
+   },
+   {
+    "san": "a4",
+    "idea": "Break open the e-file before Black's queen forks.",
+    "plan": "Activate the rooks on the open e-file and use the half-open files."
+   },
+   {
+    "san": "Nc6",
+    "idea": "Develop the f8-bishop and keep the d5-pawn blockaded.",
+    "plan": "Use the d5-pawn blockade and the f8-bishop's activity to gain material."
+   },
+   {
+    "san": "Bxd7",
+    "idea": "Recapture with the bishop so the knight keeps guarding e5.",
+    "plan": "Develop with Nc6 and Bb5, castle, and use the half-open files."
+   },
+   {
+    "san": "Bg3",
+    "idea": "Save the attacked bishop with tempo on the d-file.",
+    "plan": "Activate the rooks with ...Rf1 and ...Re1, then use the half-open files."
+   },
+   {
+    "san": "Na4",
+    "idea": "Save the attacked knight with tempo on the loose c8-bishop.",
+    "plan": "Keep the extra material, then use the half-open files and the queenside majority."
+   },
+   {
+    "san": "Nxd5",
+    "idea": "Take the loose d5-knight, then trade queens to drag White's king out.",
+    "plan": "Trade queens, then use the extra material and the d5-knight's activity."
+   },
+   {
+    "san": "Nb6",
+    "idea": "Bring the knight back to the centre so it hits the loose f4-bishop.",
+    "plan": "Activate the rooks with ...Rf8 and ...Qe7, then use the half-open files."
+   },
+   {
+    "san": "Rxd4",
+    "idea": "Take the loose c4-pawn with the rook, then trade down.",
+    "plan": "Trade down, keep the c4-pawn safe, and use the extra material."
+   },
+   {
+    "san": "Nxc6",
+    "idea": "Take the loose c6-knight, then use the extra material.",
+    "plan": "Develop with Bb5 and Qd2, and use the extra material to convert."
+   },
+   {
+    "san": "exd5",
+    "idea": "Take the pawn that is attacking your knight.",
+    "plan": "Activate the rooks with ...Rf8 and ...Rf5, then use the half-open files."
+   },
+   {
+    "san": "Bxb3",
+    "idea": "Take the free pawn with the bishop, then trade down.",
+    "plan": "Use the extra material, trade down, and keep the king safe."
+   },
+   {
+    "san": "Nxe5",
+    "idea": "Take the pawn that attacks your g7-knight, then trade queens.",
+    "plan": "Trade queens, then use the extra material and the bishop pair."
+   },
+   {
+    "san": "Nxe4",
+    "idea": "Take the loose e4-knight, then castle and use the half-open files.",
+    "plan": "Castle, play h4 and use the half-open files against Black's king."
+   },
+   {
+    "san": "Bd7",
+    "idea": "Develop the c8-bishop to d7, then castle and use the half-open files.",
+    "plan": "Castle, play Be6, and use the half-open files against White's king."
+   },
+   {
+    "san": "cxd4",
+    "idea": "Take the pawn that is attacking your bishop, then use the extra material.",
+    "plan": "Activate the rooks with Be6 and Rb8, and use the half-open files."
+   },
+   {
+    "san": "Nf3",
+    "idea": "Save the attacked knight with tempo on d6, then grab d5.",
+    "plan": "Use the d5 pawn and the active rooks to convert the extra material."
+   },
+   {
+    "san": "Bxg6",
+    "idea": "Take the pawn that threatens c3, then use the extra material.",
+    "plan": "Activate the rooks with Rc4 and Rh4, and use the half-open files."
+   },
+   {
+    "san": "Nbxd7",
+    "idea": "Take the checking bishop with the knight, then trade into a safe position.",
+    "plan": "Develop with Be7 and Bf6, castle, and use the half-open files."
+   },
+   {
+    "san": "fxg3",
+    "idea": "Take the loose f4-bishop, then use the extra material.",
+    "plan": "Develop with Be7 and Bg7, then use the extra material and the open files."
+   },
+   {
+    "san": "Nge5",
+    "idea": "Save the attacked knight with tempo on the loose g5-bishop.",
+    "plan": "Activate the rooks with Be8 and Rf8, then use the half-open files."
+   },
+   {
+    "san": "axb3",
+    "idea": "Take the knight that is attacking your queen.",
+    "plan": "Activate the rooks with Be3 and Rd1, and keep the d5 pawn blockaded."
+   },
+   {
+    "san": "Nc3",
+    "idea": "Develop the attacked knight with tempo on b5, then use the half-open files.",
+    "plan": "Keep the extra material, use the half-open files, and push the c-pawn."
+   },
+   {
+    "san": "dxe5",
+    "idea": "Take the pawn that is attacking your king, then trade queens.",
+    "plan": "Trade queens, then use the extra material and the rooks against Black's loose pawns."
+   },
+   {
+    "san": "Qc7",
+    "idea": "Bring the queen back to the centre so it hits the loose e4-knight.",
+    "plan": "Activate the rooks with Be8 and Rb8, then use the half-open files."
+   },
+   {
+    "san": "Nf5",
+    "idea": "Block the check with a piece that attacks the loose c4-pawn.",
+    "plan": "Activate the rooks with Re8 and Rh8, and keep the c4-pawn safe."
+   },
+   {
+    "san": "Bb4",
+    "idea": "Develop the c8-bishop and keep the queen active on d8.",
+    "plan": "Activate the queen and bishop via d5, then use the half-open files."
+   },
+   {
+    "san": "Qg6+",
+    "idea": "Check the loose h3-pawn and hit the exposed king at once.",
+    "plan": "Keep the extra material, then use the open lines and the h3-pawn."
+   },
+   {
+    "san": "Nf3",
+    "idea": "Develop the attacked rook with tempo on the b7-bishop.",
+    "plan": "Activate the rooks with Be3 and Bg3, then use the half-open files."
+   },
+   {
+    "san": "Nc6",
+    "idea": "Develop the f6-knight and keep the d6-pawn shield intact.",
+    "plan": "Activate the f6-knight and use the half-open files and space."
+   },
+   {
+    "san": "Ne8",
+    "idea": "Save the attacked knight with tempo on e5, then grab the loose e5-pawn.",
+    "plan": "Use the extra material, trade down and convert the e5-pawn into a win."
+   },
+   {
+    "san": "gxh4",
+    "idea": "Take the pawn on h4, then use the extra material.",
+    "plan": "Activate the rooks with ...Rf1 and ...Rg1, and use the queenside majority."
+   },
+   {
+    "san": "Nxe4",
+    "idea": "Take the pawn that is loose, then use the extra material.",
+    "plan": "Activate the rooks with Be1 and Rf1, and use the extra material."
+   },
+   {
+    "san": "b6",
+    "idea": "Break open the pin on c2 with tempo, then grab the loose c5-pawn.",
+    "plan": "Use the extra material, then trade down and convert the extra pawn."
+   },
+   {
+    "san": "exd5",
+    "idea": "Take the pawn that is attacking your e6-pawn.",
+    "plan": "Develop with Bb4 and Bb7, castle, and use the space from d5."
+   },
+   {
+    "san": "Nc3",
+    "idea": "Block the check with the loose knight so it is safe.",
+    "plan": "Develop with Bf3 and Qd2, then use the d5 pawn to gain space."
+   },
+   {
+    "san": "exd4",
+    "idea": "Recapture with the pawn so the queen keeps guarding the d4-bishop.",
+    "plan": "Activate the queen and rooks with Bc4, Rf1, and Qd3, then use the half-open files."
+   },
+   {
+    "san": "Qd3",
+    "idea": "Block the check with the queen so it is safe.",
+    "plan": "Keep the extra material, then use the half-open files and the queenside pawns."
+   },
+   {
+    "san": "Nd2",
+    "idea": "Save the attacked knight with tempo on e4, then use the extra material.",
+    "plan": "Activate the rooks with Be3 and Bg5, and use the extra material."
+   },
+   {
+    "san": "Nxg4",
+    "idea": "Take the loose queen with the knight, then trade down.",
+    "plan": "Trade down, keep the king safe, and use the extra material."
+   },
+   {
+    "san": "d5",
+    "idea": "Break open the centre with d5 so the rooks hit the loose d4-pawn.",
+    "plan": "Activate the rooks with Rf1 and Rg1, then use the d5-pawn to hit the loose d4-pawn."
+   },
+   {
+    "san": "gxf3",
+    "idea": "Take the pawn that is attacking your knight, then use the extra material.",
+    "plan": "Activate the rooks with Rf1 and Rf5, and use the half-open files."
+   },
+   {
+    "san": "e4",
+    "idea": "Kick the f3-knight with tempo, then use the space and the bishop pair.",
+    "plan": "Develop with Bc5 and Bf5, castle, and use the half-open files."
+   },
+   {
+    "san": "Ne5",
+    "idea": "Block the check with the loose knight so it is safe.",
+    "plan": "Activate the rooks with Bg5 and Rf8, and keep the king safe."
+   },
+   {
+    "san": "Rxg2+",
+    "idea": "Take the loose g2-pawn with the rook, then trade down.",
+    "plan": "Use the extra material, trade down, and keep the king safe."
+   },
+   {
+    "san": "Qxa2",
+    "idea": "Take the free pawn, then trade queens to drag White's queen away.",
+    "plan": "Develop with Be6, castle, and use the extra material."
+   },
+   {
+    "san": "Qxb4",
+    "idea": "Take the free pawn, then use the queen and rooks to win it back.",
+    "plan": "Keep the extra material, then use the queen and rooks to convert the advantage."
+   },
+   {
+    "san": "Rbc8",
+    "idea": "Block the diagonal with the rook so the knight stays safe.",
+    "plan": "Activate the rooks with Rf5 and Rf8, then use the half-open files."
+   },
+   {
+    "san": "Bxa2",
+    "idea": "Take the free rook with the bishop, then trade down.",
+    "plan": "Use the extra material, trade down, and keep the king safe."
+   },
+   {
+    "san": "Qg4",
+    "idea": "Bring the queen back to the centre so Black's rooks stay stuck in the centre.",
+    "plan": "Activate the rooks with Rf1 and Rg1, then use the half-open files."
+   },
+   {
+    "san": "Bb3",
+    "idea": "Develop the attacked bishop with tempo on the d-file.",
+    "plan": "Activate the rooks with ...Rd2 and ...Rf2, keeping the d-file closed."
+   },
+   {
+    "san": "Ne7",
+    "idea": "Save the attacked knight with tempo on h5, then grab d5.",
+    "plan": "Use the extra material, trade down, and keep the d5 pawn blockaded."
+   },
+   {
+    "san": "Qxe5",
+    "idea": "Take the pawn that threatens your queen, then trade queens.",
+    "plan": "Trade queens, then use the extra material and the d5-bishop's activity."
+   },
+   {
+    "san": "Bxf5",
+    "idea": "Block the check with the loose knight so it is safe.",
+    "plan": "Activate the rooks with Be7 and Rf7, then use the half-open files."
+   },
+   {
+    "san": "Nh6",
+    "idea": "Save the attacked knight with tempo on h6, then use the half-open files.",
+    "plan": "Activate the rooks with Re8 and Rf8, keeping the d-file closed."
+   },
+   {
+    "san": "fxg4",
+    "idea": "Take the knight that is attacking your pawn.",
+    "plan": "Activate the rooks with Be1 and Rf1, then use the half-open files."
+   },
+   {
+    "san": "Bxg2+",
+    "idea": "Take the pawn that is attacking your king and bring the rook to f1.",
+    "plan": "Activate the rook with Rf1, then use the half-open files and the extra material."
+   },
+   {
+    "san": "Re1",
+    "idea": "Block the check with the rook so it is safe.",
+    "plan": "Activate the rooks with ...Rf5 and ...Rf7, then use the half-open files."
+   },
+   {
+    "san": "Ne6",
+    "idea": "Bring the loose knight back to the centre before cashing in.",
+    "plan": "Activate the rooks with Rf8 and Ra8, then use the space from the queenside."
+   },
+   {
+    "san": "Bd3",
+    "idea": "Block the diagonal with the loose bishop so it is safe.",
+    "plan": "Develop with Be2, castle, and use the half-open files against Black's king."
+   },
+   {
+    "san": "Ng7+",
+    "idea": "Check the loose knight and hit the exposed king at once.",
+    "plan": "Keep the extra piece, trade down, and use the half-open files."
+   },
+   {
+    "san": "Kf8",
+    "idea": "Step the king off the back rank so the rooks guard the centre.",
+    "plan": "Activate the rooks with Re5 and Rf5, then use the half-open files."
+   },
+   {
+    "san": "Bxc1",
+    "idea": "Take the free rook. The queen is attacked, so just grab it.",
+    "plan": "Activate the rooks with Be2 and Qd5, then use the half-open files."
+   },
+   {
+    "san": "Qh7+",
+    "idea": "Check the loose g7-pawn and hit the exposed king at once.",
+    "plan": "Keep the extra material, then use the rooks and queen to pressure Black's loose pawns."
+   },
+   {
+    "san": "cxb5",
+    "idea": "Push the pawn forward to hit the loose c5-pawn and the pinned f3-bishop.",
+    "plan": "Activate the rooks with Be3 and Rf1, then use the half-open files."
+   },
+   {
+    "san": "Rxd5",
+    "idea": "Take the loose d5 bishop, then trade into a safe position.",
+    "plan": "Develop with Be2, castle, and use the half-open files."
+   },
+   {
+    "san": "Nd2",
+    "idea": "Block the check with the loose knight so it is safe.",
+    "plan": "Keep the loose knight safe, then use the rooks and the half-open files."
+   },
+   {
+    "san": "Ra6",
+    "idea": "Bring the loose rook back to the centre before Black's pawns open lines.",
+    "plan": "Activate the rooks with ...Rf6 and ...Rg6, then use the half-open files."
+   },
+   {
+    "san": "Bxf6+",
+    "idea": "Take the loose f6-pawn and keep the queen active.",
+    "plan": "Activate the queen and bishop with Qd5 and Bg5, then use the half-open files."
+   },
+   {
+    "san": "Bxe7",
+    "idea": "Take the free rook with the bishop, then use the extra material.",
+    "plan": "Activate the rooks with ...Rf6 and ...Rf8, then use the extra material."
+   },
+   {
+    "san": "Rxb5",
+    "idea": "Take the loose bishop on b5, then use the extra material.",
+    "plan": "Activate the rooks with Be8 and Bg8, and use the extra material."
+   },
+   {
+    "san": "Rb8",
+    "idea": "Block the check with the loose rook so it is safe.",
+    "plan": "Activate the rooks with Be8 and Rf8, and use the half-open files."
+   },
+   {
+    "san": "Qd4",
+    "idea": "Block the e6-pawn with the queen so it stays a threat.",
+    "plan": "Activate the queen with Qf6, then use the half-open files and the king's activity."
+   },
+   {
+    "san": "Kd8",
+    "idea": "Block the check with the king so it is safe.",
+    "plan": "Activate the rooks with Rf5 and Rf8, and keep the king safe."
+   },
+   {
+    "san": "Re8+",
+    "idea": "Take the loose d3-pawn and bring the rook to e8.",
+    "plan": "Keep the extra material, then use the rook's activity and the d3-pawn."
+   },
+   {
+    "san": "Qe5+",
+    "idea": "Bring the queen back to the centre so it hits the loose d6-pawn.",
+    "plan": "Activate the rooks with Rd8 and Rf8, then use the half-open files."
+   },
+   {
+    "san": "Rb2",
+    "idea": "Bring the loose rook back to the centre before White's pawns open lines.",
+    "plan": "Activate the rooks with Bf5 and Rb5, then use the half-open files."
+   },
+   {
+    "san": "Nxd4",
+    "idea": "Take the pawn that is attacking your knight.",
+    "plan": "Activate the rooks with ...Rb8 and ...Rc8, then use the half-open files."
+   },
+   {
+    "san": "Nxb2",
+    "idea": "Save the attacked knight with tempo on d5, then grab the loose a4-pawn.",
+    "plan": "Keep the extra material, use the d5-rook's activity, and push the passed pawns."
+   },
+   {
+    "san": "Nxe1",
+    "idea": "Take the free rook. The e1-rook is yours.",
+    "plan": "Activate the rooks with Be3 and Rf8, then use the half-open files."
+   },
+   {
+    "san": "c5",
+    "idea": "Kick the loose c3-knight with tempo, then use the half-open files.",
+    "plan": "Activate the rooks with ...Rf8 and ...Rf5, then use the half-open files."
+   },
+   {
+    "san": "Be6",
+    "idea": "Save the attacked bishop with tempo on e2, then grab the loose e4-knight.",
+    "plan": "Keep the extra material, trade down, and use the half-open files."
+   },
+   {
+    "san": "exf5",
+    "idea": "Take the pawn that is attacking your queen.",
+    "plan": "Activate the rooks with Rc4 and Rd6, then use the half-open files."
+   },
+   {
+    "san": "Rxc1",
+    "idea": "Take the free rook. It is attacking your own.",
+    "plan": "Activate the rooks with Be3 and Rf1, and keep the extra material."
+   },
+   {
+    "san": "d4",
+    "idea": "Block the mate with a pawn so the queen keeps guarding h7.",
+    "plan": "Activate the queen and bishop with tempo, then use the d4 pawn to open lines."
+   },
+   {
+    "san": "Nxa1+",
+    "idea": "Take the free rook with check, then trade down.",
+    "plan": "Use the extra material, trade down, and keep the rooks active."
+   },
+   {
+    "san": "Kf2",
+    "idea": "Block the check with the king so it is safe.",
+    "plan": "Activate the rooks with Rf5 and Rg5, then use the half-open files."
+   },
+   {
+    "san": "Qb3+",
+    "idea": "Bring the queen back to the centre so it hits the loose b8-rook.",
+    "plan": "Activate the rooks with Rf1 and Rg3, then use the half-open files."
+   },
+   {
+    "san": "Ne3",
+    "idea": "Give the extra piece to the attacked knight so it hits the loose f4-knight.",
+    "plan": "Activate the rooks with Rf1 and Qd1, then use the half-open files."
+   },
+   {
+    "san": "Bxf6+",
+    "idea": "Take the pawn that is attacking your bishop, then trade into a safe position.",
+    "plan": "Develop with Be3 and Qd2, then use the queenside majority to convert the extra material."
+   },
+   {
+    "san": "Rd1+",
+    "idea": "Check the loose rook with tempo, then grab the loose pawns.",
+    "plan": "Keep the extra material, then use the rook's activity and the open files."
+   },
+   {
+    "san": "bxc6",
+    "idea": "Take the knight that is attacking your bishop.",
+    "plan": "Develop with Be7 and Bb4, castle, and use the half-open files."
+   },
+   {
+    "san": "Bxd6",
+    "idea": "Take the loose d6 bishop, then use the extra material.",
+    "plan": "Activate the rooks with Rdg1, then use the half-open files."
+   },
+   {
+    "san": "h5+",
+    "idea": "Check the king off g6, then grab the loose g5-pawn.",
+    "plan": "Keep the extra material, then use the h5 pawn and rooks against Black's loose pawns."
+   },
+   {
+    "san": "d5",
+    "idea": "Push d5 to free the centre and hit the loose g5-bishop.",
+    "plan": "Activate the rooks with Be8 and Rf8, then use the half-open files."
+   },
+   {
+    "san": "Rxd8",
+    "idea": "Take the free rook on d8, then use the extra material.",
+    "plan": "Activate the rooks with Be3 and Bf4, and keep the extra material."
+   },
+   {
+    "san": "Bxd5",
+    "idea": "Block the check with the pawn so the king can escape.",
+    "plan": "Activate the rooks with Rc5 and Rf1, and keep the king safe."
+   },
+   {
+    "san": "Rf8",
+    "idea": "Block the f6-pawn with the rook so it stays a threat.",
+    "plan": "Keep the extra piece, use the rook's activity, and keep the king safe."
+   }
+  ]
+ }
+}

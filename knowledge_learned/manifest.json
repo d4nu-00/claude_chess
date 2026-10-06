@@ -1,5 +1,5 @@
 {
-  "version": 1,
+  "version": 3,
   "history": [
     {
       "version": 1,
@@ -15,6 +15,58 @@
         "target_repeats": 3,
         "controls": 4,
         "control_mean_delta": 0.0
+      }
+    },
+    {
+      "version": 2,
+      "action": "add",
+      "lesson": "L004-don-t-move-the-last-kingside-defender-when-an-en",
+      "at": "2026-10-02T11:04:40",
+      "kind": "mistake",
+      "source": "20261002_110033_opus55-hybrid-ctx-vs-maia3-2400:0:15",
+      "gate": {
+        "accepted": true,
+        "reason": "accepted",
+        "targets": 1,
+        "per_target": [
+          {
+            "src": "20261002_110033_opus55-hybrid-ctx-vs-maia3-2400:0:15",
+            "base_cpl": 725,
+            "cand_cpl": 286
+          }
+        ],
+        "target_base_cpl": 725,
+        "target_cand_cpl": 286,
+        "target_repeats": 3,
+        "controls": 4,
+        "control_mean_delta": 0.0,
+        "targets_proposed": 1
+      }
+    },
+    {
+      "version": 3,
+      "action": "add",
+      "lesson": "L007-when-you-re-down-material-a-mate-threat-that-let",
+      "at": "2026-10-02T11:26:28",
+      "kind": "mistake",
+      "source": "20261002_111123_opus55-learnloop-g3:0:45",
+      "gate": {
+        "accepted": true,
+        "reason": "accepted",
+        "targets": 1,
+        "per_target": [
+          {
+            "src": "20261002_111123_opus55-learnloop-g3:0:45",
+            "base_cpl": 197,
+            "cand_cpl": 65
+          }
+        ],
+        "target_base_cpl": 197,
+        "target_cand_cpl": 65,
+        "target_repeats": 3,
+        "controls": 4,
+        "control_mean_delta": 6.8,
+        "targets_proposed": 1
       }
     }
   ]

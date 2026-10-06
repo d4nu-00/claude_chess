@@ -1,5 +1,88 @@
 # Results
 
+## 2026-10-04 — explainer round 2: one model that picks the move AND explains it
+Hypotheses, predictions and details: [[explainer-hypotheses]]. GUI: `scripts/play.py`.
+Joint model = Qwen3-1.7B LoRA choosing among the encoder's 6 candidates from verified text facts
+(no engine in its input); trained on 2,000 Stockfish-move examples + 573 Claude ideas ×2.
+Same 250 held-out cloud-eval + 250 puzzle positions for every row; paired McNemar.
+
+| model | cloud-eval (explain / move-only) | puzzles (explain / move-only) | ideas sound (judge) |
+|---|---|---|---|
+| encoder instinct | 25.6% | 62.8% | – |
+| A: idea→move, relations | 28.0 / 25.6 | 58.4 / 64.4 | 26% |
+| D: A + tactical outcome per candidate | 29.2 / 30.4 | 68.0 / **75.2** | 25% |
+| **E: D's input, move→idea** | **34.0** / 33.6 | **72.0** / 72.8 | 26% (52% when best) |
+| E with depth-4 tactics (J6) | 34.8 / 34.8 | 73.2 / 74.8 | 28% (56% when best) |
+
+- One-ply value lookahead on the encoder: refuted (puzzles 63% → 40-45%).
+- Verified forcing-play outcomes are what let the LM beat its instinct (D vs A on puzzles +10.8,
+  p<0.001). Writing the idea first hurts tactics (D: 68 vs 75, p=0.006); training move-first (E)
+  removes the penalty → **decide, then explain**.
+- Human game vs D: lost to a pawn fork the 2-ply search scored "material holds"; depth 4 sees it.
+- Ideas are still the weak part (≈25% sound); move quality improved, explanations didn't.
+
+## 2026-10-05 — explainer round 3: more explanation data (J7)
++2,000 Opus labels (batched 5/call, $40 notional, 3 session windows) → 2,550 teacher positions.
+Same 500 positions + same 100 judged positions as round 2:
+
+| model | cloud-eval / puzzles (explain) | ideas sound | ideas true | sound when best |
+|---|---|---|---|---|
+| E (573 labels) | 34.0 / 72.0 | 26% | 19% | 52% |
+| E2 (+~600) | 32.8 / 74.0 | 37% | 21% | 57% |
+| **E3 (+2,000)** | **34.8 / 76.0** | **39%** (p=0.035 vs E) | **28%** | **60%** |
+
+More explanation labels make the ideas significantly better; moves unchanged within noise.
+
+## 2026-10-03 — explainer v1: encoder, concept discovery, condensed-explanation student
+Design: [[explainer-model]]; discovery: [[concept-discovery]]; reproduce: `experiments/explainer/README.md`.
+Data: 400k Lichess cloud-eval positions (≥2 PVs) + 150k puzzles, structure-hash splits.
+
+**Encoder enc_v1** (MLX, 7.46M params, value+policy trained; concept heads stop-grad), test split
+(28.5k): value MAE 8.8 win-% pts, Stockfish top move 29%, puzzle first move 63%, puzzle-theme
+AUC 0.83, concept probe R² 0.47 (material/phase/queens/development ≈ 0.87-0.99; tactical motifs
+≤ 0.10). Same probes on a frozen **random** trunk: R² 0.28, theme AUC 0.71, puzzle 11% → play training adds +0.19 R² of human-concept information (McGrath-style baseline).
+
+**Teacher**: 782 Claude Opus 5.5 labels (effort medium, ≈$0.035/position, $27.38 notional),
+97% pass the fact checker after re-verification; ideas average 12-13 words. Two plan session
+limits hit; stopped at 480 train / 151 val / 151 test to keep usage for evaluation.
+
+**Discovery**: TopK SAEs on encoder latents; 3% (static) / 0% (dynamic) of features match one
+hand-written concept at |r| ≥ 0.5. Best-minus-alternative (dynamic) features named by Claude
+and predicted on unseen positions: king out of the centre 10/10, castle short 9/10, avoid the
+queen trade 9/10, grab hanging material 8/10. Teachability (Schut's filter; weaker
+step-2000 student fine-tuned 40 steps on 300 prototypes vs 300 random positions, top-move accuracy
+on 100 held-out prototypes, 2 seeds): king out of the centre +7.5 pts, castle short +5.5, avoid
+queen trade +1.5, capture hanging queen +1.5, simplifying trades −1.0, grab hanging material −10.9
+(46 test positions). Only the king-safety concepts transfer; ±5 pts is within noise at n=100.
+
+**Student** (Qwen3-1.7B + LoRA via mlx-lm, 573 train examples, checkpoint 500 of 600 by val loss
+1.271; v1.1 input = facts with piece list / named captures / threats), 100 held-out test positions:
+
+| | student | untuned Qwen3-1.7B | teacher (Opus 5.5) |
+|---|---|---|---|
+| follows format | 100% | 0% | – |
+| passes our fact checker | 95% (v1 without piece facts: 87%) | 0% | – |
+| concept tags vs teacher (F1) | 0.43 | – | 1 |
+| idea length (words) | 11.9 | – | 12.5 |
+| whole explanation judged correct (Opus, blind) | 0% | 3% | 93% |
+| one-line idea judged correct (Opus) | **10%** | – | **93%** |
+| pairwise | loses 100/100 to teacher; beats base 65% (13% loss, 22% tie) | | |
+| reader (Haiku) picks best move with masked hint | 88% | – (no hint: 64%) | 90% |
+
+- **The student learned the form, not the chess.** Condensation, format, concept vocabulary and
+  hint usefulness transfer; correctness does not. Judge reasons are almost all board geometry:
+  "Rd8 guards f6", "White has no c1 bishop", "the d5 pawn doesn't attack the queen". Our fact
+  checker (moves exist, material claims) misses these, so 95% "verified" ≠ correct.
+- **The transfer test is confounded**: a masked hint like "recapture with the knight" still
+  identifies the move. It shows hints point at the right move, not that the reasoning is right.
+- **Takeaway for v2**: (1) give the student explicit attack/defence relations (context
+  builder's `relations()`), not just a piece list; (2) 5-10× more teacher labels (the Opus teacher
+  is reliable: 93%); (3) a larger student (Qwen3-4B QLoRA) or encoder→LM soft-prompt fusion so
+  geometry comes from the chess encoder; (4) a geometry fact checker (claims of "X attacks/guards
+  Y") to filter training text and to build DPO pairs (teacher vs student) as a reward signal.
+- Cost: teacher $27.38, discovery $1.6, judge $4.7 + idea judge $3.3, reader ≈$0.3 (notional,
+  `claude -p` on the plan).
+
 ## 2026-09-24 — Haiku 4.5 vs Maia-1100: naive vs hybrid (thinking off, --board-read)
 Runs `20260924_203947_{naive,hybrid-ctx}-haiku-vs-maia1100` (in `db/games.sqlite`; runs/ is
 gitignored). 4 games each, colours alternate, 6-ply book openings, SF depth-12 analysis.

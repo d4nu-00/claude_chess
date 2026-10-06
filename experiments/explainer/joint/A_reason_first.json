@@ -1,0 +1,5135 @@
+{
+ "adapter": "/Users/danu/development/claude_chess/data/models/joint_A",
+ "eval": {
+  "explain": 0.28,
+  "move_only": 0.256,
+  "instinct": 0.256,
+  "recall6": 0.776,
+  "fallback": 0.0,
+  "n": 250,
+  "rows": [
+   {
+    "fen": "rn1q1rk1/pbppppbp/1p3np1/3P4/2P5/5NP1/PP2PPBP/RNBQ1RK1 b - - 0 1",
+    "best": "b8a6",
+    "explain": "c7c6",
+    "move_only": "c7c6",
+    "instinct": "d7d6",
+    "idea": "Break with c6 to open the centre and hit White's weak d5 pawn."
+   },
+   {
+    "fen": "r1b3k1/p1p2ppp/1bp1r3/1p6/PP6/2Pq1B2/3P1PPP/R1BQ1RK1 b - - 0 1",
+    "best": "b5a4",
+    "explain": "d3f1",
+    "move_only": "d3c3",
+    "instinct": "d3c3",
+    "idea": "Check first, then trade queens to open the a1\u2013h8 diagonal onto White's king."
+   },
+   {
+    "fen": "8/3k4/8/4Q3/5N2/4K3/8/8 w - - 0 1",
+    "best": "e5e6",
+    "explain": "e3e4",
+    "move_only": "e5f6",
+    "instinct": "e5f6",
+    "idea": "Step the king off the e-file and guard f6 so the queen can't fork."
+   },
+   {
+    "fen": "8/8/3kb3/8/3KQ3/8/8/8 b - - 0 1",
+    "best": "e6f7",
+    "explain": "d6e7",
+    "move_only": "d6c7",
+    "instinct": "e6d7",
+    "idea": "Step the king off the e-file and guard f7 so White's queen forks king and bishop."
+   },
+   {
+    "fen": "8/8/8/8/1p2K3/2k5/8/6R1 w - - 0 1",
+    "best": "e4e3",
+    "explain": "e4e3",
+    "move_only": "e4e3",
+    "instinct": "e4e3",
+    "idea": "Step the king off e4 to guard f3 and keep the queenside pawns."
+   },
+   {
+    "fen": "6k1/4nrp1/2q1b3/b2pBpQ1/2pP4/p1P5/P1B2PP1/1R3NK1 w - - 0 1",
+    "best": "b1b8",
+    "explain": "b1b8",
+    "move_only": "b1b8",
+    "instinct": "b1b8",
+    "idea": "Check the king and hit the exposed queen at once; don't run away."
+   },
+   {
+    "fen": "8/8/2k5/2Q5/3K4/1b6/8/8 b - - 0 1",
+    "best": "c6d7",
+    "explain": "c6b7",
+    "move_only": "c6d7",
+    "instinct": "c6d7",
+    "idea": "Step the king off the d-file and guard e7 so White's queen can't fork."
+   },
+   {
+    "fen": "r3qk2/pb3pnQ/1p5R/1Np5/2P5/1P2PP1P/PB4PK/8 w - - 0 1",
+    "best": "h7g7",
+    "explain": "h7h8",
+    "move_only": "b2g7",
+    "instinct": "b2g7",
+    "idea": "Check first, then grab the loose knight on g7 and win back the piece."
+   },
+   {
+    "fen": "rnb1kr2/1p1p1pQp/4p2B/1pq5/2P1n3/P4P2/1P4PP/R3KB1R b KQq - 0 1",
+    "best": "e4f6",
+    "explain": "c5f2",
+    "move_only": "c5f2",
+    "instinct": "c5f2",
+    "idea": "Check first, then use the extra piece to fork White's queen and knight."
+   },
+   {
+    "fen": "r1bq1rk1/1p1n2pp/p2p4/3Pppb1/2P5/2NBBP2/PP1Q2PP/R4RK1 b - - 0 1",
+    "best": "g5e3",
+    "explain": "g5e3",
+    "move_only": "g5e3",
+    "instinct": "g5e3",
+    "idea": "Trade off White's active bishop and gain time by attacking the pinned queen."
+   },
+   {
+    "fen": "1rbq1rk1/p3ppbp/3p1np1/2p5/4P3/2PPB1PP/P3QPB1/R2N1RK1 b - - 0 1",
+    "best": "d8a5",
+    "explain": "c8b7",
+    "move_only": "d8c7",
+    "instinct": "c8a6",
+    "idea": "Develop with tempo, guard c5, and keep White's queen tied up."
+   },
+   {
+    "fen": "rn2kb1r/1pq2ppp/p2p1n2/4pP2/5P2/2N2Q2/PPP3PP/R1B1KB1R b KQkq - 0 1",
+    "best": "e5e4",
+    "explain": "b8c6",
+    "move_only": "b8c6",
+    "instinct": "b8c6",
+    "idea": "Develop with tempo, guard d6, and keep the queens on."
+   },
+   {
+    "fen": "rnbq1rk1/pp2ppbp/6p1/2pQP3/6n1/2N2N2/PPP1BPPP/R1B2RK1 b - - 0 1",
+    "best": "d8d5",
+    "explain": "d8d5",
+    "move_only": "d8d5",
+    "instinct": "d8d5",
+    "idea": "Trade queens to clear the d5\u2013a8 diagonal and develop the knight."
+   },
+   {
+    "fen": "3k4/pp2r3/2p3p1/3pRnP1/3P3p/P2R3P/1PP1Nr2/2K5 w - - 0 1",
+    "best": "e5e7",
+    "explain": "e5e7",
+    "move_only": "e5e7",
+    "instinct": "e5e7",
+    "idea": "Trade off Black's active rook on e7 and hit the exposed king."
+   },
+   {
+    "fen": "rnbqkbnr/pp3ppp/3pp3/2pP4/2P5/8/PP2PPPP/RNBQKBNR w KQkq - 0 1",
+    "best": "e2e4",
+    "explain": "e2e4",
+    "move_only": "b1c3",
+    "instinct": "e2e4",
+    "idea": "Kick the e6 pawn with tempo, then develop with Nc3 and Qc2."
+   },
+   {
+    "fen": "r1bqkbnr/1pp3pp/p4p2/2p1p3/4P3/2P2N1P/PP1P1PP1/RNBQK2R w KQkq - 0 1",
+    "best": "d2d4",
+    "explain": "d2d4",
+    "move_only": "d2d4",
+    "instinct": "d2d4",
+    "idea": "Break the queenside with d4 to open the centre and free your king."
+   },
+   {
+    "fen": "8/p1pk4/8/2Q5/4p1bb/1P2P3/P1Pr4/5K2 w - - 0 1",
+    "best": "c5b5",
+    "explain": "c5b5",
+    "move_only": "c5b5",
+    "instinct": "c5b5",
+    "idea": "Check first, then use the extra pawn to fork the rook and the a7-knight."
+   },
+   {
+    "fen": "r1bq1rk1/bpp2ppp/p1np1n2/4p3/P1B1P3/2PPBN2/1P3PPP/RN1Q1RK1 w - - 0 1",
+    "best": "e3a7",
+    "explain": "b1d2",
+    "move_only": "b1d2",
+    "instinct": "b1d2",
+    "idea": "Develop with tempo, guard e5, and keep Black's pieces tied up."
+   },
+   {
+    "fen": "3R4/8/8/8/4K3/2p5/4k3/8 w - - 0 1",
+    "best": "d8c8",
+    "explain": "d8e8",
+    "move_only": "d8d3",
+    "instinct": "d8e8",
+    "idea": "Hit the center with ...Re8 to open the e-file and hit Black's loose c-pawn."
+   },
+   {
+    "fen": "4r3/pp2kp2/3p2p1/4p3/7Q/5P2/PPP5/2K5 b - - 0 1",
+    "best": "e7e6",
+    "explain": "e7d7",
+    "move_only": "g6g5",
+    "instinct": "g6g5",
+    "idea": "Step the king off the h-file and guard g7 so White's queen can't fork."
+   },
+   {
+    "fen": "8/3Q4/6k1/2N5/8/4K3/8/8 w - - 0 1",
+    "best": "e3f4",
+    "explain": "e3e4",
+    "move_only": "c5e4",
+    "instinct": "e3f4",
+    "idea": "Step the king off the e-file and guard f4 so Black's queen forks."
+   },
+   {
+    "fen": "Q7/1R2qpkp/2r1r1p1/2R5/3Pp3/4P1P1/5PP1/6K1 b - - 0 1",
+    "best": "c6c5",
+    "explain": "c6c5",
+    "move_only": "c6c5",
+    "instinct": "c6c5",
+    "idea": "Recapture with the rook to open the b7-b8 diagonal onto White's queen."
+   },
+   {
+    "fen": "1k6/5Q2/4N3/8/8/4K3/8/8 w - - 0 1",
+    "best": "e6c5",
+    "explain": "e3e4",
+    "move_only": "f7d7",
+    "instinct": "e3d4",
+    "idea": "Step the king off the e-file and guard d8 so Black's queen can't fork."
+   },
+   {
+    "fen": "r1b1k2r/pp1p1p1p/1qn1pBp1/4P3/1b6/1BQ5/PPP2PPP/RN2K1NR b KQkq - 0 1",
+    "best": "e8g8",
+    "explain": "b4c3",
+    "move_only": "b4c3",
+    "instinct": "b4c3",
+    "idea": "Take the queen first. The attack on the king outruns the pawn."
+   },
+   {
+    "fen": "r4k1r/p2pp2p/3N1np1/2p5/3b4/8/PPP2BPP/R4RK1 w - - 0 1",
+    "best": "f2d4",
+    "explain": "f2d4",
+    "move_only": "f2d4",
+    "instinct": "f2d4",
+    "idea": "Trade off Black's active d4 bishop and gain time by retreating the knight."
+   },
+   {
+    "fen": "8/1k6/5N2/2Q5/3K4/8/8/8 w - - 0 1",
+    "best": "f6d5",
+    "explain": "c5b4",
+    "move_only": "c5d6",
+    "instinct": "c5d6",
+    "idea": "Check first, then use the extra queenside pawns to fork the king and the loose c-pawn."
+   },
+   {
+    "fen": "r1bqkb1r/ppp3pp/2np1n2/4pP2/2B5/3P1Q2/PPP1NPPP/RNB1K2R b KQkq - 0 1",
+    "best": "e5e4",
+    "explain": "c8f5",
+    "move_only": "c8f5",
+    "instinct": "c8f5",
+    "idea": "Develop with tempo, guard e5, and keep the queen active."
+   },
+   {
+    "fen": "r2qr1k1/2p2p2/p1b1pb1Q/np6/3P4/P1P5/1P3PPP/RB3RK1 w - - 0 1",
+    "best": "b1h7",
+    "explain": "h6h7",
+    "move_only": "h6h7",
+    "instinct": "h6h7",
+    "idea": "Check first, then use the extra material to win the queen."
+   },
+   {
+    "fen": "r2k1bnr/pppBpppp/3p4/3PN3/4P3/8/PPP2PPP/RNBbK2R w KQ - 0 1",
+    "best": "e5f7",
+    "explain": "e5f7",
+    "move_only": "e5f7",
+    "instinct": "e5f7",
+    "idea": "Check first, then grab the loose f7-pawn and keep Black's king in the centre."
+   },
+   {
+    "fen": "r2q1rk1/1pp1bppp/p2pb3/4P3/3Q4/1PN5/1PP2PPP/R1B1R1K1 w - - 0 1",
+    "best": "e5d6",
+    "explain": "e5d6",
+    "move_only": "c3d5",
+    "instinct": "e5d6",
+    "idea": "Trade off Black's strong d6 pawn to open the centre and free your pieces."
+   },
+   {
+    "fen": "3k4/1Q6/3K4/8/8/7b/8/8 b - - 0 1",
+    "best": "h3g4",
+    "explain": "h3f1",
+    "move_only": "h3g4",
+    "instinct": "h3g2",
+    "idea": "Hit the queen with tempo, then trade queens to win back the material."
+   },
+   {
+    "fen": "r1bqk2r/pp2n2p/2n1pp2/2bp4/7P/2NB1NB1/PPP2PP1/R2QK2R w KQkq - 0 1",
+    "best": "d1e2",
+    "explain": "e1g1",
+    "move_only": "e1g1",
+    "instinct": "e1g1",
+    "idea": "Castle now, before Black's queen forks your king and your knight."
+   },
+   {
+    "fen": "1r4k1/5ppp/3Np3/8/3n1P2/4nBP1/7P/R6K w - - 0 1",
+    "best": "a1a8",
+    "explain": "f3e4",
+    "move_only": "a1a8",
+    "instinct": "a1a8",
+    "idea": "Save the attacked bishop with tempo, then use the extra piece and the queenside majority."
+   },
+   {
+    "fen": "2b5/1p3k2/5p2/p1NPp1p1/P3P3/6KP/6P1/8 b - - 0 1",
+    "best": "b7b6",
+    "explain": "b7b6",
+    "move_only": "b7b6",
+    "instinct": "b7b6",
+    "idea": "Push the passed pawn to b6 to open the centre and hit White's weak c5 knight."
+   },
+   {
+    "fen": "r4rk1/2p3pp/p1Qb2b1/3p4/3P1q2/PP4P1/1B2BP1P/R4RK1 b - - 0 1",
+    "best": "f4d2",
+    "explain": "f4d2",
+    "move_only": "f4d2",
+    "instinct": "f4e4",
+    "idea": "Save the attacked queen with tempo, then use the extra piece to win back d4."
+   },
+   {
+    "fen": "r1bqkbnr/ppp2ppp/2n5/1B1pp2Q/8/2N1P3/PPPP1PPP/R1B1K1NR b KQkq - 0 1",
+    "best": "d8d6",
+    "explain": "g8f6",
+    "move_only": "g8f6",
+    "instinct": "g8f6",
+    "idea": "Develop with tempo, guard e5, and keep the queen active."
+   },
+   {
+    "fen": "rnbqk1nr/pppp1ppp/8/2bNp3/2P5/5N2/PP1PPPPP/R1BQKB1R b KQkq - 0 1",
+    "best": "c7c6",
+    "explain": "g8f6",
+    "move_only": "c7c6",
+    "instinct": "c7c6",
+    "idea": "Develop with tempo: hit the centre with Nf6, then castle and use the half-open b-file."
+   },
+   {
+    "fen": "r1bk3r/p4ppp/2p1p3/8/4p3/2P5/P1P2PPP/R1BR2K1 b - - 0 1",
+    "best": "d8e7",
+    "explain": "d8e7",
+    "move_only": "d8e7",
+    "instinct": "d8c7",
+    "idea": "Step the king off the e-file and guard f7 so White's queen forks."
+   },
+   {
+    "fen": "8/8/8/1k2Q3/3K4/7b/8/8 b - - 0 1",
+    "best": "b5c6",
+    "explain": "b5c6",
+    "move_only": "b5c6",
+    "instinct": "b5b6",
+    "idea": "Step the king off the e-file and guard f8 so White's queen can't fork."
+   },
+   {
+    "fen": "r2q1rk1/3bbppp/3p1n2/2p5/pp1NPBPP/3Q1PN1/PPP5/1K1R3R w - - 0 1",
+    "best": "d4f5",
+    "explain": "d4f5",
+    "move_only": "d4f5",
+    "instinct": "d4f5",
+    "idea": "Save the attacked knight with tempo, then use the extra pawn to win back cxd4."
+   },
+   {
+    "fen": "r3kbnr/1bq2ppp/p1p5/1p2p3/P3P3/2N2B2/1PP1QPPP/R1B2RK1 b kq - 0 1",
+    "best": "g8f6",
+    "explain": "g8e7",
+    "move_only": "g8f6",
+    "instinct": "b5b4",
+    "idea": "Develop with tempo, guard d6, and keep White's queen tied up."
+   },
+   {
+    "fen": "r2qk2r/p4ppp/2p2n2/3bp1B1/8/2P3P1/P3PPBP/R2QK2R w KQkq - 0 1",
+    "best": "e1g1",
+    "explain": "e1g1",
+    "move_only": "d1a4",
+    "instinct": "e1g1",
+    "idea": "Castle now: guard g2 and hit the loose d5-bishop."
+   },
+   {
+    "fen": "8/3k4/8/4Q3/4N3/4K3/8/8 w - - 0 1",
+    "best": "e4c5",
+    "explain": "e4c5",
+    "move_only": "e4f6",
+    "instinct": "e4f6",
+    "idea": "Check first, then use the extra queenside pawns to fork the king and the queen."
+   },
+   {
+    "fen": "r1bqk1nr/pp1pppbp/2n3p1/2p5/2P1P3/3P2P1/PP3PBP/RNBQK1NR b KQkq - 0 1",
+    "best": "a7a6",
+    "explain": "g8f6",
+    "move_only": "d7d6",
+    "instinct": "d7d6",
+    "idea": "Kick the b2-knight with tempo, then castle and use the extra pawn."
+   },
+   {
+    "fen": "8/3k4/8/5P2/7p/2K4B/Pr4P1/8 b - - 0 1",
+    "best": "b2a2",
+    "explain": "b2a2",
+    "move_only": "b2a2",
+    "instinct": "b2a2",
+    "idea": "Recapture with the rook to keep the kingside pawns intact."
+   },
+   {
+    "fen": "r4rk1/pp2npp1/n1p2q1p/8/4P3/b1N1BP2/1PP1QP1P/1K1R1B1R w - - 0 1",
+    "best": "e3d4",
+    "explain": "b2a3",
+    "move_only": "b2a3",
+    "instinct": "b2a3",
+    "idea": "Take the bishop on a3 now. It is undefended and worth 3."
+   },
+   {
+    "fen": "1r4k1/5ppp/3R4/p3p1b1/4P3/1r3P2/1P4PP/1K3B1R w - - 0 1",
+    "best": "b1a1",
+    "explain": "f1c4",
+    "move_only": "f1c4",
+    "instinct": "f1c4",
+    "idea": "Develop with tempo, guard b2, and keep Black's rooks tied up."
+   },
+   {
+    "fen": "5rk1/p4ppp/bq1N4/2npP3/r2N3Q/2R3P1/P4P1P/3R2K1 b - - 0 1",
+    "best": "c5e6",
+    "explain": "a4a2",
+    "move_only": "a4d4",
+    "instinct": "a4d4",
+    "idea": "Take the a2 pawn at once; White's attack has no follow-up."
+   },
+   {
+    "fen": "r4rk1/p4p1p/1p1q2p1/1b1Pp3/8/8/PPQ2PPP/RB3RK1 w - - 0 1",
+    "best": "f1d1",
+    "explain": "f1d1",
+    "move_only": "f1d1",
+    "instinct": "f1d1",
+    "idea": "Save the attacked rook with tempo, then use the extra pawn to win back the bishop."
+   },
+   {
+    "fen": "rnbq1rk1/p2pppbp/5np1/1ppP2B1/2P5/2N1P3/PP2BPPP/R2QK1NR b KQ - 0 1",
+    "best": "b5b4",
+    "explain": "b5b4",
+    "move_only": "b5b4",
+    "instinct": "b5b4",
+    "idea": "Kick the c3 knight with tempo, then trade queens to win back the c4 pawn."
+   },
+   {
+    "fen": "r1b2rk1/p5pp/4p3/2pp1n2/5B2/3P2P1/PqP1N2P/R3QRK1 w - - 0 1",
+    "best": "g3g4",
+    "explain": "a1b1",
+    "move_only": "a1b1",
+    "instinct": "a1b1",
+    "idea": "Hit the queen with tempo, then trade queens to win back the material."
+   },
+   {
+    "fen": "rnbqkb1r/ppp1pp1p/5np1/3p4/8/2NP4/PPPBPPPP/R2QKBNR w KQkq - 0 1",
+    "best": "g2g3",
+    "explain": "e2e4",
+    "move_only": "e2e4",
+    "instinct": "e2e4",
+    "idea": "Kick the d5-knight with ...e4 to open the centre and free your bishop."
+   },
+   {
+    "fen": "1r1q1rk1/b1p2ppp/p1np1n2/Pp2p3/3PP1b1/1BP1BN2/1P1N1PPP/R2Q1RK1 w - - 0 1",
+    "best": "d4e5",
+    "explain": "d4e5",
+    "move_only": "d4e5",
+    "instinct": "h2h3",
+    "idea": "Kick the c6-knight with dxe5 to open the centre and free your queen."
+   },
+   {
+    "fen": "1r2n3/3k2p1/p1p1p1p1/2Pp1p2/1P6/3KPP1P/P2B2P1/2R5 w - - 0 1",
+    "best": "d2c3",
+    "explain": "e3e4",
+    "move_only": "e3e4",
+    "instinct": "d3d4",
+    "idea": "Push e4 to open the centre and hit Black's weak d5 and f5 pawns."
+   },
+   {
+    "fen": "4Rr1k/6p1/4R1Bp/rn6/1p6/6P1/5P1P/6K1 b - - 0 1",
+    "best": "a5a1",
+    "explain": "a5a1",
+    "move_only": "a5a1",
+    "instinct": "a5a1",
+    "idea": "Check first, then trade rooks to open the f8\u2013a1 diagonal onto White's king."
+   },
+   {
+    "fen": "r3rb2/6pk/pn4p1/np2p1B1/3p2Q1/8/PP3PP1/R3R1K1 b - - 0 1",
+    "best": "a5c4",
+    "explain": "e8e6",
+    "move_only": "a5c6",
+    "instinct": "e8e6",
+    "idea": "Kick the e1 rook with tempo, then use the open e-file against White's king."
+   },
+   {
+    "fen": "r1bqk2r/ppp1bppp/2np1n2/4p3/2B1PP2/3P4/PPP1N1PP/R1BQK1NR b KQkq - 0 1",
+    "best": "d6d5",
+    "explain": "e8g8",
+    "move_only": "e8g8",
+    "instinct": "e8g8",
+    "idea": "Castle now: the king is already safe, so don't take the f7-bishop."
+   },
+   {
+    "fen": "7n/6k1/7p/5pp1/1R2p3/4NrPP/5PK1/8 b - - 0 1",
+    "best": "h8g6",
+    "explain": "g7f7",
+    "move_only": "h8f7",
+    "instinct": "h8f7",
+    "idea": "Step the king off the e-file and guard f7 so White's rook can't fork."
+   },
+   {
+    "fen": "rn1qkb1r/p1p2ppp/bp2pn2/3p4/2PP4/5NP1/PP1NPP1P/R1BQKB1R w KQkq - 0 1",
+    "best": "f1g2",
+    "explain": "d1a4",
+    "move_only": "f1g2",
+    "instinct": "f1g2",
+    "idea": "Check first, then trade queens to open the d5 pawn and win it."
+   },
+   {
+    "fen": "rn1qkbnr/pp3ppp/2p1p3/3p1b2/2PP1B2/4P3/PP3PPP/RN1QKBNR w KQkq - 0 1",
+    "best": "d1b3",
+    "explain": "b1c3",
+    "move_only": "b1c3",
+    "instinct": "b1c3",
+    "idea": "Develop with tempo, hit the centre with Nc3, then castle and use the queenside majority."
+   },
+   {
+    "fen": "r2qkb1r/pp2pppp/2n2n2/2pp4/3P1Pb1/2PBPN2/PP4PP/RNBQK2R b KQkq - 0 1",
+    "best": "e7e6",
+    "explain": "c5c4",
+    "move_only": "c5c4",
+    "instinct": "e7e6",
+    "idea": "Push the centre with c4 to open the d3-bishop's diagonal onto White's queen."
+   },
+   {
+    "fen": "8/5k2/8/8/3Q4/3NK3/8/8 w - - 0 1",
+    "best": "d3e5",
+    "explain": "d3e5",
+    "move_only": "d4d6",
+    "instinct": "d4d6",
+    "idea": "Check first, then use the extra material to trade queens and win."
+   },
+   {
+    "fen": "2rr2k1/p3qp1p/1p4p1/n1pbPQ2/3p1P2/P5P1/1P1NP1BP/2R2RK1 w - - 0 1",
+    "best": "f5h3",
+    "explain": "f5g4",
+    "move_only": "f5g4",
+    "instinct": "g2d5",
+    "idea": "Save the attacked queen with tempo, then use the extra piece and the d5 bishop."
+   },
+   {
+    "fen": "r1bq1rk1/1pppbpp1/p1n2n1p/4p3/2B1P3/P1NP1N2/1PP2PPP/R1BQ1RK1 w - - 0 1",
+    "best": "c1e3",
+    "explain": "c3d5",
+    "move_only": "c4b3",
+    "instinct": "h2h3",
+    "idea": "Kick the e5-knight with tempo, then castle and use the extra pawn."
+   },
+   {
+    "fen": "r1bqk2r/pppp1ppp/2n2n2/4p3/2B1P3/P1P2N2/2PP1PPP/R1BQ1RK1 b kq - 0 1",
+    "best": "e8g8",
+    "explain": "f6e4",
+    "move_only": "f6e4",
+    "instinct": "f6e4",
+    "idea": "Take the pawn on e4 now, before White can castle and guard it."
+   },
+   {
+    "fen": "3Q4/5p1k/p1r3p1/2P4p/PP5P/8/K2R1q2/8 b - - 0 1",
+    "best": "f2f1",
+    "explain": "f2f4",
+    "move_only": "f2d2",
+    "instinct": "f2d2",
+    "idea": "Save the attacked queen with tempo, then use the extra pawn to win back the exchange."
+   },
+   {
+    "fen": "r1bqk2r/p2p1ppp/2p1p3/3nP3/1bB5/2N5/PPP2PPP/R1BQK2R w KQkq - 0 1",
+    "best": "d1g4",
+    "explain": "e1g1",
+    "move_only": "d1d3",
+    "instinct": "e1g1",
+    "idea": "Castle now: the d5 knight is lost anyway, so castle now."
+   },
+   {
+    "fen": "rnbqk2r/ppp2ppp/8/3pP3/1b1Pn3/3B4/PP1B1PPP/RN1QK1NR b KQkq - 0 1",
+    "best": "e4d2",
+    "explain": "b4d2",
+    "move_only": "b4d2",
+    "instinct": "b4d2",
+    "idea": "Trade off White's strong d2-bishop and gain time by developing the knight."
+   },
+   {
+    "fen": "8/2k5/Q7/8/4K3/3N4/8/8 w - - 0 1",
+    "best": "e4e5",
+    "explain": "e4d5",
+    "move_only": "e4d5",
+    "instinct": "e4d5",
+    "idea": "Step the king off the e-file and guard f8 so Black's queen can't fork."
+   },
+   {
+    "fen": "rnbq1rk1/pp2bppp/4pn2/2Pp4/2P2B2/2N2N2/PP2PPPP/2RQKB1R b K - 0 1",
+    "best": "d5c4",
+    "explain": "e7c5",
+    "move_only": "e7c5",
+    "instinct": "e7c5",
+    "idea": "Take the c5 pawn now. It opens the centre and hits White's weak c4-knight."
+   },
+   {
+    "fen": "r1b1k2r/pppp1Npp/2n5/4p3/2B1n2q/4K1P1/PPPP3P/RNBQ3R b kq - 0 1",
+    "best": "e4g3",
+    "explain": "h4h6",
+    "move_only": "h4f6",
+    "instinct": "h4f6",
+    "idea": "Check first, then use the extra pawn to guard the queen and keep White's attack on the king."
+   },
+   {
+    "fen": "8/8/8/1p3k2/1P1P4/2K5/8/8 w - - 0 1",
+    "best": "d4d5",
+    "explain": "c3d2",
+    "move_only": "c3d3",
+    "instinct": "c3d3",
+    "idea": "Step the king off the e-file and guard f4 before Black's attack."
+   },
+   {
+    "fen": "8/8/8/4P1K1/5p2/4kP2/8/8 b - - 0 1",
+    "best": "e3f3",
+    "explain": "e3f3",
+    "move_only": "e3f3",
+    "instinct": "e3f3",
+    "idea": "Take the f3-pawn now. White's attack on f4 is lost."
+   },
+   {
+    "fen": "8/8/8/5K2/8/3k4/1Q6/2q5 w - - 0 1",
+    "best": "b2c1",
+    "explain": "b2c1",
+    "move_only": "b2c1",
+    "instinct": "b2c1",
+    "idea": "Recapture with the queen to guard b2 and keep Black's attack on the king."
+   },
+   {
+    "fen": "8/2N5/1K6/8/3Q4/8/4k3/8 w - - 0 1",
+    "best": "d4e4",
+    "explain": "b6c5",
+    "move_only": "b6c6",
+    "instinct": "c7d5",
+    "idea": "Step the king back to c5, away from the d4 fork."
+   },
+   {
+    "fen": "8/8/4K3/8/8/3pk3/8/3R4 w - - 0 1",
+    "best": "d1h1",
+    "explain": "e6d5",
+    "move_only": "e6d5",
+    "instinct": "e6d5",
+    "idea": "Step the king off the e-file and guard d2 so Black's attack can't land."
+   },
+   {
+    "fen": "r3k2r/1p3ppp/3pbn2/1Nb1p3/2P1P3/1p4NP/RP2QPP1/2B1K2R b - - 0 1",
+    "best": "b3a2",
+    "explain": "a8a2",
+    "move_only": "a8a2",
+    "instinct": "a8a2",
+    "idea": "Recapture with the rook to keep the queens and the a8 rook."
+   },
+   {
+    "fen": "8/k7/2Q5/2K5/8/3N4/8/8 w - - 0 1",
+    "best": "c5b5",
+    "explain": "c5b5",
+    "move_only": "d3b4",
+    "instinct": "d3b4",
+    "idea": "Step the king off the e-file and guard d7 so Black's queen can't fork."
+   },
+   {
+    "fen": "3R4/r1r1kppp/p3p3/1p6/6N1/1PbR2P1/P3PPKP/8 b - - 0 1",
+    "best": "h7h5",
+    "explain": "f7f5",
+    "move_only": "h7h5",
+    "instinct": "h7h5",
+    "idea": "Kick the g4 knight with tempo, then use the extra pawn to win back the piece."
+   },
+   {
+    "fen": "rn2k1nr/1bqpbppp/p3p3/4P3/1p1N4/3B4/PPP2PPP/RNBQR1K1 b kq - 0 1",
+    "best": "e7c5",
+    "explain": "b8c6",
+    "move_only": "b8c6",
+    "instinct": "b8c6",
+    "idea": "Develop with tempo, hit the centre with ...Nc6, then castle and use the queenside majority."
+   },
+   {
+    "fen": "k7/3K4/1Pp5/8/8/8/8/8 w - - 0 1",
+    "best": "d7c7",
+    "explain": "d7c6",
+    "move_only": "d7c6",
+    "instinct": "d7c7",
+    "idea": "Take the c6-pawn now. It is undefended and must go."
+   },
+   {
+    "fen": "8/1k6/4b3/1KQ5/8/8/8/8 b - - 0 1",
+    "best": "e6d7",
+    "explain": "e6f7",
+    "move_only": "e6c8",
+    "instinct": "e6d7",
+    "idea": "Check first, then use the extra material to win the queen."
+   },
+   {
+    "fen": "8/6R1/P1p1k3/2P5/1NK3p1/6p1/8/8 b - - 0 1",
+    "best": "g3g2",
+    "explain": "e6f6",
+    "move_only": "g3g2",
+    "instinct": "g3g2",
+    "idea": "Step the king off the e-file and guard g4 so White's attack on c6 stays."
+   },
+   {
+    "fen": "r3kb1r/pp1b1ppp/1qn1p2n/3pP3/3P4/2N2N2/PPB2PPP/R1BQK2R b KQkq - 0 1",
+    "best": "h6f5",
+    "explain": "f8b4",
+    "move_only": "h6f5",
+    "instinct": "h6f5",
+    "idea": "Develop with tempo, guard d5, and keep White's e5 pawn tied up."
+   },
+   {
+    "fen": "8/6Q1/8/3k4/8/3NK3/8/8 w - - 0 1",
+    "best": "g7d7",
+    "explain": "g7d4",
+    "move_only": "g7d4",
+    "instinct": "g7e7",
+    "idea": "Check first, then use the extra queenside pawns to fork the king and the queen."
+   },
+   {
+    "fen": "8/8/8/5Pk1/1p6/p4N2/K7/4q3 b - - 0 1",
+    "best": "g5f6",
+    "explain": "g5f4",
+    "move_only": "g5f5",
+    "instinct": "g5g4",
+    "idea": "Step the king off the e-file and guard f4 so the queen can't fork."
+   },
+   {
+    "fen": "8/8/K1k5/p4r2/P7/8/5p2/2R5 b - - 0 1",
+    "best": "c6d6",
+    "explain": "c6d6",
+    "move_only": "c6d6",
+    "instinct": "f5c5",
+    "idea": "Step the king off the e-file and guard f2 so White's rook can't fork."
+   },
+   {
+    "fen": "8/3P2k1/4K3/8/3r3p/8/8/8 w - - 0 1",
+    "best": "e6e7",
+    "explain": "d7d8q",
+    "move_only": "d7d8q",
+    "instinct": "d7d8q",
+    "idea": "Promote to a queen and keep the d7 pawn alive, then use the extra material."
+   },
+   {
+    "fen": "r3kb1r/pp1q1ppp/2n1p3/3p4/2pPnB1N/2P1P3/PP3PPP/R2QKB1R w KQkq - 0 1",
+    "best": "h4f3",
+    "explain": "f2f3",
+    "move_only": "h4f3",
+    "instinct": "f2f3",
+    "idea": "Kick the e4 knight with tempo, then develop with Be2."
+   },
+   {
+    "fen": "rnbqk1nr/pppp1pbp/4p1p1/8/2B1P3/5Q2/PPP1NPPP/RNB1K2R w KQkq - 0 1",
+    "best": "h2h4",
+    "explain": "e1g1",
+    "move_only": "f3f7",
+    "instinct": "f3f7",
+    "idea": "Castle now, before Black's queen forks your king and the knight."
+   },
+   {
+    "fen": "3r2k1/7p/1p1PNRp1/p3P3/1pr5/6P1/P5KP/8 b - - 0 1",
+    "best": "d8b8",
+    "explain": "c4c2",
+    "move_only": "c4c2",
+    "instinct": "c4c2",
+    "idea": "Check first, then use the extra pawn to fork White's loose c4 and d4 rooks."
+   },
+   {
+    "fen": "2rr1bk1/5pp1/pP4np/1pp1p3/4P3/2P1BN2/1P3PPP/R2R2K1 b - - 0 1",
+    "best": "d8d1",
+    "explain": "d8d1",
+    "move_only": "d8d1",
+    "instinct": "d8d1",
+    "idea": "Trade off White's active rook on d1 and a1."
+   },
+   {
+    "fen": "r3r1k1/1bq2ppp/2pbp3/p7/4BP2/3Q4/PPPB2PP/1R3RK1 b - - 0 1",
+    "best": "f7f5",
+    "explain": "d6c5",
+    "move_only": "d6c5",
+    "instinct": "d6c5",
+    "idea": "Check first, then use the extra pawn to fork White's queen and rooks."
+   },
+   {
+    "fen": "r1bq1rk1/pppp1ppp/2n2n2/8/1b1NP3/2N2P2/PPP3PP/R1BQKB1R w KQ - 0 1",
+    "best": "d4c6",
+    "explain": "c1e3",
+    "move_only": "c1e3",
+    "instinct": "d4c6",
+    "idea": "Develop with tempo, guard d7, and keep Black's queen tied up."
+   },
+   {
+    "fen": "2k5/8/2P5/1K6/3R4/8/8/1r6 w - - 0 1",
+    "best": "d4b4",
+    "explain": "b5c4",
+    "move_only": "b5c4",
+    "instinct": "b5a6",
+    "idea": "Step the king off the a-file and guard b1 with the rook."
+   },
+   {
+    "fen": "rn1q1rk1/ppp1ppbp/3p1np1/8/3P2b1/2P1PNB1/PP2BPPP/RN1QK2R b KQ - 0 1",
+    "best": "c7c5",
+    "explain": "c7c5",
+    "move_only": "c7c6",
+    "instinct": "c7c5",
+    "idea": "Push c5 to open the centre and free the queenside."
+   },
+   {
+    "fen": "r1br3k/pp4b1/4p2p/3P2p1/2BpPp2/5P2/PP3BPP/2KR3R b - - 0 1",
+    "best": "e6e5",
+    "explain": "b7b5",
+    "move_only": "b7b5",
+    "instinct": "e6d5",
+    "idea": "Trade off White's strong d5 pawn and gain time by developing the queenside."
+   },
+   {
+    "fen": "8/3nB3/1p4p1/1K1k3p/P4P2/8/7P/8 w - - 0 1",
+    "best": "e7a3",
+    "explain": "f4f5",
+    "move_only": "f4f5",
+    "instinct": "f4f5",
+    "idea": "Hit the center with f5 to open the e-file and win back the pawn."
+   },
+   {
+    "fen": "1nr2k2/1p1nNppp/p7/3p4/3P4/P3R2P/1P2qPP1/3R1BK1 w - - 0 1",
+    "best": "e3e2",
+    "explain": "e3e2",
+    "move_only": "f1e2",
+    "instinct": "f1e2",
+    "idea": "Recapture with the rook to keep the queens and develop."
+   },
+   {
+    "fen": "r1bqkb1r/pp3ppp/2n2n2/8/2P1p3/3P1N2/PP3PPP/RNBQKB1R w KQkq - 0 1",
+    "best": "d3e4",
+    "explain": "d3e4",
+    "move_only": "d3e4",
+    "instinct": "d3e4",
+    "idea": "Trade off Black's active knight and gain time by developing the queenside."
+   },
+   {
+    "fen": "8/p5p1/1p3p2/5k2/2P5/1P2KP1P/8/8 b - - 0 1",
+    "best": "a7a5",
+    "explain": "f5e5",
+    "move_only": "f5e5",
+    "instinct": "f5e5",
+    "idea": "Step the king off the e-file and guard f4 so White's checks can't fork."
+   },
+   {
+    "fen": "6k1/4Q3/8/8/4K3/3N4/8/8 w - - 0 1",
+    "best": "d3f4",
+    "explain": "e4e5",
+    "move_only": "d3e5",
+    "instinct": "d3e5",
+    "idea": "Step the king off the e-file and guard d8 so Black's queen can't fork."
+   },
+   {
+    "fen": "2rq1r1k/1p1b1p1p/p3pb1Q/1n4p1/1PnP4/P5P1/1BR1PPBP/6K1 w - - 0 1",
+    "best": "g2e4",
+    "explain": "g2b7",
+    "move_only": "h6f6",
+    "instinct": "h6f6",
+    "idea": "Take the pawn on b7 first, then use the extra material to trade queens."
+   },
+   {
+    "fen": "8/4Qq1k/1p2b2P/2np4/r7/8/1BP3P1/4R1K1 w - - 0 1",
+    "best": "e1e6",
+    "explain": "e7f7",
+    "move_only": "e7g5",
+    "instinct": "e7f7",
+    "idea": "Trade queens to kill Black's attack on the exposed king."
+   },
+   {
+    "fen": "8/6k1/5Q2/6K1/8/8/b7/8 b - - 0 1",
+    "best": "g7h7",
+    "explain": "g7h7",
+    "move_only": "g7g8",
+    "instinct": "g7g8",
+    "idea": "Step the king off the h-file and guard the a2-bishop."
+   },
+   {
+    "fen": "rnbq2nr/pppkp1b1/7p/3p1p1Q/3P3p/2N1PN2/PPP2PPP/R3KB1R w KQ - 0 1",
+    "best": "h5f7",
+    "explain": "f3e5",
+    "move_only": "f3e5",
+    "instinct": "f3e5",
+    "idea": "Check first, then grab the undefended f5-pawn."
+   },
+   {
+    "fen": "r1q1r1k1/1ppb1pb1/3p3p/pN1N4/2P1PPp1/4R1Pn/PP1Q2B1/5R1K b - - 0 1",
+    "best": "d7b5",
+    "explain": "d7b5",
+    "move_only": "d7b5",
+    "instinct": "d7b5",
+    "idea": "Trade off White's active knight, then use the extra pawn to win back the c4 pawn."
+   },
+   {
+    "fen": "r4rk1/pp2ppbp/3p2p1/q1pPn1B1/1PP2P2/P1n4P/4B1P1/1R1QK2R w K - 0 1",
+    "best": "b4a5",
+    "explain": "b4a5",
+    "move_only": "b4a5",
+    "instinct": "b4a5",
+    "idea": "Take the attacked queen now. The pawn on a5 is lost anyway."
+   },
+   {
+    "fen": "r3kb1r/pp1b1pp1/n3pnq1/1N4Bp/7P/2P2B2/PP3P2/RN1QK2R w KQkq - 0 1",
+    "best": "d1e2",
+    "explain": "b5c7",
+    "move_only": "b5c7",
+    "instinct": "b5c7",
+    "idea": "Fork the a8 rook and the king at once; Black's attack has no follow-up."
+   },
+   {
+    "fen": "r2RNk2/1p1b1p1p/p3p1p1/2p1P1B1/8/2P4P/P1q2P1P/4R1K1 w - - 0 1",
+    "best": "d8a8",
+    "explain": "g5h6",
+    "move_only": "g5h6",
+    "instinct": "g5h6",
+    "idea": "Check first, then use the extra material to trade off Black's active pieces."
+   },
+   {
+    "fen": "2rr2k1/1p1qnppp/p7/5b2/2PpN3/PP5P/2PQ1BP1/4RRK1 w - - 0 1",
+    "best": "f2h4",
+    "explain": "e4f6",
+    "move_only": "e4f6",
+    "instinct": "e4f6",
+    "idea": "Check first, then use the extra pawn to fork Black's loose queen and rooks."
+   },
+   {
+    "fen": "2kr1b1r/ppp4p/4q1p1/4Pp2/8/2pP1Q2/P1P3PP/R1B2R1K w - - 0 1",
+    "best": "a1b1",
+    "explain": "f3b7",
+    "move_only": "f3b7",
+    "instinct": "f3b7",
+    "idea": "Check first, then grab the undefended b7-pawn and keep Black's king in the centre."
+   },
+   {
+    "fen": "3r1r2/p4p1k/1p4pp/1P2p2Q/4P3/6R1/q4PPP/5RK1 w - - 0 1",
+    "best": "h5e5",
+    "explain": "h5e5",
+    "move_only": "g3g6",
+    "instinct": "g3g6",
+    "idea": "Take the pawn on e5 right away. It is Black's only free pawn."
+   },
+   {
+    "fen": "r1bqk1nr/pppp1ppp/2n5/8/4Pp2/2N2Q2/PPPP2PP/R1B1KBR1 w Qkq - 0 1",
+    "best": "d2d3",
+    "explain": "f3f4",
+    "move_only": "f3f4",
+    "instinct": "d2d4",
+    "idea": "Take the f4-pawn now. It opens the centre and hits the loose e4-knight."
+   },
+   {
+    "fen": "8/8/8/1k6/3QN3/4K3/8/8 w - - 0 1",
+    "best": "d4c5",
+    "explain": "e4d6",
+    "move_only": "e4d6",
+    "instinct": "e4d6",
+    "idea": "Check first, then use the extra material to trade queens and win."
+   },
+   {
+    "fen": "r3k2r/p4pp1/2p2n2/n1b4p/3q4/2P2B2/PP1P1pPP/RNBQ1R1K b kq - 0 1",
+    "best": "d4d6",
+    "explain": "d4d3",
+    "move_only": "d4d3",
+    "instinct": "d4d3",
+    "idea": "Save the attacked queen with tempo, then use the extra piece to win back the pawn."
+   },
+   {
+    "fen": "8/6K1/8/8/2Q5/8/1p6/3k4 w - - 0 1",
+    "best": "c4d3",
+    "explain": "c4d3",
+    "move_only": "c4d4",
+    "instinct": "c4e4",
+    "idea": "Check first, then use the extra pawn to fork the king and queen."
+   },
+   {
+    "fen": "8/8/8/3R4/r5P1/4p1K1/4k3/8 b - - 0 1",
+    "best": "e2e1",
+    "explain": "a4g4",
+    "move_only": "a4g4",
+    "instinct": "a4g4",
+    "idea": "Check first, then use the extra pawn to fork White's loose d5 rook and g4 pawn."
+   },
+   {
+    "fen": "rnbqk2r/pp3ppp/3b1n2/4p1B1/3p4/1B1P1N2/PPP2PPP/RN1QK2R w KQkq - 0 1",
+    "best": "e1g1",
+    "explain": "e1g1",
+    "move_only": "c2c3",
+    "instinct": "e1g1",
+    "idea": "Castle now: the king is lost without it."
+   },
+   {
+    "fen": "r1b1r1k1/1p1nqppp/p3p3/3p4/3B4/2PBP3/PP3PPP/R2Q1RK1 w - - 0 1",
+    "best": "f2f4",
+    "explain": "d3h7",
+    "move_only": "d1h5",
+    "instinct": "e3e4",
+    "idea": "Kick the h7-pawn with check, then use the open h-file and the queen to win back the piece."
+   },
+   {
+    "fen": "8/1p2kp2/2bpp2b/1Nr4p/pR2P1pP/P1P2nP1/K1P2P2/3R1B2 w - - 0 1",
+    "best": "b5d6",
+    "explain": "b5d6",
+    "move_only": "b5d4",
+    "instinct": "b5d4",
+    "idea": "Take the pawn on d6 now, before Black can develop and trade off the knight."
+   },
+   {
+    "fen": "2r1k1nr/pp3ppp/1q2p3/3p1b2/1P1Q4/P1N2N2/2P1BPPP/2R1K2R w Kk - 0 1",
+    "best": "d4g7",
+    "explain": "d4g7",
+    "move_only": "d4g7",
+    "instinct": "d4g7",
+    "idea": "Take the pawn on g7 right away. It attacks your queen and opens the h-file."
+   },
+   {
+    "fen": "r3k2r/pppq1ppp/3p4/3Nn1b1/3QPP2/1P4P1/PBP4P/2KR3R b kq - 0 1",
+    "best": "g5h6",
+    "explain": "g5h6",
+    "move_only": "g5h6",
+    "instinct": "e5f3",
+    "idea": "Save the attacked bishop with tempo, then use the extra piece and the queenside majority."
+   },
+   {
+    "fen": "r5k1/1b3ppp/p1nbr2q/2p5/4p3/1P2PNP1/P1N1QP1P/B1RR2K1 w - - 0 1",
+    "best": "f3h4",
+    "explain": "f3d2",
+    "move_only": "f3e1",
+    "instinct": "f3e1",
+    "idea": "Save the attacked knight with tempo, then use the extra piece and the d6 bishop."
+   },
+   {
+    "fen": "5k2/8/5P2/6K1/8/8/8/8 b - - 0 1",
+    "best": "f8f7",
+    "explain": "f8e8",
+    "move_only": "f8e8",
+    "instinct": "f8g8",
+    "idea": "Step the king off the e-file and guard f7 so White's attack lands."
+   },
+   {
+    "fen": "k7/7K/8/8/Pp6/1P6/8/8 b - - 0 1",
+    "best": "a8b7",
+    "explain": "a8b7",
+    "move_only": "a8b7",
+    "instinct": "a8a7",
+    "idea": "Step the king off the a-file and guard b4 before White's attack."
+   },
+   {
+    "fen": "3QR3/p1r2p2/1p2ppk1/2p1q1p1/2P4P/1P2P1P1/P4P2/6K1 w - - 0 1",
+    "best": "g3g4",
+    "explain": "h4h5",
+    "move_only": "h4h5",
+    "instinct": "h4h5",
+    "idea": "Check first, then trade queens to kill Black's attack on your king."
+   },
+   {
+    "fen": "8/8/k7/2Q5/8/4K3/8/4N3 w - - 0 1",
+    "best": "c5b4",
+    "explain": "e3d4",
+    "move_only": "e1d3",
+    "instinct": "e1d3",
+    "idea": "Step the king off the e-file and guard f2 so Black's queen can't fork."
+   },
+   {
+    "fen": "r1bqk2r/p1pn1p1p/1p3np1/8/8/3BPNB1/P1PN1PPP/Q3K2R w Kkq - 0 1",
+    "best": "g3h4",
+    "explain": "e1g1",
+    "move_only": "e1g1",
+    "instinct": "e1g1",
+    "idea": "Castle now, before Black's queenside pawns open the centre."
+   },
+   {
+    "fen": "1k1r2nr/pppb2p1/5p1p/1P2p3/P1B1q3/1QB4P/2P2PP1/1R2R2K b - - 0 1",
+    "best": "e4f4",
+    "explain": "e4g6",
+    "move_only": "e4e1",
+    "instinct": "e4e1",
+    "idea": "Save the attacked queen with tempo, then use the extra piece and the open e-file."
+   },
+   {
+    "fen": "rnbqk1nr/ppp1ppbp/6p1/8/N2p4/1P4P1/P1PPPPBP/R1BQK1NR b KQkq - 0 1",
+    "best": "b8c6",
+    "explain": "c7c5",
+    "move_only": "c7c5",
+    "instinct": "e7e5",
+    "idea": "Develop with tempo, hit the centre with ...c5, and keep White's king stuck in the middle."
+   },
+   {
+    "fen": "8/1p1R4/6k1/pr1p4/3P2KP/5P2/8/8 b - - 0 1",
+    "best": "b5b6",
+    "explain": "g6f6",
+    "move_only": "b5b4",
+    "instinct": "a5a4",
+    "idea": "Step the king off the e-file and guard d5 with the rook."
+   },
+   {
+    "fen": "8/5p2/7k/p5Rp/3p1P1P/2bK4/8/8 w - - 0 1",
+    "best": "g5g8",
+    "explain": "g5h5",
+    "move_only": "f4f5",
+    "instinct": "g5h5",
+    "idea": "Hit the exposed king with check, then trade rooks to win back material."
+   },
+   {
+    "fen": "r1bqkbnr/pppp1ppp/2n5/4p3/2P5/8/PP1PPPPP/RNBQKBNR b KQkq - 0 1",
+    "best": "g8e7",
+    "explain": "d7d5",
+    "move_only": "d7d5",
+    "instinct": "g8f6",
+    "idea": "Develop with tempo, hit the centre with d5, and keep White's king stuck in the middle."
+   },
+   {
+    "fen": "r1b3rk/pp3Q1p/4pP2/4N1p1/7P/8/P2q1PP1/2R3KR w - - 0 1",
+    "best": "f7h7",
+    "explain": "f7h7",
+    "move_only": "e5g6",
+    "instinct": "e5g6",
+    "idea": "Check first, then trade queens to kill Black's attack on the exposed king."
+   },
+   {
+    "fen": "r4rk1/pp1qppbp/2n5/3p1p2/3P1BPN/2P4P/PPQK1P2/R6R b - - 0 1",
+    "best": "e7e5",
+    "explain": "f5g4",
+    "move_only": "f5g4",
+    "instinct": "e7e5",
+    "idea": "Take the pawn on g4 now, before White can trade it off."
+   },
+   {
+    "fen": "rnbk1bnr/pp3ppp/8/4p3/2B1P3/8/PP3PPP/RNB1K1NR b KQ - 0 1",
+    "best": "f8b4",
+    "explain": "g8f6",
+    "move_only": "b8c6",
+    "instinct": "b8c6",
+    "idea": "Develop with tempo, guard f7, and keep the e4 pawn alive."
+   },
+   {
+    "fen": "8/4k3/R7/p4p2/2r2P2/5K2/7P/3B4 b - - 0 1",
+    "best": "c4c1",
+    "explain": "c4c3",
+    "move_only": "c4c3",
+    "instinct": "c4c3",
+    "idea": "Check first, then use the extra pawn to fork White's loose a5 and f4 pawns."
+   },
+   {
+    "fen": "2k5/ppp4p/4r3/4b3/1nP5/4P1PP/PP3P2/1RB2K2 w - - 0 1",
+    "best": "c1d2",
+    "explain": "f1e2",
+    "move_only": "a2a3",
+    "instinct": "a2a3",
+    "idea": "Step the king off the a-file and guard b2 before Black's attack lands."
+   },
+   {
+    "fen": "r2qkb1r/pbpnpppp/1p3n2/3p4/3P4/3BPN2/PPPNQPPP/R1B1K2R b KQkq - 0 1",
+    "best": "f6e4",
+    "explain": "c7c6",
+    "move_only": "g7g6",
+    "instinct": "g7g6",
+    "idea": "Kick the d3-knight with tempo, then use the open c- and d-files."
+   },
+   {
+    "fen": "2r2rk1/3N1pp1/pq2p3/1p6/4Q3/4RP2/P5PP/4R1K1 b - - 0 1",
+    "best": "b6c6",
+    "explain": "b6c5",
+    "move_only": "b6e3",
+    "instinct": "c8c1",
+    "idea": "Hit the queen with tempo, then trade queens to win back material."
+   },
+   {
+    "fen": "2kr1b1r/pppb1ppp/8/3p4/3P3q/3BBQ2/PPP2PPP/R4RK1 b - - 0 1",
+    "best": "d7e6",
+    "explain": "d7g4",
+    "move_only": "d7g4",
+    "instinct": "d7g4",
+    "idea": "Develop with tempo, guard d5, and keep the queen active."
+   },
+   {
+    "fen": "r2qk2r/ppp1bppp/2np1n2/4p3/3PP1b1/2P2N2/PP2BPPP/RNBQ1RK1 b kq - 0 1",
+    "best": "e8g8",
+    "explain": "f6e4",
+    "move_only": "f6e4",
+    "instinct": "f6e4",
+    "idea": "Trade off White's strong e4 pawn and gain time by taking it."
+   },
+   {
+    "fen": "8/8/8/1k1K3Q/8/3N4/8/8 w - - 0 1",
+    "best": "h5h6",
+    "explain": "d5d4",
+    "move_only": "h5e5",
+    "instinct": "h5e5",
+    "idea": "Check first, then use the extra material to trade queens and win."
+   },
+   {
+    "fen": "nq3rk1/3bbp1p/p2p2p1/1p1Pp1B1/1P2P3/1B3N1P/P2Q1PP1/2R3K1 b - - 0 1",
+    "best": "e7g5",
+    "explain": "e7g5",
+    "move_only": "e7g5",
+    "instinct": "e7g5",
+    "idea": "Trade off White's strong g5-bishop and gain time by attacking the queen."
+   },
+   {
+    "fen": "r3k2r/1p2b1pp/3pPpn1/3Bp3/Pp2P3/2q1BQ2/5PPP/R1R3K1 b kq - 0 1",
+    "best": "c3b2",
+    "explain": "e8g8",
+    "move_only": "g6h4",
+    "instinct": "e8g8",
+    "idea": "Castle now: the king is already safe, so don't take the a1-rook."
+   },
+   {
+    "fen": "r1bqk2r/ppp2ppp/2p5/2b5/4P1n1/3P4/PPP1BPPP/RNBQ1RK1 b kq - 0 1",
+    "best": "h7h5",
+    "explain": "d8h4",
+    "move_only": "d8h4",
+    "instinct": "d8h4",
+    "idea": "Save the attacked knight with tempo, then castle and use the half-open b-file."
+   },
+   {
+    "fen": "rnbqk2r/pp3ppp/2p5/3np3/1bB5/2NP1Q2/PPP1NPPP/R1B1K2R b KQkq - 0 1",
+    "best": "c8e6",
+    "explain": "e8g8",
+    "move_only": "c8e6",
+    "instinct": "e8g8",
+    "idea": "Castle now: the king is already safe, so don't take the c1-bishop."
+   },
+   {
+    "fen": "4k3/8/2pK4/1bPpP3/3Pp3/4P3/8/8 w - - 0 1",
+    "best": "d6c7",
+    "explain": "d6e6",
+    "move_only": "d6e6",
+    "instinct": "e5e6",
+    "idea": "Step the king off the e-file and guard d4 before Black's attack."
+   },
+   {
+    "fen": "rnbqkbnr/pp1p1ppp/2p1p3/8/4P3/2N5/PPPP1PPP/R1BQKBNR w KQkq - 0 1",
+    "best": "d2d4",
+    "explain": "g1e2",
+    "move_only": "d2d4",
+    "instinct": "d2d4",
+    "idea": "Develop with tempo, hit the centre with Nge2, and keep Black's king stuck in the middle."
+   },
+   {
+    "fen": "r1bq2k1/pP3p1p/6p1/8/3b2P1/1QN1r3/PP3KPP/3R1B1R b - - 0 1",
+    "best": "d8f6",
+    "explain": "d8h4",
+    "move_only": "d8h4",
+    "instinct": "d8h4",
+    "idea": "Check first, then grab the loose c3 knight and win back material."
+   },
+   {
+    "fen": "2r3k1/1b3p1p/1p2pB2/8/p2nPR2/6P1/2r1P1BP/7K w - - 0 1",
+    "best": "h2h4",
+    "explain": "f4h4",
+    "move_only": "f4h4",
+    "instinct": "f4h4",
+    "idea": "Check first, then grab the undefended knight on d4."
+   },
+   {
+    "fen": "r1b1kb1r/pp3ppp/1qn1pn2/3p4/3P1B2/P3P3/1PQ2PPP/RN2KBNR w KQkq - 0 1",
+    "best": "b1c3",
+    "explain": "b1c3",
+    "move_only": "b1c3",
+    "instinct": "b1c3",
+    "idea": "Develop with tempo, guard d4, and keep Black's queen tied up."
+   },
+   {
+    "fen": "r1b1kb1r/pp1n1ppp/1qn1p3/2ppP3/3P4/2PB4/PP1NNPPP/R1BQK2R w KQkq - 0 1",
+    "best": "d2f3",
+    "explain": "e1g1",
+    "move_only": "e1g1",
+    "instinct": "e1g1",
+    "idea": "Castle now, before Black's cxd4 forks your king and queen."
+   },
+   {
+    "fen": "r1bqk2r/ppp1bppp/2np1n2/4p3/3PP3/2P2N2/PPQ1BPPP/RNB1K2R b KQkq - 0 1",
+    "best": "a7a5",
+    "explain": "d6d5",
+    "move_only": "e8g8",
+    "instinct": "e8g8",
+    "idea": "Break the d4-e4 chain with ...d5 to free your centre and hit White's weak c3."
+   },
+   {
+    "fen": "1Q6/8/8/k1K5/8/3N4/8/8 w - - 0 1",
+    "best": "b8a7",
+    "explain": "b8a7",
+    "move_only": "b8a7",
+    "instinct": "b8b2",
+    "idea": "Check first, then deliver mate on the a7\u2013a8 diagonal."
+   },
+   {
+    "fen": "r1b1kbnr/ppppqp1p/2n3p1/4p3/2B5/2N1PQ2/PPPP1PPP/R1B1K1NR b KQkq - 0 1",
+    "best": "g8f6",
+    "explain": "f8g7",
+    "move_only": "f8g7",
+    "instinct": "f8g7",
+    "idea": "Develop with tempo, guard f7, and keep White's king stuck in the centre."
+   },
+   {
+    "fen": "r1bq1rk1/p1p3bp/3p1np1/3Pp3/NPP1PpP1/3Q1P2/6BP/R1B2RK1 b - - 0 1",
+    "best": "f6e8",
+    "explain": "a7a5",
+    "move_only": "a8b8",
+    "instinct": "a8b8",
+    "idea": "Kick the pawn with a5 to open the centre and hit White's weak c4 pawn."
+   },
+   {
+    "fen": "1N6/8/4k3/1Q6/8/4K3/8/8 w - - 0 1",
+    "best": "e3f4",
+    "explain": "e3e4",
+    "move_only": "e3d4",
+    "instinct": "e3d4",
+    "idea": "Step the king off the e-file and guard d3 so Black's queen can't fork."
+   },
+   {
+    "fen": "8/8/8/8/6K1/1Rp5/3k4/8 w - - 0 1",
+    "best": "b3b8",
+    "explain": "g4f4",
+    "move_only": "g4f3",
+    "instinct": "g4f3",
+    "idea": "Step the king off the d-file and guard c3 so the rook can run."
+   },
+   {
+    "fen": "r2q1rk1/1pp1nppp/3pbn2/pBb1p3/4P3/2PP1N2/PP1N1PPP/R1BQR1K1 w - - 0 1",
+    "best": "d3d4",
+    "explain": "d3d4",
+    "move_only": "b5a4",
+    "instinct": "a2a4",
+    "idea": "Kick the c5-bishop with d4 to open the centre and hit Black's weak e5 pawn."
+   },
+   {
+    "fen": "8/8/8/3k2p1/6P1/4P3/5K2/8 w - - 0 1",
+    "best": "f2e1",
+    "explain": "f2e2",
+    "move_only": "f2e2",
+    "instinct": "f2g3",
+    "idea": "Step the king off the d-file and guard e3 so Black's attack has no follow-up."
+   },
+   {
+    "fen": "r2qkbnr/ppp3p1/2n2p2/3pp2p/3P2bP/4P1B1/PPP2PP1/RN1QKBNR w KQkq - 0 1",
+    "best": "f1e2",
+    "explain": "f1e2",
+    "move_only": "f1e2",
+    "instinct": "f1e2",
+    "idea": "Develop with tempo, guard d4, and keep Black's queen tied up."
+   },
+   {
+    "fen": "r1b1r1k1/1p3ppp/p1qb2n1/3p4/3Q4/1P3N1P/PBP1BPP1/R3R1K1 b - - 0 1",
+    "best": "f7f6",
+    "explain": "d6c5",
+    "move_only": "e8e2",
+    "instinct": "e8e2",
+    "idea": "Attack the queen with tempo, then use the extra pawn to win back."
+   },
+   {
+    "fen": "r1b2rk1/ppq2pp1/2p1pb1p/8/3P4/2P1PN1P/P1Q1BPP1/R4RK1 w - - 0 1",
+    "best": "c2e4",
+    "explain": "c3c4",
+    "move_only": "c3c4",
+    "instinct": "f1b1",
+    "idea": "Kick the c6-knight with tempo, then use the open d- and e-files."
+   },
+   {
+    "fen": "rnbqkbnr/pppp1ppp/8/4p3/2P5/8/PP1PPPPP/RNBQKBNR w KQkq - 0 1",
+    "best": "g2g3",
+    "explain": "d2d4",
+    "move_only": "b1c3",
+    "instinct": "b1c3",
+    "idea": "Kick the e5 pawn with d4 to open the centre and hit Black's weak c7-bishop."
+   },
+   {
+    "fen": "rnbqk2r/ppp1bppp/8/3pP3/3Pn3/5N2/PPP3PP/RNBQKB1R w KQkq d6 0 1",
+    "best": "e5d6",
+    "explain": "c1e3",
+    "move_only": "b1c3",
+    "instinct": "f1d3",
+    "idea": "Develop with tempo, guard d6, and keep Black's queen tied up."
+   },
+   {
+    "fen": "8/8/1k6/3Q4/8/3NK3/8/8 w - - 0 1",
+    "best": "d5d6",
+    "explain": "e3e4",
+    "move_only": "e3d4",
+    "instinct": "e3d4",
+    "idea": "Step the king off the d-file and guard c8 so Black's queen can't fork."
+   },
+   {
+    "fen": "8/4N2k/4Q3/5K2/8/8/8/8 w - - 0 1",
+    "best": "f5g5",
+    "explain": "f5g5",
+    "move_only": "e6d7",
+    "instinct": "f5f6",
+    "idea": "Step the king off the h-file and guard e6 so Black's queen forks king and knight."
+   },
+   {
+    "fen": "rnbq1rk1/pp3pb1/3p1npp/2pp4/2P1P3/2N1BP2/PP2N1PP/R2QKB1R w KQ - 0 1",
+    "best": "c4d5",
+    "explain": "c3d5",
+    "move_only": "c4d5",
+    "instinct": "c4d5",
+    "idea": "Recapture with the knight to keep the c4 pawn and guard c5."
+   },
+   {
+    "fen": "rn1qkbnr/pp3ppp/4p3/2ppPb2/3P4/2P1B3/PP3PPP/RN1QKBNR w KQkq - 0 1",
+    "best": "f1b5",
+    "explain": "f1b5",
+    "move_only": "g1f3",
+    "instinct": "g1f3",
+    "idea": "Develop with tempo, guard c5, and keep Black's king stuck in the centre."
+   },
+   {
+    "fen": "r1bqk2r/pp2bppp/2n1p3/4P3/2BpNB2/8/PP3PPP/R2Q1RK1 w kq - 0 1",
+    "best": "d1h5",
+    "explain": "e4d6",
+    "move_only": "e4d6",
+    "instinct": "e4d6",
+    "idea": "Check first, then use the extra pawn to harass Black's queen and keep Black's king stuck in the centre."
+   },
+   {
+    "fen": "1Q3nk1/3b1r2/2pr3q/3p4/1N1PpNpp/4P3/2R2PPP/2R3K1 b - - 0 1",
+    "best": "g4g3",
+    "explain": "f7f4",
+    "move_only": "f7f4",
+    "instinct": "f7f4",
+    "idea": "Hit the center with ...Rxf4 to open the f-file and win back the knight."
+   },
+   {
+    "fen": "rnb1k2r/ppp1ppbp/6p1/q6P/3P4/2N2N2/PP2PPP1/R2QKB1R b KQkq - 0 1",
+    "best": "c7c5",
+    "explain": "g6h5",
+    "move_only": "g6h5",
+    "instinct": "e8g8",
+    "idea": "Take the pawn on h5 now, before White can castle and guard it."
+   },
+   {
+    "fen": "r3r1k1/1bpp1ppp/p2b4/8/P1p1PP1q/2NQ4/1PP3PP/R1B2RK1 w - - 0 1",
+    "best": "d3c4",
+    "explain": "d3c4",
+    "move_only": "d3c4",
+    "instinct": "d3c4",
+    "idea": "Save the attacked queen with tempo, then use the extra pawn to win."
+   },
+   {
+    "fen": "rn1qkb1r/pp1bpppp/8/1B2p3/3P4/1QP5/P4PPP/R1B1K1NR b KQkq - 0 1",
+    "best": "e5d4",
+    "explain": "d7b5",
+    "move_only": "d7b5",
+    "instinct": "d7b5",
+    "idea": "Trade off White's active bishop and gain time by developing the knight."
+   },
+   {
+    "fen": "rnbq1rk1/ppp1ppbp/3p1np1/6N1/2PPP3/2N5/PP3PPP/R1BQKB1R b KQ - 0 1",
+    "best": "a7a5",
+    "explain": "c7c5",
+    "move_only": "c7c5",
+    "instinct": "c7c5",
+    "idea": "Kick the g5-knight with ...c5 to open the centre and free your king."
+   },
+   {
+    "fen": "8/2b5/5p2/P2k3p/1P3P1P/1B1K2P1/8/8 b - - 0 1",
+    "best": "d5c6",
+    "explain": "d5c6",
+    "move_only": "d5c6",
+    "instinct": "d5c6",
+    "idea": "Step the king off the d-file and guard e5 so White's queen can't fork."
+   },
+   {
+    "fen": "5rk1/1q1pb1pp/4p3/1p1rPp2/p1nN1B1P/P1P3P1/1P2QP2/R3R1K1 w - - 0 1",
+    "best": "a1b1",
+    "explain": "a1d1",
+    "move_only": "a1d1",
+    "instinct": "a1d1",
+    "idea": "Kick the rook with tempo, then use the open d-file and the d7 pawn."
+   },
+   {
+    "fen": "rn1qkb1r/ppp2ppp/1n1p4/7b/2PP4/5N1P/PP3PP1/RNBQKB1R w KQkq - 0 1",
+    "best": "b1c3",
+    "explain": "b1c3",
+    "move_only": "b1c3",
+    "instinct": "g2g4",
+    "idea": "Develop with tempo, guard c4, and keep Black's queen tied up."
+   },
+   {
+    "fen": "8/6Q1/2N5/3k4/8/4K3/8/8 w - - 0 1",
+    "best": "g7f6",
+    "explain": "g7e7",
+    "move_only": "g7e7",
+    "instinct": "g7e7",
+    "idea": "Check first, then guard the attacked knight and keep Black's king in the centre."
+   },
+   {
+    "fen": "r2qkb1r/1p3ppp/p1npbn2/4p3/4P3/2N3P1/PPP1NPBP/R1BQK2R w KQkq - 0 1",
+    "best": "c3d5",
+    "explain": "e1g1",
+    "move_only": "e1g1",
+    "instinct": "e1g1",
+    "idea": "Castle now: the king is already safe, so don't take a pawn."
+   },
+   {
+    "fen": "r2q1rk1/pb1n2pp/3b1n2/1P2p3/2QpP3/2N2N2/PP3PPP/RBB2RK1 b - - 0 1",
+    "best": "g8h8",
+    "explain": "g8h8",
+    "move_only": "g8h8",
+    "instinct": "g8h8",
+    "idea": "Step the king off the e-file and guard d4 so White's queen can't fork."
+   },
+   {
+    "fen": "rnbqkb1r/pp2pppp/5n2/3p4/3N1B2/4P3/PPP2PPP/RN1QKB1R b KQkq - 0 1",
+    "best": "b8d7",
+    "explain": "e7e5",
+    "move_only": "b8c6",
+    "instinct": "e7e5",
+    "idea": "Develop with tempo, hit the centre with ...e5, then castle and use the queenside majority."
+   },
+   {
+    "fen": "r2r2k1/6q1/1p2p2p/p1p1P1pP/2Pp1pQ1/P2P1P2/1P3P2/2R1R1K1 b - - 0 1",
+    "best": "g8f7",
+    "explain": "g7d7",
+    "move_only": "g7d7",
+    "instinct": "d8f8",
+    "idea": "Save the attacked pawn with the queen, not the rook, and keep the kingside pawns intact."
+   },
+   {
+    "fen": "rq3knr/2b2pp1/2Q1p3/2PpP1Bp/3P4/3N1N2/P4PPP/5RK1 w - - 0 1",
+    "best": "f3h4",
+    "explain": "f1b1",
+    "move_only": "d3f4",
+    "instinct": "d3f4",
+    "idea": "Save the attacked rook with tempo, then use the extra piece."
+   },
+   {
+    "fen": "8/2kN4/8/3Q4/3K4/8/8/8 w - - 0 1",
+    "best": "d4c5",
+    "explain": "d4e5",
+    "move_only": "d5b5",
+    "instinct": "d4c5",
+    "idea": "Step the king off the c-file and guard d6 so Black's queen can't fork."
+   },
+   {
+    "fen": "4kb1r/p2r2pp/4pB2/1B2p3/4P3/8/PPP2PPP/2KR4 b k - 0 1",
+    "best": "e8f7",
+    "explain": "g7f6",
+    "move_only": "g7f6",
+    "instinct": "g7f6",
+    "idea": "Recapture with the pawn to open the d7\u2013e8 diagonal onto White's rook."
+   },
+   {
+    "fen": "8/6pp/Pk6/8/3p4/3K4/6PP/8 w - - 0 1",
+    "best": "a6a7",
+    "explain": "d3d4",
+    "move_only": "d3d4",
+    "instinct": "d3d4",
+    "idea": "Take the d4 pawn now, before Black can trade it off."
+   },
+   {
+    "fen": "rnbqkb1r/pp3ppp/2p1p3/3p2P1/2PPn2P/5N2/PP2PP2/RNBQKB1R b KQkq - 0 1",
+    "best": "f8b4",
+    "explain": "c6c5",
+    "move_only": "c6c5",
+    "instinct": "c6c5",
+    "idea": "Break with ...c5 to open the centre and hit White's weak c-pawn."
+   },
+   {
+    "fen": "rn1q1rk1/ppp1ppbp/3p1np1/8/2PPP1b1/2N1BN2/PP2BPPP/R2QK2R b KQ - 0 1",
+    "best": "c7c5",
+    "explain": "g4f3",
+    "move_only": "g4f3",
+    "instinct": "g4f3",
+    "idea": "Trade off White's strong e4 pawn and develop the knight at once."
+   },
+   {
+    "fen": "r3k2r/ppp3pp/2n2p2/3qpb2/8/2BP1N2/PPP2PPP/R2Q1RK1 b kq - 0 1",
+    "best": "f5g4",
+    "explain": "e8c8",
+    "move_only": "e8c8",
+    "instinct": "e8c8",
+    "idea": "Castle now, before White's queenside pawns open the centre."
+   },
+   {
+    "fen": "1R1K4/k1n5/1p6/1P6/8/8/8/8 w - - 0 1",
+    "best": "b8a8",
+    "explain": "d8c7",
+    "move_only": "d8c7",
+    "instinct": "d8c7",
+    "idea": "Take the attacking knight now. It is also Black's rook, so it is lost."
+   },
+   {
+    "fen": "r1bqk2r/1pp2pbp/p1n3p1/3n4/B2P4/5N2/PP3PPP/RNBQ1RK1 w kq - 0 1",
+    "best": "a4c6",
+    "explain": "f1e1",
+    "move_only": "b1c3",
+    "instinct": "f1e1",
+    "idea": "Check first, then develop with tempo, keeping Black's queen tied up."
+   },
+   {
+    "fen": "r1bq1rk1/p1p2p2/1p1p3p/n3p1pn/2PPP3/P1PB1P2/2Q1NBPP/R4RK1 b - - 0 1",
+    "best": "c8e6",
+    "explain": "c8e6",
+    "move_only": "h5f4",
+    "instinct": "h5f4",
+    "idea": "Develop with tempo, guard e5, and keep White's king stuck in the centre."
+   },
+   {
+    "fen": "8/8/1pk1K3/p7/P7/8/8/5B2 w - - 0 1",
+    "best": "f1b5",
+    "explain": "f1c4",
+    "move_only": "f1c4",
+    "instinct": "f1c4",
+    "idea": "Develop with tempo, guard e5, and keep Black's king stuck in the centre."
+   },
+   {
+    "fen": "6k1/2r1bppp/4p3/p7/P7/4P1P1/5P1P/3R1BK1 b - - 0 1",
+    "best": "g7g6",
+    "explain": "g8f8",
+    "move_only": "e7b4",
+    "instinct": "g8f8",
+    "idea": "Step the king off the e-file and guard d8 so White's rook forks."
+   },
+   {
+    "fen": "rnbq1rk1/ppp1ppbp/5np1/1N1p4/3P1B2/4P3/PPP1BPPP/R2QK1NR b KQ - 0 1",
+    "best": "b8a6",
+    "explain": "c7c6",
+    "move_only": "c7c6",
+    "instinct": "c7c5",
+    "idea": "Kick the b5-knight with c6 to free your c7-pawn."
+   },
+   {
+    "fen": "8/2Q5/8/2NK4/1k6/8/8/8 w - - 0 1",
+    "best": "d5d4",
+    "explain": "c7b6",
+    "move_only": "c7b6",
+    "instinct": "c7b6",
+    "idea": "Check first, then use the extra material to trade queens and win."
+   },
+   {
+    "fen": "r4rk1/p1q1b1pp/2p1p3/2PpB3/Q7/2P5/PP3PPP/R3R1K1 b - - 0 1",
+    "best": "c7d7",
+    "explain": "e7c5",
+    "move_only": "c7e5",
+    "instinct": "c7e5",
+    "idea": "Take the attacked queen with the bishop, then trade queens to win."
+   },
+   {
+    "fen": "8/pp2k3/4P1pp/3B1p2/3K3P/P5P1/1r6/8 b - - 0 1",
+    "best": "b7b6",
+    "explain": "e7f6",
+    "move_only": "e7d6",
+    "instinct": "b2c2",
+    "idea": "Step the king back to f6 to guard c7 and keep the rook near."
+   },
+   {
+    "fen": "r4r2/1p2p1kp/3p1pp1/2nP4/p3P3/5P1P/PP2B1P1/2RR2K1 b - - 0 1",
+    "best": "f6f5",
+    "explain": "a4a3",
+    "move_only": "b7b5",
+    "instinct": "b7b5",
+    "idea": "Kick the e4 pawn with tempo, then use the open c- and d-files."
+   },
+   {
+    "fen": "r2qk2r/ppp3pp/1bp2p2/2n1p3/4P3/1P1P1N2/1PP2PPP/R1BQ1RK1 w kq - 0 1",
+    "best": "f3d2",
+    "explain": "b3b4",
+    "move_only": "b3b4",
+    "instinct": "b3b4",
+    "idea": "Kick the c5 knight with ...b4 to open the centre and hit the loose e5 pawn."
+   },
+   {
+    "fen": "r3k1nr/pp3ppp/2n1p3/3pP3/1Pq5/2P2N2/PQ3PPP/RN3RK1 w kq - 0 1",
+    "best": "b1a3",
+    "explain": "b4b5",
+    "move_only": "b4b5",
+    "instinct": "b4b5",
+    "idea": "Kick the c6-knight with tempo, then develop with ...Nbd2."
+   },
+   {
+    "fen": "4r1k1/2p2ppb/1pn1q2p/4p3/1PP1n3/2B2NPP/1Q2PPBK/2R5 w - - 0 1",
+    "best": "b4b5",
+    "explain": "c3e1",
+    "move_only": "b2a1",
+    "instinct": "b4b5",
+    "idea": "Save the attacked bishop with tempo, then use the open b- and c-files against Black's king."
+   },
+   {
+    "fen": "8/8/2Q5/4N3/3k1K2/8/8/8 w - - 0 1",
+    "best": "c6c4",
+    "explain": "c6d6",
+    "move_only": "c6c4",
+    "instinct": "c6c2",
+    "idea": "Check first, then deliver mate on the c4\u2013d5 diagonal."
+   },
+   {
+    "fen": "7k/4Q3/8/3N4/8/4K3/8/8 w - - 0 1",
+    "best": "d5c7",
+    "explain": "e3d4",
+    "move_only": "e3d4",
+    "instinct": "e3d4",
+    "idea": "Step the king off the e-file and guard f8 so Black's queen forks king and knight."
+   },
+   {
+    "fen": "r1b4k/1p3p1p/2n2Np1/2p5/8/1P3PP1/P3Qq1P/2R1KR2 w - - 0 1",
+    "best": "f1f2",
+    "explain": "f1f2",
+    "move_only": "f1f2",
+    "instinct": "f1f2",
+    "idea": "Recapture with the rook to keep the queens on and guard a2."
+   },
+   {
+    "fen": "R7/P4pk1/8/6P1/8/r7/6PK/8 b - - 0 1",
+    "best": "a3a2",
+    "explain": "a3a4",
+    "move_only": "a3a4",
+    "instinct": "a3a2",
+    "idea": "Hit the center with ...Ra4 to open the a8-h1 diagonal onto the king."
+   },
+   {
+    "fen": "2r2rk1/pb2bp1p/1p2p1p1/3PQ3/2q5/P4N2/1B3PPP/3R1RK1 b - - 0 1",
+    "best": "f7f6",
+    "explain": "e6d5",
+    "move_only": "c4d5",
+    "instinct": "c4d5",
+    "idea": "Take the d5 pawn now. It opens the centre and hits White's queen."
+   },
+   {
+    "fen": "rnbqkbnr/1p1p1ppp/p3p3/8/3pP3/2PB1N2/PP3PPP/RNBQK2R b KQkq - 0 1",
+    "best": "d4c3",
+    "explain": "d4c3",
+    "move_only": "d4c3",
+    "instinct": "d4c3",
+    "idea": "Trade off White's strong c3 pawn so the d4 pawn can hit the centre."
+   },
+   {
+    "fen": "1k6/3Q4/8/8/1N6/4K3/8/8 w - - 0 1",
+    "best": "b4c6",
+    "explain": "e3d4",
+    "move_only": "e3d4",
+    "instinct": "e3d4",
+    "idea": "Step the king off the e-file and guard d7 before anything else."
+   },
+   {
+    "fen": "8/6Q1/8/4Nk2/8/4K3/8/8 w - - 0 1",
+    "best": "e3d4",
+    "explain": "g7f7",
+    "move_only": "g7g3",
+    "instinct": "g7e7",
+    "idea": "Check first, then use the extra queenside pawns to fork the king and the knight."
+   },
+   {
+    "fen": "6kr/pp3ppp/3N4/3bp3/1B6/6P1/PPP2P1q/2KR1B2 w - - 0 1",
+    "best": "d1d5",
+    "explain": "d1d5",
+    "move_only": "d1d5",
+    "instinct": "d1d5",
+    "idea": "Recapture with the rook to keep the d5-bishop and guard the kingside."
+   },
+   {
+    "fen": "r2q1rk1/1b2bppp/ppnppn2/8/P3P3/1NN1BP2/1PP1B1PP/R2Q1RK1 w - - 0 1",
+    "best": "d1e1",
+    "explain": "g1h1",
+    "move_only": "d1d2",
+    "instinct": "d1d2",
+    "idea": "Step the king off the e-file and guard f2 so Black's queen can't fork."
+   },
+   {
+    "fen": "rnb1kb1r/ppq1pp1p/7p/2PpP3/8/8/PPPN1PPP/R2QKBNR w KQkq - 0 1",
+    "best": "f2f4",
+    "explain": "f1b5",
+    "move_only": "f1b5",
+    "instinct": "f1b5",
+    "idea": "Check first, then develop with tempo, keeping Black's queen tied up."
+   },
+   {
+    "fen": "r1bqkb1r/pp3pp1/4p2p/2Ppn3/6Q1/2NB4/PPP2PPP/R3K1NR w KQkq - 0 1",
+    "best": "d3b5",
+    "explain": "g4a4",
+    "move_only": "g4e2",
+    "instinct": "g4e2",
+    "idea": "Check first, then use the extra piece to fork the queen and the knight."
+   },
+   {
+    "fen": "rn1qkb1r/pp2pppp/5n2/2pp1b2/3P1P2/2P1PN2/PP4PP/RNBQKB1R b KQkq - 0 1",
+    "best": "e7e6",
+    "explain": "b8c6",
+    "move_only": "b8c6",
+    "instinct": "b8c6",
+    "idea": "Develop with tempo, guard c5, and keep the d4 pawn protected."
+   },
+   {
+    "fen": "r1bqkb1r/1ppnnpp1/p2pp2p/8/3PP3/2PB1N2/PP2QPPP/RNB1K2R w KQkq - 0 1",
+    "best": "c1e3",
+    "explain": "e1g1",
+    "move_only": "b1d2",
+    "instinct": "e1g1",
+    "idea": "Castle now, before Black's queenside castling."
+   },
+   {
+    "fen": "8/1p6/2bk4/p4p2/5P2/P2BK3/1P4P1/8 w - - 0 1",
+    "best": "d3f5",
+    "explain": "d3f5",
+    "move_only": "d3f5",
+    "instinct": "e3d4",
+    "idea": "Take the f5 pawn now. It is undefended and attacks your bishop."
+   },
+   {
+    "fen": "rn1qkb1r/pp2p1pp/5n2/3p1b2/8/2N5/PP1PPPBP/R1BQK1NR w KQkq - 0 1",
+    "best": "d1b3",
+    "explain": "d2d4",
+    "move_only": "d2d4",
+    "instinct": "g1f3",
+    "idea": "Kick the d5 pawn with tempo, then castle and use the extra space."
+   },
+   {
+    "fen": "8/3Q4/k7/4N3/8/4K3/8/8 w - - 0 1",
+    "best": "e3d4",
+    "explain": "e3d4",
+    "move_only": "e3d4",
+    "instinct": "e3d4",
+    "idea": "Step the king off the e-file and guard d7 so Qb7+ forks king and knight."
+   },
+   {
+    "fen": "r2qkbnr/1ppb1ppp/p1n1p3/1B1pP3/2PP4/8/PP3PPP/RNBQK1NR w KQkq - 0 1",
+    "best": "b5c6",
+    "explain": "b5c6",
+    "move_only": "b5c6",
+    "instinct": "b5c6",
+    "idea": "Trade off Black's active c6 knight and gain time by developing the b1-bishop."
+   },
+   {
+    "fen": "r1bqk1nr/pp3pbp/2npp1p1/2p5/4P3/2NP2P1/PPP1NPBP/R1BQ1RK1 b kq - 0 1",
+    "best": "g8e7",
+    "explain": "g8e7",
+    "move_only": "g8e7",
+    "instinct": "g8e7",
+    "idea": "Develop with tempo, guard e7, and keep White's king stuck in the centre."
+   },
+   {
+    "fen": "1k1r3r/pp1q2pp/2p2p2/b3p3/2P5/P3BQ2/1PB2PPP/R5K1 w - - 0 1",
+    "best": "b2b4",
+    "explain": "b2b4",
+    "move_only": "e3c5",
+    "instinct": "e3a7",
+    "idea": "Kick the a5-bishop with tempo, then use the open b- and c-files."
+   },
+   {
+    "fen": "r2qk1nr/1bppbppp/p7/np6/4P3/2N2N2/PPB2PPP/R1BQ1RK1 b kq - 0 1",
+    "best": "d7d6",
+    "explain": "g8f6",
+    "move_only": "c7c6",
+    "instinct": "g8f6",
+    "idea": "Develop with tempo, guard d7, and keep White's queen tied up."
+   },
+   {
+    "fen": "8/7K/2Q5/8/8/8/1p1k4/8 w - - 0 1",
+    "best": "c6b5",
+    "explain": "c6c4",
+    "move_only": "c6c4",
+    "instinct": "c6c4",
+    "idea": "Check first, then use the extra pawn to fork the queen and the loose b2-knight."
+   },
+   {
+    "fen": "8/3N4/8/1Q6/3K1k2/8/8/8 w - - 0 1",
+    "best": "d7e5",
+    "explain": "b5d5",
+    "move_only": "b5d5",
+    "instinct": "b5d5",
+    "idea": "Step the queen off the d-file and guard e2 so Black's queen can't fork."
+   },
+   {
+    "fen": "r6k/p1p1r2p/7B/1p4R1/3P4/2P4P/P1P3P1/5RK1 w - - 0 1",
+    "best": "h3h4",
+    "explain": "f1f8",
+    "move_only": "f1f8",
+    "instinct": "f1f8",
+    "idea": "Check first, then fork the two loose a8 and e7 rooks."
+   },
+   {
+    "fen": "2rq1rk1/1b1nbppp/1p2p3/pP1p4/Q1PN4/P5P1/1B1NPPBP/R4RK1 b - - 0 1",
+    "best": "d5c4",
+    "explain": "d7c5",
+    "move_only": "d7c5",
+    "instinct": "d7c5",
+    "idea": "Kick the queen with tempo, then trade queens to win back material."
+   },
+   {
+    "fen": "2r2k1r/1p2p3/p1bp4/3N1pPp/3R1Pn1/3B4/PPPK2P1/5R2 b - - 0 1",
+    "best": "e7e6",
+    "explain": "e7e6",
+    "move_only": "c6d5",
+    "instinct": "c6d5",
+    "idea": "Trade off White's strong d5 knight and hit the centre with e6."
+   },
+   {
+    "fen": "r1n1kb1r/ppqb1ppp/4p3/n2pP3/3P4/PpP2N2/3NBPPP/1RBQR1K1 w kq - 0 1",
+    "best": "e2d3",
+    "explain": "d2b3",
+    "move_only": "d2b3",
+    "instinct": "d2b3",
+    "idea": "Take the pawn on b3 now, before Black can trade it off."
+   },
+   {
+    "fen": "8/2K1k3/2PR4/8/8/8/2r5/8 w - - 0 1",
+    "best": "d6g6",
+    "explain": "c7b7",
+    "move_only": "c7b6",
+    "instinct": "d6d7",
+    "idea": "Step the king off the e-file and guard d6 so the rook can't fork."
+   },
+   {
+    "fen": "1K6/1P6/8/q1k5/8/8/8/8 b - - 0 1",
+    "best": "c5c6",
+    "explain": "c5c6",
+    "move_only": "c5c6",
+    "instinct": "c5c6",
+    "idea": "Step the king off the e-file and guard f7 so White's queen can't fork."
+   },
+   {
+    "fen": "2rkn2r/p2q2pp/bp1p1p2/n1pPpP2/P1P1P1P1/2PBB2R/4Q2P/R4NK1 b - - 0 1",
+    "best": "d8c7",
+    "explain": "d8c7",
+    "move_only": "a6b7",
+    "instinct": "a6b7",
+    "idea": "Step the king off the e-file and guard f7 before White's attack lands."
+   },
+   {
+    "fen": "2br1r1k/4nPp1/p1p4p/4p1P1/P3P2P/2PqNQ2/3N2RK/R7 w - - 0 1",
+    "best": "g5h6",
+    "explain": "f3h5",
+    "move_only": "g5h6",
+    "instinct": "g5h6",
+    "idea": "Trade queens to clear the way to the d8-rook and guard c3."
+   },
+   {
+    "fen": "8/6K1/8/Q7/8/1k6/1p6/8 w - - 0 1",
+    "best": "a5f5",
+    "explain": "a5b5",
+    "move_only": "a5d2",
+    "instinct": "a5d2",
+    "idea": "Check first, then use the extra pawn to fork the king and the queen."
+   },
+   {
+    "fen": "r1b1k2r/ppp1qp1p/2p2np1/8/3QP3/5N2/PPP2PPP/RN2K2R w KQkq - 0 1",
+    "best": "b1c3",
+    "explain": "e1g1",
+    "move_only": "b1c3",
+    "instinct": "b1c3",
+    "idea": "Castle now, before Black's e5 fork and Qxe4 fork."
+   },
+   {
+    "fen": "rn1q1rk1/pp2bppp/2p5/3p1b2/2PPn3/3B1N2/PPQ2PPP/RNB1R1K1 b - - 0 1",
+    "best": "f5g6",
+    "explain": "d5c4",
+    "move_only": "b8d7",
+    "instinct": "f8e8",
+    "idea": "Kick the c4 pawn with tempo, then develop with Nd7."
+   },
+   {
+    "fen": "8/4K3/8/3pk3/8/8/3R4/8 b - - 0 1",
+    "best": "d5d4",
+    "explain": "e5f4",
+    "move_only": "d5d4",
+    "instinct": "e5e4",
+    "idea": "Step the king off the e-file and guard d5 with a pawn."
+   },
+   {
+    "fen": "8/3k4/Q7/8/3N4/4K3/8/8 w - - 0 1",
+    "best": "a6c6",
+    "explain": "a6b6",
+    "move_only": "a6b6",
+    "instinct": "a6f6",
+    "idea": "Check first, then use the extra queenside pawns to fork the king and the loose black queen."
+   },
+   {
+    "fen": "8/6K1/5p2/8/8/6k1/6P1/8 b - - 0 1",
+    "best": "f6f5",
+    "explain": "g3g2",
+    "move_only": "g3g2",
+    "instinct": "g3g2",
+    "idea": "Take the attacked pawn now. Don't throw in a check that loses a piece."
+   },
+   {
+    "fen": "4r2r/pRp2qkp/2B3p1/8/8/5Q2/P2b1PPP/5RK1 w - - 0 1",
+    "best": "f3f7",
+    "explain": "f3f7",
+    "move_only": "c6e8",
+    "instinct": "c6e8",
+    "idea": "Trade queens to defuse the attack on f7 and the rook."
+   },
+   {
+    "fen": "8/pK6/7p/5p2/1P6/7k/P7/8 w - - 0 1",
+    "best": "b7a7",
+    "explain": "b7a7",
+    "move_only": "b4b5",
+    "instinct": "b4b5",
+    "idea": "Take the a7-pawn now. It is undefended and must go."
+   },
+   {
+    "fen": "6k1/4Q3/8/5K2/6N1/8/8/8 w - - 0 1",
+    "best": "g4f6",
+    "explain": "f5g6",
+    "move_only": "f5g6",
+    "instinct": "f5g6",
+    "idea": "Step the king off the e-file and guard f6 so Qf6 forks king and queen."
+   },
+   {
+    "fen": "r1bq1rk1/pp1p1ppp/2nb1n2/1Bp1p3/4P3/2NP1N1P/PPP2PP1/R1BQ1RK1 b - - 0 1",
+    "best": "a7a6",
+    "explain": "d6c7",
+    "move_only": "d6c7",
+    "instinct": "a7a6",
+    "idea": "Kick the bishop that is attacking your c6-knight, then trade queens."
+   },
+   {
+    "fen": "r1bq1rk1/4bppp/p2ppn2/8/Np1BP1PP/5P2/PPPQ4/2KR1B1R b - - 0 1",
+    "best": "a8b8",
+    "explain": "f6d7",
+    "move_only": "d6d5",
+    "instinct": "e6e5",
+    "idea": "Kick the a4 knight with tempo, then hit the centre with ...e5."
+   },
+   {
+    "fen": "r1bqr1k1/p4pp1/2p1nb1p/3p4/N2P4/3BP3/P1Q1NPPP/R4RK1 b - - 0 1",
+    "best": "c8d7",
+    "explain": "c8b7",
+    "move_only": "c8b7",
+    "instinct": "e6g5",
+    "idea": "Develop with tempo, guard c6, and keep the queens on."
+   },
+   {
+    "fen": "7K/5k2/7P/8/8/8/8/8 b - - 0 1",
+    "best": "f7g6",
+    "explain": "f7e6",
+    "move_only": "f7e6",
+    "instinct": "f7g6",
+    "idea": "Step the king off the e-file and guard g7 so White's attack can't fork."
+   },
+   {
+    "fen": "r2qkb1r/1p2nppp/p1n1p3/3pP3/3P4/3QBN2/PP3PPP/RN3RK1 w kq - 0 1",
+    "best": "b1c3",
+    "explain": "b1c3",
+    "move_only": "b1c3",
+    "instinct": "b1c3",
+    "idea": "Kick the c6-knight with tempo, then develop with Nbd2."
+   }
+  ]
+ },
+ "puzzle": {
+  "explain": 0.584,
+  "move_only": 0.644,
+  "instinct": 0.628,
+  "recall6": 0.928,
+  "fallback": 0.0,
+  "n": 250,
+  "rows": [
+   {
+    "fen": "3rr1k1/ppp2ppp/6b1/3P4/2nBnq2/P2Q1P2/1P4PP/RB3RK1 w - - 0 22",
+    "best": "f3e4",
+    "explain": "d3c4",
+    "move_only": "f3e4",
+    "instinct": "f3e4",
+    "idea": "Recapture with the queen to keep the d5 pawn and guard the queen."
+   },
+   {
+    "fen": "r2qk2r/ppp2pp1/2nbb2p/1B1Q4/P7/5N2/1PP2PPP/R1B1R1K1 b kq - 2 13",
+    "best": "d6h2",
+    "explain": "e8g8",
+    "move_only": "d6h2",
+    "instinct": "d6h2",
+    "idea": "Castle now, before White's queen forks your king and your bishop."
+   },
+   {
+    "fen": "2r2b1r/p3R1pp/kqp5/3p1P2/8/1Q6/PpP2P1P/4R1K1 w - - 8 25",
+    "best": "b3a4",
+    "explain": "b3a4",
+    "move_only": "b3a4",
+    "instinct": "b3a4",
+    "idea": "Check first, then trade queens to kill Black's attack on the exposed king."
+   },
+   {
+    "fen": "2k5/5R2/1pP1P1K1/1Pn5/8/4r3/8/8 w - - 3 54",
+    "best": "e6e7",
+    "explain": "f7f8",
+    "move_only": "f7f8",
+    "instinct": "f7f8",
+    "idea": "Check first, then use the extra pawn to guard e6 and keep Black's rooks tied up."
+   },
+   {
+    "fen": "2r5/pp3k1p/3QpP2/3p4/4b2K/1P5P/P7/5q2 w - - 2 41",
+    "best": "d6e7",
+    "explain": "d6e7",
+    "move_only": "d6e7",
+    "instinct": "d6e7",
+    "idea": "Check first, then use the extra pawn to fork the king and the queen."
+   },
+   {
+    "fen": "2k5/p1p3pp/2p5/5p2/8/4NK1P/PPPrr1P1/4R2R b - - 1 19",
+    "best": "e2f2",
+    "explain": "e2f2",
+    "move_only": "e2f2",
+    "instinct": "e2f2",
+    "idea": "Check first, then trade rooks to f2 to guard f5 and keep White's attack on the king."
+   },
+   {
+    "fen": "5rk1/p4ppp/8/5b2/PP1P2n1/5NQ1/2q3BP/R5RK b - - 6 28",
+    "best": "g4f2",
+    "explain": "g4f2",
+    "move_only": "g4f2",
+    "instinct": "g4f2",
+    "idea": "Check first, then use the extra pawn to fork White's queen and rooks."
+   },
+   {
+    "fen": "r5k1/p1p1R1bp/1p1p2p1/5q2/2NP3P/2P4P/PP3r2/R1BQ2K1 b - - 3 21",
+    "best": "a8f8",
+    "explain": "f5h3",
+    "move_only": "f5h3",
+    "instinct": "f5h3",
+    "idea": "Take the h3-pawn now, then use the extra material to trade queens."
+   },
+   {
+    "fen": "8/1p1R3P/p2P3K/P7/1k5P/7q/8/8 w - - 7 68",
+    "best": "h7h8q",
+    "explain": "h7h8q",
+    "move_only": "d7b7",
+    "instinct": "d7b7",
+    "idea": "Promote to a queen and keep the d7 rook guarding the king."
+   },
+   {
+    "fen": "3qr1k1/p6p/1pn3p1/2pNpr2/2P5/1P1PQ2P/PB3RP1/6K1 w - - 0 29",
+    "best": "f2f5",
+    "explain": "f2f5",
+    "move_only": "f2f5",
+    "instinct": "f2f5",
+    "idea": "Trade off Black's active rook on f5 before Black's attack lands."
+   },
+   {
+    "fen": "rr4k1/pQ2bppp/4p3/3nPq2/2P5/1R3N2/P4PPP/5RK1 w - - 1 20",
+    "best": "b7b8",
+    "explain": "c4d5",
+    "move_only": "c4d5",
+    "instinct": "c4d5",
+    "idea": "Recapture with the pawn to open the b8\u2013a7 diagonal onto Black's queen."
+   },
+   {
+    "fen": "1r3r1k/p5bp/3N2p1/2pQ4/4P2q/P2R3P/1PP2P2/1K3R2 b - - 0 24",
+    "best": "b8b2",
+    "explain": "b8b2",
+    "move_only": "b8b2",
+    "instinct": "b8b2",
+    "idea": "Take the pawn on b2 first, then use the extra exchange to grab f2."
+   },
+   {
+    "fen": "8/2p5/p1k5/Pp4p1/1P2K1P1/7P/8/8 b - - 2 45",
+    "best": "c6d6",
+    "explain": "c6d6",
+    "move_only": "c6d6",
+    "instinct": "c6d6",
+    "idea": "Step the king off the e-file and guard f7 so White's queen can't fork."
+   },
+   {
+    "fen": "3r4/8/1R6/3pn2k/PP1N1p2/5P2/3K4/8 b - - 0 41",
+    "best": "e5c4",
+    "explain": "e5c4",
+    "move_only": "e5c4",
+    "instinct": "e5c4",
+    "idea": "Check first, then fork the king and the rook with the knight."
+   },
+   {
+    "fen": "2r4r/1q2kp2/p2Rp1bp/1p2Q3/8/2P3P1/PP4PK/5R2 w - - 3 26",
+    "best": "d6e6",
+    "explain": "e5c5",
+    "move_only": "f1f7",
+    "instinct": "f1f7",
+    "idea": "Check first, then use the extra material to trade queens and win."
+   },
+   {
+    "fen": "8/p4Qk1/2p4r/3qP2P/P7/1P3RP1/5PK1/8 b - - 0 36",
+    "best": "d5f7",
+    "explain": "d5f7",
+    "move_only": "d5f7",
+    "instinct": "d5f7",
+    "idea": "Recapture with the queen to keep checking and guarding the a7-knight."
+   },
+   {
+    "fen": "r2q1rk1/4nppn/2p5/p3N2p/Np2P3/1P1P3P/1PP3P1/R1Q2RK1 b - - 0 20",
+    "best": "d8d4",
+    "explain": "d8d4",
+    "move_only": "d8d4",
+    "instinct": "d8d4",
+    "idea": "Check first, then use the extra queenside pawns to fork White's loose e5 knight and f6-knight."
+   },
+   {
+    "fen": "r1bqrk2/p1p3p1/1p1b2P1/n2P1p1Q/8/3p4/PPPP1PP1/R1B2K1R w - - 3 17",
+    "best": "h5h8",
+    "explain": "h5h8",
+    "move_only": "h5h8",
+    "instinct": "h5h8",
+    "idea": "Check first, then grab the undefended d3-pawn."
+   },
+   {
+    "fen": "8/6R1/3r2p1/1PK1kp2/8/8/8/8 w - - 5 57",
+    "best": "g7e7",
+    "explain": "g7e7",
+    "move_only": "b5b6",
+    "instinct": "b5b6",
+    "idea": "Kick the rook with check, then grab g6 and the exchange."
+   },
+   {
+    "fen": "7k/pp4p1/7p/2pPP2K/4Q2P/2P1P3/P4r2/6r1 w - - 5 33",
+    "best": "e5e6",
+    "explain": "d5d6",
+    "move_only": "d5d6",
+    "instinct": "d5d6",
+    "idea": "Push the passed pawn now; it threatens to fork the queen and the rook."
+   },
+   {
+    "fen": "3rrk2/pp3p2/6p1/3q4/4p1R1/PQ2P2R/1P4P1/7K w - - 0 32",
+    "best": "b3d5",
+    "explain": "b3b4",
+    "move_only": "b3b4",
+    "instinct": "b3b4",
+    "idea": "Check first, then trade queens to kill Black's attack on your queen."
+   },
+   {
+    "fen": "2r3k1/1p2r2p/p3P1pQ/8/6P1/Pq1B4/1PP5/2K2R2 w - - 1 31",
+    "best": "f1f8",
+    "explain": "h6g6",
+    "move_only": "d3c4",
+    "instinct": "d3c4",
+    "idea": "Check first, then use the extra pawn to guard the king and keep Black's queen tied up."
+   },
+   {
+    "fen": "rq4rk/p5pp/1n5N/1p4P1/3P4/2P5/PP5P/R4RK1 w - - 0 27",
+    "best": "h6f7",
+    "explain": "h6f7",
+    "move_only": "h6f7",
+    "instinct": "h6f7",
+    "idea": "Check first, then deliver mate on f7. The king's escape square is h8."
+   },
+   {
+    "fen": "1r3rk1/pp2n2p/2p1p1pP/4QqP1/2PP1P2/1P2P3/P3K3/6RR w - - 2 25",
+    "best": "e5g7",
+    "explain": "e5g7",
+    "move_only": "e5g7",
+    "instinct": "e5g7",
+    "idea": "Check first, then deliver mate with the queen. The queen is already attacking the exposed king."
+   },
+   {
+    "fen": "8/6pk/8/5Pp1/p7/7P/1b1R2K1/8 b - - 4 44",
+    "best": "a4a3",
+    "explain": "b2c3",
+    "move_only": "a4a3",
+    "instinct": "a4a3",
+    "idea": "Save the attacked bishop with tempo, then use the extra piece and the d2 rook."
+   },
+   {
+    "fen": "5R2/8/8/P6p/5p1k/5p1P/r4P2/6K1 b - - 3 48",
+    "best": "h4h3",
+    "explain": "a2a1",
+    "move_only": "a2a1",
+    "instinct": "a2a1",
+    "idea": "Check first, then take the attacked pawn. Don't let White's attack on f4 block your checks."
+   },
+   {
+    "fen": "1k2r3/pp1q2p1/3p2Rp/8/4bP2/2Q4P/PP3RPK/4r3 w - - 4 29",
+    "best": "g6g7",
+    "explain": "c3c7",
+    "move_only": "c3c7",
+    "instinct": "c3c7",
+    "idea": "Check first, then grab the loose e1-rook with the queen."
+   },
+   {
+    "fen": "r4r1k/4Q1pp/p7/1p6/3qb3/1B4P1/P1P3PP/R4R1K b - - 4 24",
+    "best": "f8f2",
+    "explain": "f8f1",
+    "move_only": "f8f1",
+    "instinct": "f8f1",
+    "idea": "Trade off White's active rook on f1 and gain time."
+   },
+   {
+    "fen": "r2q1rk1/5p2/2pp1Pp1/pnb1p1P1/1p2P1bp/3P4/PPP1N1BK/R1BQ1R2 w - - 1 20",
+    "best": "g2f3",
+    "explain": "d3d4",
+    "move_only": "d1d2",
+    "instinct": "f1h1",
+    "idea": "Kick the c5-bishop with d4 to open the centre and hit the loose Ne2."
+   },
+   {
+    "fen": "3r3k/4r3/5R2/p1p5/P1B5/1P1p3P/4p2K/4R3 b - - 1 45",
+    "best": "d3d2",
+    "explain": "d3d2",
+    "move_only": "d3d2",
+    "instinct": "d3d2",
+    "idea": "Kick the e1 rook with tempo, then use the extra pawn."
+   },
+   {
+    "fen": "2r1r1k1/5p1p/pp4p1/4BQ2/q7/P7/2n2PPP/2R2RK1 w - - 0 29",
+    "best": "f5f6",
+    "explain": "f5c8",
+    "move_only": "f5c8",
+    "instinct": "f5c8",
+    "idea": "Save the attacked queen with tempo, then use the extra piece and the c8-rook."
+   },
+   {
+    "fen": "3r2r1/5Qbk/2qN3p/p1n3p1/PpP1p3/1P1p2BP/5PP1/1R2R1K1 w - - 6 36",
+    "best": "f7f5",
+    "explain": "f7f5",
+    "move_only": "f7f5",
+    "instinct": "f7f5",
+    "idea": "Check first, then use the extra piece to fork Black's loose queen and knight."
+   },
+   {
+    "fen": "8/8/7p/4k3/P1R4P/5K2/1rp2P2/8 b - - 2 38",
+    "best": "e5d5",
+    "explain": "c2c1q",
+    "move_only": "b2b3",
+    "instinct": "b2b3",
+    "idea": "Promote to a bishop, then use the extra material and the c-file against White's king."
+   },
+   {
+    "fen": "8/pR6/5pk1/3Bp2p/7P/2n1PKP1/1r3P2/8 b - - 3 33",
+    "best": "b2b7",
+    "explain": "e5e4",
+    "move_only": "c3d5",
+    "instinct": "e5e4",
+    "idea": "Check first, then trade off White's active rook and keep your pawns healthy."
+   },
+   {
+    "fen": "6k1/5p2/p5p1/3B2QP/8/3b4/5qPK/8 w - - 0 42",
+    "best": "h5g6",
+    "explain": "h5g6",
+    "move_only": "h5g6",
+    "instinct": "g5g6",
+    "idea": "Take the g6-pawn now, before Black can trade queens and win it."
+   },
+   {
+    "fen": "2kr2n1/ppp2p1p/8/4Bq2/2P4P/1P2PPb1/P2PK3/RN1Q3R b - - 0 16",
+    "best": "f5d3",
+    "explain": "f5e5",
+    "move_only": "f5d3",
+    "instinct": "f5d3",
+    "idea": "Check first, then grab the loose e5-bishop and keep White's queen tied up."
+   },
+   {
+    "fen": "3nk1r1/prq2pp1/4N2p/3pP2Q/1bpP4/4B1P1/P4RPP/5RK1 b - - 0 26",
+    "best": "d8e6",
+    "explain": "d8e6",
+    "move_only": "d8e6",
+    "instinct": "d8e6",
+    "idea": "Take the attacked knight at once; the queen stays safe."
+   },
+   {
+    "fen": "R7/6p1/4p3/4Pk1p/8/p1K1P2P/5rP1/8 w - - 0 35",
+    "best": "a8f8",
+    "explain": "e3e4",
+    "move_only": "e3e4",
+    "instinct": "e3e4",
+    "idea": "Check first, then use the extra pawn to guard e5 and keep Black's king stuck in the centre."
+   },
+   {
+    "fen": "r3k1r1/pp1bbp1p/2pp4/3P3p/2P1PQ2/1P1B1N1P/P4qPK/R4R2 b q - 1 19",
+    "best": "f2g2",
+    "explain": "g8g2",
+    "move_only": "f2g2",
+    "instinct": "f2g2",
+    "idea": "Check first, then grab the loose g2-pawn and deliver mate."
+   },
+   {
+    "fen": "6k1/6b1/p1p3pp/2pP1p2/3p4/3P1NBQ/Pr3PPP/6K1 b - - 0 26",
+    "best": "b2b1",
+    "explain": "b2b1",
+    "move_only": "b2b1",
+    "instinct": "b2b1",
+    "idea": "Check first, then take the attacked pawn. Don't let White's checks win back material."
+   },
+   {
+    "fen": "k6r/p2rqp1p/Q2p1n2/2p5/2NBP3/8/P1P2PPP/6K1 w - - 0 22",
+    "best": "c4b6",
+    "explain": "a6c8",
+    "move_only": "a6c8",
+    "instinct": "a6c8",
+    "idea": "Check first, then trade queens to kill Black's attack on the king."
+   },
+   {
+    "fen": "5Q2/7p/4ppp1/7k/4nP1B/2P1q2P/6PK/8 w - - 14 45",
+    "best": "g2g4",
+    "explain": "g2g4",
+    "move_only": "g2g4",
+    "instinct": "g2g4",
+    "idea": "Check first, then use the extra pawn to guard f4 and h4."
+   },
+   {
+    "fen": "2r2rk1/pp3pp1/q3p2p/3pP3/3P1P2/1PbnB2P/P1RQ2P1/3R2K1 w - - 0 22",
+    "best": "c2c3",
+    "explain": "c2c3",
+    "move_only": "c2c3",
+    "instinct": "c2c3",
+    "idea": "Recapture with the rook to keep the queens on and guard the d4 pawn."
+   },
+   {
+    "fen": "r3kb1r/ppp2pp1/5n2/4q2p/4N3/1P3P2/P3Q1PP/1N2RK2 w kq - 1 18",
+    "best": "e4f6",
+    "explain": "e2b5",
+    "move_only": "e4f6",
+    "instinct": "e4f6",
+    "idea": "Check first, then trade queens to kill Black's attack on the exposed king."
+   },
+   {
+    "fen": "4r1k1/1R3p2/p5NQ/8/2qr4/8/5PPP/5RK1 b - - 0 28",
+    "best": "c4f1",
+    "explain": "c4f1",
+    "move_only": "c4f1",
+    "instinct": "c4f1",
+    "idea": "Take the rook on f1 with check, then deliver mate on h8."
+   },
+   {
+    "fen": "r2r2k1/5pp1/pp3n2/2p2Q2/P6P/2pP4/1P1q1P2/1R4RK w - - 0 26",
+    "best": "f5f6",
+    "explain": "g1g7",
+    "move_only": "g1g7",
+    "instinct": "g1g7",
+    "idea": "Check first, then grab the loose f6-knight and keep Black's king in the centre."
+   },
+   {
+    "fen": "8/8/5pkp/4rR2/6PK/7P/8/8 b - - 11 52",
+    "best": "e5f5",
+    "explain": "e5f5",
+    "move_only": "e5f5",
+    "instinct": "e5f5",
+    "idea": "Take the rook on f5 right away. White's attack has no follow-up."
+   },
+   {
+    "fen": "5rk1/2Q2n1p/4p3/1p1p3N/1P1q1p2/P6P/8/5R1K w - - 2 32",
+    "best": "f1g1",
+    "explain": "c7f7",
+    "move_only": "h5f6",
+    "instinct": "h5f6",
+    "idea": "Check first, then grab the f4-pawn with the rook, then trade queens."
+   },
+   {
+    "fen": "8/8/1R5p/5K2/6PP/8/1pkr4/8 b - - 1 62",
+    "best": "d2d4",
+    "explain": "d2d5",
+    "move_only": "d2d8",
+    "instinct": "d2d8",
+    "idea": "Save the attacked pawn with tempo, then use the extra piece and the d-file."
+   },
+   {
+    "fen": "r1b2rk1/ppp2ppp/2p5/6q1/2BP4/5Q2/PPP2PPb/RN2RK2 w - - 0 12",
+    "best": "f3f7",
+    "explain": "f3f7",
+    "move_only": "f3f7",
+    "instinct": "f3f7",
+    "idea": "Check first, then grab f7 and the queen at once."
+   },
+   {
+    "fen": "8/1p1bkppp/8/pB6/5P2/4K1P1/r6P/2R5 w - - 4 27",
+    "best": "c1c7",
+    "explain": "b5d7",
+    "move_only": "b5d7",
+    "instinct": "b5d7",
+    "idea": "Trade off Black's active bishop and gain time by capturing on d7."
+   },
+   {
+    "fen": "2r4r/pp2kppQ/5qn1/2p1p1B1/2PpP3/PP1P4/2K2PR1/8 w - - 13 30",
+    "best": "h7g7",
+    "explain": "h7g7",
+    "move_only": "g5f6",
+    "instinct": "g5f6",
+    "idea": "Take the queen first. Black's attack on it is lost."
+   },
+   {
+    "fen": "8/6p1/ppn2p2/2k1pr2/8/P7/2PN1P1P/3R2K1 w - - 0 29",
+    "best": "d2e4",
+    "explain": "d2e4",
+    "move_only": "d2e4",
+    "instinct": "d2e4",
+    "idea": "Check first, then use the extra pawn to fork the king and the loose f5 rook."
+   },
+   {
+    "fen": "r1b4k/pp4pp/8/4p3/4nr2/2P1N3/PP4PP/RN1R2K1 w - - 0 20",
+    "best": "d1d8",
+    "explain": "d1d8",
+    "move_only": "d1d8",
+    "instinct": "d1d8",
+    "idea": "Check first, then use the extra pawn to fork the rook and the e4 knight."
+   },
+   {
+    "fen": "2k4r/pp4pp/3R4/4N1Bq/6n1/8/PPP1BPP1/5RK1 b - - 0 17",
+    "best": "h5h2",
+    "explain": "h5h2",
+    "move_only": "h5h2",
+    "instinct": "h5h2",
+    "idea": "Check first, then deliver mate with the queen. The king has no escape square."
+   },
+   {
+    "fen": "r1b2rk1/pp2npbp/1q1p2p1/8/1n2PP2/P1NB1N2/1PPBQ1PP/2KR3R b - - 0 12",
+    "best": "b4a2",
+    "explain": "b4d3",
+    "move_only": "b4d3",
+    "instinct": "b4d3",
+    "idea": "Trade off White's active knight and hit the exposed king with check."
+   },
+   {
+    "fen": "8/8/p7/k2b1P2/6B1/4K3/8/8 w - - 1 56",
+    "best": "e3d4",
+    "explain": "e3d4",
+    "move_only": "e3d4",
+    "instinct": "f5f6",
+    "idea": "Step the king off the e-file and guard f5 so Black's bishop can't fork."
+   },
+   {
+    "fen": "5rk1/pp4pp/2b1pr2/2q1N3/2P3R1/1P4QP/P5P1/4R2K b - - 6 26",
+    "best": "f6f1",
+    "explain": "f6f1",
+    "move_only": "f6f1",
+    "instinct": "f6f1",
+    "idea": "Check first, then trade queens to drag White's rooks off."
+   },
+   {
+    "fen": "r4rk1/pp3ppp/1qb2n2/2bp1NB1/8/5N2/PPP2PPP/R2QR1K1 w - - 5 14",
+    "best": "g5f6",
+    "explain": "f5e7",
+    "move_only": "f5e7",
+    "instinct": "f5e7",
+    "idea": "Check first, then trade off Black's active queen and keep your own."
+   },
+   {
+    "fen": "r1bq1b1r/pp4pp/2n1k3/3Bp3/8/5Q2/PPPP1PPP/RNB1K2R b KQ - 0 11",
+    "best": "d8d5",
+    "explain": "d8d5",
+    "move_only": "d8d5",
+    "instinct": "d8d5",
+    "idea": "Recapture with the queen to keep checking and guarding the king."
+   },
+   {
+    "fen": "r1bqrbk1/1p3p2/p1n2n1Q/3p4/3P4/2NB1N1P/PP3PP1/R3R1K1 w - - 1 16",
+    "best": "e1e8",
+    "explain": "h6g5",
+    "move_only": "e1e8",
+    "instinct": "e1e8",
+    "idea": "Check first, then trade queens to kill Black's attack on your loose queen."
+   },
+   {
+    "fen": "4bk2/PQ6/4q3/7p/8/8/6K1/5B2 b - - 0 53",
+    "best": "e8c6",
+    "explain": "e6g4",
+    "move_only": "e6g4",
+    "instinct": "e6g4",
+    "idea": "Check first, then fork the king and queen with Bc6+."
+   },
+   {
+    "fen": "6k1/b4rpp/p2p4/P2p4/6Pq/2Q2p1P/5P2/R3R1K1 w - - 1 29",
+    "best": "e1e8",
+    "explain": "c3c8",
+    "move_only": "c3c8",
+    "instinct": "c3c8",
+    "idea": "Check first, then use the extra pawn to fork Black's loose queen and rooks."
+   },
+   {
+    "fen": "2r2rk1/5ppp/p2Pp3/4P1R1/1p5q/1P3Q2/2p2PP1/2R3K1 w - - 0 28",
+    "best": "f3f6",
+    "explain": "g2g3",
+    "move_only": "d6d7",
+    "instinct": "d6d7",
+    "idea": "Save the attacked rook with tempo, then use the extra piece to win back the pawn."
+   },
+   {
+    "fen": "k7/pp3r2/8/2p5/3pP1PK/PP1P3P/2Pn4/6R1 b - - 6 46",
+    "best": "d2f3",
+    "explain": "d2f3",
+    "move_only": "d2f3",
+    "instinct": "d2f3",
+    "idea": "Check first, then use the extra piece to fork White's loose rooks."
+   },
+   {
+    "fen": "2kr3r/pBq1bppp/1p3n2/2p1p3/2P2B2/2NP2P1/PP2PP1P/R2Q1R1K b - - 0 13",
+    "best": "c7b7",
+    "explain": "c7b7",
+    "move_only": "c7b7",
+    "instinct": "c7b7",
+    "idea": "Check first, then take the bishop on b7. The queen's check kills White's attack."
+   },
+   {
+    "fen": "r3qrk1/1p3pp1/p3bn1p/2p1Q2P/4P3/2N2PN1/PP2B1P1/1K1R3R b - - 0 21",
+    "best": "e6a2",
+    "explain": "e6a2",
+    "move_only": "e6a2",
+    "instinct": "e6a2",
+    "idea": "Check first, then use the extra pawn to fork White's c3-knight and the e4-knight."
+   },
+   {
+    "fen": "r7/4k3/3R2K1/4PP2/8/p5p1/8/8 w - - 5 47",
+    "best": "f5f6",
+    "explain": "f5f6",
+    "move_only": "f5f6",
+    "instinct": "f5f6",
+    "idea": "Check the king and hit the exposed e7-knight at once."
+   },
+   {
+    "fen": "3r1r1k/p1b1qpp1/1pp2n1p/5Q2/3BP3/2N2P1P/PPP3P1/3RR2K b - - 3 20",
+    "best": "d8d4",
+    "explain": "g7g6",
+    "move_only": "g7g6",
+    "instinct": "d8d4",
+    "idea": "Hit the queen with tempo, then trade queens to win back material."
+   },
+   {
+    "fen": "r3k2r/1bq2ppp/p3p3/2P5/1P1N2n1/4B3/P1P2PPP/1R1Q1RK1 b kq - 0 15",
+    "best": "c7h2",
+    "explain": "c7h2",
+    "move_only": "c7h2",
+    "instinct": "c7h2",
+    "idea": "Check first, then trade queens to kill White's attack on the exposed king."
+   },
+   {
+    "fen": "r7/2p2pbk/6pp/2qPP3/Pr3PPP/2N2Q2/1NK5/1R6 w - - 3 34",
+    "best": "b2d3",
+    "explain": "e5e6",
+    "move_only": "b2d1",
+    "instinct": "b2d3",
+    "idea": "Kick the rook with tempo, then use the open b- and c-files against Black's king."
+   },
+   {
+    "fen": "8/8/8/8/8/1p2k3/1Kp5/4N3 b - - 6 58",
+    "best": "e3d2",
+    "explain": "c2c1q",
+    "move_only": "c2c1q",
+    "instinct": "c2c1q",
+    "idea": "Promote to a queen and keep checking the exposed king."
+   },
+   {
+    "fen": "5r1k/2p3pp/8/1PQB4/p7/2Pq2bP/P5P1/6K1 w - - 0 32",
+    "best": "c5f8",
+    "explain": "c5f8",
+    "move_only": "c5f8",
+    "instinct": "c5f8",
+    "idea": "Check first, then deliver mate on the same square."
+   },
+   {
+    "fen": "5r1r/ppk3pp/2n5/1BP2Q2/4pN2/6P1/PP1q3P/R5K1 w - - 3 21",
+    "best": "f4e6",
+    "explain": "f5d7",
+    "move_only": "f5d7",
+    "instinct": "f5d7",
+    "idea": "Check first, then trade queens to kill Black's attack on your queen."
+   },
+   {
+    "fen": "r1b2r1k/pp1n2p1/2pq3p/3pN3/3PBP2/1Q2P1P1/PP3R1P/4R1K1 b - - 0 25",
+    "best": "d5e4",
+    "explain": "d5e4",
+    "move_only": "d5e4",
+    "instinct": "d5e4",
+    "idea": "Take the bishop on e4 now, before White can trade it."
+   },
+   {
+    "fen": "r5k1/1pp3p1/p1Rq3p/3p4/3r4/P4B1P/1P1Q1PP1/3R2K1 b - - 0 19",
+    "best": "d4d2",
+    "explain": "b7c6",
+    "move_only": "d4d2",
+    "instinct": "d4d2",
+    "idea": "Recapture with the pawn to open the c-file and hit the rook."
+   },
+   {
+    "fen": "4r1k1/Rb5p/1P1B2p1/6P1/8/3n1pN1/6P1/6K1 b - - 1 38",
+    "best": "e8e1",
+    "explain": "e8e1",
+    "move_only": "e8e1",
+    "instinct": "e8e1",
+    "idea": "Check first, then take the attacked bishop. Don't let White's attack on the king run."
+   },
+   {
+    "fen": "2r2k2/pq2br1p/1p4pP/8/1P6/1Q3p1R/P5P1/B2R1K2 w - - 0 26",
+    "best": "h3f3",
+    "explain": "h3f3",
+    "move_only": "h3f3",
+    "instinct": "h3f3",
+    "idea": "Recapture with the rook to open the f7\u2013h3 diagonal onto Black's queen."
+   },
+   {
+    "fen": "r1b1n1k1/ppp3bp/1n1p3r/3Ppp2/1PP5/1N1B1PPq/PB1QN2P/R4RK1 b - - 2 18",
+    "best": "h3h2",
+    "explain": "e5e4",
+    "move_only": "e5e4",
+    "instinct": "e5e4",
+    "idea": "Develop with tempo, hit the centre with e4, and keep White's king stuck in the middle."
+   },
+   {
+    "fen": "rn1qk1nr/pbp2ppp/1p6/3Pp3/1b6/2N5/PP3PPP/R1BQKBNR w KQkq - 1 8",
+    "best": "d1a4",
+    "explain": "d1a4",
+    "move_only": "d1a4",
+    "instinct": "d1a4",
+    "idea": "Check first, then develop with tempo: hit the loose b4-bishop and guard d5."
+   },
+   {
+    "fen": "2r4k/3r2pp/8/5Q2/1B2q3/PP6/2P3PP/1K3R2 b - - 3 39",
+    "best": "d7d1",
+    "explain": "e4c2",
+    "move_only": "d7d1",
+    "instinct": "e4c2",
+    "idea": "Trade queens to kill White's attack on the exposed king."
+   },
+   {
+    "fen": "Q7/1n3pk1/1q4p1/3Pp3/8/1P4P1/2r2PB1/2R1R1K1 b - - 1 35",
+    "best": "b6f2",
+    "explain": "b6f2",
+    "move_only": "b6f2",
+    "instinct": "b6f2",
+    "idea": "Take the f2-pawn now, then use the extra material and the half-open b- and c-files."
+   },
+   {
+    "fen": "r3b1k1/1p5p/p2bq3/1p1pN3/3Ppr2/PQ6/1B2P2P/3RR2K w - - 0 26",
+    "best": "b3g3",
+    "explain": "b3g3",
+    "move_only": "b3g3",
+    "instinct": "b3d5",
+    "idea": "Check first, then grab d5 and the queen at once."
+   },
+   {
+    "fen": "r2r2k1/1b1nb1p1/p3p2p/1ppq1pN1/8/2PPBP2/PPB1Q1PP/3R1R1K w - - 0 20",
+    "best": "c2b3",
+    "explain": "g5h7",
+    "move_only": "c2b3",
+    "instinct": "g5e6",
+    "idea": "Save the attacked knight with tempo, then hit the exposed queen with ...f4."
+   },
+   {
+    "fen": "4q1k1/4rpp1/p1pb3p/1p1n1Q2/3P4/2P2N1P/PPB2PP1/R1B3K1 b - - 0 19",
+    "best": "e7e1",
+    "explain": "e7e1",
+    "move_only": "e7e1",
+    "instinct": "e7e1",
+    "idea": "Check first, then use the extra piece to win back the pawn."
+   },
+   {
+    "fen": "8/8/1R5p/6pk/3Kpp2/1p4PP/2b2P2/8 w - - 0 52",
+    "best": "g3g4",
+    "explain": "g3g4",
+    "move_only": "g3g4",
+    "instinct": "g3g4",
+    "idea": "Check first, then trade off the f4 pawn to open the b- and c-files."
+   },
+   {
+    "fen": "8/8/2r5/5k2/1p4p1/2p3P1/P1K1RP2/8 b - - 9 56",
+    "best": "c6e6",
+    "explain": "b4b3",
+    "move_only": "c6c4",
+    "instinct": "b4b3",
+    "idea": "Kick the a2-pawn with check, then grab the king and a rook."
+   },
+   {
+    "fen": "r4rk1/6q1/4p3/1Bpb1p2/PP3Qpp/4P3/5PPP/2RR2K1 b - - 0 30",
+    "best": "e6e5",
+    "explain": "e6e5",
+    "move_only": "c5b4",
+    "instinct": "c5b4",
+    "idea": "Push e5 to guard f5 and hit the queen with tempo."
+   },
+   {
+    "fen": "Q7/p4pkP/3p2p1/2p2nK1/2P5/1P6/P1qp3R/4r3 w - - 5 35",
+    "best": "h7h8b",
+    "explain": "h7h8q",
+    "move_only": "h7h8q",
+    "instinct": "a8f8",
+    "idea": "Promote to a queen and deliver mate on the same square."
+   },
+   {
+    "fen": "8/p5p1/5p1p/3k4/PPn4P/2K3P1/3N1P2/8 b - - 4 52",
+    "best": "c4d2",
+    "explain": "c4d2",
+    "move_only": "c4d2",
+    "instinct": "c4d2",
+    "idea": "Trade off White's strong d2 knight and keep your own d4 knight."
+   },
+   {
+    "fen": "6k1/1p3ppp/p7/1P2b3/P7/3rB1P1/2r2PKP/1R3R2 b - - 0 24",
+    "best": "d3e3",
+    "explain": "d3e3",
+    "move_only": "a6b5",
+    "instinct": "d3e3",
+    "idea": "Recapture with the rook to keep the kingside pawns intact."
+   },
+   {
+    "fen": "3r2k1/4R1pp/p4p2/8/2q2P1Q/8/1P4PP/3rR2K b - - 3 29",
+    "best": "c4f1",
+    "explain": "c4f1",
+    "move_only": "d1e1",
+    "instinct": "d1e1",
+    "idea": "Check first, then trade queens to kill White's attack on the exposed king."
+   },
+   {
+    "fen": "8/8/8/1p2p3/p1k4p/6RP/1PK3P1/8 b - - 0 49",
+    "best": "h4g3",
+    "explain": "h4g3",
+    "move_only": "h4g3",
+    "instinct": "h4g3",
+    "idea": "Take the rook on g3 now. The attack on the g3 rook outruns White's checks."
+   },
+   {
+    "fen": "8/p1p5/1p1pk1p1/1P3p2/P1PP3P/5pP1/6K1/8 w - - 0 32",
+    "best": "g2f3",
+    "explain": "g2f3",
+    "move_only": "g2f3",
+    "instinct": "g2f3",
+    "idea": "Take the checking pawn now. The king is already in check, so the exchange is a win."
+   },
+   {
+    "fen": "8/6pk/7p/8/Q2P4/1p6/2r2P2/5K2 b - - 0 58",
+    "best": "c2c1",
+    "explain": "c2c1",
+    "move_only": "c2c1",
+    "instinct": "c2c1",
+    "idea": "Check first, then use the extra pawn to fork White's queen and rooks."
+   },
+   {
+    "fen": "8/2b2ppk/2P4p/8/1B4P1/1P5P/1R3P2/1KR4q b - - 2 36",
+    "best": "h1e4",
+    "explain": "h1c1",
+    "move_only": "h1c1",
+    "instinct": "h1c1",
+    "idea": "Take the rook on c1 with check, then use the extra material."
+   },
+   {
+    "fen": "3rq2r/ppp1b1pp/2n1bk2/2Q1N3/8/2P1P3/PP1N1PPP/1K1R3R w - - 1 20",
+    "best": "d2e4",
+    "explain": "d2e4",
+    "move_only": "d2e4",
+    "instinct": "d2e4",
+    "idea": "Check first, then trade off Black's active queen and regain material."
+   },
+   {
+    "fen": "2r2rk1/5pp1/p1b2n1p/1pb1qP1N/2pp2Q1/P6P/BPP3PN/4RR1K w - - 2 25",
+    "best": "g4g7",
+    "explain": "g4g7",
+    "move_only": "g4g7",
+    "instinct": "g4g7",
+    "idea": "Check first, then use the extra pawn to win the queen."
+   },
+   {
+    "fen": "r4rk1/pp4p1/1q5p/3p1p2/3n4/P4Q2/1PB2PPP/3RR1K1 w - - 0 20",
+    "best": "f3d5",
+    "explain": "f3d5",
+    "move_only": "f3d5",
+    "instinct": "f3d5",
+    "idea": "Check first, then grab the d5 pawn and keep Black's king in the centre."
+   },
+   {
+    "fen": "2r2rk1/p6p/1p2p2q/2n3p1/3Q3P/1P6/P1P1BP2/1K4R1 w - - 0 22",
+    "best": "g1g5",
+    "explain": "h4g5",
+    "move_only": "g1g5",
+    "instinct": "g1g5",
+    "idea": "Take the pawn on g5 now, before Black can trade queens."
+   },
+   {
+    "fen": "2k3r1/6qp/3p1p2/1p2p3/1P2P3/2PPB3/6PP/R4RK1 w - - 0 32",
+    "best": "a1a8",
+    "explain": "a1a8",
+    "move_only": "a1a8",
+    "instinct": "a1a8",
+    "idea": "Check the king and the queen at once; Black's attack has no follow-up."
+   },
+   {
+    "fen": "1r1r2k1/pb3ppp/1p6/2pq4/1P1P1N2/6P1/P4P1P/2RQR1K1 b - - 1 21",
+    "best": "d5h1",
+    "explain": "c5d4",
+    "move_only": "d5d4",
+    "instinct": "d5d4",
+    "idea": "Take the pawn on d4 right away, then use the extra pawn to win back the d4 pawn."
+   },
+   {
+    "fen": "4r1rk/4qpb1/p2p3p/1p1Pn2R/8/2P4Q/PP2B1PP/5RK1 w - - 0 25",
+    "best": "h5h6",
+    "explain": "h5h6",
+    "move_only": "h5h6",
+    "instinct": "h5h6",
+    "idea": "Check first, then grab the loose f7-pawn and keep Black's queen tied up."
+   },
+   {
+    "fen": "r3q1k1/5b2/2p3rQ/8/pP1B4/P1P4P/1KP2P2/8 w - - 3 39",
+    "best": "h6h8",
+    "explain": "h6h8",
+    "move_only": "h6h8",
+    "instinct": "h6h8",
+    "idea": "Check first, then deliver mate with the queen. The attack on the exposed king knocks the rook off guard."
+   },
+   {
+    "fen": "r3kbr1/ppp2p1p/3p4/8/2BPPn1q/1NP2PRb/PP6/R3B1QK b q - 0 19",
+    "best": "h3g2",
+    "explain": "h3g2",
+    "move_only": "h3g2",
+    "instinct": "g8g3",
+    "idea": "Check first, then trade off White's active queen and rooks."
+   },
+   {
+    "fen": "5rk1/p3pp1p/bqB3p1/3P4/1Q6/b3N3/r4PPP/3RR1K1 w - - 0 24",
+    "best": "b4b6",
+    "explain": "b4b6",
+    "move_only": "b4b6",
+    "instinct": "b4b6",
+    "idea": "Trade queens to clear the way to the a3-bishop."
+   },
+   {
+    "fen": "r2q1rk1/p5bp/3p2P1/2pn2p1/1p5Q/3P1R1P/PPP1N1P1/R5K1 w - - 0 18",
+    "best": "h4h7",
+    "explain": "h4h7",
+    "move_only": "h4h7",
+    "instinct": "h4c4",
+    "idea": "Check first, then deliver mate on h7. The queen is attacked, so take the h7 pawn."
+   },
+   {
+    "fen": "r4r1k/p7/1p1p2P1/3Pp2n/3n4/7Q/PP4PP/R1B2RK1 b - - 0 23",
+    "best": "d4e2",
+    "explain": "d4e2",
+    "move_only": "d4e2",
+    "instinct": "d4e2",
+    "idea": "Check first, then trade off White's active rooks and keep your king safe."
+   },
+   {
+    "fen": "3rr3/5k2/p1p1p3/2PnBp2/1P3Pp1/P2R2P1/6K1/3R4 b - - 1 37",
+    "best": "d5e3",
+    "explain": "d5e3",
+    "move_only": "d5e3",
+    "instinct": "d5e3",
+    "idea": "Check first, then use the extra pawn to fork White's loose queen and rooks."
+   },
+   {
+    "fen": "8/p3r1k1/2p3p1/3rPb2/1P3P2/P5K1/1B5R/8 w - - 14 44",
+    "best": "e5e6",
+    "explain": "e5e6",
+    "move_only": "b2d4",
+    "instinct": "b2d4",
+    "idea": "Check the king and hit the exposed queen with tempo, then win the queen."
+   },
+   {
+    "fen": "rn2k1nr/ppp2p2/4B2p/4b1pQ/3qPp2/8/PPP3PP/RNB1K2R w KQkq - 0 10",
+    "best": "h5f7",
+    "explain": "h5f7",
+    "move_only": "h5f7",
+    "instinct": "h5f7",
+    "idea": "Take the pawn on f7 with check, then use the queen to fork the king and the queen."
+   },
+   {
+    "fen": "2kr4/ppp2Rpr/2p5/4P3/3P2P1/2P3b1/PP1N2P1/R5K1 b - - 2 20",
+    "best": "d8h8",
+    "explain": "g3h2",
+    "move_only": "g3h2",
+    "instinct": "g3h2",
+    "idea": "Check first, then use the extra material to trade off White's strong e5 pawn."
+   },
+   {
+    "fen": "8/Q2bkBpp/1N1b4/8/7K/4PN2/P1q3PP/8 b - - 12 37",
+    "best": "c2e4",
+    "explain": "c2f2",
+    "move_only": "c2g2",
+    "instinct": "g7g5",
+    "idea": "Check first, then use the extra pawn to guard d7 and keep White's king stuck in the centre."
+   },
+   {
+    "fen": "R7/8/P7/8/8/5p2/r4k2/3K4 b - - 1 45",
+    "best": "f2f1",
+    "explain": "a2a1",
+    "move_only": "a2a1",
+    "instinct": "a2a1",
+    "idea": "Check first, then take the a6 pawn with the rook."
+   },
+   {
+    "fen": "R1R5/5pk1/4p1pp/4P3/4PK2/1bPr4/1P4PP/8 b - - 1 30",
+    "best": "g6g5",
+    "explain": "g6g5",
+    "move_only": "g6g5",
+    "instinct": "g6g5",
+    "idea": "Check first, then use the extra pawn to fork White's loose c3 and e4 pawns."
+   },
+   {
+    "fen": "6k1/4q1p1/pp6/2p1br1P/3p4/PP1PpB2/1KP3Q1/6R1 w - - 2 36",
+    "best": "h5h6",
+    "explain": "f3d5",
+    "move_only": "f3d5",
+    "instinct": "f3d5",
+    "idea": "Check first, then use the extra pawn to fork the king and the rook."
+   },
+   {
+    "fen": "5r2/pr3k2/1pq1p1pQ/4Pp2/3P3R/8/7P/5RK1 w - - 4 29",
+    "best": "f1c1",
+    "explain": "h6h7",
+    "move_only": "h6h7",
+    "instinct": "h6h7",
+    "idea": "Check first, then use the extra pawn to fork the queen and the rook on f8."
+   },
+   {
+    "fen": "5r2/4ppkp/6p1/8/8/3K4/r4PPP/3R1B1R b - - 2 22",
+    "best": "f8d8",
+    "explain": "a2a3",
+    "move_only": "f8b8",
+    "instinct": "f8b8",
+    "idea": "Check first, then use the extra pawn to win the rook."
+   },
+   {
+    "fen": "1qbr4/R3nkpp/1p2pp2/1B6/1P1P4/Q4N2/5PPP/6K1 w - - 9 24",
+    "best": "f3e5",
+    "explain": "f3e5",
+    "move_only": "f3e5",
+    "instinct": "f3e5",
+    "idea": "Check first, then use the extra pawn to fork the king and the queen."
+   },
+   {
+    "fen": "5rk1/5p2/6pp/8/3Q4/1B3p2/P3q2P/2R3K1 b - - 0 41",
+    "best": "e2g2",
+    "explain": "e2g2",
+    "move_only": "e2g2",
+    "instinct": "e2g2",
+    "idea": "Check first, then deliver mate on the second rank."
+   },
+   {
+    "fen": "6k1/p5p1/3q1pNp/2p5/4Q3/P1P3P1/1P3PKP/3r4 w - - 3 36",
+    "best": "e4e8",
+    "explain": "e4a8",
+    "move_only": "e4e8",
+    "instinct": "e4e8",
+    "idea": "Check first, then use the extra queenside pawns to fork Black's loose queen and rooks."
+   },
+   {
+    "fen": "rn1qk2r/pppbb1pp/4p3/4P3/2P3n1/2N2N1P/PP4P1/R1BQKB1R b KQkq - 0 10",
+    "best": "e7h4",
+    "explain": "e7h4",
+    "move_only": "e7h4",
+    "instinct": "e7h4",
+    "idea": "Check first, then use the extra piece to fork White's queen and knight."
+   },
+   {
+    "fen": "rn2Qbk1/ppp2ppp/8/8/2P3b1/3P1qP1/P2B1P1P/R3R1K1 w - - 2 19",
+    "best": "e8f8",
+    "explain": "e8f8",
+    "move_only": "d2g5",
+    "instinct": "d2g5",
+    "idea": "Check first, then use the extra pawn to fork Black's loose queen and rooks."
+   },
+   {
+    "fen": "r1b4r/pp4pp/2pqk3/3np3/2BPQ3/2P1P3/6PP/2R2RK1 w - - 1 18",
+    "best": "e4g4",
+    "explain": "e4g4",
+    "move_only": "d4e5",
+    "instinct": "d4e5",
+    "idea": "Check first, then trade queens to kill Black's attack on the exposed king."
+   },
+   {
+    "fen": "r5k1/1RR2p1p/4p1p1/8/3r4/2P3P1/4KP2/6b1 w - - 0 29",
+    "best": "c3d4",
+    "explain": "c3d4",
+    "move_only": "c3d4",
+    "instinct": "c3d4",
+    "idea": "Take the rook on d4 right away. The attack beats running away."
+   },
+   {
+    "fen": "r5k1/p4p1p/1p2p1p1/6P1/3r1P2/1P1b4/P4KPR/7R w - - 0 30",
+    "best": "h2h7",
+    "explain": "f2e3",
+    "move_only": "f2e3",
+    "instinct": "f2e3",
+    "idea": "Step the king off the d-file and guard f4 with the rook."
+   },
+   {
+    "fen": "6k1/pp4bp/6p1/3Pp3/4q3/4P1Pb/P2B3P/2RQ1RK1 b - - 0 22",
+    "best": "e4g2",
+    "explain": "e4g2",
+    "move_only": "e4g2",
+    "instinct": "e4g2",
+    "idea": "Check first, then deliver mate with the queen. The queen is already attacking the exposed king."
+   },
+   {
+    "fen": "8/p7/p1P5/1k1p1b1P/3K4/8/8/8 w - - 3 45",
+    "best": "c6c7",
+    "explain": "d4d5",
+    "move_only": "c6c7",
+    "instinct": "c6c7",
+    "idea": "Recapture with the king to guard c7 and keep Black's d5 pawn."
+   },
+   {
+    "fen": "r4rk1/p4ppp/1p1qpn2/2P5/P3Q3/5N2/1PP2PPP/R2R2K1 b - - 0 15",
+    "best": "d6d1",
+    "explain": "f6e4",
+    "move_only": "d6c5",
+    "instinct": "f6e4",
+    "idea": "Take the attacked queen with the knight, then use the extra material."
+   },
+   {
+    "fen": "3rnr1k/4Npp1/p2q3p/1p6/8/P4RP1/1P2QP1P/3R2K1 b - - 1 34",
+    "best": "d6d1",
+    "explain": "d6d1",
+    "move_only": "d6d1",
+    "instinct": "d6d1",
+    "idea": "Take the rook on d1 right away. White's attack on the queen is lost."
+   },
+   {
+    "fen": "2r1r1k1/pp1bppbp/2n2np1/q2Np3/2B5/5NBP/PP2QPP1/R2R2K1 w - - 0 15",
+    "best": "d5f6",
+    "explain": "d5f6",
+    "move_only": "d5f6",
+    "instinct": "d5f6",
+    "idea": "Trade off Black's active knight and grab e5 before Black's e7 pawn."
+   },
+   {
+    "fen": "r3k2r/p1p1bpp1/4p3/4P1p1/q3N3/1Rp1P2P/2Q2PP1/4K2R w Kkq - 0 23",
+    "best": "b3b8",
+    "explain": "e4d6",
+    "move_only": "e4d6",
+    "instinct": "e4d6",
+    "idea": "Check first, then grab the c3 pawn and keep Black's queen tied up."
+   },
+   {
+    "fen": "r2qkb1r/pp3ppp/4bn2/2p1QP2/3pP3/3P4/PPP1N1PP/RNB2RK1 b kq - 0 12",
+    "best": "f8d6",
+    "explain": "f8d6",
+    "move_only": "f8d6",
+    "instinct": "f8d6",
+    "idea": "Develop with tempo, guard f7, and keep the queen near the king."
+   },
+   {
+    "fen": "8/5p2/2k4p/p2pP1p1/1P1K2P1/2P4P/8/8 b - - 0 40",
+    "best": "a5a4",
+    "explain": "a5b4",
+    "move_only": "a5b4",
+    "instinct": "a5b4",
+    "idea": "Trade off White's strong b4 pawn to open the centre and free your king."
+   },
+   {
+    "fen": "2r3k1/R4ppp/1pN1p3/3pP3/5n2/8/P5PP/6K1 w - - 3 25",
+    "best": "c6e7",
+    "explain": "c6e7",
+    "move_only": "c6e7",
+    "instinct": "c6e7",
+    "idea": "Check first, then use the extra piece to guard the attacked knight."
+   },
+   {
+    "fen": "r4rk1/ppq2pBp/2pbp3/8/2B5/2nP3P/PPPnRP2/6RK w - - 0 19",
+    "best": "g7e5",
+    "explain": "g7f6",
+    "move_only": "g7c3",
+    "instinct": "g7f6",
+    "idea": "Check first, then use the extra piece to win back the knight."
+   },
+   {
+    "fen": "5r1k/4b1p1/p2pqnBp/1p3Q2/5P2/2P1B3/PP3P1K/R7 b - - 5 28",
+    "best": "f6g4",
+    "explain": "e6f5",
+    "move_only": "f6g4",
+    "instinct": "f6g4",
+    "idea": "Trade queens to defuse the attack on your undefended queen."
+   },
+   {
+    "fen": "r3rnk1/1p3ppp/p7/3p1q2/1P6/P1P2BR1/7P/R5QK w - - 0 26",
+    "best": "g3g7",
+    "explain": "g3g7",
+    "move_only": "g3g7",
+    "instinct": "f3g4",
+    "idea": "Hit the queen with tempo, then fork the king and the loose d5 pawn."
+   },
+   {
+    "fen": "3r1kn1/3B1r2/7p/p1R4p/3R4/4PbP1/PP3P2/6K1 w - - 5 41",
+    "best": "d7e6",
+    "explain": "d7e6",
+    "move_only": "d7e6",
+    "instinct": "d7e6",
+    "idea": "Save the attacked bishop with tempo, then use the extra pawn to win back the a5 pawn."
+   },
+   {
+    "fen": "1r1qkb1r/ppp1np2/3p3p/3N2p1/2PPp3/1Q2PbP1/PP3PBP/R1B1K1R1 w Qk - 3 15",
+    "best": "d5f6",
+    "explain": "d5f6",
+    "move_only": "d5f6",
+    "instinct": "d5f6",
+    "idea": "Check first, then deliver mate with the knight, not the queen."
+   },
+   {
+    "fen": "2r3k1/1p3ppp/p7/4Q3/6PP/P2b3q/3B1P2/3RK3 w - - 1 27",
+    "best": "d2c3",
+    "explain": "e5g5",
+    "move_only": "e5g5",
+    "instinct": "d2g5",
+    "idea": "Check first, then use the extra pawn to fork the queen and the rook."
+   },
+   {
+    "fen": "5k2/p3p3/2p1Pr2/PpNb1qQp/1PpP2pP/2P3P1/6PK/4R3 b - - 8 44",
+    "best": "f5g5",
+    "explain": "f5g5",
+    "move_only": "f5g5",
+    "instinct": "f5g5",
+    "idea": "Trade queens to kill White's attack on the exposed king."
+   },
+   {
+    "fen": "6k1/6p1/7p/p1P5/2R5/3P1K1P/2r3P1/8 b - - 4 39",
+    "best": "c2c4",
+    "explain": "a5a4",
+    "move_only": "c2c4",
+    "instinct": "c2c4",
+    "idea": "Trade off White's active rook on c4 and hit the centre with a4."
+   },
+   {
+    "fen": "6k1/p3bpp1/2p4p/2Pp1n2/P2PpPP1/4P3/2Q3P1/1NB1qNK1 b - - 0 28",
+    "best": "f5g3",
+    "explain": "e1f1",
+    "move_only": "e1f1",
+    "instinct": "e1f1",
+    "idea": "Check first, then use the extra material to trade queens and win."
+   },
+   {
+    "fen": "8/5k2/R4P2/P5K1/8/2p5/4r3/8 b - - 1 45",
+    "best": "e2e5",
+    "explain": "c3c2",
+    "move_only": "c3c2",
+    "instinct": "c3c2",
+    "idea": "Kick the rook with tempo, then use the open a-file and the c-pawn."
+   },
+   {
+    "fen": "6k1/3r1p1p/4bp2/p1r5/Q1n5/4P1P1/5PBP/2R3K1 b - - 0 26",
+    "best": "c4b2",
+    "explain": "c4d2",
+    "move_only": "c4d2",
+    "instinct": "c4d2",
+    "idea": "Hit the queen with tempo, then trade queens to win back material."
+   },
+   {
+    "fen": "8/p4RP1/4pn2/1P2k2p/8/8/r4pK1/8 w - - 1 59",
+    "best": "f7f6",
+    "explain": "g7g8q",
+    "move_only": "g7g8q",
+    "instinct": "f7f6",
+    "idea": "Promote to a queen and use the extra material to win back the pawn."
+   },
+   {
+    "fen": "3rr1k1/pp4pp/2p5/3P1PB1/3PP2n/P5NP/7P/R5K1 b - - 2 25",
+    "best": "h4f3",
+    "explain": "h4f3",
+    "move_only": "h4f3",
+    "instinct": "h4f3",
+    "idea": "Check first, then take the attacked knight. The rook guards f3 and the h4-bishop."
+   },
+   {
+    "fen": "r1b2rk1/1p3ppp/p1n1qb2/8/3N1B2/P5P1/1PQ1PPBP/3R1RK1 b - - 10 17",
+    "best": "c6d4",
+    "explain": "c6d4",
+    "move_only": "c6d4",
+    "instinct": "c6d4",
+    "idea": "Recapture with the knight to open the d4\u2013a8 diagonal onto White's queen."
+   },
+   {
+    "fen": "8/2p1p2p/1p3kp1/3P2R1/4P1PP/Pb6/8/6K1 b - - 0 33",
+    "best": "b3c4",
+    "explain": "e7e5",
+    "move_only": "e7e5",
+    "instinct": "e7e5",
+    "idea": "Push the centre with e5 to open the f-file and hit the rook."
+   },
+   {
+    "fen": "r2q2r1/p2k1pbQ/1pbpp3/1B6/3P1n2/5N2/PPP2PPP/1K1RR3 w - - 2 20",
+    "best": "b5c6",
+    "explain": "b5c6",
+    "move_only": "b5c6",
+    "instinct": "b5c6",
+    "idea": "Trade off Black's active queen and grab the open g7-bishop."
+   },
+   {
+    "fen": "2k4r/ppp2ppp/2p5/2b1P3/6b1/P1N1B1P1/1PP2K1P/R2r1B1R b - - 4 16",
+    "best": "c5e3",
+    "explain": "d1a1",
+    "move_only": "d1a1",
+    "instinct": "d1a1",
+    "idea": "Recapture with the rook to keep checking and guarding the king."
+   },
+   {
+    "fen": "5q1k/pp4pp/1nr5/3p2P1/3Pp1BP/1PP1B3/P7/5RK1 w - - 0 26",
+    "best": "f1f8",
+    "explain": "f1f8",
+    "move_only": "f1f8",
+    "instinct": "f1f8",
+    "idea": "Check first, then deliver mate on f8. The queen is undefended."
+   },
+   {
+    "fen": "4r1k1/pq1rb1pp/1p3p2/8/2pP1nP1/P1N4P/1P3B1K/1Q1RNR2 b - - 1 28",
+    "best": "e7d6",
+    "explain": "b7g2",
+    "move_only": "b7g2",
+    "instinct": "b7g2",
+    "idea": "Check first, then use the extra pawn to fork White's loose d4 and g4 pawns."
+   },
+   {
+    "fen": "5rk1/p2r1pp1/2p4p/4BP2/2B1b2P/8/PP1q1QP1/5R1K w - - 1 25",
+    "best": "f2g3",
+    "explain": "f2d2",
+    "move_only": "f2d2",
+    "instinct": "f2d2",
+    "idea": "Trade queens to kill Black's attack on the loose f8-rook."
+   },
+   {
+    "fen": "8/1P3k2/4p3/3pBpK1/3P1P2/7N/6p1/7r b - - 0 51",
+    "best": "h1h3",
+    "explain": "h1h3",
+    "move_only": "h1h3",
+    "instinct": "h1h3",
+    "idea": "Take the attacked knight with the rook, then trade queens to win back material."
+   },
+   {
+    "fen": "7Q/1p5q/p1p1p1k1/2Pp1rpp/1P1Bb3/P3P1P1/4B3/6K1 w - - 2 44",
+    "best": "e2h5",
+    "explain": "h8f6",
+    "move_only": "e2h5",
+    "instinct": "e2g4",
+    "idea": "Check first, then trade queens to kill Black's attack on your queen."
+   },
+   {
+    "fen": "r4k1r/pp1B1ppp/3N4/3Qn3/6P1/4P2P/PPq2P2/R3K2R b KQ - 0 15",
+    "best": "e5d3",
+    "explain": "e5d3",
+    "move_only": "e5d3",
+    "instinct": "e5d3",
+    "idea": "Check first, then fork the king and the loose b2-pawn."
+   },
+   {
+    "fen": "8/8/6p1/1R1N4/3k4/5p2/7K/r7 b - - 5 52",
+    "best": "f3f2",
+    "explain": "d4e4",
+    "move_only": "f3f2",
+    "instinct": "f3f2",
+    "idea": "Step the king off the e-file and guard f2 so White's attack can't land."
+   },
+   {
+    "fen": "6r1/8/5p1p/R5P1/4k3/6K1/7P/8 b - - 0 45",
+    "best": "g8g5",
+    "explain": "h6g5",
+    "move_only": "g8g5",
+    "instinct": "g8g5",
+    "idea": "Take the pawn on g5 now, before White can castle and guard g3."
+   },
+   {
+    "fen": "r5k1/1R3ppp/3q4/p7/P1r5/5QPP/5P2/6K1 w - - 0 39",
+    "best": "f3f7",
+    "explain": "f3f7",
+    "move_only": "f3f7",
+    "instinct": "f3f7",
+    "idea": "Check first, then grab the undefended pawn on f7."
+   },
+   {
+    "fen": "2r5/p6k/1P4R1/7q/3PBp2/6p1/PP1Q4/6K1 b - - 1 35",
+    "best": "c8c1",
+    "explain": "h5h2",
+    "move_only": "h5h2",
+    "instinct": "c8c1",
+    "idea": "Check first, then use the extra material to trade queens and win."
+   },
+   {
+    "fen": "5rk1/1R4pp/3b4/p2pq3/6p1/P3P3/1P1Q1PPP/2R3K1 b - - 0 24",
+    "best": "e5h2",
+    "explain": "e5h2",
+    "move_only": "e5h2",
+    "instinct": "e5h2",
+    "idea": "Check first, then grab the undefended h2-pawn."
+   },
+   {
+    "fen": "2B3k1/1p3p2/2p3bP/4P3/1P6/2p1b3/2P4P/4R2K b - - 1 32",
+    "best": "g6e4",
+    "explain": "g6e4",
+    "move_only": "g6e4",
+    "instinct": "g6e4",
+    "idea": "Check first, then take the attacked pawn. The king guards the h7 fork."
+   },
+   {
+    "fen": "3r1rk1/ppp3pp/8/3Npq2/4R3/1Q6/PP4PP/4R1K1 b - - 4 19",
+    "best": "f5f2",
+    "explain": "f5f2",
+    "move_only": "f5f2",
+    "instinct": "f5f2",
+    "idea": "Check first, then use the extra pawn to fork White's loose c7 and b7-knight."
+   },
+   {
+    "fen": "2b2rr1/2P1k3/4p3/2Q3n1/2P2b2/P6p/1P4P1/R4R1K b - - 1 37",
+    "best": "f4d6",
+    "explain": "e7f6",
+    "move_only": "e7d7",
+    "instinct": "f4d6",
+    "idea": "Step the king off the e-file and guard f7 so White's checks can't land."
+   },
+   {
+    "fen": "3r2k1/p1p3pp/8/7n/1PN5/P2R1P2/4rP1P/3R2K1 b - - 0 28",
+    "best": "d8d3",
+    "explain": "d8d3",
+    "move_only": "d8d3",
+    "instinct": "d8d3",
+    "idea": "Trade off White's active rook and hit the exposed d3 rook with tempo."
+   },
+   {
+    "fen": "8/6pk/1p4r1/p6p/P7/5q1P/1PQ3P1/3R2K1 w - - 0 40",
+    "best": "c2g6",
+    "explain": "c2g6",
+    "move_only": "c2g6",
+    "instinct": "c2g6",
+    "idea": "Hit the queen with tempo, then fork the king and the loose g6-rook."
+   },
+   {
+    "fen": "2kr4/2p5/pp2p3/8/4Q3/7P/q5P1/1R5K w - - 0 37",
+    "best": "e4a8",
+    "explain": "e4a8",
+    "move_only": "e4c6",
+    "instinct": "e4c6",
+    "idea": "Check first, then use the extra pawn to fork the queen and the rook."
+   },
+   {
+    "fen": "6k1/6pp/2p2N2/1pPb4/3P1Q2/p1P4P/P4RPK/1q2r3 b - - 0 33",
+    "best": "g7f6",
+    "explain": "g7f6",
+    "move_only": "g7f6",
+    "instinct": "g7f6",
+    "idea": "Take the checking knight now. The queen is also attacked, so the king must run."
+   },
+   {
+    "fen": "r3r3/p1R3pk/2p5/3pP3/4b3/5QBP/P1q3P1/3R2K1 w - - 2 23",
+    "best": "f3h5",
+    "explain": "f3h5",
+    "move_only": "f3h5",
+    "instinct": "f3h5",
+    "idea": "Check first, then use the extra piece to fork the queen and the a2-knight."
+   },
+   {
+    "fen": "3r2k1/pp3p2/2p4R/2P1B1p1/1P2Pn1p/P4QPq/5P2/6K1 b - - 0 26",
+    "best": "d8d1",
+    "explain": "f4e2",
+    "move_only": "d8d1",
+    "instinct": "d8d1",
+    "idea": "Check first, then use the extra pawn to fork White's queen and rooks."
+   },
+   {
+    "fen": "1r6/p5kp/1pqbp1p1/2p2n2/3pN1P1/1P1P1Q1P/PBP2PK1/R7 b - - 0 25",
+    "best": "f5h4",
+    "explain": "f5h4",
+    "move_only": "f5h4",
+    "instinct": "f5h4",
+    "idea": "Check first, then use the extra piece to fork White's queen and knight."
+   },
+   {
+    "fen": "r2q2k1/pp3p1p/6p1/3B4/2NbP3/5P2/PP4PK/R4Q2 b - - 0 23",
+    "best": "d8h4",
+    "explain": "d8h4",
+    "move_only": "d8h4",
+    "instinct": "d8h4",
+    "idea": "Check first, then deliver mate. The queen is attacked, so move it."
+   },
+   {
+    "fen": "r1bq1r1k/pppnn1b1/3p2Q1/6NP/2PpN3/4P1B1/PP3PP1/R3K2R w KQ - 3 19",
+    "best": "g6h7",
+    "explain": "g6h7",
+    "move_only": "g6h7",
+    "instinct": "g5f7",
+    "idea": "Check first, then deliver mate. The queen is attacked, so take the attacker."
+   },
+   {
+    "fen": "R7/2k4r/8/2p5/2K5/3p4/8/8 w - - 0 64",
+    "best": "a8a7",
+    "explain": "a8a7",
+    "move_only": "a8a7",
+    "instinct": "a8a7",
+    "idea": "Check first, then take the undefended pawn on c5."
+   },
+   {
+    "fen": "r4r2/p5kp/5qp1/3RbpQ1/2B1p3/8/P1P3PP/5R1K w - - 1 29",
+    "best": "d5d7",
+    "explain": "g5g3",
+    "move_only": "d5d7",
+    "instinct": "d5d7",
+    "idea": "Check first, then trade queens to kill Black's attack on your queen."
+   },
+   {
+    "fen": "r1b1r1k1/ppp2ppp/8/8/2NpP1n1/P2B1P2/1P2K1P1/R1BQR2q b - - 4 17",
+    "best": "h1g2",
+    "explain": "h1g2",
+    "move_only": "h1g2",
+    "instinct": "h1g2",
+    "idea": "Check first, then use the extra pawn to win back the exchange."
+   },
+   {
+    "fen": "8/8/1rpk4/6R1/3p2P1/1B6/P1P4b/2K5 b - - 0 39",
+    "best": "h2f4",
+    "explain": "h2f4",
+    "move_only": "h2f4",
+    "instinct": "h2f4",
+    "idea": "Check first, then use the extra pawn to fork White's loose rooks."
+   },
+   {
+    "fen": "r1bqkbnr/1pp2ppp/2np4/p2NpB2/2P3Q1/P3P3/1P1P1PPP/R1B1K1NR b KQkq - 1 8",
+    "best": "g8h6",
+    "explain": "c8f5",
+    "move_only": "c8f5",
+    "instinct": "c8f5",
+    "idea": "Trade off White's active f5-bishop and hit the queen with tempo."
+   },
+   {
+    "fen": "3q2k1/1pn1n3/p1p4Q/8/2Nr1p2/P3R2P/1P3PP1/6K1 w - - 0 40",
+    "best": "h6g5",
+    "explain": "e3e6",
+    "move_only": "e3e7",
+    "instinct": "e3e7",
+    "idea": "Save the attacked rook with tempo, then use the extra piece to win back the pawn."
+   },
+   {
+    "fen": "8/5pk1/p3p1p1/1P4Pp/1P2QP1K/2q1P2P/8/8 b - - 0 33",
+    "best": "c3e1",
+    "explain": "c3e1",
+    "move_only": "a6b5",
+    "instinct": "a6b5",
+    "idea": "Check first, then use the extra pawn to win the exchange."
+   },
+   {
+    "fen": "2k2b1r/1p3ppp/p7/1Np5/2P1B3/1P2PPK1/r5PP/n2R4 w - - 0 20",
+    "best": "e4f5",
+    "explain": "e4f5",
+    "move_only": "e4f5",
+    "instinct": "e4f5",
+    "idea": "Check first, then use the extra piece to fork the king and a1-knight."
+   },
+   {
+    "fen": "2kr3r/1ppb1ppp/p2b1B2/3Nq3/4P3/1B3Q2/PPP2PPP/R4RK1 b - - 0 14",
+    "best": "e5h2",
+    "explain": "e5h2",
+    "move_only": "e5h2",
+    "instinct": "e5h2",
+    "idea": "Check first, then use the extra pawn to win back the bishop."
+   },
+   {
+    "fen": "r5k1/pp3pp1/7p/3p4/3NrbQ1/2P2R1P/PP4P1/4R2K b - - 0 22",
+    "best": "e4e1",
+    "explain": "e4e1",
+    "move_only": "e4e1",
+    "instinct": "e4e1",
+    "idea": "Take the rook on e1 right away. White's attack has no follow-up."
+   },
+   {
+    "fen": "8/3pk2p/5p2/r5p1/1P4P1/7P/5PK1/8 w - - 0 34",
+    "best": "b4a5",
+    "explain": "b4a5",
+    "move_only": "b4a5",
+    "instinct": "b4a5",
+    "idea": "Take the rook on a5 right away. It is attacking your a-pawn and your king."
+   },
+   {
+    "fen": "2r2rk1/5pp1/p4b2/B6p/3N4/P1PP1P1b/1P3K1P/RN2R3 b - - 2 20",
+    "best": "f6h4",
+    "explain": "f6h4",
+    "move_only": "f6h4",
+    "instinct": "f6h4",
+    "idea": "Check first, then trade off White's active d4 knight."
+   },
+   {
+    "fen": "8/6pk/2N1P2p/5Q2/6q1/4b3/PP1r2PP/5R1K b - - 0 31",
+    "best": "g4f5",
+    "explain": "g4f5",
+    "move_only": "g4f5",
+    "instinct": "g4f5",
+    "idea": "Trade queens to kill White's attack on the exposed king."
+   },
+   {
+    "fen": "r4rk1/pp1n1ppp/2pbpn2/q2p1b2/2PP4/1P2PN2/PB1QBPPP/R3KN1R b KQ - 4 10",
+    "best": "d6b4",
+    "explain": "a5d2",
+    "move_only": "d6b4",
+    "instinct": "d6b4",
+    "idea": "Trade queens to kill White's attack on the exposed king."
+   },
+   {
+    "fen": "5r1k/5rp1/p1p4p/2P1p3/1P3nP1/PB1P4/1N4PP/1R3RK1 b - - 0 31",
+    "best": "f4e2",
+    "explain": "f4e2",
+    "move_only": "f4e2",
+    "instinct": "f4e2",
+    "idea": "Check first, then use the extra piece to fork White's loose d3 and g2 pawns."
+   },
+   {
+    "fen": "6k1/p6p/1p4pP/4p1P1/4P3/2Pq4/P1K5/8 w - - 0 50",
+    "best": "c2d3",
+    "explain": "c2d3",
+    "move_only": "c2d3",
+    "instinct": "c2d3",
+    "idea": "Take the queen on d3 right away. It is attacking your king and is free."
+   },
+   {
+    "fen": "5r1k/p5p1/2p1Q2p/4N3/8/1P3PK1/P1q3PP/8 w - - 2 36",
+    "best": "e5g6",
+    "explain": "e5g6",
+    "move_only": "e5g6",
+    "instinct": "e5g6",
+    "idea": "Fork the rook on f8 and the king at once; Black's attack has no follow-up."
+   },
+   {
+    "fen": "5k2/3R4/3p4/r4b1N/1p2p2b/pP6/P1P5/1K3R2 b - - 1 37",
+    "best": "e4e3",
+    "explain": "h4g3",
+    "move_only": "h4g3",
+    "instinct": "e4e3",
+    "idea": "Save the attacked bishop with tempo, then use the extra pawn to win back the d6-pawn."
+   },
+   {
+    "fen": "2r1rb2/pb1R1p1k/1p3p1p/2P1qN2/8/6Q1/PP3PPP/R5K1 w - - 0 25",
+    "best": "d7f7",
+    "explain": "g3g7",
+    "move_only": "d7f7",
+    "instinct": "d7f7",
+    "idea": "Check first, then trade queens to kill Black's attack on the exposed king."
+   },
+   {
+    "fen": "6k1/pp1q1ppp/3ppn2/8/3P4/4PN2/nP1N1PPP/2Q3K1 w - - 0 20",
+    "best": "c1c4",
+    "explain": "c1c8",
+    "move_only": "c1c8",
+    "instinct": "c1c8",
+    "idea": "Check first, then use the extra queenside pawns to fork Black's loose queen and knight."
+   },
+   {
+    "fen": "6k1/1pr2p1p/2q1pBp1/5r2/7Q/1P6/P1P1R2P/R1K5 b - - 6 33",
+    "best": "e6e5",
+    "explain": "c6h1",
+    "move_only": "f5f1",
+    "instinct": "f5f1",
+    "idea": "Check first, then grab the loose c2-pawn and trade queens."
+   },
+   {
+    "fen": "rnb2rkb/pp5p/2p4P/3p4/2Pn2pN/2NBq3/PPQ3P1/R2K3R w - - 0 21",
+    "best": "d3h7",
+    "explain": "d3h7",
+    "move_only": "d3h7",
+    "instinct": "d3h7",
+    "idea": "Take the pawn on h7 first, then use the extra piece and the half-open h-file."
+   },
+   {
+    "fen": "2br1rk1/4q1B1/ppnp3p/2p2pp1/2P5/PP2nN2/2Q1BPPP/3R1RK1 w - - 0 20",
+    "best": "g7f8",
+    "explain": "g7f8",
+    "move_only": "g7f8",
+    "instinct": "g7f8",
+    "idea": "Recapture with the bishop to open the h6\u2013g7 diagonal onto Black's queen."
+   },
+   {
+    "fen": "8/8/4p3/2P1P3/3K3p/8/6k1/8 w - - 1 40",
+    "best": "c5c6",
+    "explain": "d4e3",
+    "move_only": "c5c6",
+    "instinct": "c5c6",
+    "idea": "Step the king off the e-file and guard f5 so Black's queen forks king and knight."
+   },
+   {
+    "fen": "1k6/pp3pp1/2pPpbp1/Q2q4/3P4/8/PP3P2/1K1R4 w - - 2 27",
+    "best": "a5c7",
+    "explain": "a5c7",
+    "move_only": "a5c7",
+    "instinct": "a5c7",
+    "idea": "Check first, then trade queens to kill Black's attack on your queen."
+   },
+   {
+    "fen": "r3n3/N4k1p/3p3q/3PpN2/PP2Pp1r/5Rb1/6PP/2R3QK b - - 5 34",
+    "best": "h4h2",
+    "explain": "h4h2",
+    "move_only": "h4h2",
+    "instinct": "h4h2",
+    "idea": "Check first, then take the attacked pawn. Don't let White's threats block your check."
+   },
+   {
+    "fen": "1Q6/8/4kp2/1pPq1p1p/1P2b2P/p1P3P1/P4P2/2K5 w - - 11 49",
+    "best": "b8e8",
+    "explain": "b8g8",
+    "move_only": "b8e8",
+    "instinct": "b8e8",
+    "idea": "Check first, then deliver mate with the queen. The queen is already attacking the exposed king."
+   },
+   {
+    "fen": "8/8/5K2/5BP1/5k2/4p3/8/8 b - - 0 79",
+    "best": "e3e2",
+    "explain": "e3e2",
+    "move_only": "e3e2",
+    "instinct": "e3e2",
+    "idea": "Step the king off the e-file and guard c7 so White's attack can't land."
+   },
+   {
+    "fen": "8/8/8/1R1r4/8/8/2p1K3/2k5 w - - 2 66",
+    "best": "b5d5",
+    "explain": "b5d5",
+    "move_only": "b5d5",
+    "instinct": "b5d5",
+    "idea": "Take the rook on d5 right away. It is attacking your rook and is free."
+   },
+   {
+    "fen": "5k2/5ppp/3N4/2Pp4/3Pp1n1/4B3/1q3PPP/5RK1 w - - 5 29",
+    "best": "c5c6",
+    "explain": "e3f4",
+    "move_only": "e3g5",
+    "instinct": "c5c6",
+    "idea": "Kick the queen with tempo, then trade queens to win back material."
+   },
+   {
+    "fen": "4k3/pR4Qp/4p3/7P/1p2b3/b7/5P1K/2r5 b - - 3 36",
+    "best": "c1h1",
+    "explain": "c1h1",
+    "move_only": "c1h1",
+    "instinct": "c1h1",
+    "idea": "Check first, then use the extra material to trade off White's strong queenside pawns."
+   },
+   {
+    "fen": "8/8/7P/R4pn1/p4k2/8/6RK/r7 b - - 0 45",
+    "best": "g5f3",
+    "explain": "g5f3",
+    "move_only": "g5f3",
+    "instinct": "g5f3",
+    "idea": "Check first, then use the extra material to trade off White's active rooks."
+   },
+   {
+    "fen": "8/R6p/7k/5Kp1/5P2/1Pb5/P6r/8 w - - 0 39",
+    "best": "f4g5",
+    "explain": "f4g5",
+    "move_only": "f4g5",
+    "instinct": "f4g5",
+    "idea": "Take the pawn on g5 now, before Black can castle and guard g6."
+   },
+   {
+    "fen": "4r1k1/pp3p1p/2p2Pp1/7q/8/3B4/PPP3PP/4R2K w - - 0 26",
+    "best": "e1e8",
+    "explain": "e1e8",
+    "move_only": "e1e8",
+    "instinct": "e1e8",
+    "idea": "Check first, then mate: the rook is attacked, so take the rook and deliver mate."
+   },
+   {
+    "fen": "8/p1pkr2p/1p6/8/3P4/P1P3bP/1P2R1P1/4R2K b - - 0 35",
+    "best": "g3e1",
+    "explain": "e7e2",
+    "move_only": "e7e2",
+    "instinct": "e7e2",
+    "idea": "Trade off White's active rook and win back the e1 rook."
+   },
+   {
+    "fen": "2k5/1pp4p/p7/8/4p3/P1pP3P/6PK/4R3 b - - 0 26",
+    "best": "e4d3",
+    "explain": "e4d3",
+    "move_only": "c3c2",
+    "instinct": "c3c2",
+    "idea": "Take the pawn on d3 at once; White's attack on e4 is lost."
+   },
+   {
+    "fen": "3r4/1R3pkp/8/2bN1p2/5N2/7P/r2n1PP1/5RK1 w - - 1 27",
+    "best": "f4e6",
+    "explain": "f4h5",
+    "move_only": "f4e6",
+    "instinct": "f4e6",
+    "idea": "Check first, then use the extra piece to fork the king and the rook."
+   },
+   {
+    "fen": "r6k/pp4rp/4pQ2/3pP1qP/5N2/8/PP6/5R1K w - - 1 30",
+    "best": "f4g6",
+    "explain": "f6f8",
+    "move_only": "f4g6",
+    "instinct": "f4g6",
+    "idea": "Check first, then trade queens to kill Black's attack on your queen."
+   },
+   {
+    "fen": "r2qr1k1/1p3p1p/pn1p4/2pP1R2/2Pbn3/2NQB2P/PP4P1/R3N1K1 b - - 2 17",
+    "best": "e4c3",
+    "explain": "d4e3",
+    "move_only": "d4e3",
+    "instinct": "e4c3",
+    "idea": "Trade off White's active queen and take the c3 knight at once."
+   },
+   {
+    "fen": "2kr3r/pppqp3/2npP1pp/8/6P1/2b2N1P/PPPQ1P2/2K1RB1R b - - 0 16",
+    "best": "c3d2",
+    "explain": "c3d2",
+    "move_only": "c3d2",
+    "instinct": "c3d2",
+    "idea": "Take the attacked queen with check, then use the extra material."
+   },
+   {
+    "fen": "r2q3k/pbp2n1p/1p3b1B/3p1Q2/2P5/8/PP3PPP/R3R1K1 w - - 0 21",
+    "best": "e1e8",
+    "explain": "f5h7",
+    "move_only": "h6g7",
+    "instinct": "e1e8",
+    "idea": "Check first, then grab the loose d5 pawn and keep Black's king in the centre."
+   },
+   {
+    "fen": "3r3r/1Qpk1pp1/8/7p/6qb/4P3/PPP2P2/R1B2R1K b - - 2 18",
+    "best": "g4h3",
+    "explain": "g4h3",
+    "move_only": "g4h3",
+    "instinct": "g4h3",
+    "idea": "Check first, then use the extra queenside pawns to fork White's loose queen and rooks."
+   },
+   {
+    "fen": "8/1pb3p1/p1p1p2p/2PpP1kb/PP1Pp3/4P3/4B1PP/4B1K1 w - - 6 26",
+    "best": "h2h4",
+    "explain": "e1h4",
+    "move_only": "e1h4",
+    "instinct": "e1h4",
+    "idea": "Check first, then trade off the attacked bishop and regain material."
+   },
+   {
+    "fen": "rn1qr1k1/pp3ppp/3P4/2p1Pb2/1bPBn3/P1N2N2/1P2QPPP/R3KB1R b KQ - 0 13",
+    "best": "c5d4",
+    "explain": "c5d4",
+    "move_only": "b4c3",
+    "instinct": "b4c3",
+    "idea": "Take the bishop on d4 with the pawn, then attack the queen with Nxc3."
+   },
+   {
+    "fen": "r4rk1/p1q2ppp/2p5/2P5/6n1/1B1Q2P1/PP3P1b/R1B1R2K b - - 0 25",
+    "best": "g4f2",
+    "explain": "g4f2",
+    "move_only": "g4f2",
+    "instinct": "g4f2",
+    "idea": "Take the pawn on f2 with check, then use the extra piece and the open d-file."
+   },
+   {
+    "fen": "5r2/5pk1/4b1p1/1p1pPp1p/r2N1Q1P/P5R1/2q2PP1/R5K1 w - - 0 27",
+    "best": "g3g6",
+    "explain": "d4c2",
+    "move_only": "d4c2",
+    "instinct": "d4c2",
+    "idea": "Take the queen on c2 right away. The attack beats the trade."
+   },
+   {
+    "fen": "1k1r3r/pp1qbpp1/4p2p/3nP3/1n2Q3/P1N2N2/1P3PPP/R1BR2K1 b - - 0 16",
+    "best": "d5c3",
+    "explain": "d5c3",
+    "move_only": "d5c3",
+    "instinct": "d5c3",
+    "idea": "Trade off White's active knight, then use the extra pawn to win back the piece."
+   },
+   {
+    "fen": "4r3/5ppp/1pQrkn1q/3p4/3PP3/2K2P2/PPP4P/4R2R w - - 1 22",
+    "best": "e4d5",
+    "explain": "e4d5",
+    "move_only": "e4e5",
+    "instinct": "e4e5",
+    "idea": "Take the d5 pawn now, then use the extra pawn and the queenside majority."
+   },
+   {
+    "fen": "r5k1/1bp2ppp/p7/1p6/1P1q4/P3rP2/2Q2nPP/R2R1N1K w - - 2 23",
+    "best": "c2f2",
+    "explain": "c2f2",
+    "move_only": "c2f2",
+    "instinct": "c2f2",
+    "idea": "Recapture with the queen to open the d-file and hit the loose d4-knight."
+   },
+   {
+    "fen": "r2k3r/pbpp1Q2/1pn5/2b1q1N1/8/2N5/PPP2PPP/3R1RK1 w - - 4 18",
+    "best": "f7d7",
+    "explain": "f7g8",
+    "move_only": "f7d7",
+    "instinct": "g5e6",
+    "idea": "Check first, then deliver mate on the same square. The queen checks and forks the king and the loose d7-pawn."
+   },
+   {
+    "fen": "8/8/6B1/4kp2/4b1PP/4K3/8/8 b - - 0 43",
+    "best": "f5f4",
+    "explain": "f5g4",
+    "move_only": "f5g4",
+    "instinct": "f5g4",
+    "idea": "Take the pawn on g4 now, before White can trade it off."
+   },
+   {
+    "fen": "r1b1rbk1/1p1q1pp1/p6p/2p5/2P1N2B/P2B3P/1P3QP1/5R1K w - - 2 24",
+    "best": "e4f6",
+    "explain": "e4f6",
+    "move_only": "e4f6",
+    "instinct": "e4f6",
+    "idea": "Check first, then use the extra pawn to fork the queen and the rook."
+   },
+   {
+    "fen": "1r4k1/q5pp/Q4bp1/3p4/3P4/2P2N1P/5PP1/R5K1 b - - 0 33",
+    "best": "b8b1",
+    "explain": "a7a6",
+    "move_only": "b8b1",
+    "instinct": "b8b1",
+    "idea": "Trade queens to kill White's attack on the exposed king."
+   },
+   {
+    "fen": "2k2b1r/pp2p1p1/2n3pp/4q3/3rNBPP/5Q2/PPP2P2/2KR3R b - - 1 17",
+    "best": "e5e4",
+    "explain": "e5e4",
+    "move_only": "e5e4",
+    "instinct": "e5f4",
+    "idea": "Take the attacked queen with check, then use the extra piece to win back the knight."
+   },
+   {
+    "fen": "8/2q3k1/5pP1/4pP2/8/P4P2/KPBp2r1/3Q4 w - - 4 41",
+    "best": "d1h1",
+    "explain": "d1h1",
+    "move_only": "d1h1",
+    "instinct": "d1d2",
+    "idea": "Hit the rook with the queen and keep attacking the exposed black king."
+   },
+   {
+    "fen": "8/6k1/1R2pr2/6Kp/p6P/P7/1P2R3/8 b - - 0 43",
+    "best": "f6f5",
+    "explain": "f6f5",
+    "move_only": "f6f5",
+    "instinct": "f6f5",
+    "idea": "Check first, then deliver mate with the rook."
+   },
+   {
+    "fen": "7r/Qppk1pp1/4p1qp/1P6/2P5/2b3Pb/P6P/R3R2K w - - 1 25",
+    "best": "a1d1",
+    "explain": "a7b7",
+    "move_only": "a7b7",
+    "instinct": "a7b7",
+    "idea": "Take the pawn on b7 now, before Black can trade queens."
+   },
+   {
+    "fen": "6k1/6rp/p1Q5/2p1p3/3p3q/2PP3b/PP4P1/R6K w - - 0 26",
+    "best": "c6e8",
+    "explain": "c6e8",
+    "move_only": "c6e8",
+    "instinct": "c6e8",
+    "idea": "Check first, then deliver mate with the queen. The queen is already attacking the exposed king."
+   },
+   {
+    "fen": "r5rk/pp3p1p/2p2P2/3p2Q1/4P3/7R/PqP3PP/5RK1 w - - 1 22",
+    "best": "h3h7",
+    "explain": "h3h7",
+    "move_only": "h3h7",
+    "instinct": "h3h7",
+    "idea": "Check first, then grab the loose d5 pawn and keep Black's queen tied up."
+   },
+   {
+    "fen": "8/2k5/Q1b1p2p/2p5/8/2q4P/6P1/R6K b - - 0 38",
+    "best": "c3h3",
+    "explain": "c3h3",
+    "move_only": "c3h3",
+    "instinct": "c3h3",
+    "idea": "Check first, then grab the loose h3-pawn and keep the queen active."
+   },
+   {
+    "fen": "Q7/8/3b2k1/5p2/6pK/6P1/8/8 b - - 0 50",
+    "best": "d6e7",
+    "explain": "d6e7",
+    "move_only": "d6e7",
+    "instinct": "d6e5",
+    "idea": "Check first, then deliver mate on the h4\u2013e7 diagonal."
+   },
+   {
+    "fen": "4rk2/ppp2p2/2n1rBq1/b5Np/3p3P/5Q2/PP1N1PP1/R3R1K1 b - - 4 26",
+    "best": "e6e1",
+    "explain": "e6e1",
+    "move_only": "e6e1",
+    "instinct": "e6e1",
+    "idea": "Take the rook on e1 first, then use the extra material."
+   },
+   {
+    "fen": "8/8/8/8/8/2Q1K3/8/1q1k4 w - - 0 60",
+    "best": "c3d2",
+    "explain": "c3d4",
+    "move_only": "c3d2",
+    "instinct": "c3d4",
+    "idea": "Check first, then deliver mate on the d-file. Black's king has no escape square."
+   },
+   {
+    "fen": "2r1k3/6p1/4P3/2p3p1/1p5b/pP6/P1P1qBQ1/2K2R2 w - - 3 33",
+    "best": "f2c5",
+    "explain": "g2c6",
+    "move_only": "g2c6",
+    "instinct": "g2c6",
+    "idea": "Check first, then trade queens to kill Black's attack on the exposed king."
+   },
+   {
+    "fen": "3r4/p4p1p/2R1r1k1/5p2/2P2Q2/3P2Bq/P1P2P2/6K1 w - - 6 31",
+    "best": "g3h4",
+    "explain": "f4g5",
+    "move_only": "f4g5",
+    "instinct": "f4g5",
+    "idea": "Check first, then trade queens to kill Black's attack on the rook."
+   },
+   {
+    "fen": "1r1q1rk1/5pp1/p3pn1p/3p4/8/b1N1BQ1P/1PP1RPP1/1R4K1 w - - 0 20",
+    "best": "b2a3",
+    "explain": "b2a3",
+    "move_only": "b2a3",
+    "instinct": "b2a3",
+    "idea": "Recapture with the pawn to keep the central d-pawn and guard the a3-bishop."
+   },
+   {
+    "fen": "rn1qk2r/pp4pp/2pbp1b1/8/3P4/2P3N1/P3Q1PP/R1B2RK1 w kq - 0 16",
+    "best": "e2e6",
+    "explain": "e2e6",
+    "move_only": "e2e6",
+    "instinct": "e2e6",
+    "idea": "Take the pawn on e6 with check, then use the extra material to win it."
+   },
+   {
+    "fen": "r4rk1/p3bppp/1q2pn2/1pp1B1N1/8/1PP3P1/P1Q2PbP/3RR1K1 w - - 0 19",
+    "best": "e5f6",
+    "explain": "g1g2",
+    "move_only": "g1g2",
+    "instinct": "g1g2",
+    "idea": "Take the free bishop on g2. The queen then forks the king and the loose f6-knight."
+   },
+   {
+    "fen": "1r4k1/6rp/p5R1/1pR2q2/8/P4P2/1P4PP/5K2 w - - 0 38",
+    "best": "g6g7",
+    "explain": "c5f5",
+    "move_only": "c5f5",
+    "instinct": "g6g7",
+    "idea": "Take the queen first. The rook then hits the queen and the a6 pawn."
+   },
+   {
+    "fen": "4r3/8/P5Rp/2R2P2/1P3k2/2P5/5r2/2K5 b - - 4 48",
+    "best": "e8e1",
+    "explain": "e8e1",
+    "move_only": "e8e1",
+    "instinct": "e8e1",
+    "idea": "Check first, then deliver mate. The king has no escape square."
+   },
+   {
+    "fen": "r5rk/1p3p2/1p2p2p/3pP3/3P1b2/P1PB1R1P/1P2n3/R4N1K b - - 8 24",
+    "best": "g8g1",
+    "explain": "g8g1",
+    "move_only": "g8g1",
+    "instinct": "g8g1",
+    "idea": "Check first, then deliver mate with the rook. The attack beats running away."
+   },
+   {
+    "fen": "r2q1r1k/pp5n/1pnp3p/4pN2/4P1Q1/2P4P/PP3PP1/R3R1K1 w - - 2 18",
+    "best": "g4g7",
+    "explain": "g4g7",
+    "move_only": "g4g7",
+    "instinct": "g4g7",
+    "idea": "Check first, then deliver mate with the queen. The queen is already attacking the exposed king."
+   },
+   {
+    "fen": "4r2k/7p/2p3pP/8/P7/1Pbq1b2/KQ6/2R5 w - - 0 40",
+    "best": "c1c3",
+    "explain": "b2c3",
+    "move_only": "b2c3",
+    "instinct": "b2c3",
+    "idea": "Take the bishop on c3 first, then attack the queen with check."
+   },
+   {
+    "fen": "3r2k1/p2r2pp/2q2p2/P1R1p3/3PR3/5P1P/6P1/3Q2K1 b - - 0 27",
+    "best": "c6c5",
+    "explain": "d7d4",
+    "move_only": "e5d4",
+    "instinct": "e5d4",
+    "idea": "Recapture with the rook to keep the queens on and guard e5."
+   },
+   {
+    "fen": "N5nr/pp2kpQp/3pB3/2b1p3/3nP3/8/PPPP1qPP/R1BK2NR b - - 0 10",
+    "best": "f2f1",
+    "explain": "f2f1",
+    "move_only": "f2f1",
+    "instinct": "f2f1",
+    "idea": "Check first, then deliver mate with the queen. The king's escape square is exposed."
+   }
+  ]
+ },
+ "ideas": {
+  "n": 100,
+  "true": 0.13,
+  "sound": 0.26,
+  "picked_best": 0.39,
+  "sound_when_best": 0.5128205128205128,
+  "cost_usd": 1.718,
+  "items": [
+   {
+    "true": false,
+    "sound": false,
+    "reason": "Nxd4 captures, not recaptures. White's queen is on d1, not the d4-b6 diagonal. The real point is regaining material via Re8+.",
+    "cost": 0.015088
+   },
+   {
+    "true": false,
+    "sound": true,
+    "reason": "Rg8 does hit the queen with tempo, but material is equal, so there's no extra piece.",
+    "cost": 0.013912
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "The knight isn't saved; it is traded on e4. The line never attacks e5; the point is opening the d-file.",
+    "cost": 0.018624
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "No knight on e6. Ne4 hits the f6-bishop to trade off Black's bishop pair. The c- and d-files aren't open.",
+    "cost": 0.015008
+   },
+   {
+    "true": true,
+    "sound": false,
+    "reason": "Qa5+ is a legal check, but the stated idea is generic and misses the real point: regaining c5.",
+    "cost": 0.021235999999999998
+   },
+   {
+    "true": true,
+    "sound": true,
+    "reason": "Capturing the hanging queen is correct, but the idea doesn't explain why Nxd7 beats Bxd7, which allows Bxb7.",
+    "cost": 0.016744
+   },
+   {
+    "true": false,
+    "sound": true,
+    "reason": "Saving the attacked h4-bishop is right, but Bg3 creates no threat, so no tempo; engine doesn't trade Nxc6.",
+    "cost": 0.015376
+   },
+   {
+    "true": true,
+    "sound": true,
+    "reason": "Castling takes the king off the a5-e1 pin diagonal before c3 collapses. Material is lost either way, but king safety matters.",
+    "cost": 0.021519999999999997
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "Qd8 trades nothing and loses time; it also abandons the c5 knight, letting Bxc5 win it.",
+    "cost": 0.016135999999999998
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "a5 is a flank pawn; it neither guards c7 nor attacks the f4 bishop.",
+    "cost": 0.012596
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "g2 is defended by the king and Qd2; Qxg2+ just loses the queen for a pawn.",
+    "cost": 0.01532
+   },
+   {
+    "true": true,
+    "sound": true,
+    "reason": "The e4 knight is an active outpost piece, so trading it is relevant. But dxe4 then hits the f3 rook.",
+    "cost": 0.018596
+   },
+   {
+    "true": true,
+    "sound": true,
+    "reason": "Correct: White's d5 pawn attacks the c6 knight, and exd5 parries this while opening the centre.",
+    "cost": 0.018368
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "d1\u2013a1 is a rank, not a diagonal, and leads away from White's g1 king; Nxe5 actually opens the g7 bishop's diagonal.",
+    "cost": 0.01474
+   },
+   {
+    "true": false,
+    "sound": true,
+    "reason": "Regaining the pawn is right, but castling doesn't guard e5; Nf3 or f4 would. Ignores Qxg7.",
+    "cost": 0.017504
+   },
+   {
+    "true": false,
+    "sound": true,
+    "reason": "The capturing piece on c3 is a knight, not a bishop. Taking on e4 and then castling long matches the engine line.",
+    "cost": 0.01408
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "Bd6 doesn't guard d4 on the same file, and Nxc6 refutes it by exploiting the pinned c6-knight.",
+    "cost": 0.020408000000000003
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "cxd4 is a pawn trade, not a queen trade; no White attack on an exposed king exists.",
+    "cost": 0.012344
+   },
+   {
+    "true": false,
+    "sound": true,
+    "reason": "Nf3 does save the attacked knight, but gains no tempo, and White is two pawns down, not up.",
+    "cost": 0.019788
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "Qf4 doesn't attack the c5 queen and hangs to Rxf4. Material is equal, so there's no extra piece.",
+    "cost": 0.015927999999999998
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "The d7-bishop is White's and gets captured; there's nothing to keep. Recapturing material while developing is the real point.",
+    "cost": 0.014424000000000001
+   },
+   {
+    "true": false,
+    "sound": true,
+    "reason": "The g3 bishop attacks only the f4 pawn, not the queen. Still, capturing the bishop is correct and best.",
+    "cost": 0.018903999999999997
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "g5 bishop doesn't block the c7 queen. Bxg5 only equalizes, missing Nd4 which wins decisive material.",
+    "cost": 0.019999999999999997
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "axb3 captures the b3 knight, which attacks Qd2; nothing recaptured. No b3\u2013a2 diagonal reaches Black's d8 queen.",
+    "cost": 0.014915999999999999
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "Bxb4 develops nothing and gains no time. Black recaptures Bxb4, developing with tempo, while Nc3 keeps equality.",
+    "cost": 0.019212
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "d7 holds Black's queen, not a knight; nothing is recaptured. Opening the d-file leaves Bd3 loose to Qxd3.",
+    "cost": 0.016832
+   },
+   {
+    "true": true,
+    "sound": false,
+    "reason": "b2 is unprotected, but grabbing it costs time with Black's king stuck centrally, inviting rather than preventing White's attack.",
+    "cost": 0.022227999999999998
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "Nf5 gains no tempo, and the c- and d-files are not open. The real point is parrying the Re1 pressure.",
+    "cost": 0.01834
+   },
+   {
+    "true": false,
+    "sound": true,
+    "reason": "Bb4 does hit the queen with tempo, but the b-file isn't half-open for Black. Main point is regaining f6.",
+    "cost": 0.015268
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "Black has no extra pawn (down two) and White has no d-pawn. Qg6+ actually wins material after Ng5 Bd8.",
+    "cost": 0.014003999999999999
+   },
+   {
+    "true": false,
+    "sound": true,
+    "reason": "Nf3 blocks Bb7's diagonal, guarding h1, but attacks nothing, so no tempo; queens remark irrelevant.",
+    "cost": 0.015064000000000001
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "Be7 guards d6 but threatens nothing and doesn't tie White's queen; Bxf6 and Nd5 give White an edge.",
+    "cost": 0.016843999999999998
+   },
+   {
+    "true": false,
+    "sound": true,
+    "reason": "Ne8 does save the attacked knight, but it gains no tempo, and the e-file is closed by pawns on e5/e7.",
+    "cost": 0.0186
+   },
+   {
+    "true": true,
+    "sound": true,
+    "reason": "gxh4 does win the h4 pawn, a real reason, though Nxh4 recaptures without doubling the h-pawns.",
+    "cost": 0.015864
+   },
+   {
+    "true": true,
+    "sound": false,
+    "reason": "e4 is indeed loose, but the check gains nothing: ...g6 hits the queen. Nxe4 or cxd4 immediately is better.",
+    "cost": 0.024328
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "Material is equal, so there's no extra pawn. d4 holds a bishop, not a pawn. No pawn fork exists.",
+    "cost": 0.014452
+   },
+   {
+    "true": true,
+    "sound": true,
+    "reason": "Recaptures material and opens the centre; c4 then falls, leaving White an IQP and Black a queenside majority.",
+    "cost": 0.015524
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "Be3 moves the unattacked c1-bishop; the e4-bishop stays hanging to Re8xe4. There's no tempo, and Black controls the e-file.",
+    "cost": 0.018468
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "Queens don't stay on: Black plays ...Qh4 and trades in both lines. Keeping e3 is minor.",
+    "cost": 0.016488
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "Qh5 defends g5 and threatens Qh7#, but after ...Bxc3+ Kd1 White cannot castle.",
+    "cost": 0.019167999999999998
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "Black's queen isn't exposed, and Ne5 creates no real tempo; Nxe5 dxe5 Qxd1 trades queens. Ng5 is best.",
+    "cost": 0.017516
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "Nxg4 wins Black's undefended queen outright. It is no recapture, queens don't stay, and the rook plays Rxf2+.",
+    "cost": 0.013940000000000001
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "There is no d4-e6 fork, and a pawn on c5 guards b6/d6, not d5. Nxb5 is much stronger.",
+    "cost": 0.013788
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "Qxd5 trades no queens. It takes the knight and Black's queen recaptures, losing White's queen. Nothing hits c7.",
+    "cost": 0.016332
+   },
+   {
+    "true": false,
+    "sound": true,
+    "reason": "e4 does kick the knight with tempo, but the queen trade only restores equality (0.0), not a win.",
+    "cost": 0.014808
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "The king is on b8, not the e-file. Kc8 doesn't guard f7. Black's queen already stands on f6.",
+    "cost": 0.013056
+   },
+   {
+    "true": true,
+    "sound": false,
+    "reason": "Qf2+ is a real check, but it ignores White's mating threats; Rxg2+ wins the pawn immediately with check.",
+    "cost": 0.024956
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "The c1 rook is defended by Qf4, so after Qxc1+ Qxc1 Black loses the queen for a rook.",
+    "cost": 0.013696
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "The Re3 already attacks the queen. Grabbing b4 lets Rb1 and Rxb7 put a rook on the seventh.",
+    "cost": 0.017308
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "The a7-knight isn't attacked, so there's no tempo. Hitting d6 is real, but b7 stays weak.",
+    "cost": 0.02114
+   },
+   {
+    "true": true,
+    "sound": true,
+    "reason": "Correct: the a2 rook is undefended, with the Be2 blocking Rf2. Winning it is the engine's best move.",
+    "cost": 0.01446
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "Material is equal, so there's no extra pawn. Black has one rook. Qg8+ simply hangs the queen to Kxg8.",
+    "cost": 0.015992
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "Bc2 hits only a defended bishop, so there is no real tempo. Black's queen is not tied up; it roams freely.",
+    "cost": 0.022247999999999997
+   },
+   {
+    "true": false,
+    "sound": true,
+    "reason": "Ne7 saves the knight and eyes d5, but there is no tempo: it threatens nothing that forces White's reply.",
+    "cost": 0.020651999999999997
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "g6 is defended by Be8 and the king, so Qxg6+ simply loses the queen.",
+    "cost": 0.016052
+   },
+   {
+    "true": false,
+    "sound": true,
+    "reason": "Trading the strong f5 knight is a real reason, but Bxf5 adds no pawn guard to f7.",
+    "cost": 0.019116
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "Black remains down material after Nxe5, and the knight hangs to Bf4; no realistic bishop trade follows.",
+    "cost": 0.021407999999999996
+   },
+   {
+    "true": false,
+    "sound": true,
+    "reason": "Taking the knight is right, but the bishop isn't free: Black simply recaptures with Bxg4.",
+    "cost": 0.020684
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "There is no extra pawn and no white knight on f2; Bxg2+ just loses the bishop to Kxg2.",
+    "cost": 0.018779999999999998
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "The king is on g1, not the e-file, and Kh2 doesn't guard f7. It simply escapes the back-rank check.",
+    "cost": 0.015124
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "White has no bishop or queen on c1\u2013g7; the diagonal threat is imaginary. Ne2+ also drops the knight to Rxe2.",
+    "cost": 0.01598
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "The queen on d5 is already attacked by Bb7, and O-O-O ignores it; ...Bxd5 wins the queen. There is no fork.",
+    "cost": 0.013336
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "There is no black knight on g7 to hit. The check achieves little, and Ng7+ misses the mate Be2#.",
+    "cost": 0.016112
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "The king is on g8, not the e-file. Black is in check from Rg1, and no rook fork exists. Kh8 is better.",
+    "cost": 0.01604
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "Bxc1 captures the checking rook to win material. Kf2 also leaves the pawns intact, so pawn structure isn't the point.",
+    "cost": 0.021608
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "Qh7+ simply hangs the queen to Nxh7, so no queen trade follows. Qg3 offers the real queen trade.",
+    "cost": 0.017236
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "c4 holds a pawn, not a knight. cxb5 doesn't trade queens; it opens the c-file against White's queen.",
+    "cost": 0.022396
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "Rxd5 captures Black's bishop; it neither recaptures nor keeps a bishop. The real point is winning material.",
+    "cost": 0.013776
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "Nc5 hits b3 but Ba3xc5 wins the knight; the b-file isn't half-open for Black (b7 pawn).",
+    "cost": 0.016588
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "Nd7 doesn't attack e7, and a8 is empty; Nd7 actually forks the b8-queen and f8-rook.",
+    "cost": 0.018368
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "h7 is defended by king and queen, so Qxh7+ loses the queen; White has no extra queenside pawns.",
+    "cost": 0.014532
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "Not a recapture: Nxb5 wins a bishop and rescues the attacked knight. Guarding the vacated d4 is irrelevant.",
+    "cost": 0.022684
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "b5-b8 is a file, not a diagonal, and doesn't reach White's king. Nxd6 also leaves Rh8 to Bxh8.",
+    "cost": 0.015676
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "The f-file is only half-open; f2 shields White's king. Rf8 lets the bishop escape, while 1...e6 traps it.",
+    "cost": 0.026892
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "Black's queen is on d8, not e3, and the b6 knight cannot reach e6 to attack the pawn.",
+    "cost": 0.016004
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "Black is already in check from Bc6; guarding d7 doesn't stop d-file checks. Kd8 is worse than Kf8.",
+    "cost": 0.020088
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "White is down material, with no extra pawn. Rg3+ allows Qxg3, losing the rook. Re8+ mates instead.",
+    "cost": 0.018751999999999998
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "Black has no extra pawn; White is up material, and White's king sits on h2, not the centre.",
+    "cost": 0.012964
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "There is no knight on c4, only a pawn. Rb8 takes the open b-file and attacks nothing.",
+    "cost": 0.012208
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "...a5 attacks no rook and doesn't guard b7; it leaves the pinned c6 knight to Rxc6.",
+    "cost": 0.014068
+   },
+   {
+    "true": false,
+    "sound": true,
+    "reason": "Ne3 saves the knight and hits both rooks, but material is equal and d2 is Black's own pawn.",
+    "cost": 0.019412
+   },
+   {
+    "true": false,
+    "sound": true,
+    "reason": "Nxe1 does capture the checking rook, but there are no queens on the board to trade.",
+    "cost": 0.013424
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "King on h7 isn't on the d-file; from g7 it doesn't guard e7, so Qe7+ still checks along the seventh.",
+    "cost": 0.015656
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "Bxe2 is a capture, not a recapture. No queen trade was pending, and it doesn't guard the king.",
+    "cost": 0.014616
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "No f8\u2013h7 diagonal exists, and Rxf5 opens nothing onto g2. Its real point is attacking the h5 knight.",
+    "cost": 0.017692
+   },
+   {
+    "true": false,
+    "sound": true,
+    "reason": "Capturing the c1 rook is correct and parries Rxe1+, but Rc1 does not guard the d6 queen.",
+    "cost": 0.019784
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "The g6 pawn isn't attacked and the h-file isn't open. g5 ignores the threat, allowing Rxh7#.",
+    "cost": 0.015756
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "Nd4+ gives check, but it pulls the knight off c2, so it can no longer take the a1 rook.",
+    "cost": 0.018576
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "King on g1 isn't on the e-file; Kh1 just escapes Bh2's check. No real Qe4 fork; loses badly.",
+    "cost": 0.015472
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "Qb3+ hangs the queen to Rxb3. White has no extra pawn, and no pawn fork exists.",
+    "cost": 0.017608
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "Material is equal, so there is no extra pawn. Qb3+ cannot fork d3 because c3 blocks the queen.",
+    "cost": 0.017872
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "Qg4+ hangs the queen to Bxg4, since the e6-bishop covers g4. No f6 grab follows.",
+    "cost": 0.016552
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "White has no rooks and Black has no extra pawn; White is the one up material.",
+    "cost": 0.011596
+   },
+   {
+    "true": false,
+    "sound": true,
+    "reason": "Taking the knight is right and parries the Nxb8 threat, but it isn't free: Rc3 recaptures on c6.",
+    "cost": 0.020724
+   },
+   {
+    "true": true,
+    "sound": true,
+    "reason": "The d6 bishop is undefended, so Bxd6 wins it outright. The other remarks are accurate but peripheral.",
+    "cost": 0.018855999999999998
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "h5+ forces no queen trade and gives away a pawn; g4 keeps a winning attack instead.",
+    "cost": 0.024804
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "...d5 doesn't attack d4; pawns capture diagonally, so there's no tempo. It also blocks the d-file.",
+    "cost": 0.015296
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "d8\u2013a1 is not a diagonal, and trading rooks opens no line onto either king. Rxd8 trails c4.",
+    "cost": 0.013296
+   },
+   {
+    "true": true,
+    "sound": true,
+    "reason": "Bxd5 removes the active knight, and the d5-bishop attacks the undefended f3-bishop along the diagonal.",
+    "cost": 0.016388
+   },
+   {
+    "true": false,
+    "sound": false,
+    "reason": "Castling queenside puts the king on c8, which does not guard f7. Black's kingside pawns are already broken.",
+    "cost": 0.016396
+   }
+  ],
+  "plays": [
+   {
+    "san": "Nxd4",
+    "idea": "Recapture with the knight to open the d4-b6 diagonal onto White's queen.",
+    "plan": "Use the extra pawn and the open d-file against White's uncastled king."
+   },
+   {
+    "san": "Rg8",
+    "idea": "Kick the queen with tempo, then use the extra piece and the d3 pawn.",
+    "plan": "Develop with Nd7, castle, and use the d3 pawn and the extra piece."
+   },
+   {
+    "san": "Ne4",
+    "idea": "Save the attacked knight with tempo, then hit the exposed e5 pawn.",
+    "plan": "Use the extra piece, trade off White's active pieces, and hold the centre."
+   },
+   {
+    "san": "Ne4",
+    "idea": "Kick the e6-knight with tempo, then use the open c- and d-files.",
+    "plan": "Win back the e6-knight, then use the extra queenside pawns."
+   },
+   {
+    "san": "Qa5+",
+    "idea": "Check first, then develop with tempo, keeping the king safe.",
+    "plan": "Use the extra tempo and the open a-file against White's king."
+   },
+   {
+    "san": "Nxd7",
+    "idea": "Take the queen first. The attack on the d7 queen outruns the pawn threat.",
+    "plan": "Develop with Bc7, castle, then use the extra material and the d7 pawn."
+   },
+   {
+    "san": "Bg3",
+    "idea": "Save the attacked bishop with tempo, then trade off Black's active c6-knight.",
+    "plan": "Trade on c6, then use the extra queenside pawns and the open c-file."
+   },
+   {
+    "san": "O-O",
+    "idea": "Castle now, before Black's attack lands on c3.",
+    "plan": "Use the extra material and the c3 pawn to win back the exchange."
+   },
+   {
+    "san": "Qd8",
+    "idea": "Trade off White's active knight and gain time by retreating the queen.",
+    "plan": "Use the extra time and the queen's activity to harass White's king and win back material."
+   },
+   {
+    "san": "a5",
+    "idea": "Push the central pawn to a5 to guard c7 and hit White's loose f4 bishop.",
+    "plan": "Keep the central pawn safe, use the a5 space, and target White's weak queenside pawns."
+   },
+   {
+    "san": "Qxg2+",
+    "idea": "Take the pawn on g2 with check, then use the extra material to trade queens.",
+    "plan": "Trade queens, then use the half-open b- and c-files against White's weak c-pawns."
+   },
+   {
+    "san": "Bxe4",
+    "idea": "Trade off Black's active knight on e4 before Black's attack lands.",
+    "plan": "Develop with Nd2, castle, and use the queenside majority to win back material."
+   },
+   {
+    "san": "exd5",
+    "idea": "Take the pawn on d5 now. It attacks your knight and opens the centre.",
+    "plan": "Use the extra pawn, develop with Bd7, and castle quickly."
+   },
+   {
+    "san": "Nxe5",
+    "idea": "Recapture with the knight to open the d1\u2013a1 diagonal onto White's king.",
+    "plan": "Use the d1\u2013a1 diagonal and the open a-file against White's king; keep the e5 pawn safe."
+   },
+   {
+    "san": "Nxe5",
+    "idea": "Take the pawn on e5 now, before White can castle and guard it.",
+    "plan": "Keep the extra pawn, then use the open c- and d-files against White's king."
+   },
+   {
+    "san": "Nxe4",
+    "idea": "Take the attacked knight on e4 with the c3-bishop, then castle.",
+    "plan": "Castle, then use the extra material and the kingside pawn majority."
+   },
+   {
+    "san": "Bd6",
+    "idea": "Develop with tempo, guard d4, and keep the knight tied up.",
+    "plan": "Keep the d4 pawn safe, then use the extra piece and the queenside majority."
+   },
+   {
+    "san": "cxd4",
+    "idea": "Trade queens to kill White's attack on the exposed king.",
+    "plan": "Trade queens, then use the extra material and the kingside pawns."
+   },
+   {
+    "san": "Nf3",
+    "idea": "Save the attacked knight with tempo, then use the extra pawn to win back the d5 pawn.",
+    "plan": "Win back d5, then use the extra material and the queenside majority."
+   },
+   {
+    "san": "Qf4",
+    "idea": "Hit the queen with tempo, then use the extra piece to win back the pawn.",
+    "plan": "Win back the pawn with Nd4, then use the extra piece and the queenside majority."
+   },
+   {
+    "san": "Nbxd7",
+    "idea": "Recapture with the knight to keep the d7-bishop and guard c5.",
+    "plan": "Develop with Be7, castle, and use the c5 pawn and d6-knight against White's king."
+   },
+   {
+    "san": "fxg3",
+    "idea": "Take the bishop on g3 right away. It is attacking your queen and your pawn.",
+    "plan": "Develop with Bg7, castle, and use the extra material to win."
+   },
+   {
+    "san": "Bxg5",
+    "idea": "Trade off White's active bishop on g5 to clear the way for the queen.",
+    "plan": "Use the queen and the d7-bishop to harass White's king and win back material."
+   },
+   {
+    "san": "axb3",
+    "idea": "Recapture with the pawn to open the b3\u2013a2 diagonal onto Black's queen.",
+    "plan": "Use the extra pawn, trade on c6, and use the open b- and a-files."
+   },
+   {
+    "san": "Bxb4",
+    "idea": "Trade off Black's strong b4 knight and gain time by developing.",
+    "plan": "Use the extra time and the queenside majority to castle and target Black's weak c6 pawn."
+   },
+   {
+    "san": "dxe5",
+    "idea": "Recapture with the pawn to open the d-file and hit the loose d7-knight.",
+    "plan": "Use the d-file and the active queen to harass Black's loose d7-knight; keep the material balance."
+   },
+   {
+    "san": "Qxb2",
+    "idea": "Take the pawn on b2 now, before White's attack lands.",
+    "plan": "Use the extra pawn and the queenside majority to win back the b2 pawn."
+   },
+   {
+    "san": "Nf5",
+    "idea": "Save the attacked knight with tempo, then use the open c- and d-files.",
+    "plan": "Win back the c4-pawn with tempo, then use the open files against White's king."
+   },
+   {
+    "san": "Bb4",
+    "idea": "Develop with tempo, hit the queen with Bb4, then castle and use the half-open b-file.",
+    "plan": "Castle, use the half-open b-file, and target White's weak f6 and g2 pawns."
+   },
+   {
+    "san": "Qg6+",
+    "idea": "Check first, then use the extra pawn to fork White's loose c- and d-pawns.",
+    "plan": "Fork with Bf4, then use the queenside majority and the c-pawn."
+   },
+   {
+    "san": "Nf3",
+    "idea": "Develop with tempo, guard h1, and keep the queens on.",
+    "plan": "Keep the queens safe, develop the b1 knight, and castle quickly."
+   },
+   {
+    "san": "Be7",
+    "idea": "Develop with tempo, guard d6, and keep White's queen tied up.",
+    "plan": "Keep the d6 pawn protected, develop with Nc6, and use the queenside majority."
+   },
+   {
+    "san": "Ne8",
+    "idea": "Save the attacked knight with tempo, then use the open e-file against White's king.",
+    "plan": "Win back the e5 pawn, then use the e-file and the kingside."
+   },
+   {
+    "san": "gxh4",
+    "idea": "Take the pawn on h4 first, before developing the queenside.",
+    "plan": "Develop with Bg2 and Nc3, castle, and use the queenside majority."
+   },
+   {
+    "san": "Qh5+",
+    "idea": "Check first, then grab the loose e4 pawn with the knight.",
+    "plan": "Collect the e4 pawn, then use the extra material and the open c- and d-files."
+   },
+   {
+    "san": "Qa5+",
+    "idea": "Check first, then use the extra pawn to fork White's loose c- and d-pawns.",
+    "plan": "Fork with Nxc5, then use the queenside majority and the c-pawn."
+   },
+   {
+    "san": "exd5",
+    "idea": "Take the pawn on d5 now. It opens the centre and weakens White's queenside.",
+    "plan": "Use the extra pawn, develop with Be7, and castle quickly."
+   },
+   {
+    "san": "Be3",
+    "idea": "Save the attacked bishop with tempo, then use the open e-file and the queen.",
+    "plan": "Develop with Nc3, castle, and use the e-file against Black's queen."
+   },
+   {
+    "san": "Bxd4",
+    "idea": "Recapture with the bishop to keep queens and the e3 pawn.",
+    "plan": "Keep the queens, develop with Bd2, and use the e3 pawn and the open d-file."
+   },
+   {
+    "san": "Qh5",
+    "idea": "Save the attacked knight with tempo, then castle and use the half-open b-file.",
+    "plan": "Castle, use the half-open b-file, and target Black's weak d-pawn."
+   },
+   {
+    "san": "Ne5",
+    "idea": "Save the attacked knight with tempo, then hit the exposed queen.",
+    "plan": "Use the extra tempo and the open d- and e-files against Black's queen."
+   },
+   {
+    "san": "Nxg4",
+    "idea": "Recapture with the knight to keep the queens and keep Black's rook tied up.",
+    "plan": "Use the extra queen and the tied rook to harass Black's queen and win back material."
+   },
+   {
+    "san": "dxc5",
+    "idea": "Push dxc5 to clear the d4-e6 fork and guard d5.",
+    "plan": "Use the d5 pawn and the central king to guard d4 and e6, then develop with Bd2."
+   },
+   {
+    "san": "Qxd5",
+    "idea": "Trade queens to clear the way to the d5 knight and hit Black's weak c7 pawn.",
+    "plan": "Use the extra material and the d5 knight to harass Black's loose c7 and e4 pawns."
+   },
+   {
+    "san": "e4",
+    "idea": "Kick the f3-knight with tempo, then trade queens to win.",
+    "plan": "Trade queens, then use the extra pawn and the open d- and e-files."
+   },
+   {
+    "san": "Kc8",
+    "idea": "Step the king off the e-file and guard f7 so Qf6 forks the king and the queen.",
+    "plan": "Use the f7\u2013king and the queen to harass White's king and win back material."
+   },
+   {
+    "san": "Qf2+",
+    "idea": "Check first, then grab the loose g2-pawn and keep the queens on.",
+    "plan": "Collect the g2-pawn, then use the extra material and the queenside majority."
+   },
+   {
+    "san": "Qxc1+",
+    "idea": "Take the rook on c1 with check, then use the extra material.",
+    "plan": "Win the c1-rook, then use the queenside majority and the open c-file."
+   },
+   {
+    "san": "Qxb4",
+    "idea": "Take the pawn on b4 now, before White's attack on your queen.",
+    "plan": "Castle, then use the extra material and the queenside majority."
+   },
+   {
+    "san": "Nc8",
+    "idea": "Save the attacked knight with tempo, then hit the loose d6-pawn.",
+    "plan": "Use the extra tempo and the d6-pawn to win back material and develop."
+   },
+   {
+    "san": "Bxa2",
+    "idea": "Take the rook on a2 before anything else; it is undefended.",
+    "plan": "Keep the extra piece, trade queens, then use the d4 pawn and the open c- and b-files."
+   },
+   {
+    "san": "Qg8+",
+    "idea": "Check first, then use the extra pawn to fork Black's queen and rooks.",
+    "plan": "Win the queen for a bishop, then use the half-open b- and c-files."
+   },
+   {
+    "san": "Bc2",
+    "idea": "Develop with tempo, guard d1, and keep Black's queen tied up.",
+    "plan": "Keep Black's queen tied up with tempo, develop the c8-bishop, and use the d-file."
+   },
+   {
+    "san": "Ne7",
+    "idea": "Save the attacked knight with tempo, then hit the exposed d5 pawn.",
+    "plan": "Use the extra tempo and the open e-file against White's weak d5 and h5 pawns."
+   },
+   {
+    "san": "Qxg6+",
+    "idea": "Check first, then grab the pawn on g6 and keep checking.",
+    "plan": "Use the extra pawn and the queenside majority to win the game."
+   },
+   {
+    "san": "Bxf5",
+    "idea": "Trade off White's active knight and guard f7 with a pawn.",
+    "plan": "Use the extra pawn and the f7 pawn to harass White's king and win back material."
+   },
+   {
+    "san": "Nxe5",
+    "idea": "Take the pawn on e5 first, then use the extra material to trade off White's strong f4-bishop.",
+    "plan": "Trade on f4, then use the extra material and the open e-file against White's king."
+   },
+   {
+    "san": "fxg4",
+    "idea": "Take the attacked knight now. The bishop is free afterwards.",
+    "plan": "Use the extra material and the bishop's activity to win back the pawn."
+   },
+   {
+    "san": "Bxg2+",
+    "idea": "Check first, then use the extra pawn to fork White's loose g5-bishop and f2-knight.",
+    "plan": "Fork with Bxg2+ and Bxg2, then use the extra pawn and the half-open b-file."
+   },
+   {
+    "san": "Kh2",
+    "idea": "Step the king off the e-file and guard f7 so Black's attack on the king runs.",
+    "plan": "Use the f7 square and the queen to guard the king; keep Black's rooks tied up."
+   },
+   {
+    "san": "Ne2+",
+    "idea": "Check first, then use the extra material to trade off White's strong c1\u2013g7 diagonal.",
+    "plan": "Trade on c1, then use the extra material and the queenside pawns."
+   },
+   {
+    "san": "O-O-O",
+    "idea": "Castle now, before Black's attack on the queen forks your rook and the d-pawn.",
+    "plan": "Use the extra material, develop the queenside pieces, and keep Black's queen busy."
+   },
+   {
+    "san": "Ng7+",
+    "idea": "Check the king and hit the exposed g7 knight at once; don't retreat.",
+    "plan": "Use the extra piece, develop the queenside, and castle quickly."
+   },
+   {
+    "san": "Kf8",
+    "idea": "Step the king off the e-file and guard f8 so the rook can't fork.",
+    "plan": "Use the rook on f8 and the king on f8 to harass White's queen and keep the king safe."
+   },
+   {
+    "san": "Bxc1",
+    "idea": "Recapture with the bishop to keep the kingside pawns intact.",
+    "plan": "Use the kingside pawns and the extra material to win back the rook."
+   },
+   {
+    "san": "Qh7+",
+    "idea": "Check first, then use the extra material to trade queens and win.",
+    "plan": "Trade queens, then use the extra material and the half-open b- and c-files."
+   },
+   {
+    "san": "cxb5",
+    "idea": "Trade queens to kill Black's attack on the c4-knight.",
+    "plan": "Trade queens, then use the extra material and the c4 pawn to win."
+   },
+   {
+    "san": "Rxd5",
+    "idea": "Recapture with the rook to keep the d5-bishop and guard the kingside.",
+    "plan": "Develop with Be2, castle, then use the extra material and the kingside."
+   },
+   {
+    "san": "Nc5",
+    "idea": "Kick the queen with tempo, then castle and use the half-open b-file.",
+    "plan": "Castle, then use the half-open b-file and the c4 knight to harass White's queen."
+   },
+   {
+    "san": "Nd7",
+    "idea": "Kick the e7-bishop with the knight, then grab the queen and a8.",
+    "plan": "Collect the queen, then use the a1-h1 diagonal and the open a-file."
+   },
+   {
+    "san": "Qxh7+",
+    "idea": "Take the pawn on h7 first, then use the extra queenside pawns.",
+    "plan": "Develop with Bb2, castle, then use the queenside majority."
+   },
+   {
+    "san": "Nxb5",
+    "idea": "Recapture with the knight to guard d4 and keep the queenside pawns intact.",
+    "plan": "Keep the queenside pawns intact, then use the d4 knight and the open d-file against White's king."
+   },
+   {
+    "san": "Nxd6",
+    "idea": "Recapture with the knight to open the b5-b8 diagonal onto White's king.",
+    "plan": "Use the extra pawn and the open b-file to win the kingside and keep White's king stuck in the centre."
+   },
+   {
+    "san": "Rf8",
+    "idea": "Kick the f7-bishop with tempo, then use the open f-file against White's king.",
+    "plan": "Win back the f7-bishop, then use the f-file against White's king."
+   },
+   {
+    "san": "Qf6",
+    "idea": "Step the queen off e3 to f6, then hit e6 with the knight.",
+    "plan": "Use the f6 square and the knight to harass White's queenside pawns."
+   },
+   {
+    "san": "Kd8",
+    "idea": "Step the king off the e-file and guard d7 so White's checks can't land.",
+    "plan": "Use the d7 square and the queen to guard the king and hit White's exposed king."
+   },
+   {
+    "san": "Rg3+",
+    "idea": "Check first, then use the extra pawn to fork Black's loose rooks.",
+    "plan": "Fork with Re7, then use the half-open b- and c-files against Black's king."
+   },
+   {
+    "san": "Qe5+",
+    "idea": "Check first, then use the extra pawn to guard a7 and keep White's king stuck in the centre.",
+    "plan": "Keep checking the exposed king, then use the extra pawn to win back the a7 and g2 pawns."
+   },
+   {
+    "san": "Rb8",
+    "idea": "Kick the c4-knight with tempo, then use the extra pawn.",
+    "plan": "Win back the c4-knight, then trade down and use the extra pawn."
+   },
+   {
+    "san": "a5",
+    "idea": "Hit the rook with ...a5 to guard b7 and keep White's attack on c6.",
+    "plan": "Use the b7 pawn and the rook to guard c6 and keep White's pieces tied up."
+   },
+   {
+    "san": "Ne3",
+    "idea": "Save the attacked knight with tempo, then use the extra pawn to win back the d2 pawn.",
+    "plan": "Collect the d2 pawn, then use the extra material and the open d-file."
+   },
+   {
+    "san": "Nxe1",
+    "idea": "Take the checking rook with the knight, then trade queens to win.",
+    "plan": "Trade queens, then use the extra material and the open e-file."
+   },
+   {
+    "san": "Kg7",
+    "idea": "Step the king off the d-file and guard e7 so White's queen can't fork.",
+    "plan": "Keep the king safe, then use the extra pawn and the e7 square to harass White's queen."
+   },
+   {
+    "san": "Bxe2",
+    "idea": "Recapture with the bishop to keep the queens on and guard the king.",
+    "plan": "Keep the queens active, guard the king with the rooks, and use the extra material."
+   },
+   {
+    "san": "Rxf5",
+    "idea": "Recapture with the rook to open the f8\u2013h7 diagonal onto White's queen.",
+    "plan": "Use the extra material and the open f8\u2013h7 diagonal to win the game."
+   },
+   {
+    "san": "Rxc1",
+    "idea": "Recapture with the rook to keep the c-file and guard the queen.",
+    "plan": "Use the c-file and the queen to harass Black's king and win back material."
+   },
+   {
+    "san": "g5",
+    "idea": "Save the attacked pawn with tempo, then use the open h-file against White's king.",
+    "plan": "Use the h-file and the queen to harass White's king; keep the h7 fork alive."
+   },
+   {
+    "san": "Nd4+",
+    "idea": "Check first, then grab the undefended rook on a1.",
+    "plan": "Collect the a1 rook, then use the extra material and the kingside."
+   },
+   {
+    "san": "Kh1",
+    "idea": "Step the king off the e-file and guard g2 so Qe4 forks.",
+    "plan": "Use the extra material and the g2 pawn to win the game."
+   },
+   {
+    "san": "Qb3+",
+    "idea": "Check first, then use the extra pawn to fork the rook and the queen.",
+    "plan": "Fork the queen and the rook with the pawn, then collect the material."
+   },
+   {
+    "san": "Qb3+",
+    "idea": "Check first, then use the extra pawn to fork the rook on d3.",
+    "plan": "Fork the d3 rook with the queen, then use the half-open b- and a-files."
+   },
+   {
+    "san": "Qg4+",
+    "idea": "Check first, then grab f6 and the bishop at once.",
+    "plan": "Collect the f6 pawn, then use the extra material and the bishop's activity."
+   },
+   {
+    "san": "Rd1+",
+    "idea": "Check first, then use the extra pawn to fork White's queen and rooks.",
+    "plan": "Fork the queen and rook, then use the extra pawn to win back material."
+   },
+   {
+    "san": "bxc6",
+    "idea": "Take the attacked knight now. The attack on it is free.",
+    "plan": "Develop with Be7, castle, and use the extra material to win."
+   },
+   {
+    "san": "Bxd6",
+    "idea": "Take the free bishop on d6. The e6 pawn is safe, and the space imbalance helps.",
+    "plan": "Use the extra material and the open d- and e-files against Black's king."
+   },
+   {
+    "san": "h5+",
+    "idea": "Check first, then trade queens to kill Black's attack on your king.",
+    "plan": "Trade queens, then use the extra material and the kingside pawns."
+   },
+   {
+    "san": "d5",
+    "idea": "Kick the d4 pawn with tempo, then use the open d- and e-files against White's king.",
+    "plan": "Use the d- and e-files against White's uncastled king; keep the d4 pawn protected."
+   },
+   {
+    "san": "Rxd8",
+    "idea": "Trade off the rooks to open the d8\u2013a1 diagonal onto the king.",
+    "plan": "Use the extra material and the open d8\u2013a1 diagonal to win the game."
+   },
+   {
+    "san": "Bxd5",
+    "idea": "Trade off Black's active knight and hit the loose f3-bishop at once.",
+    "plan": "Use the extra material and the open f-pawn to win back the f3-bishop."
+   },
+   {
+    "san": "O-O-O",
+    "idea": "Castle now: guard f7 and keep the kingside pawns intact.",
+    "plan": "Use the extra pawn and the kingside space to win back the f6 pawn."
+   }
+  ]
+ }
+}

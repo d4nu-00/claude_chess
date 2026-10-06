@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Play the Explainer</title>
+<style>
+:root{--bg:#161512;--panel:#262421;--panel2:#302e2b;--text:#bababa;--strong:#fff;--dim:#8a8784;--accent:#f0a020;--good:#7ec850;--bad:#e05a4f;--line:#3d3a36;--light:#f0d9b5;--dark:#b58863;--sel:#7fa650}
+@media (prefers-color-scheme:light){:root{--bg:#eeeeee;--panel:#fff;--panel2:#f3f3f3;--text:#333;--strong:#000;--dim:#777;--line:#d4d4d4}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:15px/1.45 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+header{display:flex;align-items:center;gap:12px;padding:10px 16px;background:var(--panel);border-bottom:1px solid var(--line);flex-wrap:wrap}
+header h1{font-size:17px;margin:0;color:var(--strong);font-weight:600}
+.pill{font-size:12px;padding:2px 8px;border-radius:99px;background:var(--panel2);color:var(--dim)}
+.pill.think{background:#3a2a10;color:var(--accent)}
+.pill.think::before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--accent);margin-right:6px;animation:pulse 1.4s infinite}
+@keyframes pulse{50%{opacity:.25}}
+@media (prefers-reduced-motion:reduce){.pill.think::before{animation:none}}
+main{display:grid;grid-template-columns:minmax(0,600px) minmax(300px,1fr);gap:16px;padding:16px;max-width:1180px;margin:0 auto}
+@media (max-width:860px){main{grid-template-columns:minmax(0,1fr);padding:10px}}
+html,body{overflow-x:hidden}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;overflow:hidden;min-width:0}
+.player{display:flex;justify-content:space-between;align-items:center;padding:8px 12px;background:var(--panel2)}
+.player b{color:var(--strong)} .player small{color:var(--dim)}
+.boardwrap{display:flex}
+#evalbar{width:20px;flex:0 0 20px;background:#222;position:relative}
+#evalfill{position:absolute;left:0;right:0;bottom:0;background:#f5f5f5;transition:height .4s}
+#evaltxt{position:absolute;left:0;right:0;font-size:10px;text-align:center;font-weight:700;mix-blend-mode:difference;color:#fff}
+#board{flex:1;min-width:0;display:block;cursor:pointer;touch-action:manipulation}
+.ctrl{display:flex;gap:6px;padding:8px 12px;flex-wrap:wrap;align-items:center}
+button.b{background:var(--panel2);border:1px solid var(--line);color:var(--text);border-radius:6px;padding:5px 12px;font:inherit;cursor:pointer}
+button.b:hover,button.b:focus-visible{border-color:var(--accent);outline:none}
+.status{margin-left:auto;font-size:13px;color:var(--dim)}
+h2{font-size:12px;letter-spacing:.07em;text-transform:uppercase;color:var(--dim);margin:0;padding:10px 12px 4px;font-weight:600}
+.right{display:flex;flex-direction:column;gap:12px;min-width:0}
+#idea{padding:4px 12px 2px;font-size:21px;line-height:1.3;color:var(--strong);text-wrap:balance}
+#ideamove{padding:0 12px 6px;color:var(--dim);font-size:13px}
+#ideamove b{color:var(--accent);font-variant-numeric:tabular-nums}
+.kv{padding:2px 12px 6px} .kv span{color:var(--dim);font-size:12px;text-transform:uppercase;letter-spacing:.06em;margin-right:6px}
+.chips{display:flex;flex-wrap:wrap;gap:6px;padding:4px 12px 8px}
+.chip{background:var(--panel2);border:1px solid var(--line);border-radius:99px;padding:1px 9px;font-size:12px}
+#live{padding:8px 12px 12px;white-space:pre-wrap;color:var(--text);font-size:13.5px;min-height:3em}
+#cands{padding:2px 12px 10px;display:grid;grid-template-columns:64px 1fr 40px;gap:4px 8px;align-items:center;font-size:13px;font-variant-numeric:tabular-nums}
+#cands .bar{height:7px;border-radius:2px;background:var(--dim);opacity:.6}
+#cands .pick{color:var(--accent);font-weight:700}
+#cands .pick + .barw .bar{background:var(--accent);opacity:1}
+#sf{padding:4px 12px 12px;font-size:13px;color:var(--dim);border-top:1px solid var(--line)}
+#moves{padding:6px 8px 10px;display:grid;grid-template-columns:34px 1fr 1fr;gap:2px 4px;max-height:240px;overflow:auto;font-variant-numeric:tabular-nums}
+#moves .n{color:var(--dim);text-align:right;padding-right:4px}
+.mv{background:none;border:0;color:var(--text);text-align:left;font:inherit;padding:2px 6px;border-radius:4px;cursor:pointer}
+.mv:hover{background:var(--panel2)} .mv.cur{background:var(--accent);color:#000}
+.mv.model::after{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--accent);margin-left:6px;vertical-align:middle}
+.mv.cur.model::after{background:#000}
+.empty{padding:10px 12px 14px;color:var(--dim);font-size:13.5px}
+</style>
+</head>
+<body>
+<header><h1>Play the Explainer</h1><span class="pill" id="who">…</span><span class="pill" id="state">loading</span></header>
+<main>
+  <section class="card">
+    <div class="player"><span><b id="ntop">Model</b></span><small id="stop"></small></div>
+    <div class="boardwrap"><div id="evalbar" title="Stockfish evaluation (analysis only)"><div id="evalfill"></div><div id="evaltxt"></div></div>
+      <svg id="board" viewBox="0 0 8 8" role="img" aria-label="chess board"></svg></div>
+    <div class="player"><span><b id="nbot">You</b></span><small id="sbot"></small></div>
+    <div class="ctrl">
+      <button class="b" id="newW">New game · you play White</button>
+      <button class="b" id="newB">New game · you play Black</button>
+      <button class="b" id="undo">Take back</button>
+      <button class="b" id="flip">Flip</button>
+      <span class="status" id="status"></span>
+    </div>
+  </section>
+  <div class="right">
+    <section class="card">
+      <h2 id="ideahead">Its idea</h2>
+      <div id="idea" class="empty">Make a move. After it replies, its idea for that move appears here.</div>
+      <div id="ideamove"></div>
+      <div class="kv" id="plan"></div>
+      <div class="chips" id="concepts"></div>
+      <h2>Candidates it weighed</h2>
+      <div id="cands"></div>
+      <div id="sf"></div>
+    </section>
+    <section class="card"><h2>Thinking out loud</h2><div id="live" class="empty">Its raw output streams here while it decides.</div></section>
+    <section class="card"><h2>Moves</h2><div id="moves"></div></section>
+  </div>
+</main>
+<script>
+const $ = id => document.getElementById(id);
+const GLYPH = {K:"♚",Q:"♛",R:"♜",B:"♝",N:"♞",P:"♟",k:"♚",q:"♛",r:"♜",b:"♝",n:"♞",p:"♟"};
+let st = null, sel = null, flipped = false, view = null;  // view = index into st.moves of the shown model move
+
+const sqName = (f,r) => "abcdefgh"[f] + (r+1);
+const xy = (f,r) => flipped ? [7-f, r] : [f, 7-r];
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+function drawBoard(){
+  const rows = st.fen.split(" ")[0].split("/");
+  const last = st.moves.length ? st.moves[st.moves.length-1].uci : null;
+  let s = "";
+  for(let r=0;r<8;r++) for(let f=0;f<8;f++){ const [x,y]=xy(f,r); s+=`<rect x="${x}" y="${y}" width="1" height="1" style="fill:var(${(f+r)%2?"--light":"--dark"})"/>`; }
+  if(last) for(const u of [last.slice(0,2), last.slice(2,4)]){ const [x,y]=xy(u.charCodeAt(0)-97, +u[1]-1); s+=`<rect x="${x}" y="${y}" width="1" height="1" fill="#f6f669" opacity=".5"/>`; }
+  if(sel){ const [x,y]=xy(sel.charCodeAt(0)-97, +sel[1]-1); s+=`<rect x="${x}" y="${y}" width="1" height="1" style="fill:var(--sel)" opacity=".75"/>`; }
+  rows.forEach((row,i)=>{ let f=0; for(const ch of row){ if(/\d/.test(ch)){ f+=+ch; continue; }
+    const [x,y]=xy(f,7-i), white=ch===ch.toUpperCase();
+    s+=`<text x="${x+.5}" y="${y+.8}" font-size=".86" text-anchor="middle" fill="${white?"#fff":"#111"}" stroke="${white?"#111":"#fff"}" stroke-width="${white?.035:.02}" paint-order="stroke" style="font-family:'Apple Symbols','Segoe UI Symbol','DejaVu Sans',serif;pointer-events:none">${GLYPH[ch]}&#xFE0E;</text>`; f++; } });
+  if(sel) for(const u of st.legal.filter(u=>u.startsWith(sel))){ const [x,y]=xy(u.charCodeAt(2)-97, +u[3]-1); s+=`<circle cx="${x+.5}" cy="${y+.5}" r=".16" fill="#000" opacity=".3" style="pointer-events:none"/>`; }
+  for(let i=0;i<8;i++){ const [x0,y0]=xy(i,0), [x1,y1]=xy(0,i);
+    s+=`<text x="${x0+.93}" y="${y0+.97}" font-size=".17" text-anchor="end" fill="#8a7a66">${"abcdefgh"[i]}</text><text x="${x1+.04}" y="${y1+.2}" font-size=".17" fill="#8a7a66">${i+1}</text>`; }
+  $("board").innerHTML = s;
+}
+
+function evalBar(){
+  const withSf = st.moves.filter(m=>m.sf && m.sf.eval_after!=null);
+  const cp = withSf.length ? withSf[withSf.length-1].sf.eval_after : 0;
+  const frac = 1/(1+Math.exp(-cp/400)), white = flipped ? 1-frac : frac;
+  $("evalfill").style.height = (100*(flipped?1-frac:frac))+"%";
+  $("evaltxt").textContent = withSf.length ? (Math.abs(cp)>=9000 ? (cp>0?"M":"-M") : (cp>=0?"+":"")+(cp/100).toFixed(1)) : "";
+  $("evaltxt").style.top = white>0.5 ? "auto" : "2px"; $("evaltxt").style.bottom = white>0.5 ? "2px" : "auto";
+}
+
+function renderMoves(){
+  let s = "";
+  for(let i=0;i<st.moves.length;i+=2){
+    s += `<span class="n">${i/2+1}.</span>`;
+    for(const j of [i,i+1]){ const m = st.moves[j]; if(!m){ s+="<span></span>"; continue; }
+      s += `<button class="mv ${m.by==="model"?"model":""} ${j===view?"cur":""}" data-i="${j}">${esc(m.san)}</button>`; }
+  }
+  $("moves").innerHTML = s;
+  $("moves").querySelectorAll(".mv").forEach(b=>b.onclick=()=>{ const i=+b.dataset.i; if(st.moves[i].by==="model"){ view=i; render(); }});
+}
+
+function renderThought(){
+  const m = view!=null ? st.moves[view] : null, t = m && m.thought;
+  if(!t){ $("idea").className="empty"; $("idea").textContent = st.thinking ? "Thinking…" : "Make a move. After it replies, its idea for that move appears here.";
+    $("ideamove").textContent=""; $("plan").innerHTML=""; $("concepts").innerHTML=""; $("cands").innerHTML=""; $("sf").textContent=""; return; }
+  $("idea").className=""; $("idea").textContent = t.idea || "(it gave no idea for this move)";
+  $("ideahead").textContent = `Its idea for ${Math.floor(view/2)+1}${view%2? "…":". "}${m.san}`;
+  $("ideamove").innerHTML = `played <b>${esc(m.san)}</b> after ${t.seconds}s` + (t.fallback ? " · its answer didn't parse, so it played its instinct" : "");
+  $("plan").innerHTML = t.plan ? `<span>Plan</span>${esc(t.plan)}` : (t.why ? `<span>Why</span>${esc(t.why)}` : "");
+  $("concepts").innerHTML = (t.concepts||[]).map(c=>`<span class="chip">${esc(String(c).replace(/_/g," "))}</span>`).join("");
+  $("cands").innerHTML = (t.candidates||[]).map(c=>{ const p=c.prior==null?null:c.prior, pick=c.san===m.san;
+    return `<span class="${pick?"pick":""}">${esc(c.san)}</span><span class="barw"><div class="bar" style="width:${p==null?0:Math.max(2,100*p)}%"></div></span><span>${p==null?"":Math.round(100*p)+"%"}</span>`; }).join("");
+  $("sf").innerHTML = m.sf ? `Stockfish (analysis only, never shown to the model): would have played <b>${esc(m.sf.best_before||"?")}</b>${m.sf.best_before && m.sf.best_before!==m.san ? "" : " — same move"}.` : "Stockfish check pending…";
+}
+
+function render(){
+  if(!st) return;
+  flippedDefault();
+  $("ntop").textContent = st.player==="joint" ? "Joint model (Qwen3-1.7B + chess encoder)" : "Encoder + student explainer";
+  $("who").textContent = st.player==="joint" ? "joint: one model picks and explains" : "composite: encoder picks, student explains";
+  $("state").textContent = st.thinking ? "thinking" : st.status; $("state").className = "pill" + (st.thinking?" think":"");
+  $("status").textContent = st.status!=="playing" ? st.status : st.thinking ? "Its move…" : (st.legal.length ? "Your move" : "");
+  $("live").className = st.partial || st.thinking ? "" : "empty";
+  $("live").textContent = st.partial || (st.thinking ? "…" : "Its raw output streams here while it decides.");
+  drawBoard(); evalBar(); renderMoves(); renderThought();
+}
+let userFlipped = false;
+function flippedDefault(){ flipped = (st.user==="black") !== userFlipped; }
+
+async function api(path, body){
+  const r = await fetch(path, body ? {method:"POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify(body)} : {});
+  return r.json();
+}
+async function refresh(){
+  const prevLen = st ? st.moves.length : 0;
+  try { st = await api("/api/state"); } catch(e){ $("state").textContent = "server offline"; return; }
+  if(st.moves.length !== prevLen){ const ms = st.moves.map((m,i)=>[m,i]).filter(([m])=>m.by==="model"); view = ms.length ? ms[ms.length-1][1] : null; }
+  render();
+}
+$("board").addEventListener("click", ev=>{
+  if(!st || !st.legal.length) return;
+  const r = $("board").getBoundingClientRect(), x = Math.floor((ev.clientX-r.left)/r.width*8), y = Math.floor((ev.clientY-r.top)/r.height*8);
+  const f = flipped ? 7-x : x, rank = flipped ? y : 7-y, sq = sqName(f, rank);
+  if(sel){ const mv = st.legal.find(u=>u.startsWith(sel+sq) && (u.length===4 || u[4]==="q"));
+    if(mv){ sel=null; api("/api/move",{uci:mv}).then(s=>{ if(!s.error){ st={...s, player:st.player}; render(); } }); return; } }
+  sel = st.legal.some(u=>u.startsWith(sq)) ? sq : null; drawBoard();
+});
+$("newW").onclick = ()=>{ userFlipped=false; view=null; api("/api/new",{color:"white"}).then(refresh); };
+$("newB").onclick = ()=>{ userFlipped=false; view=null; api("/api/new",{color:"black"}).then(refresh); };
+$("undo").onclick = ()=>api("/api/undo",{}).then(refresh);
+$("flip").onclick = ()=>{ userFlipped=!userFlipped; render(); };
+async function loop(){ await refresh(); setTimeout(loop, st && st.thinking ? 400 : 1500); }
+loop();
+</script>
+</body>
+</html>

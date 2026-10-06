@@ -1,0 +1,3599 @@
+[
+ {
+  "fen": "r1bq1rk1/pp3pbp/1Pn3p1/3p4/3B4/1PN5/P3NPPP/2RQKB1R b K - 0 1",
+  "best": "Nxd4",
+  "alt": "axb6",
+  "teacher": {
+   "assessment": "Equal. Black's lead in development and White's uncastled king make up for the missing material.",
+   "idea": "Trade off the d4 bishop, then use the e-file check against the uncastled king.",
+   "why_best": "After 1...Nxd4 2.Nxd4, the check 2...Re8+ forces 3.Be2 and keeps White's king in the centre. Then 3...Qxb6 wins back the b6 pawn with active pieces. The g7 bishop also stays aimed at d4.",
+   "why_not_alt": "1...axb6 lets White trade off the g7 bishop with 2.Bxg7. That loosens Black's king, and after 3.Qxd5 Black loses the d5 pawn and gets no compensation.",
+   "concepts": [
+    "king_safety",
+    "initiative",
+    "piece_activity"
+   ],
+   "novel_concept": "",
+   "plan": "Attack down the e-file against the stuck king and keep your pieces active.",
+   "difficulty": "natural"
+  },
+  "student": {
+   "novel_concept": "",
+   "idea": "Trade off White's strong d4-bishop, then use the queen to hit b6.",
+   "assessment": "Roughly equal. White is a piece up, but Black's active pieces and the d5 pawn give compensation.",
+   "why_best": "1...Nxd4 removes White's best attacker. After 2.Nxd4 Re8+ 3.Be2, Black's queen and knight hit b6, and the d5 pawn becomes a dangerous passer.",
+   "why_not_alt": "1...axb6 gives White a free move with 2.Bxg7. After 2...Kxg7 3.Qxd5, White's queen and knight become active, and White is clearly better.",
+   "concepts": [
+    "defence",
+    "piece_activity",
+    "passed_pawn"
+   ],
+   "plan": "Keep the queen active on b6, push the d-pawn, and use the knight against White's pieces.",
+   "difficulty": "natural"
+  },
+  "base": {
+   "novel_concept": ""
+  }
+ },
+ {
+  "fen": "rnbq3r/ppp1kpQp/8/3pP3/4np1P/3P4/PPP3P1/RNB1KB1R b KQ - 0 1",
+  "best": "Rg8",
+  "alt": "Ng3",
+  "teacher": {
+   "assessment": "White is slightly better: the queen on g7 has invaded Black's kingside and Black's king is stuck in the centre.",
+   "idea": "Kick the invading queen with tempo and take the half-open g-file.",
+   "why_best": "1...Rg8 saves the attacked h8-rook and hits the queen, so White must spend a move retreating (2.Qh6). Only then does 2...Ng3 hit the h1-rook, with Black's rook already active on g8.",
+   "why_not_alt": "1...Ng3 grabs at the h1-rook first but leaves White's queen on g7. After 2.Bxf4 Rg8 3.Bg5+, White's queen and bishop hunt Black's exposed king.",
+   "concepts": [
+    "initiative",
+    "king_safety",
+    "open_file"
+   ],
+   "novel_concept": "",
+   "plan": "Use the g-file and Ng3, then tuck the king toward d7 and finish developing.",
+   "difficulty": "natural"
+  },
+  "student": {
+   "novel_concept": "",
+   "idea": "Bring the rook to g8 to hit the queen and the h1 rook together.",
+   "assessment": "White is slightly better: Black's queen and rook are attacked, and White's queen and rook are active.",
+   "why_best": "1...Rg8 attacks both the queen and the h1 rook. After 2.Qh6 Ng3 3.Rh2 Be6, Black's rook and knight are active, and White's queen and rook stay busy. White's Bxf4 also wins a pawn.",
+   "why_not_alt": "1...Ng3 attacks only the h1 rook. After 2.Bxf4 Rg8 3.Bg5+ Ke6 4.Qh6+ Rg6 5.Qxg6+ Black has lost the exchange, and White's queen and rook dominate.",
+   "concepts": [
+    "overloaded_defender",
+    "counterplay",
+    "piece_activity"
+   ],
+   "plan": "Activate the rook and knight, then use the g-file and the h1 rook against White's queen.",
+   "difficulty": "natural"
+  },
+  "base": {
+   "novel_concept": ""
+  }
+ },
+ {
+  "fen": "r2q1rk1/pp3ppp/n3pn2/3pP1N1/P6P/2PB4/1P3PP1/R2QK2R b KQ - 0 1",
+  "best": "Ne4",
+  "alt": "h6",
+  "teacher": {
+   "assessment": "White is better: e5 hits the f6 knight, and the Bd3/Ng5 battery aims straight at h7.",
+   "idea": "Block the Bd3 with Ne4, giving a pawn to kill the attack on h7.",
+   "why_best": "The knight escapes e5 and blocks the bishop's diagonal to h7. After 2.Bxe4 dxe4 3.Nxe4, Black is a pawn down, but White's attacking bishop is gone, the d-file opens for Rad8 and Qb6 hits b2.",
+   "why_not_alt": "1...h6 leaves the knight to be taken. After 2.exf6 Qxf6 3.Bh7+ Kh8, the bishop survives, Black's king is exposed and nothing is gained in return.",
+   "concepts": [
+    "defence",
+    "king_safety",
+    "sacrifice"
+   ],
+   "novel_concept": "",
+   "plan": "Put rooks on the d-file, press b2 with the queen, and use active pieces for the pawn.",
+   "difficulty": "hard"
+  },
+  "student": {
+   "novel_concept": "",
+   "idea": "Save the attacked knight by capturing it, not by retreating.",
+   "assessment": "White is better: Black's knight on g5 is attacked by the e5 pawn, and White has more space and central play.",
+   "why_best": "The e5 pawn attacks the g5 knight. 1...Ne4 saves it with a capture, so Black keeps the knight and the bishop pair. After 2.Bxe4 dxe4 3.Nxe4, Black is only slightly down, and the knight is active.",
+   "why_not_alt": "1...h6 ignores the knight. After 2.exf6 Qxf6 3.Bh7+ Kh8 4.Bc2, White's pieces swarm the king, and Black is lost.",
+   "concepts": [
+    "defence",
+    "king_safety",
+    "piece_activity"
+   ],
+   "plan": "Trade off White's central pawns, then activate the rooks and bishop.",
+   "difficulty": "natural"
+  },
+  "base": {
+   "novel_concept": ""
+  }
+ },
+ {
+  "fen": "r4rk1/1b1nqpp1/p1p1pb1p/1p6/3P4/1QN1PN2/PP2BPPP/2RR2K1 w - - 0 1",
+  "best": "Ne4",
+  "alt": "a4",
+  "teacher": {
+   "assessment": "White is slightly better: Black's c6 pawn is backward and stuck on the half-open c-file.",
+   "idea": "Trade off Black's strong bishop and keep the ...c5 break blocked.",
+   "why_best": "Ne4 forces the exchange of the f6 bishop, removing Black's bishop pair and pressure on d4. After Nd2 the knight returns to e4, eyeing c5 and keeping ...c5 hard to play. The c6 pawn stays backward and the c-file rook keeps pressing it.",
+   "why_not_alt": "1.a4 lets Black play ...c5. The backward c-pawn and Black's queenside majority disappear, files open for both sides and the game is equal.",
+   "concepts": [
+    "pawn_weakness",
+    "bishop_pair",
+    "prophylaxis"
+   ],
+   "novel_concept": "",
+   "plan": "Keep a knight on e4, stop ...c5, and pile up on the c6 pawn.",
+   "difficulty": "natural"
+  },
+  "student": {
+   "novel_concept": "",
+   "idea": "Bring the knight to e4 to hit f6 and the c3 bishop.",
+   "assessment": "White is slightly better: the c3 bishop is loose, and Ne4 hits it with tempo.",
+   "why_best": "Ne4 attacks two pieces at once. The d4 pawn blocks the c3 bishop, so it must move with 1...a5. After 2.Nxf6+ Qxf6 3.Nd2, White's rook and knight come to d2 and e4, and the c3 bishop is gone.",
+   "why_not_alt": "1.a4 is too slow. Black plays 1...Rfc8, and White's rook stays on c1. The knight is passive, and the material edge disappears.",
+   "concepts": [
+    "initiative",
+    "piece_activity",
+    "counterplay"
+   ],
+   "plan": "Bring the knight to d2, then use the e-file rook and the c3 bishop.",
+   "difficulty": "natural"
+  },
+  "base": {
+   "novel_concept": ""
+  }
+ },
+ {
+  "fen": "rnbqkb1r/pp2pppp/5n2/2Pp2B1/8/5P2/PPP1P1PP/RN1QKBNR b KQkq - 0 1",
+  "best": "e6",
+  "alt": "h6",
+  "teacher": {
+   "assessment": "Black is slightly better despite the pawn: c5 will fall, and White's kingside pawns are loose and undeveloped.",
+   "idea": "Open the f8 bishop's diagonal to win back c5 and keep a healthy pawn structure.",
+   "why_best": "1...e6 frees the f8 bishop to aim at the loose c5 pawn and prepares castling. Black keeps an intact pawn chain while White's bishop drifts back with 2.Be3 and 3.Bf2. Black leads in development.",
+   "why_not_alt": "1...h6 lets White play 2.Bxf6 exf6, giving Black doubled f-pawns. White's own pawn problems disappear, so Black gives back much of the edge for nothing.",
+   "concepts": [
+    "development",
+    "pawn_weakness",
+    "piece_activity"
+   ],
+   "novel_concept": "",
+   "plan": "Play Be7 and O-O, regain c5, then use the development lead against White's weakened kingside.",
+   "difficulty": "natural"
+  },
+  "student": {
+   "novel_concept": "",
+   "idea": "Push e6 to open the f8-b8 diagonal and hit the g5-bishop.",
+   "assessment": "Black is slightly better: White's g5-bishop is stuck in the centre and Black's pieces are active.",
+   "why_best": "1...e6 opens the f8-b8 diagonal, so ...Be7! hits the g5-bishop. After 2.Be3 Be7 3.Bf2 O-O, Black's pieces come with tempo and White's king is still in the centre.",
+   "why_not_alt": "1...h6 is too slow. White plays 2.Bxf6 exf6, wins the piece back, and the bishop is safe. Black's pieces stay passive and the edge disappears.",
+   "concepts": [
+    "prophylaxis",
+    "piece_activity",
+    "king_safety"
+   ],
+   "plan": "Castle, then use ...Be7 and ...Nbd7 to hit the centre.",
+   "difficulty": "natural"
+  },
+  "base": {
+   "novel_concept": ""
+  }
+ },
+ {
+  "fen": "rn2nrk1/pp1Q1pbp/4b1p1/4P3/2p5/2N3PP/PP2NPBK/R1B2R2 b - - 0 1",
+  "best": "Nxd7",
+  "alt": "Bxd7",
+  "teacher": {
+   "assessment": "White is a little better, but after winning the queen Black is roughly level on material.",
+   "idea": "Take the queen with the undeveloped knight, which also clears b8.",
+   "why_best": "Nxd7 develops a piece and pressures e5. The bishop stays on e6, and with b8 empty a Bxb7 grab can be met by Rb8. White keeps only a small edge after 2.f4.",
+   "why_not_alt": "Bxd7 leaves the knight boxed on b8. After 2.Bxb7 the g2-bishop forks a8 and b8, so White wins the exchange for free and is winning.",
+   "concepts": [
+    "fork",
+    "development",
+    "hanging_piece"
+   ],
+   "novel_concept": "",
+   "plan": "Reroute knights to c5 and d3, complete development and target the e5 pawn.",
+   "difficulty": "natural"
+  },
+  "student": {
+   "novel_concept": "",
+   "idea": "Take the queen. The bishop is stuck on b7 and must retreat.",
+   "assessment": "White is slightly better after the queen is taken, but Black keeps most of the material.",
+   "why_best": "1...Nxd7 wins the queen outright. After 2.f4 Nc7, Black develops with tempo and keeps the queen safe. White's best is 2...Nc5, and Black is only slightly worse.",
+   "why_not_alt": "1...Bxd7 gives up the queen for a pawn. After 2.Bxb7 Bc6 3.Bxa8 Bxa8 4.Be3, White wins the exchange and keeps the extra material.",
+   "concepts": [
+    "win_material",
+    "defence",
+    "development"
+   ],
+   "plan": "Develop with ...Nc7 and ...Nd3, castle, then use the queenside majority.",
+   "difficulty": "natural"
+  },
+  "base": {
+   "novel_concept": ""
+  }
+ },
+ {
+  "fen": "2bq1rk1/5p2/r1nb1n1p/pp1pN1p1/2pP3B/2P4P/PPBN1PP1/R2QR1K1 w - - 0 1",
+  "best": "Bg3",
+  "alt": "Nxc6",
+  "teacher": {
+   "assessment": "White is slightly better: the e5 knight is strong and White keeps both bishops and a healthy pawn structure.",
+   "idea": "Save the attacked bishop on g3, where it guards the e5 knight.",
+   "why_best": "...g5 hits the h4 bishop. Bg3 retreats while backing up the strong Ne5. White keeps the bishop pair and an intact kingside, and can bring the d2 knight round via Nf1 and Ne3.",
+   "why_not_alt": "Nxc6 gives up the strong central knight. After Rxc6 Bg3 Bxg3 fxg3, White has lost the bishop pair and has doubled g-pawns. The position is equal.",
+   "concepts": [
+    "piece_activity",
+    "bishop_pair",
+    "pawn_weakness"
+   ],
+   "novel_concept": "",
+   "plan": "Keep the Ne5 outpost, reroute the knight Nf1 to e3, and meet Black's queenside push.",
+   "difficulty": "natural"
+  },
+  "student": {
+   "novel_concept": "",
+   "idea": "Save the attacked bishop by retreating it, not trading it off.",
+   "assessment": "White is slightly better: the h4-bishop is attacked, and retreating it keeps White's pieces coordinated.",
+   "why_best": "The g5-bishop is attacked by the f6-knight. Bg3 saves it and eyes h4. After 1...Ne7 2.Nf1 White's pieces stay active, and the c3-pawn is doubled.",
+   "why_not_alt": "1.Nxc6 Rxc6 2.Bg3 Bxg3 3.fxg3 gives up the bishop for a knight. White's pieces are no longer coordinated, and the edge disappears.",
+   "concepts": [
+    "defence",
+    "piece_activity",
+    "piece_activity"
+   ],
+   "plan": "Play Nf1, Ne3, cxb4, and keep the pieces on.",
+   "difficulty": "natural"
+  },
+  "base": {
+   "novel_concept": ""
+  }
+ },
+ {
+  "fen": "2r1k2r/3b1ppp/p3p3/q2pP3/1b1P4/1PN2N2/P2Q1PPP/2R1K2R w Kk - 0 1",
+  "best": "O-O",
+  "alt": "Kd1",
+  "teacher": {
+   "assessment": "Black is better: Bb4 pins the c3-knight against queen and king, so White loses that piece.",
+   "idea": "The knight is lost anyway, so at least get your king safe and out of the pin.",
+   "why_best": "After 1.O-O Bxc3 2.Qe3 the king is sheltered behind three pawns and the rooks connect. White can contest the c-file with Rc2 and Rfc1 and fight on despite the lost piece.",
+   "why_not_alt": "1.Kd1 also loses the knight but leaves the king in the middle with no pawn cover. Black's pieces then aim at it freely, as Ba3 and an open c-file show.",
+   "concepts": [
+    "king_safety",
+    "pin",
+    "development"
+   ],
+   "novel_concept": "",
+   "plan": "Castle, then double rooks on the c-file and use the e5 space to resist.",
+   "difficulty": "natural"
+  },
+  "student": {
+   "novel_concept": "",
+   "idea": "Castle now. The king is already in the centre, so the c3 knight is loose.",
+   "assessment": "Black is better. White's king is stuck in the centre, and Black's queen and rook are aimed at it.",
+   "why_best": "After 1.O-O the c3 knight is no longer pinned to the king. White's queen and rook stay on the second rank, and Black's queen and rook are aimed at the king. White's pieces are scattered, and Black is winning.",
+   "why_not_alt": "1.Kd1 leaves the c3 knight pinned to the king. After 1...Bxc3 2.Qc2 White has traded queens, and Black's rook and queen are aimed at White's king.",
+   "concepts": [
+    "pin",
+    "king_safety",
+    "piece_activity"
+   ],
+   "plan": "Trade queens, then use the rook on the second rank against Black's queen.",
+   "difficulty": "natural"
+  },
+  "base": {
+   "novel_concept": ""
+  }
+ },
+ {
+  "fen": "r1b2rk1/1p2qpbp/5np1/p1nNpP2/4P3/3PB1PP/PP2N1B1/R2Q1RK1 b - - 0 1",
+  "best": "Nxd5",
+  "alt": "Qd6",
+  "teacher": {
+   "assessment": "Roughly equal after Nxd5. Black wins back the pawn because White's f5-pawn loses its defender.",
+   "idea": "Trade the d5 knight; after exd5 the f5-pawn is no longer defended.",
+   "why_best": "1...Nxd5 removes White's strongest piece and also stops it hitting e7 and f6. After 2.exd5 the e4-pawn is gone, so 2...Bxf5 regains the pawn with tempo on d3. The material balance is restored, and Black's bishop becomes active.",
+   "why_not_alt": "Qd6 defends passively and leaves the d5 knight dominating. White keeps the extra pawn and plays Nb6 and g4-g5, and Black is pushed back.",
+   "concepts": [
+    "defence",
+    "piece_activity",
+    "pawn_majority"
+   ],
+   "novel_concept": "removing the defender",
+   "plan": "Use the bishops and the kingside pawn majority, and blockade White's d-pawn.",
+   "difficulty": "natural"
+  },
+  "student": {
+   "novel_concept": "",
+   "idea": "Trade off White's strong d5 knight before White's g4 break.",
+   "assessment": "Roughly equal. Black is a pawn down, but White's d5 knight is attacked by the c5 knight and the e7 queen.",
+   "why_best": "1...Nxd5 removes White's best attacker. After 2.exd5 Bxf5, Black has a pawn for two pawns, and White's g4 break is no longer a threat. The material is level.",
+   "why_not_alt": "1...Qd6 is passive. White keeps the d5 knight, and after 2.Rc1 Na6 3.Nb6 Black's queen is stuck in the centre. White's g4 and g5 break through with tempo.",
+   "concepts": [
+    "defence",
+    "piece_activity",
+    "pawn_break"
+   ],
+   "plan": "Trade off White's d5 knight, then use the extra pawn and the c8 bishop to finish development.",
+   "difficulty": "natural"
+  },
+  "base": {
+   "novel_concept": ""
+  }
+ },
+ {
+  "fen": "r1bqr1k1/pp1n1pp1/2p2p2/8/3P1B1p/2PB4/PP3PPP/R2Q1RK1 b - - 0 1",
+  "best": "h3",
+  "alt": "Nf8",
+  "teacher": {
+   "assessment": "Roughly equal. White has the bishop pair and active pieces, but Black's h-pawn can loosen White's king.",
+   "idea": "Push h3 to break up White's kingside pawns before White blocks with h3.",
+   "why_best": "1...h3 hits g2. If White takes with gxh3, the h-pawns are left isolated and weak, and Black wins one back with ...Qd7 and ...Qxh3. If White ignores it, ...hxg2 strips the king.",
+   "why_not_alt": "After the passive 1...Nf8, White plays 2.h3, fixing Black's h4 pawn as a target. White keeps the bishop pair and a small, risk-free edge.",
+   "concepts": [
+    "pawn_break",
+    "pawn_weakness",
+    "king_safety"
+   ],
+   "novel_concept": "",
+   "plan": "Reroute the knight with ...Nf8 and the queen to d7 to win back the h3 pawn.",
+   "difficulty": "natural"
+  },
+  "student": {
+   "novel_concept": "",
+   "idea": "Strike at White's centre with ...h3 to open lines for the queenside.",
+   "assessment": "Roughly equal. Black's queenside pawns are weak, but White's centre can be broken open.",
+   "why_best": "1...h3 hits the d4 pawn and the f1 queen. After 2.Qh5 Nf8 3.gxh3, Black has queens on the second rank and the a8 rook. White's centre is gone and Black's queenside pawns become targets.",
+   "why_not_alt": "1...Nf8 is too slow. White calmly plays 2.h3, develops with a4 and Be3, and the centre stays solid. Black's queenside pawns stay undeveloped.",
+   "concepts": [
+    "pawn_break",
+    "pawn_weakness",
+    "development"
+   ],
+   "plan": "Open lines with ...Nf8, then ...Qxh3 and ...Qd7 to finish development.",
+   "difficulty": "natural"
+  },
+  "base": {
+   "novel_concept": ""
+  }
+ },
+ {
+  "fen": "3r1rk1/1b2bppp/p3p3/R3N3/2pB1P2/2P3qP/PP1Q2P1/5RK1 b - - 0 1",
+  "best": "Rxd4",
+  "alt": "f6",
+  "teacher": {
+   "assessment": "Black is winning. An exchange sacrifice sets up a bishop fork on b4 that wins material.",
+   "idea": "Give the exchange to pull the c3 pawn away, then fork with Bb4.",
+   "why_best": "After 1...Rxd4 2.cxd4 the c3 pawn no longer guards b4. Then 2...Bb4 hits the queen on d2 and the rook on a5. 3.Ra3 fails to Qxa3, because bxa3 allows Bxd2. Black ends up a piece ahead.",
+   "why_not_alt": "1...f6 only kicks the knight. It lets White keep the strong d4 bishop and the c3 pawn guarding b4. Black stays only slightly better.",
+   "concepts": [
+    "sacrifice",
+    "fork",
+    "win_material"
+   ],
+   "novel_concept": "",
+   "plan": "Collect the extra piece, keep the queen active, and target the weak d4 pawn.",
+   "difficulty": "hard"
+  },
+  "student": {
+   "novel_concept": "",
+   "idea": "Take the free bishop on d4. It has no defender.",
+   "assessment": "Black is winning. White's bishop on d4 is hanging, and Black can win it for a rook.",
+   "why_best": "1...Rxd4 removes White's bishop for free. After 2.cxd4, Black has a rook against a bishop, and the queen on g3 attacks the rook. White must give up the rook for a pawn.",
+   "why_not_alt": "1...f6 lets White play 2.Nf3. That is a natural development step, but it gives White time to regroup. Black is only slightly better.",
+   "concepts": [
+    "hanging_piece",
+    "win_material",
+    "overloaded_defender"
+   ],
+   "plan": "Win the d4 bishop, then use queen and rook against White's pieces.",
+   "difficulty": "natural"
+  },
+  "base": {
+   "novel_concept": ""
+  }
+ },
+ {
+  "fen": "r1bq1rk1/pp3p2/2n4p/3pN1p1/2pPn3/2P2R1P/PPB3P1/RN1Q2K1 w - - 0 1",
+  "best": "Nxc4",
+  "alt": "Nxc6",
+  "teacher": {
+   "assessment": "Roughly equal if White acts now: Black's extra pawn and strong e4-knight are balanced by White undermining Black's centre.",
+   "idea": "Win back the c4-pawn and break up Black's centre, freeing the d-pawn.",
+   "why_best": "1.Nxc4 regains the pawn and attacks the d5-pawn holding up the e4-knight. After 1...g4 the pieces come off, the e4-knight is gone, and White's d4-pawn becomes a passed pawn protected by c3.",
+   "why_not_alt": "1.Nxc6 bxc6 lets Black stay a pawn up and keeps the knight on e4. White is left passive with Nd2 and Qe1, and Black is slightly better.",
+   "concepts": [
+    "passed_pawn",
+    "outpost",
+    "piece_activity"
+   ],
+   "novel_concept": "",
+   "plan": "Push and support the protected d-pawn and keep Black's pieces off central outposts.",
+   "difficulty": "natural"
+  },
+  "student": {
+   "novel_concept": "",
+   "idea": "Recapture with the knight so it eyes f3 and e4.",
+   "assessment": "Roughly equal. White is a pawn down, but Black's king is stuck in the centre and White's pieces are active.",
+   "why_best": "1.Nxc4 removes the c4 pawn and hits the e4 knight. After 1...g4 2.hxg4 Bxg4, White has a passed c-pawn and a protected passed d-pawn. The knight also eyes f3 and e4, so it becomes a central attacker.",
+   "why_not_alt": "1.Nxc6 trades off White's best attacker. After 1...bxc6 White has no passed pawn, and Black's pieces become active and White's king is stuck in the centre.",
+   "concepts": [
+    "piece_activity",
+    "passed_pawn",
+    "king_safety"
+   ],
+   "plan": "Play the c-pawn, then push the d-pawn, and keep the e4 knight active.",
+   "difficulty": "natural"
+  },
+  "base": {
+   "novel_concept": ""
+  }
+ },
+ {
+  "fen": "r1bq1rk1/pp1p1ppp/2n1pn2/2pP4/2P5/P1P2N2/2Q1PPPP/R1B1KB1R b KQ - 0 1",
+  "best": "exd5",
+  "alt": "Na5",
+  "teacher": {
+   "assessment": "Black is slightly better: White's c-pawns are doubled and weak, and Black can open the centre to exploit it.",
+   "idea": "Break the d5 wedge with a capture, freeing the pieces and leaving Black a central pawn.",
+   "why_best": "1...exd5 meets the attack on c6 and opens the centre. After 2.cxd5 Nxd5 Black's knight is centralised and the bishop on c8 is free. Black's c- and d-pawns can later produce a central passed pawn.",
+   "why_not_alt": "1...Na5 dodges the threat with a knight on the rim. It lets White keep the d5 wedge, which locks the centre and cramps Black, so the game stays equal.",
+   "concepts": [
+    "pawn_break",
+    "pawn_weakness",
+    "piece_activity"
+   ],
+   "novel_concept": "",
+   "plan": "Recapture on d5, develop the c8-bishop, then push the central d-pawn.",
+   "difficulty": "natural"
+  },
+  "student": {
+   "novel_concept": "",
+   "idea": "Take the d5 pawn, then hit the c4 pawn with the knight.",
+   "assessment": "Black is slightly better: the c5 pawn is attacked twice and must fall, so Black gets a passed c-pawn.",
+   "why_best": "1...exd5 removes the attacker of the c-pawn. After 2.cxd5 Nxd5 the knight is offside, so 3.e3 is forced. Then ...d5 gives a passed c-pawn, and Black's knight and bishop become active.",
+   "why_not_alt": "1...Na5 attacks the c-pawn but lets it live. White keeps the initiative, and Black's pieces stay cramped and passive.",
+   "concepts": [
+    "pawn_break",
+    "piece_activity",
+    "passed_pawn"
+   ],
+   "plan": "Play ...d5, then ...Nf6 and ...Nc6 to activate the knight and bishop.",
+   "difficulty": "natural"
+  },
+  "base": {
+   "novel_concept": ""
+  }
+ },
+ {
+  "fen": "2r2rk1/4ppbp/1q2b1p1/4P3/6n1/pBN3PP/PP2PP2/R1BRQ1K1 b - - 0 1",
+  "best": "Nxe5",
+  "alt": "axb2",
+  "teacher": {
+   "assessment": "Black is slightly better: Nxe5 wins the pawn back and opens the g7 bishop's diagonal toward c3, b2 and a1.",
+   "idea": "Save the attacked knight while grabbing e5 and unleashing the g7 bishop.",
+   "why_best": "The knight on g4 is attacked by h3. Nxe5 rescues it with a capture, and the bishop on g7 now hits c3 and a1. With the a3 pawn hitting b2, White must defend (2.Rb1) and Black wins material.",
+   "why_not_alt": "1...axb2 cashes in the a3 thorn too early. After 2.Bxb2 White's bishop contests the long diagonal, the pressure on c3 and a1 is gone, and White is slightly better.",
+   "concepts": [
+    "piece_activity",
+    "defence",
+    "pin"
+   ],
+   "novel_concept": "",
+   "plan": "Use the long diagonal and the a3 pawn to pressure b2, c3 and a1.",
+   "difficulty": "natural"
+  },
+  "student": {
+   "novel_concept": "",
+   "idea": "Recapture with the knight so it guards g7 and h3.",
+   "assessment": "Black is slightly better after recapturing on e5. White's queen and rook are still active, and Black's pieces are coordinated.",
+   "why_best": "1...Nxe5 wins a pawn and keeps the knight on g4, where it covers h3 and b3. After 2.Rb1 Bxb3 3.bxa3, Black wins the a3 pawn and the exchange is level.",
+   "why_not_alt": "1...axb2 trades pawns but leaves the knight passive. After 2.Bxb2 Nxe5 3.Nd5, White's pieces become active, and White is better.",
+   "concepts": [
+    "defence",
+    "piece_activity",
+    "piece_activity"
+   ],
+   "plan": "Keep the knight on g4, trade off White's pieces, then use the c3 rook against White's queen.",
+   "difficulty": "natural"
+  },
+  "base": {
+   "novel_concept": ""
+  }
+ },
+ {
+  "fen": "r1bqk1nr/pp1nbppp/4p3/2PpP3/6Q1/2N5/PPP2PPP/R1B1KBNR b KQkq - 0 1",
+  "best": "Nxe5",
+  "alt": "g6",
+  "teacher": {
+   "assessment": "Roughly equal. Black wins back material with tempo, and the over-extended white pawns become targets.",
+   "idea": "Grab the strong e5 pawn and hit the queen at the same time.",
+   "why_best": "1...Nxe5 removes White's cramping centre pawn and attacks the queen on g4. After 2.Qxg7 Ng6 3.Qd4 Black's pieces come out quickly with Bd7 and Bf6, and the c5 pawn is a target.",
+   "why_not_alt": "1...g6 is passive. It lets the e5 wedge stay and cramps Black. It also hems in the c8 bishop, leaving White with more space and an easy edge.",
+   "concepts": [
+    "initiative",
+    "space",
+    "piece_activity"
+   ],
+   "novel_concept": "",
+   "plan": "Develop quickly with Bd7 and Bf6, pressure the c5 pawn and the queen.",
+   "difficulty": "natural"
+  },
+  "student": {
+   "novel_concept": "",
+   "idea": "Take the pawn that attacks your queen, then hit back with Ng6.",
+   "assessment": "Roughly equal. Black is a pawn down, but White's queen on g4 is attacked by the d7 knight.",
+   "why_best": "1...Nxe5 removes the pawn that threatens Qxg7. After 2.Qxg7 Ng6, Black's knight eyes the queen and the c5 pawn. White must defend with 2...Ng6, and Black keeps the extra pawn.",
+   "why_not_alt": "1...g6 lets White play 2.Nf3. That opens the f-file and the c-file, and White's pieces get active. White's knight then lands on c5, and Black's pieces are passive.",
+   "concepts": [
+    "defence",
+    "counterplay",
+    "piece_activity"
+   ],
+   "plan": "Play Ng6, then use the knight and bishop to hit White's queen and c5 pawn.",
+   "difficulty": "natural"
+  },
+  "base": {
+   "novel_concept": ""
+  }
+ },
+ {
+  "fen": "r1bqk2r/ppp1bppp/2n5/3pP3/3PnB2/2N2N2/PPP1Q1PP/R3KB1R w KQkq - 0 1",
+  "best": "Nxe4",
+  "alt": "a3",
+  "teacher": {
+   "assessment": "White is clearly better: the e4 knight is held only by the d5 pawn, so White wins a pawn.",
+   "idea": "Trade on e4, then the queen collects the pawn that recaptured.",
+   "why_best": "1.Nxe4 dxe4 2.Qxe4 nets a clean pawn. The e4 square has two white attackers against one black defender. White then castles long, so the extra pawn comes with a safe king.",
+   "why_not_alt": "1.a3 lets Black trade 1...Nxc3 2.bxc3, weakening White's pawns. Then ...f6 hits the centre, White's king stays on open files, and Black gets fork chances. The extra pawn never appears.",
+   "concepts": [
+    "win_material",
+    "hanging_piece",
+    "king_safety"
+   ],
+   "novel_concept": "",
+   "plan": "Castle queenside, keep the queen centralized, and convert the extra pawn.",
+   "difficulty": "natural"
+  },
+  "student": {
+   "novel_concept": "",
+   "idea": "Take the loose e4 knight, then castle to centralize the king.",
+   "assessment": "White is clearly better: the e4 knight is loose, and White can win it with tempo.",
+   "why_best": "1.Nxe4 wins a knight for a pawn. After 2.Qxe4 White is a piece up, and the queen eyes the c3 and d5 squares. White castles smoothly with 3.O-O-O, and the knight on b4 and the d5 pawn start to roll.",
+   "why_not_alt": "1.a3 is too slow. Black plays 1...Nxc3 2.bxc3 and wins a piece for a pawn, so White is only slightly better.",
+   "concepts": [
+    "hanging_piece",
+    "win_material",
+    "king_safety"
+   ],
+   "plan": "Castle, then use the b4 knight and d5 pawn to push the centre.",
+   "difficulty": "natural"
+  },
+  "base": {
+   "novel_concept": ""
+  }
+ },
+ {
+  "fen": "r1bqkbnr/pp3ppp/2n5/4N3/Q2pP3/8/PP1PNPPP/R1B1KB1R b KQkq - 0 1",
+  "best": "Ne7",
+  "alt": "Bd7",
+  "teacher": {
+   "assessment": "White is slightly better: an extra pawn and pressure on the pinned c6-knight. Black's d4 pawn is his compensation.",
+   "idea": "Defend c6 with a knight that can recapture and keep guarding d4.",
+   "why_best": "The c6-knight is pinned by Qa4, and Nxc6 is threatened. After 1...Ne7, if White plays Nxc6, Black recaptures with the knight. That knight still defends d4 and keeps a central piece, so Black keeps his pawn and his compensation.",
+   "why_not_alt": "1...Bd7 also defends c6, but after 2.Nxc6 Bxc6 the d4 pawn has lost its defender. 3.Qxd4 forces a queen trade, and White stays better.",
+   "concepts": [
+    "defence",
+    "pin",
+    "piece_activity"
+   ],
+   "novel_concept": "",
+   "plan": "Finish development with ...Qc7 and kingside moves, and keep the d4 pawn defended.",
+   "difficulty": "natural"
+  },
+  "student": {
+   "novel_concept": "",
+   "idea": "Save the attacked knight with tempo, then hit the queen and d4.",
+   "assessment": "White is slightly better. Black's c6-knight is attacked by the e5-bishop, and White's pieces are active.",
+   "why_best": "The e5-bishop attacks the c6-knight, so it must move. Ne7 saves it with a tempo. After 2.Nf4 Qc7, Black's queen hits d4 and the c6-knight, and White's pieces stay active.",
+   "why_not_alt": "Bd7 ignores the attacked knight. After 2.Nxc6 Bxc6 3.Qxd4 Qxd4 4.Nxd4, Black loses the queen and the c6-knight is trapped. White's pieces then dominate.",
+   "concepts": [
+    "defence",
+    "piece_activity",
+    "trapped_piece"
+   ],
+   "plan": "Play Qc7, then Qd8 to hit d4, and keep the c6-knight safe.",
+   "difficulty": "natural"
+  },
+  "base": {
+   "novel_concept": ""
+  }
+ },
+ {
+  "fen": "r1b1r1k1/2q2nbp/1pp2pp1/p1p5/P2PP3/NQ2BN1P/1P3PP1/3RR1K1 b - - 0 1",
+  "best": "cxd4",
+  "alt": "Be6",
+  "teacher": {
+   "assessment": "Roughly equal. Black's bishop pair balances White's more central pieces, but the doubled c-pawns are a worry.",
+   "idea": "Take on d4 yourself to undouble your c-pawns before White fixes them.",
+   "why_best": "After 1...cxd4 2.Bxd4 c5 Black's doubled pawns are gone and c5 chases the bishop with tempo. Black keeps a healthy pawn structure and the bishop pair with no isolated pawns.",
+   "why_not_alt": "1...Be6 lets White play dxc5 bxc5. That leaves Black with three isolated pawns (a5, c5, c6) as long-term targets for White's knights and rooks.",
+   "concepts": [
+    "pawn_weakness",
+    "bishop_pair"
+   ],
+   "novel_concept": "",
+   "plan": "Play ...c5, develop with ...Be6, and use the bishop pair on open diagonals.",
+   "difficulty": "natural"
+  },
+  "student": {
+   "novel_concept": "",
+   "idea": "Take the d4 pawn, then trade off White's best attacking pieces.",
+   "assessment": "Roughly equal. Black's pieces are active, but White's queen and bishop are hitting the a5 and c5 pawns.",
+   "why_best": "1...cxd4 2.Bxd4 removes White's most dangerous attacker. After 2...c5 the c5 pawn is gone, and White's pieces are left with no targets. Black's pieces stay active and White's king is stuck in the centre.",
+   "why_not_alt": "1...Be6 lets White play 2.Qc2. That hits the a5 pawn, and White's pieces become active. White's queen and bishop then start hunting Black's queenside pawns.",
+   "concepts": [
+    "piece_activity",
+    "defence",
+    "king_safety"
+   ],
+   "plan": "Play ...c5, then ...Be6, and keep White's king in the centre.",
+   "difficulty": "natural"
+  },
+  "base": {
+   "novel_concept": ""
+  }
+ },
+ {
+  "fen": "rn3rk1/p4pp1/1p1b3p/q2p2N1/8/1R5B/P4PPP/3Q1RK1 w - - 0 1",
+  "best": "Nxf7",
+  "alt": "Ne6",
+  "teacher": {
+   "assessment": "Roughly equal. Black has extra pawns, but after Nxf7 the black king is exposed and White's pieces become active.",
+   "idea": "Your knight is attacked, so cash it in for f7 and expose the king.",
+   "why_best": "The g5 knight is attacked by the h6 pawn and has no great retreat. 1.Nxf7 Kxf7 takes a pawn and pulls the king into the open. That gives White enough activity to balance Black's extra material.",
+   "why_not_alt": "Ne6 wins back material after fxe6 Bxe6+, but the bishop wanders off to grab the a8 rook. Then ...Qe5 lines up with Bd6 against h2 and threatens mate.",
+   "concepts": [
+    "sacrifice",
+    "king_safety",
+    "hanging_piece"
+   ],
+   "novel_concept": "desperado",
+   "plan": "Use active rooks and queen to keep Black's open king busy; watch h2.",
+   "difficulty": "hard"
+  },
+  "student": {
+   "novel_concept": "",
+   "idea": "Take the attacking pawn now. Don't save the knight with a passive move.",
+   "assessment": "Roughly equal. White is two pawns down, but Black's knight on g5 is loose and White can win it.",
+   "why_best": "1.Nxf7 Kxf7 removes the knight that was threatening mate. After 2.a4, White's a-pawn becomes a real passer, and the b3-rook eyes the d6-bishop. White is only slightly behind.",
+   "why_not_alt": "1.Ne6 saves the knight but lets Black play 1...fxe6. White's a-pawn stays a bit behind, and Black's knight and queen become active.",
+   "concepts": [
+    "defence",
+    "passed_pawn",
+    "piece_activity"
+   ],
+   "plan": "Play a4, then use the b3-rook and the d6-bishop against Black's king.",
+   "difficulty": "natural"
+  },
+  "base": {
+   "novel_concept": ""
+  }
+ },
+ {
+  "fen": "2r3k1/pp1bBr1p/3P2p1/2q5/n5n1/2PB1N2/P2Q2P1/K1R4R w - - 0 1",
+  "best": "Bc2",
+  "alt": "Be4",
+  "teacher": {
+   "assessment": "White is clearly better. The d6 passed pawn is strong, the e7 bishop is powerful, and Black's king is weak on the light squares.",
+   "idea": "Hit the a4 knight, then swing the bishop to b3 toward g8.",
+   "why_best": "1.Bc2 attacks the a4 knight and forces 1...Nb6. Then 2.Ng5 chases the f7 rook, and 3.Bb3+ lands on the a2-g8 diagonal with check. Queens stay on and White's pieces swarm Black's king.",
+   "why_not_alt": "1.Be4 lets Black answer 2.c4 with 2...Qf2 and trade queens. That kills White's attack and leaves only a smaller endgame edge.",
+   "concepts": [
+    "king_safety",
+    "initiative",
+    "avoid_trades"
+   ],
+   "novel_concept": "",
+   "plan": "Bring the bishop to b3, add Ng5 and Qd4, and keep queens on.",
+   "difficulty": "hard"
+  },
+  "student": {
+   "novel_concept": "",
+   "idea": "Save the attacked bishop by retreating it to c2, not e4.",
+   "assessment": "White is clearly better: Black's a4 pawn is attacked, and White can win it.",
+   "why_best": "The c5 pawn attacks the bishop. Bc2 retreats safely and eyes a4. After 1...Nb6 2.Ng5 Rg7 3.Bb3+ Nc4, White's queen and knight hit the c5 pawn, and the c2 bishop stays active.",
+   "why_not_alt": "Be4 ignores the attacked bishop. After 1...Nb6 2.c4, Black's queen escapes with Qf2 and hits d2, and White's c-pawn is stuck in the centre.",
+   "concepts": [
+    "defence",
+    "piece_activity",
+    "pawn_weakness"
+   ],
+   "plan": "Win the a4 pawn, then use the queen and knight against Black's king.",
+   "difficulty": "natural"
+  },
+  "base": {
+   "novel_concept": ""
+  }
+ },
+ {
+  "fen": "rn2k2r/pp1Bppbp/3p1np1/q1P5/4P3/2N2N1P/PPP2PP1/R1BQK2R b KQkq - 0 1",
+  "best": "Nbxd7",
+  "alt": "Nfxd7",
+  "teacher": {
+   "assessment": "Roughly equal after Black recaptures on d7. The pin on c3 and the attack on e4 win back the pawn.",
+   "idea": "Recapture with the b8-knight so the f6-knight keeps hitting e4.",
+   "why_best": "After 1...Nbxd7 2.cxd6 Nxe4, Black wins back the e4 pawn because the c3-knight is pinned to the king by Qa5. Black also develops a new piece and keeps solid kingside cover.",
+   "why_not_alt": "1...Nfxd7 drops the pressure on e4. Black grabs pawns with Bxc3+ and Qxc3+ but gives up the dark-squared bishop, and White's d6 pawn then breaks through with dxe7.",
+   "concepts": [
+    "pin",
+    "development",
+    "piece_activity"
+   ],
+   "novel_concept": "",
+   "plan": "Take on e4, castle, and finish developing with ...e6 and the rooks.",
+   "difficulty": "natural"
+  },
+  "student": {
+   "novel_concept": "",
+   "idea": "Take the checking bishop. It is the only one that matters.",
+   "assessment": "Roughly equal. White is a piece up, but Black's active pieces and White's king are both in danger.",
+   "why_best": "The d7 bishop is giving check. 1...Nbxd7 wins it outright. After 2.cxd6 Nxe4 3.O-O Nxc3, Black has developed and the material is level.",
+   "why_not_alt": "1...Nfxd7 grabs a bishop but leaves the d7 bishop hanging. After 2.cxd6 Bxc3+ 3.bxc3 Qxc3+ White gets checks, and White keeps the extra piece.",
+   "concepts": [
+    "defence",
+    "hanging_piece",
+    "development"
+   ],
+   "plan": "Develop with ...Nc3, castle, then use the knight and bishop against White's king.",
+   "difficulty": "natural"
+  },
+  "base": {
+   "novel_concept": ""
+  }
+ },
+ {
+  "fen": "r1bq1b1r/pppnk3/4p2p/6PQ/3Ppp2/6B1/PPPN1PP1/R3KB1R b KQ - 0 1",
+  "best": "fxg3",
+  "alt": "e3",
+  "teacher": {
+   "assessment": "Black is slightly better: taking the bishop wins a piece, though White gets some pawns and play back.",
+   "idea": "Just take the attacked bishop: a free piece outweighs the pawns White regains.",
+   "why_best": "1...fxg3 wins a whole bishop. After 2.O-O-O Bg7 3.Nxe4 Qf8 4.fxg3 hxg5 White regains pawns and keeps some initiative. Black still has an extra piece and gives up nothing permanent.",
+   "why_not_alt": "1...e3 lets the bishop escape with 2.Bh4. It then lines up behind the g5-pawn against the e7 king, so any g-pawn move gives a discovered check. White keeps both bishops and is clearly better.",
+   "concepts": [
+    "win_material",
+    "discovered_attack",
+    "king_safety"
+   ],
+   "novel_concept": "",
+   "plan": "Develop with ...Bg7 and ...Qf8, tuck the king away, and convert the extra piece.",
+   "difficulty": "obvious"
+  },
+  "student": {
+   "novel_concept": "",
+   "idea": "Take the free bishop. Material is level again.",
+   "assessment": "Black is slightly better: White's bishop on g3 is hanging, so Black wins a piece.",
+   "why_best": "The g3 bishop is attacked by the f4 pawn and defended only by the h5 queen. 1...fxg3 wins it outright. After 2.O-O-O Bg7 Black is only slightly worse, and White's rook on e4 is about to fall.",
+   "why_not_alt": "1...e3 attacks the d2 knight but ignores the hanging bishop. After 2.Bh4 exd2+ 3.Kxd2 Bg7 4.Re1 Black is clearly worse, and White's rook and bishop become active.",
+   "concepts": [
+    "hanging_piece",
+    "win_material",
+    "defence"
+   ],
+   "plan": "Play ...Bg7, then ...Bxd4, and keep the extra piece.",
+   "difficulty": "natural"
+  },
+  "base": {
+   "novel_concept": ""
+  }
+ },
+ {
+  "fen": "r3r1k1/ppqbbppp/2n1p3/1B4B1/2P3n1/2N2N1P/PP2QPP1/R4RK1 b - - 0 1",
+  "best": "Nd4",
+  "alt": "Bxg5",
+  "teacher": {
+   "assessment": "Black is winning. Nd4 hits the queen and Black comes out a piece up in the exchanges.",
+   "idea": "Counterattack with tempo: hit the queen instead of rescuing pieces.",
+   "why_best": "1...Nd4 attacks the queen on e2 and adds pressure on f3 and b5. After 2.Rfe1 Nxe2+ 3.Rxe2 Bxb5 4.cxb5 Bxg5 5.hxg4, every trade lands in Black's favour and Black ends up clearly ahead.",
+   "why_not_alt": "1...Bxg5 is just an even trade. After 2.hxg4 White regains the piece, the tension disappears and the position stays equal.",
+   "concepts": [
+    "initiative",
+    "win_material",
+    "hanging_piece"
+   ],
+   "novel_concept": "",
+   "plan": "Collect the material, then trade pieces to convert the extra material.",
+   "difficulty": "hard"
+  },
+  "student": {
+   "novel_concept": "",
+   "idea": "Save the attacked knight by grabbing it, then trade queens to end White's attack.",
+   "assessment": "Black is winning. White's queen and knight on e2 are attacked, and the g4 knight is hanging.",
+   "why_best": "The g4 knight is attacked by the c7 queen. 1...Nd4 saves it with a capture, so Black is a piece up. After 2.Rfe1 Nxe2+ 3.Rxe2 Bxb5 4.cxb5, Black wins the piece back and is clearly ahead.",
+   "why_not_alt": "1...Bxg5 gives up the bishop for a knight. After 2.hxg4 Be7, White's rook reaches d8, and the material is level again. The attack is gone and the position is equal.",
+   "concepts": [
+    "defence",
+    "hanging_piece",
+    "win_material"
+   ],
+   "plan": "Trade queens, then use the extra piece and the b5 bishop to convert.",
+   "difficulty": "natural"
+  },
+  "base": {
+   "novel_concept": ""
+  }
+ },
+ {
+  "fen": "r1bq1rk1/1p3pb1/n1pp2p1/3Pp1Pp/p1P1P2P/1nN1BP2/PP1QBN2/1K1R3R w - - 0 1",
+  "best": "axb3",
+  "alt": "Qe1",
+  "teacher": {
+   "assessment": "Roughly equal. Black's knight on b3 hits White's queen, and White must answer that threat.",
+   "idea": "Just take the attacking knight. Opening lines near your king costs less than passivity.",
+   "why_best": "1.axb3 removes the knight that attacks the queen. After 1...axb3 Black gets only a pawn back and an open a-file. White's Na4 and Qd3 then round up the b3-pawn, keeping the balance.",
+   "why_not_alt": "1.Qe1 dodges but leaves Black's knights alive. They reach outposts like d4, Black's pieces aim at White's king, and Black is slightly better.",
+   "concepts": [
+    "win_material",
+    "defence",
+    "outpost"
+   ],
+   "novel_concept": "",
+   "plan": "Win the b3-pawn with Na4 and Qd3, then keep the queenside closed.",
+   "difficulty": "natural"
+  },
+  "student": {
+   "novel_concept": "",
+   "idea": "Take the attacking knight now. Material is level again.",
+   "assessment": "Roughly equal. White's queen and knight are attacked, but Black's knight and pawn are loose.",
+   "why_best": "1.axb3 wins a whole piece. After 2.Na4 c5 3.Qd3 Bd7 4.Qxb3 Bxa4, White is once again material level and the knight on b3 is gone. White's pieces stay active.",
+   "why_not_alt": "1.Qe1 saves the queen but leaves the knight on d2. After 1...Nd4 2.a3 White is a pawn down, and Black's knight and pawn are active.",
+   "concepts": [
+    "win_material",
+    "defence",
+    "piece_activity"
+   ],
+   "plan": "Play ...c5 and ...Bd7, then use the queen and knight against Black's pawns.",
+   "difficulty": "natural"
+  },
+  "base": {
+   "novel_concept": ""
+  }
+ },
+ {
+  "fen": "r3kb1r/pbpp3p/1qp3p1/4Pp2/1nP2P2/1P3Q2/P2B2PP/RN1K1B1R w kq - 0 1",
+  "best": "Nc3",
+  "alt": "a3",
+  "teacher": {
+   "assessment": "Equal. White has more space and Black's pawns are split, but White's king and queenside are undeveloped.",
+   "idea": "Develop the last minor piece and blunt Black's long-diagonal bishop.",
+   "why_best": "Nc3 gets a piece out and covers d5 and e4. That defuses Black's discovered-attack ideas along the b7\u2013f3 diagonal at the queen. After 1...O-O-O 2.a3 the knight can jump to a4 and hit the queen on b6.",
+   "why_not_alt": "a3 kicks the b4 knight but costs a tempo. White's b1 knight and rooks stay boxed in, so Black castles and plays ...Bc5 with a clear lead in development.",
+   "concepts": [
+    "development",
+    "piece_activity",
+    "discovered_attack"
+   ],
+   "novel_concept": "",
+   "plan": "Finish development, tuck the king to c2, then use the knight on a4 and push for space.",
+   "difficulty": "natural"
+  },
+  "student": {
+   "novel_concept": "",
+   "idea": "Develop with tempo, then castle to guard the king.",
+   "assessment": "Roughly equal. White's king is in the centre, but Black's pieces are active and White's king is stuck.",
+   "why_best": "1.Nc3 develops with a tempo, so Black has no time to castle. White then plays 2.a3, which adds a second attacker to the b4 knight. White's pieces stay active and the game is level.",
+   "why_not_alt": "1.a3 is too slow. Black gets time to castle, and White's king stays in the centre. White's pieces become passive, and Black's knight and queen become targets.",
+   "concepts": [
+    "development",
+    "king_safety",
+    "piece_activity"
+   ],
+   "plan": "Castle, then use the a-file and the queenside pawns against Black's king.",
+   "difficulty": "natural"
+  },
+  "base": {
+   "novel_concept": ""
+  }
+ },
+ {
+  "fen": "rnbr2k1/1p1q1p2/p3pb2/4p2Q/3P4/N1PB4/5PPP/R3R1K1 w - - 0 1",
+  "best": "Re3",
+  "alt": "Nc4",
+  "teacher": {
+   "assessment": "White is slightly better despite being down material: Black's king has almost no pawn cover and White's queen is already on h5.",
+   "idea": "Rook lift: bring the e1-rook to the third rank to join the kingside attack.",
+   "why_best": "1.Re3 threatens to swing the rook to g3 or h3 against the bare king. Black must spend time on 1...Bg7 to defend. Then 2.Nc4 hits e5, and the knight later reaches g6 to harass the king.",
+   "why_not_alt": "1.Nc4 lets Black answer 1...exd4, opening the centre. Black gets extra passed pawns and forking chances, and White's attack has no rook support, so it fizzles to equality.",
+   "concepts": [
+    "king_safety",
+    "piece_activity",
+    "initiative"
+   ],
+   "novel_concept": "rook lift",
+   "plan": "Swing the rook to g3/h3, then reroute the knight via c4 to e5/g6.",
+   "difficulty": "natural"
+  },
+  "student": {
+   "novel_concept": "",
+   "idea": "Bring the rook to e3 to guard d4 and hit the queen.",
+   "assessment": "White is slightly better: the e5 pawn is attacked, and the d4 pawn is the key target.",
+   "why_best": "Re3 adds a second defender to d4. After 1...Bg7 2.Nc4 f5 3.Nxe5, White wins the pawn back and keeps the extra piece. White's pieces stay active, and the queen stays on h5.",
+   "why_not_alt": "Nc4 is too slow. Black plays 1...exd4, wins a pawn, and the material edge disappears. White's pieces become passive, and the position is equal.",
+   "concepts": [
+    "defence",
+    "piece_activity",
+    "pawn_weakness"
+   ],
+   "plan": "Win back the e5 pawn, then use the extra piece and queen against Black's king.",
+   "difficulty": "natural"
+  },
+  "base": {
+   "novel_concept": ""
+  }
+ },
+ {
+  "fen": "r3k1nr/p3p1bp/bqp2pp1/2p1p3/4N3/3PBN2/PPP1QPPP/R3R1K1 b kq - 0 1",
+  "best": "Nh6",
+  "alt": "f5",
+  "teacher": {
+   "assessment": "White is better. Black is a pawn up, but has broken pawns, an uncastled king and an undeveloped kingside.",
+   "idea": "Develop the last knight toward f5 so Black can castle.",
+   "why_best": "1...Nh6 brings out a sleeping piece and heads for f5, where it hits the e3-bishop and guards the kingside. After 2.Qd2 Nf5 3.Bxc5 Qc7, Black is finally coordinating and close to castling.",
+   "why_not_alt": "1...f5 spends a tempo on a pawn while the king and kingside pieces wait. After 2.Bxc5 Qa5 3.Qd2 Qxd2 Black's damaged pawns still leave White clearly better.",
+   "concepts": [
+    "development",
+    "king_safety",
+    "piece_activity"
+   ],
+   "novel_concept": "",
+   "plan": "Play Nf5, castle short, then use the bishops against White's queenside.",
+   "difficulty": "natural"
+  },
+  "student": {
+   "novel_concept": "",
+   "idea": "Develop with tempo: Nh6 hits the e4 knight and the c5 pawn.",
+   "assessment": "White is better despite Black's extra pawn, because Black's pieces are still undeveloped and White's pieces are active.",
+   "why_best": "Nh6 develops with a tempo. It eyes e4 and c5, and it also eyes d2. After 2.Qd2 Nf5, Black's knight is central and White's pieces stay active. White's queen and bishop stay on the long diagonal.",
+   "why_not_alt": "1...f5 is too slow. After 2.Bxc5 Qa5 Qxd2, Black has traded queens, and White's pieces are centralised. White's pieces then take over with d4 and b3.",
+   "concepts": [
+    "development",
+    "piece_activity",
+    "avoid_trades"
+   ],
+   "plan": "Play ...Nf5, castle, then ...Bc4 to finish development.",
+   "difficulty": "natural"
+  },
+  "base": {
+   "novel_concept": ""
+  }
+ },
+ {
+  "fen": "r1b4r/ppppnkpp/6p1/2q5/2P2B2/2N2QP1/PP4KP/R3R3 b - - 0 1",
+  "best": "Nf5",
+  "alt": "Re8",
+  "teacher": {
+   "assessment": "White is winning despite Black's extra material. The black king sits on the open f-file facing White's queen and bishop.",
+   "idea": "Block the f-file so White's bishop can't uncover a discovered check.",
+   "why_best": "White's bishop on f4 stands between the queen on f3 and your king. Any bishop move with tempo, such as Bd6+, gives a discovered check and wins material. 1...Nf5 plugs the file and the knight is well placed there.",
+   "why_not_alt": "1...Re8 leaves the f-file battery in place. After 2.Nd5 Kg8 3.b4, Black has to give up the queen for a knight with Qxd5.",
+   "concepts": [
+    "defence",
+    "discovered_attack",
+    "king_safety"
+   ],
+   "novel_concept": "",
+   "plan": "Keep the f-file blocked, get the king to safety, then develop the c8-bishop and rooks.",
+   "difficulty": "natural"
+  },
+  "student": {
+   "novel_concept": "",
+   "idea": "Save the attacked knight by jumping to f5, not e8.",
+   "assessment": "White is winning. Black's queen and knight are attacked, and White's pieces are active.",
+   "why_best": "The c3-knight is attacked by the g3-pawn. Nf5 saves it and eyes h7. After 2.Nd5 Rf8, Black's rook reaches f8, and the queen stays active on c5 and c6.",
+   "why_not_alt": "Re8 ignores the knight. After 2.Nd5 Qxd5 4.cxd5, White wins the queen outright, and Black's pieces become passive.",
+   "concepts": [
+    "defence",
+    "piece_activity",
+    "win_material"
+   ],
+   "plan": "Activate the rook on f8, keep the queen on c5/c6, and target White's queenside.",
+   "difficulty": "natural"
+  },
+  "base": {
+   "novel_concept": ""
+  }
+ },
+ {
+  "fen": "r1bqkb1r/pp1p1p1p/2n1pPp1/8/2B5/2Q5/PPP2PPP/RNB1K1NR b KQkq - 0 1",
+  "best": "Bb4",
+  "alt": "b5",
+  "teacher": {
+   "assessment": "Black is clearly better: the white queen on c3 lines up with the king on e1, so it can be pinned and won.",
+   "idea": "Pin the queen to the king on the e1-a5 diagonal.",
+   "why_best": "1...Bb4 pins the queen against the king, and Nc6 guards the bishop. White can't save the queen. Black first takes 2...Qxf6, then trades bishop for queen with Bxc3, wiping out White's extra piece.",
+   "why_not_alt": "1...b5 hits the c4 bishop but lets the pin go. White plays Nd2 and gets organized, and the f6 pawn stays a thorn by Black's king. The position is only equal.",
+   "concepts": [
+    "pin",
+    "win_material",
+    "king_safety"
+   ],
+   "novel_concept": "",
+   "plan": "Win the queen with Bxc3, collect the f6 pawn, castle, then convert the material edge.",
+   "difficulty": "natural"
+  },
+  "student": {
+   "novel_concept": "",
+   "idea": "Save the attacked bishop by grabbing the queen, then trade queens.",
+   "assessment": "Black is better. White's queen on c3 is attacked by the d8-bishop, and grabbing it wins a pawn.",
+   "why_best": "The c3-bishop is attacked by the d8-queen. 1...Bb4 saves it with a capture, so Black is a piece up. After 2.Nf3 Qxf6 3.Bd2 Bxc3 4.Bxc3, Black wins a pawn and the queenless position is level.",
+   "why_not_alt": "1...b5 attacks the c4-bishop but ignores the queen. After 2.Nd2 bxc4 3.Ne2 d5, White keeps the extra material and the bishop pair, and the game is roughly equal.",
+   "concepts": [
+    "defence",
+    "hanging_piece",
+    "win_material"
+   ],
+   "plan": "Trade queens, then use the extra piece and the c8-bishop to convert.",
+   "difficulty": "natural"
+  },
+  "base": {
+   "novel_concept": ""
+  }
+ },
+ {
+  "fen": "r3r1k1/1pb2pp1/p3q2p/3p4/4n3/2P1BN1P/PPQ1BPK1/R4R2 b - - 0 1",
+  "best": "Qg6+",
+  "alt": "Rad8",
+  "teacher": {
+   "assessment": "Black is better: White's king is exposed on the g-file, and a check there wins material back.",
+   "idea": "Check on the g-file so the knight must block and gets pinned.",
+   "why_best": "1...Qg6+ leaves 2.Ng5 as the block in the line, but then the knight is pinned to the king. Black piles on with 2...Bd8, and after 3.h4 hxg5 Black wins the piece and is ahead.",
+   "why_not_alt": "1...Rad8 is a slow developing move. White gets 2.Rac1 and can tuck the king into the corner, and Black never wins the material back.",
+   "concepts": [
+    "pin",
+    "win_material",
+    "king_safety"
+   ],
+   "novel_concept": "",
+   "plan": "Win the pinned knight, then use the open g- and h-files against White's king.",
+   "difficulty": "natural"
+  },
+  "student": {
+   "novel_concept": "",
+   "idea": "Check the king with tempo, then hit the queen and rook together.",
+   "assessment": "Black is better despite being down material. White's king is stuck in the centre and Black's queen and rook can hunt it.",
+   "why_best": "1...Qg6+ forces 2.Ng5. The queen and rook together hit the king, and 2...Bd8 blocks the queen. White must give material (3.h4 hxg5) to save the king, and Black stays clearly better.",
+   "why_not_alt": "1...Rad8 is too slow. White gets time to regroup with Rac1 and Ng1, and the material edge disappears.",
+   "concepts": [
+    "initiative",
+    "king_safety",
+    "counterplay"
+   ],
+   "plan": "Keep checking, keep the queen and rook active, and keep White's king in the centre.",
+   "difficulty": "natural"
+  },
+  "base": {
+   "novel_concept": ""
+  }
+ },
+ {
+  "fen": "rn1qkbnr/pbpppppp/8/1p6/8/2P3P1/PP1PPP1P/RNBQKBNR w KQkq - 0 1",
+  "best": "Nf3",
+  "alt": "f3",
+  "teacher": {
+   "assessment": "Roughly equal. White must first stop Black's bishop, which is aiming straight down the open long diagonal at the h1 rook.",
+   "idea": "Block the long diagonal with a developing move, then fianchetto and castle.",
+   "why_best": "After g3 the b7-bishop threatens Bxh1. Nf3 blocks the diagonal and develops a piece at the same time. Bg2 and castling follow quickly (1.Nf3 e6 2.Bg2 ... 4.O-O), so the king gets safe.",
+   "why_not_alt": "f3 also stops Bxh1, but it is a pawn move instead of development. It takes f3 from the knight, weakens the king's pawn cover, and leaves the king stuck in the centre longer.",
+   "concepts": [
+    "defence",
+    "development",
+    "king_safety"
+   ],
+   "novel_concept": "",
+   "plan": "Bg2, castle short, then d4 to claim the centre.",
+   "difficulty": "natural"
+  },
+  "student": {
+   "novel_concept": "",
+   "idea": "Develop with tempo: Nf3 guards h1 and eyes the queen.",
+   "assessment": "Roughly equal. White's king is stuck in the centre, but Black's queen and knight are loose.",
+   "why_best": "Nf3 develops with a tempo. It also covers h1, so Black can't play ...e5 or ...Be5. White keeps the centre, and after 2.Bg2 Be7 3.d4 White castles safely.",
+   "why_not_alt": "1.f3 is too slow. Black gets ...e6 and ...a6, castles, and ...c5, and White's king stays in the centre. White's development is lost.",
+   "concepts": [
+    "development",
+    "king_safety",
+    "prophylaxis"
+   ],
+   "plan": "Castle, then play d4 and O-O, and keep Black's queen and knight offside.",
+   "difficulty": "natural"
+  },
+  "base": {
+   "novel_concept": ""
+  }
+ },
+ {
+  "fen": "rnb1kb1r/1pq2ppp/p2p1n2/4p1B1/P3P3/2N2N2/1PP2PPP/R2QKB1R b KQkq - 0 1",
+  "best": "Nbd7",
+  "alt": "Be7",
+  "teacher": {
+   "assessment": "Roughly equal. White is a bit ahead in development, but Black's structure is solid if d5 stays covered.",
+   "idea": "Back up the f6-knight so Bxf6 can't win control of d5.",
+   "why_best": "After Nbd7, if White plays Bxf6 Black recaptures with the knight, so a knight still guards d5. The d7-knight can later jump to c5 and press on e4 (1...Nbd7 2.Nd2 h6 3.Be3 Nc5).",
+   "why_not_alt": "After 1...Be7 2.Bxf6 Bxf6 3.Nd5, the queen is hit and White's knight sits on a hole Black can't challenge. The f6-bishop is blocked by its own e5/d6 pawns.",
+   "concepts": [
+    "outpost",
+    "bad_bishop",
+    "development"
+   ],
+   "novel_concept": "",
+   "plan": "Play ...h6, ...Be7 and castle, then use ...Nc5 to hit e4.",
+   "difficulty": "natural"
+  },
+  "student": {
+   "novel_concept": "",
+   "idea": "Develop with tempo on the c3 knight, then castle.",
+   "assessment": "Roughly equal. Black's pieces are undeveloped, but White's pieces are also a bit overextended.",
+   "why_best": "1...Nbd7 adds a second attacker to c3. After 2.Nd2 h6 3.Be3 Nc5, Black castles and the knight eyes the d-file. White's pieces stay cramped.",
+   "why_not_alt": "1...Be7 is too slow. White plays 2.Bxf6 Bxf6 and gets a free piece. Black's knight is stuck on f6, and White's pieces become active.",
+   "concepts": [
+    "development",
+    "piece_activity",
+    "avoid_trades"
+   ],
+   "plan": "Castle, then use the knight on c5 and the b8 bishop to hit White's center.",
+   "difficulty": "natural"
+  },
+  "base": {
+   "novel_concept": ""
+  }
+ },
+ {
+  "fen": "r1bq1rk1/pppnppbp/5np1/4P3/8/2N1BN1P/PPP2PP1/R2QKB1R b KQ - 0 1",
+  "best": "Ne8",
+  "alt": "Nh5",
+  "teacher": {
+   "assessment": "White is better: the e5 pawn gains space and kicks Black's knight, and Black is cramped.",
+   "idea": "Retreat the attacked knight to a safe square, not to the rim.",
+   "why_best": "Ne8 saves the knight and frees the Bg7 diagonal toward e5. Black stays only slightly worse. After 2.Bc4 c6, Black hits back with ...fxe6 and ...Qa5, pinning Nc3.",
+   "why_not_alt": "On h5 the knight has no retreat. 2.g4, backed by the h3 pawn, traps it, and Black's ...b5 gambit doesn't make up for the lost piece.",
+   "concepts": [
+    "trapped_piece",
+    "defence",
+    "piece_activity"
+   ],
+   "novel_concept": "",
+   "plan": "Pressure e5 with Nd7 and Bg7, break with ...c6 and ...f6, then use ...Qa5.",
+   "difficulty": "natural"
+  },
+  "student": {
+   "novel_concept": "",
+   "idea": "Save the attacked knight by retreating it to e8, where it guards f6.",
+   "assessment": "White is slightly better: the e5 pawn attacks the f6 knight, and White's pieces are active.",
+   "why_best": "The f6 knight is attacked by the e5 pawn. On e8 it guards f6, so White must spend time (2.Bc4, 3.e6) to attack it. Black keeps the extra piece and the game is close.",
+   "why_not_alt": "On h5 the knight is attacked by the e5 pawn and must move with 2.g4. After 3.gxh5 Bb7 4.Bxb5 Nxe5 5.Nxe5, White wins the piece back and keeps a clear edge.",
+   "concepts": [
+    "defence",
+    "piece_activity",
+    "piece_activity"
+   ],
+   "plan": "Play ...c6 to guard f6, then ...Qa5 to hit White's centre.",
+   "difficulty": "natural"
+  },
+  "base": {
+   "novel_concept": ""
+  }
+ },
+ {
+  "fen": "rnbqkbnr/ppppppp1/8/8/7p/5NP1/PPPPPP1P/RNBQKB1R w KQkq - 0 1",
+  "best": "Nxh4",
+  "alt": "d4",
+  "teacher": {
+   "assessment": "White is better: Black's h4-pawn is loose, so White simply wins a clean pawn.",
+   "idea": "Grab the free h-pawn; the g3-pawn guards the knight against ...Rxh4.",
+   "why_best": "After 1.Nxh4 Black can't recapture: ...Rxh4 gxh4 loses the exchange. White is a pawn up, keeps the g2-g3 king cover intact and gets a kingside pawn majority.",
+   "why_not_alt": "1.d4 lets Black trade with ...hxg3. After fxg3 White wins nothing and loosens the pawns in front of his own king.",
+   "concepts": [
+    "win_material",
+    "hanging_piece",
+    "king_safety"
+   ],
+   "novel_concept": "",
+   "plan": "Develop calmly (Bg2, castle), keep the extra pawn, then play c4/d4.",
+   "difficulty": "obvious"
+  },
+  "student": {
+   "novel_concept": "",
+   "idea": "Take the pawn now. The h4 pawn is loose, so it falls.",
+   "assessment": "White is slightly better: the h4 pawn falls, and White gets a free piece for a pawn.",
+   "why_best": "1.Nxh4 wins a pawn outright. The h4 pawn is attacked by the g3 pawn and the f3 knight, so 1...c5 is forced. After 2.c4 White's pieces become active and the h4 pawn falls.",
+   "why_not_alt": "1.d4 is slow. Black plays 1...hxg3 2.fxg3, and White has no pawn to show for it. The h4 pawn stays alive, and White is only equal.",
+   "concepts": [
+    "hanging_piece",
+    "win_material",
+    "piece_activity"
+   ],
+   "plan": "Play 2.c4, then develop with Nf3 and Nh4, and keep the h4 pawn under pressure.",
+   "difficulty": "natural"
+  },
+  "base": {
+   "novel_concept": ""
+  }
+ },
+ {
+  "fen": "r1bqkbnr/p5pp/2pp4/4p1N1/3pp3/2P5/PP3PPP/RNBQ1RK1 w kq - 0 1",
+  "best": "cxd4",
+  "alt": "Nxe4",
+  "teacher": {
+   "assessment": "Roughly equal. White is two pawns down but Black's center pawns are loose and his king is exposed.",
+   "idea": "Break up Black's pawn center before it rolls forward, then win pawns back.",
+   "why_best": "1.cxd4 strikes at the center first. After 1...d5 2.Nxe4, White regains material, and 4.dxe5 leaves White with an advanced passed pawn. The trades also strip Black's king of pawn cover.",
+   "why_not_alt": "1.Nxe4 leaves the d4 pawn alive. After 2...d3, Black gets a protected passed pawn deep in White's camp, and White has no passer of his own.",
+   "concepts": [
+    "pawn_break",
+    "passed_pawn",
+    "king_safety"
+   ],
+   "novel_concept": "",
+   "plan": "Recover pawns, push the e-pawn passer, and target Black's open king.",
+   "difficulty": "natural"
+  },
+  "student": {
+   "novel_concept": "",
+   "idea": "Take the pawn that attacks your queen, not the one that defends yours.",
+   "assessment": "Roughly equal. White is a pawn down, but Black's queen on d8 is exposed to White's knight and bishop.",
+   "why_best": "1.cxd4 removes the pawn that hits the queen. After 1...d5 2.Nxe4 Nf6 3.Nxf6+ Qxf6, White has a passed d-pawn and a protected e-pawn, and the material is level.",
+   "why_not_alt": "1.Nxe4 grabs a pawn but leaves the queen safe. Black gets time to regroup with ...d3 and ...Be7, and White's edge shrinks to a small one.",
+   "concepts": [
+    "pawn_break",
+    "defence",
+    "passed_pawn"
+   ],
+   "plan": "Play ...Nf6, castle, then push the d-pawn and keep the e-pawn protected.",
+   "difficulty": "natural"
+  },
+  "base": {
+   "novel_concept": ""
+  }
+ },
+ {
+  "fen": "r1b1k2r/pp1n1ppp/4p3/2PpP3/q2B1P2/P7/2P3PP/R2QKB1R b KQkq - 0 1",
+  "best": "b6",
+  "alt": "Qc6",
+  "teacher": {
+   "assessment": "Roughly equal. White's c5 pawn grabs space, but White's queenside pawns are scattered and weak.",
+   "idea": "Break up the c5 spearhead with ...b6 before it becomes a dangerous passer.",
+   "why_best": "1...b6 hits c5 at once. After 2.cxb6 axb6 the a-file opens for the a8-rook against a3. After 3.c3 Qxd1+ 4.Kxd1 Ba6, White's king has lost castling and the f1-bishop is pinned down.",
+   "why_not_alt": "1...Qc6 is passive and leaves c5 alone. White plays Qd2-b4 and Bb5, then pushes c5-c6, getting an advanced passed pawn.",
+   "concepts": [
+    "pawn_break",
+    "passed_pawn",
+    "open_file"
+   ],
+   "novel_concept": "",
+   "plan": "Trade queens, then hit a3 and White's weak queenside pawns with Ra8 and Ba6.",
+   "difficulty": "natural"
+  },
+  "student": {
+   "novel_concept": "",
+   "idea": "Strike at White's centre with ...b6 to open lines and hit the d4 bishop.",
+   "assessment": "Roughly equal. Black's d5 pawn is loose, and White's centre is the main target.",
+   "why_best": "1...b6 hits the d4 bishop, which must move with 2.cxb6 axb6. That opens the a8\u2013g1 diagonal toward White's king. Black's queen then eyes d1 and e1, and the c8 bishop can be active.",
+   "why_not_alt": "1...Qc6 is slow. White calmly develops with 2.Qd2 and Bb5, keeps the centre, and the d5 pawn becomes a real passed pawn.",
+   "concepts": [
+    "pawn_break",
+    "counterplay",
+    "king_safety"
+   ],
+   "plan": "Use the b6 break and queen to hit d1 and e1, then activate the c8 bishop.",
+   "difficulty": "natural"
+  },
+  "base": {
+   "novel_concept": ""
+  }
+ },
+ {
+  "fen": "rnbqkb1r/p1p2ppp/1p2pn2/3P4/2PP4/2N5/PP3PPP/R1BQKBNR b KQkq - 0 1",
+  "best": "exd5",
+  "alt": "Bd6",
+  "teacher": {
+   "assessment": "Roughly equal after exd5: Black regains the pawn and frees the game; otherwise White keeps an extra pawn and space.",
+   "idea": "Recapture the pawn at once and break up White's big center.",
+   "why_best": "White's d5 pawn is hanging and White is a pawn up. 1...exd5 wins it back and opens the center. After 2.Be2 dxc4 3.Bxc4 Black develops with Be7 and O-O, and White's lone d4 pawn becomes an isolated target.",
+   "why_not_alt": "1...Bd6 lets White play dxe6. After fxe6 Black has a weak, split pawn structure and a loose king's diagonal. White keeps the space and the better game.",
+   "concepts": [
+    "win_material",
+    "pawn_break",
+    "iqp"
+   ],
+   "novel_concept": "",
+   "plan": "Develop with Be7 and O-O, then blockade and pressure the isolated d4 pawn.",
+   "difficulty": "natural"
+  },
+  "student": {
+   "novel_concept": "",
+   "idea": "Take the pawn that attacks your queen, not the one that attacks yours.",
+   "assessment": "Roughly equal. Black is a pawn down, but White's d5 pawn is loose and Black can win it.",
+   "why_best": "The d5 pawn attacks the queen on d8. 1...exd5 removes that attacker. White is a pawn down, but the d5 pawn is loose and Black can grab it with 2...dxc4 3.Bxc4. White's king is still in the centre and the c8 rook is still tied up.",
+   "why_not_alt": "1...Bd6 is slow. White plays 2.dxe6 fxe6 3.Nf3 and castles, and Black's king stays in the centre. White gets the initiative and the game is slightly better.",
+   "concepts": [
+    "pawn_break",
+    "defence",
+    "king_safety"
+   ],
+   "plan": "Play ...dxc4, castle, then use the queenside majority.",
+   "difficulty": "natural"
+  },
+  "base": {
+   "novel_concept": ""
+  }
+ },
+ {
+  "fen": "rn1qr1k1/pp3ppp/3b4/2p5/2PPB1b1/5N2/P4P2/RNBQ1RK1 w - - 0 1",
+  "best": "Qd3",
+  "alt": "Nc3",
+  "teacher": {
+   "assessment": "White is slightly better: the extra pawn and an aim at Black's h7 outweigh White's own airy king.",
+   "idea": "Defend the e4-bishop with the queen, step out of the pin, and aim at h7.",
+   "why_best": "Black threatens Rxe4, and Bxf3 adds pressure. Qd3 guards e4 and lifts the queen off the d1-g4 line, so the knight is no longer pinned. Queen and bishop now aim at h7. After 1...Nc6, 2.Ng5 attacks h7 and Bxh7+ follows.",
+   "why_not_alt": "Nc3 guards e4 but leaves Qd1 pinned behind Nf3. 1...cxd4 hits the knight and Black gets a strong passed d-pawn. The trades on f3 and d1 even things out.",
+   "concepts": [
+    "defence",
+    "pin",
+    "king_safety"
+   ],
+   "novel_concept": "",
+   "plan": "Play Ng5 to pile onto h7, then develop with Nc3 and keep Black's king under fire.",
+   "difficulty": "natural"
+  },
+  "student": {
+   "novel_concept": "",
+   "idea": "Save the attacked queen with a central pawn, then hit the d6-bishop.",
+   "assessment": "White is slightly better: the queen on d1 is attacked, and White can win a pawn with Ng5.",
+   "why_best": "The e4-pawn attacks the queen. Qd3 saves it with a pawn, so White is a pawn up. After 1...Nc6 2.Ng5 Nxd4 3.Bxh7+ White wins a pawn and the game is slightly better.",
+   "why_not_alt": "Nc3 saves the queen but leaves it on d1. Black plays 1...cxd4 2.Bxb7, wins a pawn, and the queens come to blows. The game is roughly equal.",
+   "concepts": [
+    "defence",
+    "fork",
+    "win_material"
+   ],
+   "plan": "Win the d4-pawn, then use the extra pawn and the knight to keep Black's king in the centre.",
+   "difficulty": "natural"
+  },
+  "base": {
+   "novel_concept": ""
+  }
+ },
+ {
+  "fen": "r2q1rk1/pb4p1/1p2p2p/3pNn2/3bnPQ1/1P1BP3/PBP4P/4RRK1 w - - 0 1",
+  "best": "Bxd4",
+  "alt": "exd4",
+  "teacher": {
+   "assessment": "After regaining the piece, White is slightly better: Black ends up with weak, isolated e-pawns.",
+   "idea": "Take back with the bishop so the e3-pawn keeps guarding d4 and f4.",
+   "why_best": "Bxd4 wins back the piece and keeps White's pawns compact. After 1...Qh4 2.Qxh4 Nxh4 3.Bxe4 dxe4, Black has two isolated e-pawns and White's bishop rules the dark squares.",
+   "why_not_alt": "exd4 also wins back the piece but leaves holes on e3 and e4. Black's knights get secure outposts there and Black's pawns stay healthy, so the game is equal.",
+   "concepts": [
+    "pawn_weakness",
+    "outpost",
+    "piece_activity"
+   ],
+   "novel_concept": "",
+   "plan": "Trade on e4, bring the king to f2, then target Black's isolated e-pawns.",
+   "difficulty": "natural"
+  },
+  "student": {
+   "novel_concept": "",
+   "idea": "Recapture with the bishop so the queen stays on g4 guarding the king.",
+   "assessment": "White is slightly better after recapturing. The queen on g4 covers f5 and h5, and White's pieces are active.",
+   "why_best": "1.Bxd4 wins the piece back and removes Black's bishop pair. After 2.Qxh4 Nxh4, White has the queen on g4 and the knight on e5. White's pieces then come out with tempo, and the queen stays on the safe g-file.",
+   "why_not_alt": "1.exd4 also wins the piece back, but it puts the queen on h4. After 2...Nxh4, White has traded queens, and the attack is gone. The position is equal.",
+   "concepts": [
+    "defence",
+    "piece_activity",
+    "king_safety"
+   ],
+   "plan": "Bring the queen to g4, then use the knight and bishop to hunt Black's king.",
+   "difficulty": "natural"
+  },
+  "base": {
+   "novel_concept": ""
+  }
+ },
+ {
+  "fen": "r1bq1rk1/pp1p1pp1/2n1p3/3nP1N1/1b1P4/2N5/PP3PPP/R1BQK2R w KQ - 0 1",
+  "best": "Qh5",
+  "alt": "Qd3",
+  "teacher": {
+   "assessment": "White is winning: Black's kingside lacks an h-pawn, so the queen and knight have a direct mating attack on h7.",
+   "idea": "Bring the queen to h5 with Ng5 and threaten mate on h7.",
+   "why_best": "1.Qh5 threatens Qh7#. Black's best defence is 1...Qxg5, giving the queen for a knight after 2.Bxg5. Black can then grab pawns with Nxc3, Bxc3+ and Bxd4, but White is still up a queen for minor pieces.",
+   "why_not_alt": "1.Qd3 also eyes h7, but 1...f5 blocks the diagonal cheaply. Black keeps the queen and White wins nothing.",
+   "concepts": [
+    "mating_attack",
+    "win_material",
+    "king_safety"
+   ],
+   "novel_concept": "",
+   "plan": "Untangle the king, then use the extra material to beat Black's loose pieces and pawns.",
+   "difficulty": "natural"
+  },
+  "student": {
+   "novel_concept": "",
+   "idea": "Move the queen off the c3 knight's attack and onto h5, where it hits the queen.",
+   "assessment": "White is winning. Black's queen and knight are both attacked by White's queen and knight, and White can win the queen for a knight.",
+   "why_best": "Qh5 escapes the knight's attack and eyes the queen on d8. After 1...Qxg5 2.Bxg5, White wins the queen for a knight. White's king stays safe, and Black's pieces are scattered.",
+   "why_not_alt": "Qd3 saves the knight but leaves the queen on d8. Black gets time to regroup with ...f5 and ...Rf7, and White's king stays in the centre.",
+   "concepts": [
+    "fork",
+    "win_material",
+    "king_safety"
+   ],
+   "plan": "Collect the queen for a knight, then use the extra material and king's pawn shield.",
+   "difficulty": "natural"
+  },
+  "base": {
+   "novel_concept": ""
+  }
+ },
+ {
+  "fen": "r1bqk2r/ppp2ppp/2n5/8/2BPp3/2P2N2/P4PPP/R1BQ2K1 w kq - 0 1",
+  "best": "Ng5",
+  "alt": "Nd2",
+  "teacher": {
+   "assessment": "White is better despite being down material: Black's king is stuck in the centre and f7 is weak.",
+   "idea": "Jump at f7 with knight and bishop while Black's king is uncastled.",
+   "why_best": "Ng5 saves the attacked knight and hits f7 with Bc4, threatening Nxf7 and stopping kingside castling. After 1...Ne5 2.Qh5 g6 3.Qh6, the queen invades on g7, hitting h8 and f7.",
+   "why_not_alt": "Nd2 wins back the e4 pawn but lets Black castle at once (1...O-O). The king gets safe and White is just down material.",
+   "concepts": [
+    "king_safety",
+    "initiative",
+    "mating_attack"
+   ],
+   "novel_concept": "",
+   "plan": "Bring the queen to h5/h6 and break into g7 and f7.",
+   "difficulty": "natural"
+  },
+  "student": {
+   "novel_concept": "",
+   "idea": "Save the attacked knight by jumping to g5, where it hits the e4 pawn.",
+   "assessment": "White is better despite being down material. Black's e4 pawn is loose and White can win it.",
+   "why_best": "The e4 pawn attacks the f3 knight. On g5 it is no longer attacked, so White can play 1.Ng5. After 2.Qh5 Ne5 3.Qh6 Nxc4, White wins the pawn and the c4 bishop, and the material edge holds.",
+   "why_not_alt": "On d2 the knight is attacked by the e4 pawn. It must retreat passively with 1...O-O, so White never gets the pawn and the material edge disappears.",
+   "concepts": [
+    "defence",
+    "hanging_piece",
+    "win_material"
+   ],
+   "plan": "Collect the e4 pawn, then use the extra material and the bishop pair.",
+   "difficulty": "natural"
+  },
+  "base": {
+   "novel_concept": ""
+  }
+ },
+ {
+  "fen": "1b3rk1/1p5p/8/1N1p4/P2Bn1q1/4P1P1/R2n1PKN/7Q w - - 0 1",
+  "best": "Nxg4",
+  "alt": "Qe1",
+  "teacher": {
+   "assessment": "White is winning: Black's queen on g4 is loose and the h2-knight can simply take it.",
+   "idea": "Take the free queen; Black's counterplay against f2 is too little.",
+   "why_best": "1.Nxg4 wins the queen. Black's 1...Rxf2+ is met by 2.Nxf2. After 2...Nb3 3.Bb2, Black gets back only minor pieces and White stays a huge amount ahead.",
+   "why_not_alt": "1.Qe1 leaves the queen alone. After 1...Rxf2+ 2.Qxf2 Black trades down safely and White keeps only a small edge.",
+   "concepts": [
+    "hanging_piece",
+    "win_material",
+    "defence"
+   ],
+   "novel_concept": "",
+   "plan": "Bring the king to safety, round up Black's loose knights, then convert the extra material.",
+   "difficulty": "obvious"
+  },
+  "student": {
+   "novel_concept": "",
+   "idea": "Take the queen. The knight on g4 is attacked, so it must move.",
+   "assessment": "White is winning. Black's queen on g4 is attacked by the b5-knight, so it must move, and White wins it.",
+   "why_best": "1.Nxg4 wins the queen outright. After 1...Rxf2+ 2.Nxf2, White is a full piece up. White's pieces then come out with tempo, and the d5 pawn is safe.",
+   "why_not_alt": "1.Qe1 is a slow, passive move. It lets Black play 1...Rxf2+ 2.Qxf2, and White is only slightly better. The queen stays alive and active, and White's edge is smaller.",
+   "concepts": [
+    "win_material",
+    "overloaded_defender",
+    "piece_activity"
+   ],
+   "plan": "Bring the knight to b3, then use the extra piece and the d5 pawn.",
+   "difficulty": "natural"
+  },
+  "base": {
+   "novel_concept": ""
+  }
+ },
+ {
+  "fen": "r3kb2/pb1q1p2/4p1r1/1pp1B3/2pPPR2/2N2Q2/PP4PP/R5K1 w q - 0 1",
+  "best": "Nxb5",
+  "alt": "Rf1",
+  "teacher": {
+   "assessment": "White is winning: the centralised Be5 and the f-file pressure leave Black's king in the centre with c7 and d6 weak.",
+   "idea": "Grab b5 with tempo to bring the knight to c7 with check.",
+   "why_best": "Nxb5 takes a pawn and eyes c7, hitting king, queen and a8 rook. After 1...f5 2.Nc7+ Kd8 3.d5 Black must give the queen for knight and bishop.",
+   "why_not_alt": "Rf1 is too slow. Black gets ...cxd4 with a dangerous passed pawn and ...Rxg2+, putting a rook on White's second rank.",
+   "concepts": [
+    "fork",
+    "win_material",
+    "initiative"
+   ],
+   "novel_concept": "",
+   "plan": "Use the queen-for-pieces edge: attack the exposed king and stop Black's pawns.",
+   "difficulty": "natural"
+  },
+  "student": {
+   "novel_concept": "",
+   "idea": "Take the pawn that attacks your queen, then trade queens to end Black's attack.",
+   "assessment": "White is winning. Black's queen and knight are stuck in the centre, and White's pieces are aimed at them.",
+   "why_best": "1.Nxb5 removes the pawn that attacks the queen. After 1...f5 2.Nc7+ Kd8 3.d5, White's pieces swarm the centre. The c7 knight and queen are both attacked, and White wins the queen for a piece.",
+   "why_not_alt": "1.Rf1 is slow. Black plays 1...f5, and White's pieces stay in the centre. After 2.Nxb5 cxd4, White has given up the bishop pair and is only slightly better.",
+   "concepts": [
+    "overloaded_defender",
+    "win_material",
+    "piece_activity"
+   ],
+   "plan": "Keep the extra piece, trade queens, then use the pieces against Black's king.",
+   "difficulty": "natural"
+  },
+  "base": {
+   "novel_concept": ""
+  }
+ },
+ {
+  "fen": "r4rk1/1Qp3pp/p3q3/3nN3/3Pp3/4Pp1P/PP3PP1/R4RK1 w - - 0 1",
+  "best": "Qc6",
+  "alt": "Rfc1",
+  "teacher": {
+   "assessment": "White is better. He is a pawn up, and trading queens removes Black's attacking chances against the king.",
+   "idea": "Force queens off with tempo. Black's kingside pawn attack loses most of its bite.",
+   "why_best": "Qc6 hits the e6 queen, the d5 knight and the a8 rook all at once. After 1...Qxc6 2.Nxc6 the knight is active and Rfc1 targets c7. Black's g2 pawn looks dangerous but White's king blocks it.",
+   "why_not_alt": "Rfc1 gives Black a free tempo. After 1...Rab8 Black wins back the b2 pawn and keeps more play, so White's edge shrinks.",
+   "concepts": [
+    "simplify",
+    "king_safety",
+    "pawn_weakness"
+   ],
+   "novel_concept": "",
+   "plan": "Trade queens, double rooks on the c-file, win c7, keep the g-pawn blocked.",
+   "difficulty": "natural"
+  },
+  "student": {
+   "novel_concept": "",
+   "idea": "Save the attacked queen by moving it with tempo, then hit the a6 pawn.",
+   "assessment": "White is better: the queen on b7 is attacked by the e6 pawn, and White can win it with tempo.",
+   "why_best": "The e6 pawn attacks the queen. 1.Qc6 saves it with a move, so White is a pawn up. After 2.Nxc6 White has a protected passed pawn on a2, and the rook on c1 eyes a6.",
+   "why_not_alt": "1.Rfc1 ignores the attacked queen. After 1...Rab8 2.Qc6 Qxc6 3.Rxc6 White has no protected passed pawn, and Black's rook eyes b2 and a6.",
+   "concepts": [
+    "defence",
+    "passed_pawn",
+    "piece_activity"
+   ],
+   "plan": "Win the queen, then push the protected a-pawn and use the c-file rook.",
+   "difficulty": "natural"
+  },
+  "base": {
+   "novel_concept": ""
+  }
+ },
+ {
+  "fen": "r1bqkb1r/p4pp1/2p2n1p/n3p3/8/5N2/PPPPBPPP/RNBQK2R b KQkq - 0 1",
+  "best": "e4",
+  "alt": "Bd6",
+  "teacher": {
+   "assessment": "Black is a pawn down but has the lead in development and space as compensation, so it is equal.",
+   "idea": "Kick the knight with tempo and use the lead in development to win the pawn back.",
+   "why_best": "1...e4 hits the f3 knight, gains space and keeps White from consolidating. After 2.Ne5 Bc5 3.O-O Qd6, Black's pieces pressure f2 and d4. When White plays 4.d4, Black wins the pawn back with Qxd4.",
+   "why_not_alt": "1...Bd6 is slow. White calmly plays d3, castles and develops with Nc3, so the extra pawn is kept for free.",
+   "concepts": [
+    "initiative",
+    "development",
+    "space"
+   ],
+   "novel_concept": "",
+   "plan": "Attack with tempo, aim the pieces at f2 and d4, and win back the pawn.",
+   "difficulty": "natural"
+  },
+  "student": {
+   "novel_concept": "",
+   "idea": "Push e4 to hit the f3 knight and the queen at once.",
+   "assessment": "Roughly equal. White is a pawn up, but Black's active pieces and White's central pawns give compensation.",
+   "why_best": "1...e4 attacks the f3 knight, which must move. That gives Black a tempo on the queen, so 2...Bc5 hits the queen and the c1 bishop. White has to play 3.O-O, and Black keeps the extra pawn.",
+   "why_not_alt": "1...Bd6 is slow. White calmly develops with 2.d3 and castles, and Black's pieces stay passive. White gets time to regroup and the extra pawn counts for much more.",
+   "concepts": [
+    "fork",
+    "initiative",
+    "development"
+   ],
+   "plan": "Play ...Bc5, castle, then ...Qd6 to hit White's queen.",
+   "difficulty": "natural"
+  },
+  "base": {
+   "novel_concept": ""
+  }
+ },
+ {
+  "fen": "1k3br1/1p3p2/2p2q2/p1n2N2/P1n2QPp/2N4B/1P2PP2/3R3K b - - 0 1",
+  "best": "Ne5",
+  "alt": "Nd6",
+  "teacher": {
+   "assessment": "Roughly equal. Black must save the attacked c4-knight, and the g4-pawn and White's exposed king are targets.",
+   "idea": "Rescue the hanging knight to a safe central square that eyes g4.",
+   "why_best": "Ne5 is guarded by the queen and points at g4 and f3. After 2.Qd4 Be7 3.Qe3 Qe6 4.g5 Rxg5, Black wins a pawn and gets a kingside majority supporting the h-pawn.",
+   "why_not_alt": "Nd6 walks into the d-file. Rxd6 Bxd6 Qxd6+ trades into an endgame where White's knight is active and Black has lost the exchange of material balance.",
+   "concepts": [
+    "hanging_piece",
+    "piece_activity",
+    "pawn_majority"
+   ],
+   "novel_concept": "",
+   "plan": "Pressure g4, win the pawn, then advance the kingside pawns toward White's king.",
+   "difficulty": "natural"
+  },
+  "student": {
+   "novel_concept": "",
+   "idea": "Save the attacked knight by retreating it to e5, not d6.",
+   "assessment": "Roughly equal. Black's e-pawn is a dangerous passer, but White's pieces are active and White's king is near.",
+   "why_best": "The c4-knight is attacked by the f5-pawn. Ne5 saves it and keeps it near the king. After 2.Qd4 Be7 3.Qe3 Qe6, Black's e-pawn becomes a real passer, and the knight stays active.",
+   "why_not_alt": "Nd6 also saves the knight, but it gives up the bishop for a rook. After 3.Qxd6+ Qxd6 4.Nxd6, White's queen and knight are active, and White's pieces become much more dangerous.",
+   "concepts": [
+    "defence",
+    "piece_activity",
+    "passed_pawn"
+   ],
+   "plan": "Activate the queen and bishop, push the e-pawn, and keep the knight safe.",
+   "difficulty": "natural"
+  },
+  "base": {
+   "novel_concept": ""
+  }
+ },
+ {
+  "fen": "7k/pp3B2/2p5/5Q2/5P2/2P3KP/P3r1P1/R1B1r1q1 b - - 0 1",
+  "best": "Rxg2+",
+  "alt": "Qxg2+",
+  "teacher": {
+   "assessment": "Black is winning. White's king is badly exposed, and the bishop on f7 is loose once Black's king is safe.",
+   "idea": "Take with the rook, keep the queen on g1, then swing a rook back to defend.",
+   "why_best": "1...Rxg2+ forces 2.Kh4, because the queen guards g2. Then 2...Re7 covers the seventh rank and hits the f7 bishop. Black's king escapes the checks and then wins the bishop, ending well up in material.",
+   "why_not_alt": "1...Qxg2+ moves the queen into a check chase that goes nowhere and leaves Black's own king short of defenders. White gets mating chances and holds the draw.",
+   "concepts": [
+    "king_safety",
+    "defence",
+    "win_material"
+   ],
+   "novel_concept": "",
+   "plan": "Defend the seventh rank with ...Re7, round up the f7 bishop, then convert.",
+   "difficulty": "hard"
+  },
+  "student": {
+   "novel_concept": "",
+   "idea": "Take with the rook, then check the exposed king.",
+   "assessment": "Black is winning. White's king on g3 is exposed to checks, and Black's rook and queen can hunt it down.",
+   "why_best": "1...Rxg2+ wins a pawn and hits the king. After 2.Kh4 Re7 3.Qh5+ Kg7, the queen and rook work together. White's king is stuck in the centre, and Black's queen and rook keep coming.",
+   "why_not_alt": "1...Qxg2+ wins a pawn but gives up the initiative. White's king escapes with Qf2+, and the attack fizzles into a dead draw.",
+   "concepts": [
+    "king_safety",
+    "initiative",
+    "mating_attack"
+   ],
+   "plan": "Bring the queen and rook to the king, then hunt it down with checks.",
+   "difficulty": "natural"
+  },
+  "base": {
+   "novel_concept": ""
+  }
+ },
+ {
+  "fen": "5nk1/p2r1ppp/1p1P4/8/4NQ1P/8/P1q2PP1/2R3K1 b - - 0 1",
+  "best": "Qxa2",
+  "alt": "Qe2",
+  "teacher": {
+   "assessment": "Roughly equal. White's d6 passer is dangerous, but Black can win a pawn and get passers of his own.",
+   "idea": "Grab a2 to make connected queenside passers, then bring the queen back to blockade.",
+   "why_best": "1...Qxa2 escapes the rook's attack and removes White's last queenside pawn. The a- and b-pawns become connected passers. After 2.Rc8 Qe6 the queen returns to blockade the d-pawn, balancing White's passer.",
+   "why_not_alt": "1...Qe2 saves the queen but creates nothing. Black's checks run out after 2.Rc8 Qd1+ 3.Kh2. Then White's active pieces and d-pawn decide the game.",
+   "concepts": [
+    "passed_pawn",
+    "counterplay",
+    "win_material"
+   ],
+   "novel_concept": "",
+   "plan": "Blockade d6 with the queen on e6, then push the a- and b-pawns.",
+   "difficulty": "natural"
+  },
+  "student": {
+   "novel_concept": "",
+   "idea": "Take the attacking pawn now. Don't save the queen if it falls.",
+   "assessment": "Roughly equal. Black's queen is attacked, but White's queen is also attacked, so Black must act now.",
+   "why_best": "The a2 pawn attacks the queen. 1...Qxa2 removes it. After 2.Rc8 the queens are off and the game is level again. Black's queen is safe and active.",
+   "why_not_alt": "1...Qe2 saves the queen but leaves it stuck on c2. After 2.Rc8 White's queen is centralised and White is winning.",
+   "concepts": [
+    "defence",
+    "hanging_piece",
+    "win_material"
+   ],
+   "plan": "Trade queens, activate the rooks, and keep the queens safe.",
+   "difficulty": "natural"
+  },
+  "base": {
+   "novel_concept": ""
+  }
+ },
+ {
+  "fen": "r3k2r/1p2b2p/p4p2/8/1P6/2q1R3/P1P2PPP/R2Q2K1 b kq - 0 1",
+  "best": "Qc7",
+  "alt": "Qxb4",
+  "teacher": {
+   "assessment": "White is clearly better: Black's king is stuck in the centre with open lines, though Black is a pawn up.",
+   "idea": "Retreat the queen to guard the seventh rank instead of grabbing a pawn.",
+   "why_best": "The queen on c3 is attacked by the rook. From c7 it guards both b7 and the bishop on e7, so White's rooks have no easy entry. White still attacks with 2.Qh5+, but Black stays solid.",
+   "why_not_alt": "1...Qxb4 takes a pawn but leaves b7 loose. After 2.Rb1 White's rook reaches the seventh rank with Rxb7, doubles rooks and wins back material against e7.",
+   "concepts": [
+    "defence",
+    "open_file",
+    "king_safety"
+   ],
+   "novel_concept": "",
+   "plan": "Tuck the king to f8 or f7, connect rooks, and trade off White's attackers.",
+   "difficulty": "natural"
+  },
+  "student": {
+   "novel_concept": "",
+   "idea": "Save the attacked queen by retreating it, not grabbing a pawn.",
+   "assessment": "White is better despite Black's extra pawn, because Black's queen is attacked and must move.",
+   "why_best": "The queen on c3 is attacked by the e3 rook. Qc7 saves it and eyes b7. After 2.Qh5+ Kf8 3.Rae1 Re8 4.Qh6+ Kf7, Black's queen is active and White's queen is passive.",
+   "why_not_alt": "Qxb4 grabs a pawn but ignores the attacked queen. White's queen stays active, and after 5.Rg3 Black has no active queen to defend.",
+   "concepts": [
+    "defence",
+    "hanging_piece",
+    "king_safety"
+   ],
+   "plan": "Activate the queen, keep it near the king, and use the rooks against White's queen.",
+   "difficulty": "natural"
+  },
+  "base": {
+   "novel_concept": ""
+  }
+ },
+ {
+  "fen": "1r3rk1/np3pp1/p2P3p/Nb2p3/3p4/3P2P1/PR2PPBP/1R4K1 b - - 0 1",
+  "best": "b6",
+  "alt": "Rbc8",
+  "teacher": {
+   "assessment": "White is better thanks to the far-advanced d6 passed pawn and pressure on b7 along the b-file and long diagonal.",
+   "idea": "Kick the knight with tempo, then round up the dangerous d6 passer.",
+   "why_best": "1...b6 removes the attacked b7 pawn from danger while hitting the a5 knight. After 2.Nc4 Black plays Rbd8 and Rxd6, getting rid of White's most dangerous trump, the d6 passed pawn.",
+   "why_not_alt": "1...Rbc8 leaves b7 hanging, so 2.Bxb7 wins a pawn. The d6 passer also survives and Black's back rank becomes weak.",
+   "concepts": [
+    "passed_pawn",
+    "defence",
+    "hanging_piece"
+   ],
+   "novel_concept": "",
+   "plan": "Gang up on d6 with Rbd8, then hold the queenside pawns.",
+   "difficulty": "natural"
+  },
+  "student": {
+   "novel_concept": "",
+   "idea": "Push the attacked pawn with tempo: b6 hits the knight and rook.",
+   "assessment": "White is better: Black's a6 pawn is attacked by the b7 pawn, and White's pieces are aimed at it.",
+   "why_best": "1...b6 attacks the a5 knight, so White must defend it. After 2.Nc4 Rbd8 3.Nxe5 Rxd6 4.a4, Black wins the pawn back and keeps the extra pawn.",
+   "why_not_alt": "1...Rbc8 is too slow. White plays 2.Bxb7, and Black's rook is stuck on c8. White keeps the initiative, and Black's pieces stay passive.",
+   "concepts": [
+    "counterplay",
+    "initiative",
+    "piece_activity"
+   ],
+   "plan": "Win back the a6 pawn, then use the extra pawn and active pieces.",
+   "difficulty": "natural"
+  },
+  "base": {
+   "novel_concept": ""
+  }
+ },
+ {
+  "fen": "6k1/5p1p/4b1pP/1Pq3Bn/3pP3/2r2P2/R3BR1P/3QK3 b - - 0 1",
+  "best": "Bxa2",
+  "alt": "Qxg5",
+  "teacher": {
+   "assessment": "Roughly equal after the right capture. White is up material, but two White pieces hang and White's back-rank threats are real.",
+   "idea": "Take the rook first; it is the piece that attacks your back rank.",
+   "why_best": "1...Bxa2 removes the only White piece that can check on a8. The g5 bishop can wait: after 2.Rg2 f6, Black still collects it with 3...fxg5. The d4 passer survives too.",
+   "why_not_alt": "1...Qxg5 leaves the a2 rook alive. 2.Ra8+ forces trades on c8, then 4.Qxd4 lines up with h6 against g7 for mate threats. White wins.",
+   "concepts": [
+    "back_rank",
+    "hanging_piece",
+    "win_material"
+   ],
+   "novel_concept": "",
+   "plan": "Collect the g5 bishop with f6 and fxg5, keep the king safe, and push the d-pawn.",
+   "difficulty": "natural"
+  },
+  "student": {
+   "novel_concept": "",
+   "idea": "Take the free rook on a2, then trade off White's best pieces.",
+   "assessment": "Roughly equal. White is a piece up, but Black's queen and bishop are hanging, and White's pieces are all aimed at Black's king.",
+   "why_best": "1...Bxa2 wins the exchange outright. After 2.Rg2 f6 3.Qa1 fxg5 4.Qxa2+ Kf8 5.Qa8+ Black has traded off White's best attackers, and the material is level.",
+   "why_not_alt": "1...Qxg5 grabs only a piece. After 2.Ra8+ Rc8 3.Rxc8+ Bxc8 4.Qxd4 White's queen and bishop are active, and White keeps the extra material.",
+   "concepts": [
+    "hanging_piece",
+    "win_material",
+    "simplify"
+   ],
+   "plan": "Trade off White's best attackers, then use the queenside pawns and the king.",
+   "difficulty": "natural"
+  },
+  "base": {
+   "novel_concept": ""
+  }
+ },
+ {
+  "fen": "7k/1p1n1q2/3pNb1P/p2Ppr2/P1P5/1P2P1Q1/6P1/4K2R w K - 0 1",
+  "best": "Qg7+",
+  "alt": "Kd2",
+  "teacher": {
+   "assessment": "White is winning: the h6-pawn and h-file rook combine with a queen sacrifice to break through.",
+   "idea": "Sacrifice the queen so the h-pawn reaches g7, backed by the h-rook.",
+   "why_best": "1.Qg7+ Qxg7 2.hxg7+ Kg8 3.Rh8+ Kf7 4.g8=Q+ Ke7 leads to mate. The black king is boxed in, and the pawn promotes with check.",
+   "why_not_alt": "Kd2 is too slow. Black plays ...Rh5, trades rooks, kills the h-file attack, and the game is equal.",
+   "concepts": [
+    "sacrifice",
+    "mating_attack",
+    "passed_pawn"
+   ],
+   "novel_concept": "",
+   "plan": "Force the pawn to g7, check on h8, promote and mate.",
+   "difficulty": "hard"
+  },
+  "student": {
+   "novel_concept": "",
+   "idea": "Check first, then trade queens to open the h-file and hunt the king.",
+   "assessment": "White is winning. Black's king is stuck in the centre, and White's queen and rook are aimed at it.",
+   "why_best": "1.Qg7+ forces 1...Qxg7 2.hxg7+ with the h-file open. Then 3.Rh8+ forces 3...Kf7, and 4.g8=Q+ hits the king. White wins the queen and the h-file rook.",
+   "why_not_alt": "1.Kd2 is too slow. Black gets time to regroup with ...Rh5 and ...Qe8, and White's attack fades into a draw.",
+   "concepts": [
+    "mating_attack",
+    "king_safety",
+    "initiative"
+   ],
+   "plan": "Keep checking, open the h-file, and use the g8=Q+ tactic.",
+   "difficulty": "natural"
+  },
+  "base": {
+   "novel_concept": ""
+  }
+ },
+ {
+  "fen": "3r2k1/1p3ppp/2p1p1b1/q7/8/P1P2QP1/R4PP1/3B2K1 w - - 0 1",
+  "best": "Ra1",
+  "alt": "Be2",
+  "teacher": {
+   "assessment": "Black is better: an extra pawn and White's loose queenside pawns, but active play can still hold.",
+   "idea": "Bring the rook back to the first rank to guard d1 and switch files.",
+   "why_best": "From a1 the rook guards the pinned Bd1 and can jump to the b-file. After 1...Bd3 2.Qe3 Qxc3 3.Rb1, White gives the pawns but gets the rook to b7.",
+   "why_not_alt": "1.Be2 is passive. After 1...Qb6, Black's queen gets into b2, rooks come off, and a3 falls. White is just a pawn or two down with no play.",
+   "concepts": [
+    "counterplay",
+    "open_file",
+    "piece_activity"
+   ],
+   "novel_concept": "",
+   "plan": "Activate the rook on b-file/seventh rank; trade pawns rather than defend passively.",
+   "difficulty": "hard"
+  },
+  "student": {
+   "novel_concept": "",
+   "idea": "Bring the rook to a1, where it eyes b7 and c3.",
+   "assessment": "Black is better: White's rook on g1 is stuck behind the king, and Black's rooks and queen are active.",
+   "why_best": "Ra1 adds a second attacker to b7. After 1...Bd3 2.Qe3 Qxc3 3.Rb1, White has a rook on the seventh and a pawn on a1. White's queen also eyes c3.",
+   "why_not_alt": "Be2 is too slow. Black gets time to develop with ...Qb6 and ...Qb2, and White's rook stays passive.",
+   "concepts": [
+    "prophylaxis",
+    "king_safety",
+    "piece_activity"
+   ],
+   "plan": "Activate the rook on the seventh and a1, then use queen and rook against Black's pawns.",
+   "difficulty": "natural"
+  },
+  "base": {
+   "novel_concept": ""
+  }
+ },
+ {
+  "fen": "r4bk1/1b3pp1/p2q2np/1p1P3P/3Q4/1B3N2/PB3PP1/4R1K1 b - - 0 1",
+  "best": "Nf4",
+  "alt": "Ne7",
+  "teacher": {
+   "assessment": "White is better: the h-pawn attacks the g6 knight, the d5 passer is strong, and Qd4 with Bb2 aims at g7.",
+   "idea": "Save the knight on an active square that hits d5, then trade queens.",
+   "why_best": "On f4 the knight attacks d5, so it pressures White's passed pawn instead of just running. After 2.Ne5, 2...Qb4 offers a queen trade. That takes the sting out of White's queen-and-bishop battery against g7, and Black wins back the d-pawn's influence.",
+   "why_not_alt": "Ne7 is passive. White keeps the queens, plays Rd1 and Qe4, and keeps attacking. The line even leaves White a mate-in-one chance on Black's king.",
+   "concepts": [
+    "piece_activity",
+    "defence",
+    "passed_pawn"
+   ],
+   "novel_concept": "",
+   "plan": "Trade queens with Qb4, then win or blockade the d5 pawn.",
+   "difficulty": "natural"
+  },
+  "student": {
+   "novel_concept": "",
+   "idea": "Save the attacked knight by jumping to f4, then hit h5.",
+   "assessment": "White is slightly better: Black's g6-knight is attacked, and White's queen and rooks are aimed at it.",
+   "why_best": "The g6-knight is attacked by the d5-pawn. 1...Nf4 saves it with tempo and eyes the h5-pawn. After 2.Ne5 Qb4 3.Qxb4 Bxb4, Black has a passed f-pawn and a rook on the a-file.",
+   "why_not_alt": "1...Ne7 is passive. White plays 2.Ne5 and 3.Rd1, and Black's knight is stuck in the centre. White's queen and rooks then hunt it.",
+   "concepts": [
+    "defence",
+    "piece_activity",
+    "passed_pawn"
+   ],
+   "plan": "Play ...Qb4, then ...Nxd5 and ...Bxb4, and push the f-pawn.",
+   "difficulty": "natural"
+  },
+  "base": {
+   "novel_concept": ""
+  }
+ },
+ {
+  "fen": "4bq2/p6k/rb3Ppp/2pBpQ2/2P1P2p/4B3/P5P1/5R1K w - - 0 1",
+  "best": "Qc8",
+  "alt": "Qe6",
+  "teacher": {
+   "assessment": "White is winning: Black is a pawn up on paper, but the f6 passed pawn and White's active pieces decide the game.",
+   "idea": "Save the attacked queen with a fork of the e8 bishop and a6 rook.",
+   "why_best": "Qf5 is attacked by the g6 pawn. Qc8 escapes and hits both Be8 and Ra6. After 1...Bd8 2.Qxa6 g5 3.Qxa7+, White is a rook ahead and f7 is coming.",
+   "why_not_alt": "Qe6 also saves the queen, but it attacks nothing loose. Black gets time for ...h3 and ...Bf7, so White wins much less material.",
+   "concepts": [
+    "fork",
+    "win_material",
+    "passed_pawn"
+   ],
+   "novel_concept": "",
+   "plan": "Collect the rook, then push the f-pawn to f7 with the bishops supporting it.",
+   "difficulty": "natural"
+  },
+  "student": {
+   "novel_concept": "",
+   "idea": "Save the queen on c8 to hit the a6 rook, then win it.",
+   "assessment": "White is winning. Black's rook on a6 is loose, and White's queen and bishop can hunt it down.",
+   "why_best": "Qc8 attacks the rook on a6. After 1...Bd8 2.Qxa6, White wins the rook outright. White is a piece up, and the queen and bishop can hunt the a6 rook down.",
+   "why_not_alt": "Qe6 saves the queen but ignores the a6 rook. Black plays ...h3 and ...Bf7, and White's queen and bishop are stuck defending the a6 rook.",
+   "concepts": [
+    "defence",
+    "win_material",
+    "piece_activity"
+   ],
+   "plan": "Win the a6 rook, then use queen and bishop to hunt the a7 pawn.",
+   "difficulty": "natural"
+  },
+  "base": {
+   "novel_concept": ""
+  }
+ },
+ {
+  "fen": "8/5ppk/6n1/1R3NP1/2pb2bp/p7/P1B3P1/5K2 b - - 0 1",
+  "best": "h3",
+  "alt": "Bb2",
+  "teacher": {
+   "assessment": "White is better. The rook and active knight beat Black's minor pieces, and both Bd4 and h4 are under attack.",
+   "idea": "Push h3 to strip the king's cover and gain checks before saving the bishop.",
+   "why_best": "After 1...h3 2.gxh3 Bxh3+ the f1-king is exposed. Checks with Bxh3+ and Bg4+ drive it to d2, and only then Be5 saves the bishop. Black keeps the h-pawn's value and removes a White pawn.",
+   "why_not_alt": "1...Bb2 saves the bishop passively but drops the h4 pawn to Nxh4. White's king stays safe and Black gets no counterplay.",
+   "concepts": [
+    "counterplay",
+    "king_safety",
+    "pawn_break"
+   ],
+   "novel_concept": "",
+   "plan": "Use bishop checks to gain time, then keep pieces active against White's open king.",
+   "difficulty": "hard"
+  },
+  "student": {
+   "novel_concept": "",
+   "idea": "Strike at White's center with ...h3 to open lines toward the king.",
+   "assessment": "White is better: Black's king is stuck in the centre, and White's pieces are active.",
+   "why_best": "1...h3 hits the g5 pawn and opens the h-file. After 2.gxh3 Bxh3+ 3.Ke2, Black's bishop eyes the king and the g4 bishop eyes the queen. Black can then play ...Be5 to hit the queen.",
+   "why_not_alt": "1...Bb2 is passive. White plays 2.Nxh4, wins a pawn, and the h4 pawn becomes a target. Black's king is stuck in the centre and White's pieces become active.",
+   "concepts": [
+    "pawn_break",
+    "king_safety",
+    "piece_activity"
+   ],
+   "plan": "Play ...Be5, then ...Bxh3+ and ...Be5 to hit the queen.",
+   "difficulty": "natural"
+  },
+  "base": {
+   "novel_concept": ""
+  }
+ },
+ {
+  "fen": "r1b2rk1/pppp1ppp/8/4P3/5Bn1/2N4P/PP3PP1/R3KB1R b KQ - 0 1",
+  "best": "Nxe5",
+  "alt": "Nh6",
+  "teacher": {
+   "assessment": "White is winning with an extra piece's worth of material, but Black can still fight by grabbing the e5 pawn.",
+   "idea": "The attacked knight should take a central pawn, not retreat to the rim.",
+   "why_best": "1...Nxe5 escapes the h3 pawn's attack and wins back a pawn. The knight sits actively in the centre. White prefers 2.Nb5 to win c7 instead of taking on e5, so Black keeps material closer and gets activity.",
+   "why_not_alt": "1...Nh6 is passive on the rim and leaves e5 standing. White's knight reaches d6 via 2.Nb5 and 3.Nd6, a strong outpost the e5 pawn supports.",
+   "concepts": [
+    "piece_activity",
+    "outpost",
+    "win_material"
+   ],
+   "novel_concept": "",
+   "plan": "Develop the c8 bishop and rooks quickly, and use the knight and extra activity to create counterplay.",
+   "difficulty": "natural"
+  },
+  "student": {
+   "novel_concept": "",
+   "idea": "Take the e5 pawn, then trade off White's best pieces.",
+   "assessment": "White is winning. Black's e5 pawn is attacked by the g4 knight and must fall.",
+   "why_best": "1...Nxe5 removes White's most dangerous attacker. After 2.Nb5 d6 3.Nxc7, White has lost the c7 pawn and the c8 rook. Black's pieces then come out with tempo and White's king is stuck in the centre.",
+   "why_not_alt": "1...Nh6 is passive. White keeps the e5 pawn, the knight on g4 stays alive, and the bishop pair stays active. Black's pieces stay cramped and White's king stays central.",
+   "concepts": [
+    "defence",
+    "piece_activity",
+    "king_safety"
+   ],
+   "plan": "Trade off White's best pieces, then use the d6 pawn and the c8 rook against White's king.",
+   "difficulty": "natural"
+  },
+  "base": {
+   "novel_concept": ""
+  }
+ },
+ {
+  "fen": "3kr3/p1p2ppp/2p5/5b2/2B3n1/2P2P2/P1P3PP/2K2R2 w - - 0 1",
+  "best": "fxg4",
+  "alt": "Rd1+",
+  "teacher": {
+   "assessment": "Black is up a knight for a pawn, but White can win it back at once and equalise.",
+   "idea": "Take the knight now while the f-rook still aims down the f-file.",
+   "why_best": "1.fxg4 wins the knight and opens the f-file, so the rook hits the bishop. After 1...Bxg4 2.Rxf7 White regains a pawn, reaches the seventh rank and the material is level.",
+   "why_not_alt": "1.Rd1+ takes the rook off the f-file. 1...Ke7 brings the king forward to guard f7, so after fxg4 Bxg4 White never gets Rxf7 and Black keeps an edge.",
+   "concepts": [
+    "win_material",
+    "open_file",
+    "king_activity"
+   ],
+   "novel_concept": "",
+   "plan": "Use the active rook on the seventh rank and target Black's loose pawns.",
+   "difficulty": "natural"
+  },
+  "student": {
+   "novel_concept": "",
+   "idea": "Take the attacking knight now, before Black's rook can reach d4.",
+   "assessment": "Roughly equal. White is a pawn down, but the g4 knight is attacked by the f7 pawn and must move.",
+   "why_best": "The f7 pawn attacks the g4 knight, so it must move. 1.fxg4 removes it. After 2.Rxf7, White has a pawn for two pawns, and the rook eyes f7. White's rook then walks to f8 and f4, keeping pressure on Black's king.",
+   "why_not_alt": "1.Rd1+ is a check that lets Black answer with Ke7. White's rook stays passive, and Black's pieces become active.",
+   "concepts": [
+    "defence",
+    "king_safety",
+    "piece_activity"
+   ],
+   "plan": "Bring the rook to f8 and f4, keep the f7 pawn under pressure, and trade pieces.",
+   "difficulty": "natural"
+  },
+  "base": {
+   "novel_concept": ""
+  }
+ },
+ {
+  "fen": "r4r1k/p4pp1/4p3/3b2B1/3N2n1/8/PP3PPb/1BR2R1K b - - 0 1",
+  "best": "Be5",
+  "alt": "f6",
+  "teacher": {
+   "assessment": "Black is slightly better. His bishops and knight are active, and White's pieces on d4 and b2 are loose.",
+   "idea": "Pull the stranded bishop back while it attacks the loose knight and b2.",
+   "why_best": "The bishop leaves the risky h2 square with tempo. 1...Be5 hits both the undefended Nd4 and the b2 pawn. After 2.Nc6 saves the knight, 2...Bxb2 collects a pawn and Black keeps the edge.",
+   "why_not_alt": "1...f6 kicks the Bg5 but attacks nothing important. After 2.Bd2 White tidies up, the double attack on d4 and b2 is gone, and the game is equal.",
+   "concepts": [
+    "fork",
+    "hanging_piece",
+    "win_material"
+   ],
+   "novel_concept": "",
+   "plan": "Keep the extra b-pawn, trade down safely, and use the active bishops and knight.",
+   "difficulty": "natural"
+  },
+  "student": {
+   "novel_concept": "",
+   "idea": "Retreat the attacked bishop to e5, then hit the knight and the f6 pawn.",
+   "assessment": "Black is slightly better: White's knight on d4 is loose, and the f6 pawn is about to fall.",
+   "why_best": "The g5 bishop is attacked by the f2 pawn. Be5 escapes it and attacks the d4 knight. After 2.Nc6 Bxb2, Black has a passed pawn on b2 and the bishop on f6. White must defend f6 with 3.Rc2, and Black keeps the extra piece.",
+   "why_not_alt": "1...f6 attacks the g5 bishop but ignores the d4 knight. After 2.Bd2 Be5 3.Bc3 Bc4, White gets time to regroup, and the game is roughly equal.",
+   "concepts": [
+    "defence",
+    "piece_activity",
+    "passed_pawn"
+   ],
+   "plan": "Keep the extra piece, push the b2 passed pawn, and keep White's knight on d4 loose.",
+   "difficulty": "natural"
+  },
+  "base": {
+   "novel_concept": ""
+  }
+ },
+ {
+  "fen": "5rk1/5R2/6pQ/4R3/8/7P/5PP1/3r2K1 w - - 0 1",
+  "best": "Kh2",
+  "alt": "Re1",
+  "teacher": {
+   "assessment": "White is winning: Black's king is exposed to queen and rooks, and a mate on g7 is threatened.",
+   "idea": "Escape the check with the king and keep every attacker aimed at g8.",
+   "why_best": "1.Kh2 leaves the king safe behind g2/h3 and keeps Qg7# threatened. Black only has a desperado: 1...Rh1+ 2.Kxh1 Kxf7 3.Qh7+ Kf6 4.Qe7# mates.",
+   "why_not_alt": "Blocking with 1.Re1 throws away a rook to 1...Rxe1+. White loses most of the extra material and has to grind out a much harder win.",
+   "concepts": [
+    "mating_attack",
+    "defence",
+    "win_material"
+   ],
+   "novel_concept": "",
+   "plan": "Deliver mate with Qg7 or the queen-and-rook net around Black's king.",
+   "difficulty": "natural"
+  },
+  "student": {
+   "novel_concept": "",
+   "idea": "Step out of check with the king, then use checks to pin the f7 rook.",
+   "assessment": "White is winning. The queen, rook and king are all aimed at f7, and White's king is stuck in the centre.",
+   "why_best": "Kh2 escapes the check and eyes f7. After Rh1+ Kxh1 Kxf7, the queen and rook line up on f7. Qh7+ forces Kf6, and Qe7# follows.",
+   "why_not_alt": "Re1 gives up the rook for a check. After Rxe1+ Kxf7, White's king is no longer in the centre. The queen and rook are still on f7, but White's king is stuck in the corner.",
+   "concepts": [
+    "mating_attack",
+    "king_safety",
+    "pin"
+   ],
+   "plan": "Keep checking with queen and rook, pin the f7 rook, and end in mate.",
+   "difficulty": "natural"
+  },
+  "base": {
+   "novel_concept": ""
+  }
+ },
+ {
+  "fen": "r4rk1/p3R1p1/2p2p1p/1p6/3n1P2/7P/P2N2P1/2R3K1 b - - 0 1",
+  "best": "Rfe8",
+  "alt": "Rae8",
+  "teacher": {
+   "assessment": "Black is winning: an extra two pawns, a strong d4 knight, and White's only active piece is the e7 rook.",
+   "idea": "Challenge the intruding rook so that, after the trade, your rook owns the e-file.",
+   "why_best": "After 1...Rfe8 2.Rxe8+ Rxe8, White's c1 rook is too far away to contest the e-file. Black's rook takes it and invades with ...Re2, landing on the seventh rank while White's rook is gone.",
+   "why_not_alt": "After 1...Rae8, White answers 2.Rce1. After the trade on e7, White's rook stays on the seventh, and the white king becomes active with Kf2.",
+   "concepts": [
+    "open_file",
+    "simplify",
+    "piece_activity"
+   ],
+   "novel_concept": "",
+   "plan": "Trade rooks, invade with ...Re2, then push the queenside pawns with ...a5.",
+   "difficulty": "natural"
+  },
+  "student": {
+   "novel_concept": "",
+   "idea": "Bring the rook to e8 so it eyes the e7 rook and the king.",
+   "assessment": "Black is winning. White's rook on e7 is attacked twice, and Black's rook on f8 is aimed at it.",
+   "why_best": "1...Rfe8 attacks the e7 rook, so White must answer with 2.Rxe8+ Rxe8. Then 3.Kh2 hits the king, and Black's rook stays active on f8. Black's rook and queen on the seventh rank matter far more than White's rook.",
+   "why_not_alt": "1...Rae8 also attacks the e7 rook, but 2.Rce1 blocks it. White's rook then walks to d8, and Black's rook is stuck on e7. White's rook becomes active.",
+   "concepts": [
+    "counterplay",
+    "king_safety",
+    "piece_activity"
+   ],
+   "plan": "Bring the rook to e8, then use the f8 rook and queen against White's king.",
+   "difficulty": "natural"
+  },
+  "base": {
+   "novel_concept": ""
+  }
+ },
+ {
+  "fen": "1r1q1rk1/pbpp1ppp/8/2PQP3/8/1P6/P4PPP/R3KB1R w KQ - 0 1",
+  "best": "Qd4",
+  "alt": "Qd2",
+  "teacher": {
+   "assessment": "White is slightly better: an extra pawn and more space, but the queen must leave d5 and the king is uncastled.",
+   "idea": "Retreat to an active central square that guards your pawns, then castle long.",
+   "why_best": "On d4 the queen still covers c5 and e5 and stays centralized. After 1...d6 2.O-O-O White's rook joins on the d-file. When Black opens the position with ...dxc5, White's pieces are ready and fork chances appear.",
+   "why_not_alt": "On d2 the queen guards neither c5 nor e5. Black breaks with ...d6, opens files for his rooks, and the extra pawn's value disappears.",
+   "concepts": [
+    "piece_activity",
+    "development",
+    "defence"
+   ],
+   "novel_concept": "",
+   "plan": "Castle long, put a rook on the d-file, and keep the queen central.",
+   "difficulty": "natural"
+  },
+  "student": {
+   "novel_concept": "",
+   "idea": "Save the attacked queen with tempo by retreating it to d4, not d2.",
+   "assessment": "White is slightly better: the queen on d5 is attacked, and retreating it costs Black time.",
+   "why_best": "The queen on d5 is attacked by the b7-bishop. On d4 it is safe, so White can castle (2.O-O-O) and keep the extra pawn. White's queen also eyes c5 and b6, so White's pieces stay active.",
+   "why_not_alt": "On d2 the queen is attacked by the b7-bishop and must move with the rook. After 1...Re8 2.f4 d6 3.cxd6 cxd6, White has no follow-up and the game is equal.",
+   "concepts": [
+    "defence",
+    "piece_activity",
+    "king_safety"
+   ],
+   "plan": "Castle, then use the queen and rooks against Black's queenside pawns.",
+   "difficulty": "natural"
+  },
+  "base": {
+   "novel_concept": ""
+  }
+ },
+ {
+  "fen": "br6/7p/3R2p1/p1n2N1k/4pP2/8/P4P1P/5BK1 w - - 0 1",
+  "best": "Be2#",
+  "alt": "Rb6",
+  "teacher": {
+   "assessment": "White is winning by force: the black king on h5 is boxed in, and Be2 is checkmate.",
+   "idea": "Check the trapped king along the open diagonal; every escape square is already covered.",
+   "why_best": "Be2+ hits h5 along e2-f3-g4. Nf5 covers h4 and h6, the f4-pawn covers g5, the bishop covers g4, and g6 is Black's own pawn. Black cannot block or capture, so it is mate.",
+   "why_not_alt": "Rb6 still wins material, but it lets the king escape with Kg4 and Kf3, turning instant mate into a long endgame.",
+   "concepts": [
+    "mating_attack",
+    "king_safety"
+   ],
+   "novel_concept": "",
+   "plan": "Deliver mate immediately with Be2#.",
+   "difficulty": "natural"
+  },
+  "student": {
+   "novel_concept": "",
+   "idea": "Be2# is a forced mate: the bishop checks along the diagonal toward the king.",
+   "assessment": "White is winning. Black's king is stuck in the centre, and White's pieces are aimed at it.",
+   "why_best": "Be2# is a mating attack. The bishop on e2 covers f5 and h5, and the rook on b8 attacks the king. After 1...Kg4 2.Ne3+ Kf3 3.Rxb8, White wins the rook outright and the king is mated.",
+   "why_not_alt": "Rb6 is a slow development move. It ignores the mate threat and lets Black play 1...Kg4, so White stays a piece up but never wins the game.",
+   "concepts": [
+    "mating_attack",
+    "king_safety",
+    "win_material"
+   ],
+   "plan": "Play Be2# and win the rook outright; the king is mated.",
+   "difficulty": "natural"
+  },
+  "base": {
+   "novel_concept": ""
+  }
+ },
+ {
+  "fen": "r2n2k1/ppp1rp1p/3p1p2/4p3/2B1P3/2PP1P2/PP3P1P/2KR2R1 b - - 0 1",
+  "best": "Kh8",
+  "alt": "Kf8",
+  "teacher": {
+   "assessment": "Roughly equal. White's rooks press down the g-file, but Black's position holds if the king steps aside safely.",
+   "idea": "Get off the g-file and the bishop's diagonal, then trade the c4-bishop.",
+   "why_best": "On h8 the king is off the open g-file, and f7 is no longer pinned. Black can follow with Ne6 to trade off White's strong bishop: 2.Rg3 Ne6 3.Bxe6 fxe6, with a compact pawn structure.",
+   "why_not_alt": "Kf8 walks toward the centre. After Rg3, Rdg1 and the f4 break, White opens more lines and Black's pawns end up split into isolated targets.",
+   "concepts": [
+    "king_safety",
+    "pin",
+    "pawn_weakness"
+   ],
+   "novel_concept": "",
+   "plan": "Play Ne6 to trade the bishop, then use the rooks to contest the g-file.",
+   "difficulty": "hard"
+  },
+  "student": {
+   "novel_concept": "",
+   "idea": "Step out of check onto h8, where White's pieces can't reach it.",
+   "assessment": "Roughly equal. Black's king is in check, and White's pieces are aimed at it.",
+   "why_best": "On h8 the king is safe from rook, bishop and knight. After 2.Rg3 Ne6 3.Bxe6 fxe6, Black's pawns become isolated, and the e5 pawn stays a target.",
+   "why_not_alt": "On f8 the king faces the g3 rook and the c4 bishop. After 2.Rg3 Re8 3.Rdg1, White's pieces swarm in, and Black's pawns become doubled.",
+   "concepts": [
+    "king_safety",
+    "pawn_weakness",
+    "avoid_trades"
+   ],
+   "plan": "Play Ne6, then use the e5 pawn and the a7 pawn against White's king.",
+   "difficulty": "natural"
+  },
+  "base": {
+   "novel_concept": ""
+  }
+ },
+ {
+  "fen": "3Qr1k1/pp3p1p/6p1/8/3nP3/4BP2/PP2B1PP/2r3K1 w - - 0 1",
+  "best": "Bxc1",
+  "alt": "Kf2",
+  "teacher": {
+   "assessment": "Black is winning: White is in check and the queen on d8 hangs to Re8, so material will be lost.",
+   "idea": "You're in check and losing the queen anyway, so capture the checking rook now.",
+   "why_best": "1.Bxc1 removes the rook at once. After 1...Nxe2+ 2.Kf2 Rxd8 3.Kxe2, White also wins back the knight, keeping the loss as small as possible.",
+   "why_not_alt": "1.Kf2 lets Black take the queen first with 1...Rxd8. Black then grabs the e2 bishop with the knight and it escapes, so White ends up much further behind.",
+   "concepts": [
+    "win_material",
+    "defence",
+    "hanging_piece"
+   ],
+   "novel_concept": "damage control: when losing material, grab the most you can",
+   "plan": "Recapture the knight with the king, then use the active king and bishop to resist.",
+   "difficulty": "obvious"
+  },
+  "student": {
+   "novel_concept": "",
+   "idea": "Take the checking rook, then trade into a winning endgame.",
+   "assessment": "Black is winning. White's king is in the centre and the d4-rook is giving checks.",
+   "why_best": "1.Bxc1 removes the rook that is giving checks. After 1...Nxe2+ 2.Kf2, White has traded off the bishop pair. White's king is stuck in the centre, and Black's pieces are active.",
+   "why_not_alt": "1.Kf2 ignores the rook. After 1...Rxd8 2.Bxc1, White has traded rooks but still has the bishop pair. Black's pieces stay active, and White's king is stuck in the centre.",
+   "concepts": [
+    "defence",
+    "king_safety",
+    "piece_activity"
+   ],
+   "plan": "Trade pieces, centralise the king, and convert the extra material.",
+   "difficulty": "natural"
+  },
+  "base": {
+   "novel_concept": ""
+  }
+ },
+ {
+  "fen": "1qr2nk1/R5p1/4p1n1/1p1p2N1/6P1/2P1B2Q/PP5P/6K1 w - - 0 1",
+  "best": "Qg3",
+  "alt": "Qf3",
+  "teacher": {
+   "assessment": "White is better with an extra exchange for a pawn, but Black's queen and knights are eyeing White's king.",
+   "idea": "Offer the queen trade on g3 to kill Black's kingside attack.",
+   "why_best": "Qg3 blocks the b8\u2013h2 diagonal and offers a trade. After 1...Qxg3+ 2.hxg3 Black has no attack left. White's material edge and the rook on the seventh then decide the endgame, even if Black wins g4.",
+   "why_not_alt": "Qf3 keeps queens on, so White's king stays a worry. The rook has to leave the seventh rank, and Black gets time to regroup with Rc7, Qc8 and Ne5.",
+   "concepts": [
+    "simplify",
+    "king_safety",
+    "open_file"
+   ],
+   "novel_concept": "",
+   "plan": "Trade queens, keep the rook active on the seventh, then convert the material edge.",
+   "difficulty": "natural"
+  },
+  "student": {
+   "novel_concept": "",
+   "idea": "Give the queen a central post to hit the kingside and the c8 rook.",
+   "assessment": "White is better: the queen and rook are active, Black's king is stuck in the centre and White's pieces are aimed at it.",
+   "why_best": "Qg3 eyes the c8 rook and the g6 knight. After 1...Qxg3+ 2.hxg3, White has a rook on the seventh and a knight on g6. The queen also eyes the f8 bishop and the h2 pawn.",
+   "why_not_alt": "Qf3 is too slow. Black gets time to regroup with ...Rc7 and ...Ne5, and White's pieces stay passive.",
+   "concepts": [
+    "piece_activity",
+    "king_safety",
+    "initiative"
+   ],
+   "plan": "Bring the rook to b7, then use the queen and knight against Black's king.",
+   "difficulty": "natural"
+  },
+  "base": {
+   "novel_concept": ""
+  }
+ },
+ {
+  "fen": "2r2rk1/p4ppp/4pn2/1pq5/2P5/P4BP1/1PQ2P1P/2RR2K1 w - - 0 1",
+  "best": "b4",
+  "alt": "Be2",
+  "teacher": {
+   "assessment": "White is clearly better: a tempo on the queen creates a protected passed c-pawn, and White controls the d-file.",
+   "idea": "Hit the queen with tempo, then push c5 for a protected passer.",
+   "why_best": "1.b4 attacks the queen, so Black has no time to fight back. After 1...Qc7 2.c5, the c-pawn is passed and guarded by b4. It cramps Black and gives White a long-term trump.",
+   "why_not_alt": "1.Be2 just guards c4 passively. Black plays ...a5 and ...b4, dissolves White's queenside majority and equalises. White never gets a passed pawn.",
+   "concepts": [
+    "passed_pawn",
+    "pawn_majority",
+    "initiative"
+   ],
+   "novel_concept": "",
+   "plan": "Support the c5 passer, keep control of the d-file, and push the pawn.",
+   "difficulty": "natural"
+  },
+  "student": {
+   "novel_concept": "",
+   "idea": "Push b4 to hit the queen and the c5 pawn at once.",
+   "assessment": "White is clearly better: Black's queen and c5 pawn are loose, and White can win a pawn.",
+   "why_best": "1.b4 attacks both the queen and the c5 pawn. After 1...Qc7 2.c5, White wins a pawn and keeps the extra material. White's rook then eyes d1, and White's pieces become active.",
+   "why_not_alt": "1.Be2 is a passive retreat. Black plays a5 and b4, and White's pieces stay cramped. The extra pawn is gone and the position is equal.",
+   "concepts": [
+    "pawn_break",
+    "piece_activity",
+    "win_material"
+   ],
+   "plan": "Win the b-pawn, then use the rook and pieces against Black's king.",
+   "difficulty": "natural"
+  },
+  "base": {
+   "novel_concept": ""
+  }
+ },
+ {
+  "fen": "6kr/pp3ppp/3N4/3bp3/1B6/6P1/PPP2P1q/2KR1B2 w - - 0 1",
+  "best": "Rxd5",
+  "alt": "Nc8",
+  "teacher": {
+   "assessment": "Roughly equal after Rxd5. White is down material but Black's boxed-in king on g8 gives White counterplay.",
+   "idea": "Take the bishop, then use Black's weak back rank to force queen trades.",
+   "why_best": "1.Rxd5 wins a whole piece. After 1...Qxf2 2.Rxe5, Re8 threatens mate because the h8 rook traps Black's king. Black must give up the queen with 2...Qxf1+ 3.Re1 Qxe1+ 4.Bxe1, and White stays slightly ahead.",
+   "why_not_alt": "Nc8 is too slow. Black grabs f2 and keeps the queen on White's second rank. Black can even get a mate-in-one chance, and wins the material race.",
+   "concepts": [
+    "win_material",
+    "back_rank",
+    "defence"
+   ],
+   "novel_concept": "",
+   "plan": "Trade off Black's queen, then use your extra minor pieces against the rook.",
+   "difficulty": "natural"
+  },
+  "student": {
+   "novel_concept": "",
+   "idea": "Take the undefended bishop on d5, then trade queens to end Black's attack.",
+   "assessment": "Roughly equal after Rxd5. White wins back the piece, and Black's attack on f2 is gone.",
+   "why_best": "The d5 bishop has no defender. 1.Rxd5 removes it from Black's attack. After 2.Rxe5 White has traded queens, so Black's rook no longer reaches the seventh rank. White is ahead in material and the attack is gone.",
+   "why_not_alt": "1.Nc8 lets Black play 1...g6. The knight escapes with tempo, and Black's queen and rook stay active. White stays a piece down and is slightly worse.",
+   "concepts": [
+    "hanging_piece",
+    "win_material",
+    "defence"
+   ],
+   "plan": "Trade queens, then use the extra material and the bishop pair against Black's pawns.",
+   "difficulty": "natural"
+  },
+  "base": {
+   "novel_concept": ""
+  }
+ },
+ {
+  "fen": "r3k2r/pp1q1ppp/8/4p3/4n3/BQP5/P4PPP/R4RK1 b kq - 0 1",
+  "best": "Nd2",
+  "alt": "O-O-O",
+  "teacher": {
+   "assessment": "Black is slightly better. The extra pawn counts, but Black's king is stuck in the centre and must get safe.",
+   "idea": "Fork queen and rook with tempo, chasing the queen off f7 before castling.",
+   "why_best": "1...Nd2 attacks Qb3 and Rf1 at once. White must spend moves: 2.Qb4 then Rfe1. The queen leaves the b3-f7 diagonal, so Black castles queenside and keeps the extra pawn.",
+   "why_not_alt": "1...O-O-O lets White's queen stay active. After 2.Qc4+ Qc6 3.Qxf7 White wins back the pawn, and the position is equal.",
+   "concepts": [
+    "fork",
+    "initiative",
+    "king_safety"
+   ],
+   "novel_concept": "",
+   "plan": "Castle queenside, put a rook on the d-file and hold onto the extra pawn.",
+   "difficulty": "natural"
+  },
+  "student": {
+   "novel_concept": "",
+   "idea": "Block the f7 pawn with a knight, then castle and finish development.",
+   "assessment": "Black is slightly better: an extra pawn, and White's king is still in the centre with no castling.",
+   "why_best": "1...Nd2 attacks the f7 pawn, so White must defend it. After 2.Qb4 O-O-O Black is castled and the knight sits on a strong central square. White's king stays in the centre, and Black's queen and rooks are active.",
+   "why_not_alt": "1...O-O-O is too slow. White plays 2.Qc4+ and forks the queen and rook, winning a pawn. Black's knight is stuck on d2, and the position is equal.",
+   "concepts": [
+    "defence",
+    "fork",
+    "development"
+   ],
+   "plan": "Castle, then use the queen and rooks against White's king and queenside pawns.",
+   "difficulty": "natural"
+  },
+  "base": {
+   "novel_concept": ""
+  }
+ },
+ {
+  "fen": "1q3rk1/4bppp/8/1p1QN3/3P1P2/4P1P1/7P/R5K1 w - - 0 1",
+  "best": "Nxf7",
+  "alt": "Nc6",
+  "teacher": {
+   "assessment": "White is winning: Black's king sits on a weak back rank and the a2-g8 diagonal, and Black's pieces are loose.",
+   "idea": "Pin the f7-rook to the king, then use the back rank to win the queen.",
+   "why_best": "After 1.Nxf7 Rxf7 the rook is pinned by Qd5. Then 2.Ra8! attacks the queen, and Black's back rank is weak. After Qxa8 Qxa8+ White wins queen for rook and keeps a pinned rook and passed centre pawns.",
+   "why_not_alt": "1.Nc6 hits the queen and bishop, but Black simply moves the queen. White keeps pressure without cashing in. No pin, no back-rank combination, no extra queen.",
+   "concepts": [
+    "pin",
+    "back_rank",
+    "sacrifice"
+   ],
+   "novel_concept": "",
+   "plan": "Keep the pinned f7-rook tied down and push the passed central pawns.",
+   "difficulty": "hard"
+  },
+  "student": {
+   "novel_concept": "",
+   "idea": "Take the pawn on f7. The knight is lost anyway, so grab it first.",
+   "assessment": "White is winning. The f7 pawn is loose, and taking it leaves White a full piece up.",
+   "why_best": "1.Nxf7 Rxf7 removes the knight, so White is a full piece up. After 2.Ra8 Qxa8 3.Qxa8+ White has won the exchange and is a clear piece up.",
+   "why_not_alt": "1.Nc6 is a slow, passive move. Black gets time to save the knight with Qe8 and Bf6, and White stays only a pawn up.",
+   "concepts": [
+    "hanging_piece",
+    "win_material",
+    "simplify"
+   ],
+   "plan": "Collect the f7 pawn, then use the extra piece and queen to convert.",
+   "difficulty": "natural"
+  },
+  "base": {
+   "novel_concept": ""
+  }
+ },
+ {
+  "fen": "5r1k/p3q2p/1p3p2/2b3P1/6bQ/1P1BP3/P5PP/B5K1 w - - 0 1",
+  "best": "Kh1",
+  "alt": "Kf1",
+  "teacher": {
+   "assessment": "Black is better thanks to an extra piece, but White has real counterplay against f6 and the black king.",
+   "idea": "Get the king off the g1-a7 diagonal and the f-file, keeping the attack going.",
+   "why_best": "On h1 the king is off both of Black's attacking lines, so White can keep attacking. After 1...Qd7 2.g6 h5 3.Bxf6+ Rxf6 4.Qxf6+, the a1-bishop and the queen win back the material.",
+   "why_not_alt": "Kf1 puts the king on the f-file facing the f8-rook. Black gets ...Qf5+ with tempo, White is forced into Be2 and Qf2, and Black trades queens a piece up.",
+   "concepts": [
+    "king_safety",
+    "counterplay",
+    "avoid_trades"
+   ],
+   "novel_concept": "",
+   "plan": "Push g6 and use Ba1 and Qh4 to break open f6 against the black king.",
+   "difficulty": "hard"
+  },
+  "student": {
+   "novel_concept": "",
+   "idea": "Step off the e3\u2013f6 diagonal and keep the king near the centre.",
+   "assessment": "Black is better: White's king is stuck on h1, and Black's queen and bishop are aimed at it.",
+   "why_best": "Kh1 moves the king off the e3\u2013f6 diagonal, so Black's queen and bishop no longer hit it. White can then play g6 to open lines toward Black's king, and the queen stays active.",
+   "why_not_alt": "Kf1 leaves the king on f1, where the queen and bishop aim. After Qd7 and Qf5+, White has to give up the queen for a bishop, and Black is winning.",
+   "concepts": [
+    "king_safety",
+    "defence",
+    "piece_activity"
+   ],
+   "plan": "Play g6, then use the queen and bishop to harass Black's king.",
+   "difficulty": "natural"
+  },
+  "base": {
+   "novel_concept": ""
+  }
+ },
+ {
+  "fen": "r4rk1/ppp1Rppp/3b4/1B1p4/3n4/1P5P/PBP3P1/3R2K1 b - - 0 1",
+  "best": "Nxb5",
+  "alt": "Bxe7",
+  "teacher": {
+   "assessment": "Black is winning with extra material. The only issue is the knight on d4, attacked by Bb2 and Rd1.",
+   "idea": "Capture with the threatened piece: the knight saves itself by taking a bishop.",
+   "why_best": "1...Nxb5 grabs a whole bishop and gets the loose knight out of danger in one move. White's rook must retreat (2.Rd7), then ...d4 blunts the b2-bishop. Black stays a clean piece up.",
+   "why_not_alt": "1...Bxe7 wins the rook, but 2.Bxd4 takes the knight back. That nets only the exchange instead of a full piece, and White keeps the bishop pair.",
+   "concepts": [
+    "hanging_piece",
+    "win_material",
+    "simplify"
+   ],
+   "novel_concept": "",
+   "plan": "Blunt Bb2 with ...d4, trade rooks on the d-file, and convert the extra piece.",
+   "difficulty": "natural"
+  },
+  "student": {
+   "novel_concept": "",
+   "idea": "Recapture with the knight so it guards d4 and the e7 rook.",
+   "assessment": "Black is winning. The d4 knight is attacked twice, and the e7 rook is attacked once, so recapturing is essential.",
+   "why_best": "1...Nxb5 wins the piece back and keeps the knight on d4, where it protects the e7 rook. After 2.Rd7 d4, Black's rook and knight are active and White's king is stuck in the centre.",
+   "why_not_alt": "1...Bxe7 grabs a rook but leaves the d4 knight undefended. After 2.Bxd4, White wins the piece back and the d4 knight is gone, so Black's edge shrinks to a small one.",
+   "concepts": [
+    "defence",
+    "piece_activity",
+    "king_safety"
+   ],
+   "plan": "Play ...d4, then ...Rad8 to activate the rook and keep the knight on d4.",
+   "difficulty": "natural"
+  },
+  "base": {
+   "novel_concept": ""
+  }
+ },
+ {
+  "fen": "3k3r/1p3pBp/1p1P4/rB6/1b2n1b1/4PN2/nP1N1PPP/R3K2R b - - 0 1",
+  "best": "Rg8",
+  "alt": "Re8",
+  "teacher": {
+   "assessment": "Black is slightly better: the attacked rook escapes with tempo, letting Black win back the loose b5 bishop.",
+   "idea": "Save the attacked rook while attacking the g7 bishop.",
+   "why_best": "Bg7 attacks the h8 rook, and Black's Ra5 already eyes the loose bishop on b5. 1...Rg8 hits the g7 bishop, so White must spend a move on it (2.Bd4). Then 2...Rxb5 cleans up and Black stands slightly better.",
+   "why_not_alt": "1...Re8 saves the rook but threatens nothing. White gets a free move (2.Ke2), and the trades that follow end with White recapturing on a2 and standing clearly better.",
+   "concepts": [
+    "initiative",
+    "hanging_piece",
+    "piece_activity"
+   ],
+   "novel_concept": "",
+   "plan": "Take b5, then use your active rooks and bishops against White's d6 pawn.",
+   "difficulty": "natural"
+  },
+  "student": {
+   "novel_concept": "",
+   "idea": "Save the attacked rook by moving it to g8, where it eyes the h8 rook.",
+   "assessment": "Black is slightly better: White's rook on h8 is attacked by the g4-bishop, and Black's rook can hit it.",
+   "why_best": "The b5-bishop attacks the h8-rook. Rg8 escapes it and eyes it. After 2.Bd4 Rxb5 3.Rxa2, Black wins the a2-knight and the b5-bishop, and the material edge holds.",
+   "why_not_alt": "Re8 saves the rook but leaves it on e4. After 3.Nxe4 Rxe4, White wins the e4-knight and the exchange, and White is clearly better.",
+   "concepts": [
+    "defence",
+    "hanging_piece",
+    "win_material"
+   ],
+   "plan": "Win the b5-bishop, then trade pieces to convert the material edge.",
+   "difficulty": "natural"
+  },
+  "base": {
+   "novel_concept": ""
+  }
+ },
+ {
+  "fen": "r1bk3r/p3pBbp/2p2np1/4p3/8/2N5/PPP2PPP/R1B2RK1 b - - 0 1",
+  "best": "e6",
+  "alt": "Kc7",
+  "teacher": {
+   "assessment": "Black is better: White's bishop on f7 has wandered deep into Black's camp and can be cut off.",
+   "idea": "Play ...e6 to shut the f7-bishop's escape route and trap it.",
+   "why_best": "After ...e6 the bishop has no safe square. e8 is covered by the king, g8 by the rook, e6 by the c8-bishop and g6 by the h7-pawn. Black rounds it up with ...Rf8 and ...Rxf7, winning material and undoubling the e-pawns.",
+   "why_not_alt": "1...Kc7 lets the bishop escape with Bb3. Black is left with doubled, isolated pawns and nothing to show for them, so White is slightly better.",
+   "concepts": [
+    "trapped_piece",
+    "win_material",
+    "pawn_weakness"
+   ],
+   "novel_concept": "",
+   "plan": "Collect the f7-bishop with ...Rf8 and ...Rxf7, then use the extra piece.",
+   "difficulty": "natural"
+  },
+  "student": {
+   "novel_concept": "",
+   "idea": "Push e6 to open the f7-bishop's diagonal toward f2.",
+   "assessment": "Black is slightly better: White's f7-bishop is stuck in the centre and can be taken for free.",
+   "why_best": "1...e6 opens the f7-bishop's diagonal toward f2. After 2.Bg5 Rf8 3.Ne4 Rxf7, Black wins the piece back and the f7-bishop is gone. White's f-pawn is also broken.",
+   "why_not_alt": "1...Kc7 is too slow. White calmly plays 2.Bb3 and keeps the extra space, and Black's king stays in the centre.",
+   "concepts": [
+    "pawn_break",
+    "piece_activity",
+    "king_activity"
+   ],
+   "plan": "Win the f7-bishop, then use the extra space and the queenside majority.",
+   "difficulty": "natural"
+  },
+  "base": {
+   "novel_concept": ""
+  }
+ },
+ {
+  "fen": "r2q2k1/ppp3pp/1n2P1b1/4p3/2P3P1/2N1Q3/PP2B2P/R5K1 b - - 0 1",
+  "best": "Qd4",
+  "alt": "Qh4",
+  "teacher": {
+   "assessment": "Equal if Black is accurate. White has more space and a strong e6 pawn, but Black's e5 pawn gives counterplay.",
+   "idea": "Centralise the queen, guard e5 and offer the queen trade.",
+   "why_best": "Qd4 attacks White's queen and protects e5, so White's queen has no easy target. After 2.Nd5 c6 the queens come off. Black's pawn recaptures to d4 and becomes a passed pawn, which balances White's space.",
+   "why_not_alt": "Qh4 goes for a king attack that doesn't land. It leaves e5 loose, so 3.Qxe5 wins a pawn. White also trades queens on f6, reaching an endgame Black shouldn't enjoy.",
+   "concepts": [
+    "defence",
+    "piece_activity",
+    "passed_pawn"
+   ],
+   "novel_concept": "",
+   "plan": "Trade queens, then push the d-pawn and blockade e6.",
+   "difficulty": "natural"
+  },
+  "student": {
+   "novel_concept": "",
+   "idea": "Save the attacked queen by hitting the e3 queen, then hit the c3 knight.",
+   "assessment": "Roughly equal. Black's queenside pawns are dangerous, but White's queen and knight are active and threaten checks.",
+   "why_best": "The e5 pawn attacks the queen. 1...Qd4 saves it and attacks the c3 knight. After 2.Nd5 c6 3.Rd1 Nxd5 4.Qxd4 exd4 5.cxd5, Black's queenside pawns become dangerous, and White's queen is attacked.",
+   "why_not_alt": "1...Qh4 saves the queen passively. After 2.b3 White's queen is centralised, and White's pieces become active. White's pieces then start to hunt Black's queenside pawns.",
+   "concepts": [
+    "defence",
+    "piece_activity",
+    "pawn_weakness"
+   ],
+   "plan": "Play ...c6, then ...Nxd5 and ...exd4, and keep the queenside pawns active.",
+   "difficulty": "natural"
+  },
+  "base": {
+   "novel_concept": ""
+  }
+ },
+ {
+  "fen": "4k2r/4bp2/2B2p1p/p3p3/P7/1bP3P1/1P3P1P/5RK1 b k - 0 1",
+  "best": "Kf8",
+  "alt": "Kd8",
+  "teacher": {
+   "assessment": "Black is winning thanks to the extra bishop, but must get out of check without letting White's rook become active.",
+   "idea": "Step the king toward the kingside, behind its pawns and off open files.",
+   "why_best": "After 1...Kf8 and ...Kg7 the king is sheltered by f7, f6 and h6. No white rook check lands with tempo, so Black can calmly bring the h8-rook into play (...Rd8) and use the extra piece.",
+   "why_not_alt": "1...Kd8 puts the king on the open d-file. After 2.Bd5 Bxd5 3.Rd1 White's rook wins back time, grabs a5 and creates passed queenside pawns.",
+   "concepts": [
+    "king_safety",
+    "open_file",
+    "passed_pawn"
+   ],
+   "novel_concept": "",
+   "plan": "King to g7, rook to the d-file, then push kingside pawns with the extra piece.",
+   "difficulty": "natural"
+  },
+  "student": {
+   "novel_concept": "",
+   "idea": "Step out of check onto the g7 square, where White's pieces are scattered.",
+   "assessment": "Black is winning. White's king is stuck in the centre, and Black's pieces are aimed at it.",
+   "why_best": "On g7 the king is off the a4\u2013h8 diagonal, so White has no tempo. After 2.Re1 Kg7 3.Bb5, White's pieces are scattered and Black's rooks and bishops are aimed at the king.",
+   "why_not_alt": "On d8 the king sits on the a4\u2013h8 diagonal. After 2.Bd5 Bxd5 3.Rd1, White's pieces regroup, and Black's attack is gone.",
+   "concepts": [
+    "king_safety",
+    "piece_activity",
+    "counterplay"
+   ],
+   "plan": "Bring the rook to d8, then use the bishops and queen to hunt the king.",
+   "difficulty": "natural"
+  },
+  "base": {
+   "novel_concept": ""
+  }
+ },
+ {
+  "fen": "r5kr/5p1p/p2q1p1B/1pp5/8/1PPPR3/1P3PPP/4R1K1 w - - 0 1",
+  "best": "Re8+",
+  "alt": "f4",
+  "teacher": {
+   "assessment": "White is winning. Black's king is boxed in by its own h8 rook and pawns, and Bh6 covers g7 and f8.",
+   "idea": "Force the queen to block, trade it off, then mate on the g-file.",
+   "why_best": "1.Re8+ forces 1...Qf8, since taking the rook loses to a back-rank mate. 2.Rxf8+ removes the queen and keeps the initiative. Then Re3\u2013g3 gives mate because g7 and f8 are covered and h8 is blocked.",
+   "why_not_alt": "1.f4 still wins material and keeps a big edge, but it lets Black breathe. The forced mate against the trapped king disappears.",
+   "concepts": [
+    "mating_attack",
+    "back_rank",
+    "initiative"
+   ],
+   "novel_concept": "",
+   "plan": "Swing the second rook to the g-file for mate while Bh6 seals g7 and f8.",
+   "difficulty": "natural"
+  },
+  "student": {
+   "novel_concept": "",
+   "idea": "Check first, then take the queen. The rook on e8 attacks both.",
+   "assessment": "White is winning. Black's queen on d6 is attacked by the rook and bishop, and White can win it.",
+   "why_best": "1.Re8+ forces the queen to move. After 1...Qf8 2.Rxf8+ Rxf8, White has a rook on the a-file and the queen on f8. 3.Re3 brings a rook to the third rank, and 4.Rg3# ends the game.",
+   "why_not_alt": "1.f4 is too slow. Black plays 1...f5, and White's rook on e8 is attacked by the queen. After 2.Re8+ Qf8 3.Bxf8 Rxe8 4.Rxe8 White is down material and the attack is gone.",
+   "concepts": [
+    "mating_attack",
+    "initiative",
+    "win_material"
+   ],
+   "plan": "Bring a rook to the third rank, then mate on the g-file.",
+   "difficulty": "natural"
+  },
+  "base": {
+   "novel_concept": ""
+  }
+ },
+ {
+  "fen": "4r2k/p4R1p/3Q2p1/3B4/8/7P/4q1PK/8 b - - 0 1",
+  "best": "Qe5+",
+  "alt": "Qb2",
+  "teacher": {
+   "assessment": "White is winning: an extra exchange and strong pieces closing in on Black's boxed-in king and weak back rank.",
+   "idea": "Trade off White's attacking queen with check to kill the mating attack.",
+   "why_best": "1...Qe5+ is check, so White has no time for threats and must trade with 2.Qxe5+ Rxe5. Without queens, the mating danger on the back rank is gone. Black is still worse but keeps playing.",
+   "why_not_alt": "1...Qb2 ignores the back rank. 2.Rf8+ Kg7 3.Rxe8 wins the rook. White's queen and bishop then threaten mate and forks, so Black's position collapses.",
+   "concepts": [
+    "defence",
+    "back_rank",
+    "simplify"
+   ],
+   "novel_concept": "",
+   "plan": "Activate the rook (Ra5-a4), push the a-pawn and hope to hold.",
+   "difficulty": "natural"
+  },
+  "student": {
+   "novel_concept": "",
+   "idea": "Check first, then block with the queen. Don't give up the queen.",
+   "assessment": "White is winning. Black's queen on e2 is attacked twice, and White's queen and rook are aimed at it.",
+   "why_best": "1...Qe5+ forces 2.Qxe5+ Rxe5. White wins the queen, but the rook stays on e5. Black's queen is still active, and the rook eyes a7. Black can then trade queens and keep fighting.",
+   "why_not_alt": "1...Qb2 is passive. After 2.Rf8+ Kg7 3.Rxe8, White's rook reaches the seventh and Black's queen is stuck in the centre. White wins the queen and the rook, and the game is over.",
+   "concepts": [
+    "defence",
+    "hanging_piece",
+    "win_material"
+   ],
+   "plan": "Trade queens, then use the rook and queen against White's king.",
+   "difficulty": "natural"
+  },
+  "base": {
+   "novel_concept": ""
+  }
+ },
+ {
+  "fen": "5rk1/p1p2ppp/3pb3/8/2P5/P5P1/4rPBP/R1R3K1 b - - 0 1",
+  "best": "Rb8",
+  "alt": "Rb2",
+  "teacher": {
+   "assessment": "Black is clearly better: an extra pawn, a rook already on the second rank, and White's rooks stuck passive.",
+   "idea": "Bring the idle rook to the open b-file while the e2-rook stays active.",
+   "why_best": "Rb8 activates the f8-rook without giving up anything. The e2-rook keeps its grip on the second rank and the e-file. After 2.Bf3 Rd2 3.Rab1 Rbb2, both Black rooks reach the second rank, and trades only help the side a pawn up.",
+   "why_not_alt": "Rb2 moves the active rook off the e-file. White hits back with Bd5 and Re1, so his rooks wake up and he gets counterplay.",
+   "concepts": [
+    "open_file",
+    "piece_activity",
+    "simplify"
+   ],
+   "novel_concept": "",
+   "plan": "Double rooks on the second rank, trade into a won endgame, and target the weak c4 and a3 pawns.",
+   "difficulty": "natural"
+  },
+  "student": {
+   "novel_concept": "",
+   "idea": "Bring the rook to the second rank to guard the king and the d-file.",
+   "assessment": "Black is better: the rook on b8 guards the king and the d-file, and White's king is stuck in the centre.",
+   "why_best": "Rb8 covers the second rank and the d-file. After 2.Bf3 Rd2, the rook still eyes d1 and the king. White must spend time on Bd5 and Rab1, and Black keeps the extra pawn and active rooks.",
+   "why_not_alt": "Rb2 is passive. White plays Bd5 and Re1, and the rook on b2 is no longer needed. Black's rook is stuck on f8, and White's king gets time to regroup.",
+   "concepts": [
+    "king_safety",
+    "defence",
+    "piece_activity"
+   ],
+   "plan": "Keep the rook on b8, keep the extra pawn, and keep White's king in the centre.",
+   "difficulty": "natural"
+  },
+  "base": {
+   "novel_concept": ""
+  }
+ },
+ {
+  "fen": "r1r3k1/p4ppp/2n1p3/2R5/2RP4/6P1/3NPPKP/8 b - - 0 1",
+  "best": "Ne7",
+  "alt": "a5",
+  "teacher": {
+   "assessment": "Equal if Black saves the knight; the c6-knight is attacked twice by the doubled rooks and defended only once.",
+   "idea": "Get the knight off the c-file before the doubled rooks win it.",
+   "why_best": "On c6 the knight faces two white rooks with only Rc8 guarding it. 1...Ne7 steps off the file. After 2.Rxc8+ Rxc8 Black keeps a rook on the open c-file and material is level.",
+   "why_not_alt": "1...a5 ignores the loose knight. 2.Rxc6 Rxc6 3.Rxc6 simply wins a piece, and the a-pawn is far too slow to matter.",
+   "concepts": [
+    "hanging_piece",
+    "defence",
+    "pin"
+   ],
+   "novel_concept": "",
+   "plan": "Trade rooks, hold the c-file, and bring the knight back toward the queenside.",
+   "difficulty": "natural"
+  },
+  "student": {
+   "novel_concept": "",
+   "idea": "Save the attacked knight by retreating it, not by grabbing pawns.",
+   "assessment": "Roughly equal. White threatens Rxc6, but Black can save the knight without falling behind in development.",
+   "why_best": "The c6-knight is attacked by the d4-pawn. Ne7 saves it passively, so Black stays level. After 2.Rxc8+ Rxc8 3.Ra4 Nc6, Black finishes development and the game is roughly equal.",
+   "why_not_alt": "1...a5 grabs a rook but gives up the knight. After 2.Rxc6 Rxc6 3.Rxc6 a4, White's rook becomes active and White is winning.",
+   "concepts": [
+    "defence",
+    "hanging_piece",
+    "development"
+   ],
+   "plan": "Finish development, castle, and meet the queen on the c-file.",
+   "difficulty": "natural"
+  },
+  "base": {
+   "novel_concept": ""
+  }
+ },
+ {
+  "fen": "5rk1/6p1/p5P1/1p1R3P/P1n5/1BP3p1/1P1p2r1/1K1R4 b - - 0 1",
+  "best": "Kh8",
+  "alt": "Rgf2",
+  "teacher": {
+   "assessment": "White is slightly better. Black's advanced passers balance it, but the g8 king sits on the bishop's a2-g8 diagonal.",
+   "idea": "Step the king off the bishop's diagonal before it opens.",
+   "why_best": "The g8 king lines up behind the c4 knight and d5 rook on Bb3's diagonal. 1...Kh8 removes that x-ray. After 2.Rd3 Re2 3.Rxg3 Re1, Black's rooks stay active and the game stays close.",
+   "why_not_alt": "1...Rgf2 leaves the king on the diagonal. After 2.axb5 Rf1 3.Bxc4, White gets discovered-attack chances, and the d2 pawn falls after 5.Kxd2.",
+   "concepts": [
+    "king_safety",
+    "discovered_attack",
+    "prophylaxis"
+   ],
+   "novel_concept": "",
+   "plan": "Keep the rooks active against White's king and support the d2 and g3 passers.",
+   "difficulty": "hard"
+  },
+  "student": {
+   "novel_concept": "",
+   "idea": "Step off the g-file and keep the rook on the f8\u2013e2 diagonal.",
+   "assessment": "White is slightly better: the g3 pawn is dangerous, and Black's king is stuck in the centre.",
+   "why_best": "Kh8 escapes the g-file and keeps the rook on the f8\u2013e2 diagonal. After 2.Rd3 Re2 3.Rxg3, Black wins the pawn back and the g3 pawn falls. White's best is 3...Re1, and Black's rook stays active.",
+   "why_not_alt": "Rgf2 leaves the rook off the diagonal. After 2.axb5 Rf1 3.Bxc4, White wins the knight and the exchange, and Black's rook is stuck on the back rank.",
+   "concepts": [
+    "king_safety",
+    "piece_activity",
+    "defence"
+   ],
+   "plan": "Win back the g3 pawn, then use the rook and knight against White's queenside.",
+   "difficulty": "natural"
+  },
+  "base": {
+   "novel_concept": ""
+  }
+ },
+ {
+  "fen": "2r5/4k2p/N6n/p4bp1/P7/8/2n2PPP/2R1R1K1 b - - 0 1",
+  "best": "Nxe1",
+  "alt": "Kf6",
+  "teacher": {
+   "assessment": "Black is winning: the checking rook on e1 can be captured for a knight, and White's a6-knight is trapped.",
+   "idea": "Answer the check by capturing the rook, winning the exchange.",
+   "why_best": "Re1 is giving check, and 1...Nxe1 removes it while winning a rook for a knight. After 2.Rxe1+ Kf6, the Na6 has no safe squares. Black's rook controls b8, c7 and c5, so ...Rc6-b6 hunts it down.",
+   "why_not_alt": "1...Kf6 just steps out of check and leaves the rook on e1. White plays Red1, its rooks become active together, and the extra material Black could have won is gone.",
+   "concepts": [
+    "win_material",
+    "trapped_piece",
+    "king_activity"
+   ],
+   "novel_concept": "",
+   "plan": "Bring the king to f6, then use ...Rc6-b6 to win the trapped Na6.",
+   "difficulty": "natural"
+  },
+  "student": {
+   "novel_concept": "",
+   "idea": "Take the free rook on e1. The knight is lost anyway.",
+   "assessment": "Black is winning. White's rook on e1 is hanging, and the knight on c2 is lost.",
+   "why_best": "1...Nxe1 wins a whole rook for a knight. After 2.Rxe1+ Kf6, Black's pieces are active and White's rook is stuck on e1. White's knight on c2 is also lost.",
+   "why_not_alt": "1...Kf6 is a slow, passive move. It lets White play 2.Red1 and trade pieces, so the extra rook is gone and the position is equal.",
+   "concepts": [
+    "hanging_piece",
+    "win_material",
+    "overloaded_defender"
+   ],
+   "plan": "Activate the knight and bishop, then use the extra rook and the open e-file.",
+   "difficulty": "natural"
+  },
+  "base": {
+   "novel_concept": ""
+  }
+ },
+ {
+  "fen": "r1b2r2/3n3k/p1p2p2/1p6/3QPP2/P1N5/1PP3P1/2K5 b - - 0 1",
+  "best": "Rf7",
+  "alt": "Kg8",
+  "teacher": {
+   "assessment": "White is slightly better despite Black's extra material: the white queen and central pawns are active, Black's pieces are uncoordinated.",
+   "idea": "Guard the seventh rank and defend the knight before the queen gets in.",
+   "why_best": "1...Rf7 covers the second rank from the side, protects the d7-knight and f6, and frees the bishop to develop. White has no quick queen raid, so the game slows down. Slowing down suits the side with the extra pieces.",
+   "why_not_alt": "1...Kg8 ignores the queen. After 2.Qd6 White grabs c6 and lands on c7, with the queen on the seventh tying Black's pieces up.",
+   "concepts": [
+    "prophylaxis",
+    "defence",
+    "piece_activity"
+   ],
+   "novel_concept": "",
+   "plan": "Untangle with Kg8, Nf8 and Bd7, then use the extra pieces against White's pawns.",
+   "difficulty": "natural"
+  },
+  "student": {
+   "novel_concept": "",
+   "idea": "Bring the rook to f7 to guard the kingside and the c8-bishop.",
+   "assessment": "White is slightly better despite Black's extra material, because Black's king is stuck in the centre and White's pieces are active.",
+   "why_best": "Rf7 covers the f-file and the c8-bishop. After 2.g4 Kg8 3.b3 Nf8, Black's rook still eyes g2 and the c8-bishop. White's queen and knight stay active, and Black's pieces stay near the king.",
+   "why_not_alt": "1...Kg8 leaves the king on the e4-f5 diagonal. After 2.Qd6 Rf7 3.Qxc6, White's queen reaches c7 and the c8-bishop is boxed in. White's pieces then take over.",
+   "concepts": [
+    "king_safety",
+    "piece_activity",
+    "defence"
+   ],
+   "plan": "Bring the rook to f7, then use the c8-bishop and knight to harass White's king.",
+   "difficulty": "natural"
+  },
+  "base": {
+   "novel_concept": ""
+  }
+ },
+ {
+  "fen": "4k2r/4q2p/p2p1ppQ/1p1Bp3/1n2P1b1/7P/PP2NPP1/2R3K1 b k - 0 1",
+  "best": "Nxd5",
+  "alt": "Bd7",
+  "teacher": {
+   "assessment": "White is better. Black's king is stuck in the centre, and White's queen and d5-bishop dominate the light squares.",
+   "idea": "Trade off the d5-bishop that stops Black from castling kingside.",
+   "why_best": "The d5-bishop covers g8, so Black cannot castle. After 1...Nxd5 2.exd5 Bd7, the bishop on g4 is saved and Black castles soon. White gets a rook to c7, but Black's king finally gets shelter.",
+   "why_not_alt": "1...Bd7 leaves White's strong bishop alive (2.Bb3). Black's king stays stuck in the centre, and the rook goes Rc7-a7 to win the a6 pawn.",
+   "concepts": [
+    "king_safety",
+    "development",
+    "simplify"
+   ],
+   "novel_concept": "",
+   "plan": "Save the g4-bishop with ...Bd7, castle, then contest the c-file and seventh rank.",
+   "difficulty": "natural"
+  },
+  "student": {
+   "novel_concept": "",
+   "idea": "Trade off White's strong d5 bishop to remove the knight fork threat.",
+   "assessment": "White is better despite Black's extra pawn, because Black's king is stuck in the centre and White's pieces are aimed at it.",
+   "why_best": "The e2 knight forks the g4 bishop. 1...Nxd5 removes that fork. After 2.exd5 the knight is loose, so 2...Bd7 hits the queen and the rook. White's rook then walks to c7 and a7.",
+   "why_not_alt": "1...Bd7 saves the bishop but leaves the knight forked. After 2.Bb3 g5 3.Rc7 the rook reaches a7, and White's pieces become active.",
+   "concepts": [
+    "fork",
+    "defence",
+    "king_safety"
+   ],
+   "plan": "Play ...Bd7, then castle, and keep the knight away from the king.",
+   "difficulty": "natural"
+  },
+  "base": {
+   "novel_concept": ""
+  }
+ },
+ {
+  "fen": "5r1k/1p4pq/p1r1p2p/3p1P1N/3P1P1b/2P4P/PP4Q1/R4RK1 b - - 0 1",
+  "best": "exf5",
+  "alt": "Rxf5",
+  "teacher": {
+   "assessment": "Black is slightly better after winning back the pawn. White's knight on h5 is offside and White's pawns are loose.",
+   "idea": "Recapture with the pawn: fix your structure and take g4 away.",
+   "why_best": "1...exf5 gets rid of the backward e6-pawn and gives Black a kingside pawn majority. The f5-pawn covers g4, so White's queen has no active square and plays passively with 2.Kh1 and 3.Qf3.",
+   "why_not_alt": "1...Rxf5 leaves e6 backward and weak. It also lets White's queen use g4 with tempo on the rook (2.Qg4), so White coordinates and holds.",
+   "concepts": [
+    "pawn_weakness",
+    "pawn_majority",
+    "piece_activity"
+   ],
+   "novel_concept": "",
+   "plan": "Use the extra kingside pawn, tie White down, and push ...g6 to drive away the h5 knight.",
+   "difficulty": "natural"
+  },
+  "student": {
+   "novel_concept": "",
+   "idea": "Take the f5 pawn, then trade queens to open the f-file.",
+   "assessment": "Black is slightly better: White's f5 pawn is loose, and Black's rooks and queen can hunt it.",
+   "why_best": "1...exf5 wins a pawn and removes White's best attacker. After 2.Kh1 Qg6 3.Qf3, the f-file opens toward White's king. Black's queen and rooks then hunt f5, and White's king is stuck in the centre.",
+   "why_not_alt": "1...Rxf5 grabs a pawn but leaves White's knight on h5. White keeps the extra pawn, and Black's queen and rook stay passive.",
+   "concepts": [
+    "pawn_weakness",
+    "open_file",
+    "piece_activity"
+   ],
+   "plan": "Bring the queen to g6 and rook to f7, then hunt f5.",
+   "difficulty": "natural"
+  },
+  "base": {
+   "novel_concept": ""
+  }
+ },
+ {
+  "fen": "4r1k1/p4pp1/1p1Qp2p/q7/P3PP2/1P4P1/4b1BP/2r1R1K1 w - - 0 1",
+  "best": "Rxc1",
+  "alt": "b4",
+  "teacher": {
+   "assessment": "Black is up a rook, but White can take back at once and level the game.",
+   "idea": "Just take the rook on c1: it attacks your rook and wins material back.",
+   "why_best": "The c1-rook is loose and is also attacking Re1. 1.Rxc1 removes the attacker and restores material balance. Your rook then sits on the open c-file, and the game is equal.",
+   "why_not_alt": "1.b4 ignores the c1-rook. Black plays Rxe1+ and stays a full rook up. After Qxa4 Black also gets a queenside majority, and White's king is dragged to the centre.",
+   "concepts": [
+    "win_material",
+    "defence",
+    "open_file"
+   ],
+   "novel_concept": "",
+   "plan": "Use the c-file rook and the strong queen on d6, and push e5 to keep Black passive.",
+   "difficulty": "obvious"
+  },
+  "student": {
+   "novel_concept": "",
+   "idea": "Take the rook that attacks your queen, not the one on e1.",
+   "assessment": "Roughly equal. White is a rook down, but Black's queen is exposed and White can pick up material.",
+   "why_best": "The rook on c1 attacks the queen on a5. 1.Rxc1 wins a whole rook for a rook, so material is level. White then plays 2.Qc7 and 3.Qc3, bringing the queen to safety.",
+   "why_not_alt": "1.b4 ignores the attack. After 1...Rxe1+ 2.Kf2 White has lost the exchange, and Black's queen and rook are active, so White is clearly behind in material.",
+   "concepts": [
+    "defence",
+    "hanging_piece",
+    "win_material"
+   ],
+   "plan": "Play 2.Qc7 and 3.Qc3, then castle and use the extra rook.",
+   "difficulty": "natural"
+  },
+  "base": {
+   "novel_concept": ""
+  }
+ },
+ {
+  "fen": "q6k/5R1p/4PNp1/2pp4/2b5/p1P5/P4PPP/6K1 b - - 0 1",
+  "best": "Qg8",
+  "alt": "Qa7",
+  "teacher": {
+   "assessment": "White is winning: the rook on f7 and knight on f6 threaten Rxh7#, and Black's extra material can't fix that.",
+   "idea": "Guard h7 and g8 with the queen, even if it costs her.",
+   "why_best": "White threatens Rxh7#, since the f6 knight covers h7. 1...Qg8 guards h7 and the king's flight square. Black loses the queen after 2.Ra7 Bb5 3.Nxg8 but avoids mate and keeps fighting.",
+   "why_not_alt": "1...Qa7 offers a trade, but 2.Rxa7 just takes the queen. The rook-and-knight battery on h7 is still there, so Rxh7# follows.",
+   "concepts": [
+    "defence",
+    "mating_attack",
+    "king_safety"
+   ],
+   "novel_concept": "",
+   "plan": "Survive the mate threats, then use the bishop and pawns to stop the e-pawn.",
+   "difficulty": "natural"
+  },
+  "student": {
+   "novel_concept": "",
+   "idea": "Save the attacked queen by moving it off the h-file, not into a mating net.",
+   "assessment": "White is winning. Black's queen on a8 is attacked by the h7 rook and must move before White's rook reaches h7.",
+   "why_best": "On a8 the queen is attacked by the h7 rook. Qg8 escapes it with a check, so White must act. After 2.Ra7 Bb5 3.Nxg8 Kxg8 4.Ra5 Be8, Black wins the c5 pawn and the queen is safe.",
+   "why_not_alt": "Qa7 gives up the queen for a rook. After 2.Rxa7 d4 3.Rxh7# Black has no queen left, and White wins.",
+   "concepts": [
+    "defence",
+    "mating_attack",
+    "hanging_piece"
+   ],
+   "plan": "Trade queens, then use the queen and knight against White's rook and pawns.",
+   "difficulty": "natural"
+  },
+  "base": {
+   "novel_concept": ""
+  }
+ },
+ {
+  "fen": "1r2k2r/p1B2ppp/2P5/5b2/1bP5/1K6/PPn2PPP/RN3BNR b k - 0 1",
+  "best": "O-O",
+  "alt": "Ke7",
+  "teacher": {
+   "assessment": "Black is winning. The forking knight and active bishops outweigh White's extra material, provided Black keeps the initiative.",
+   "idea": "Castle to protect the attacked rook and keep every attacking threat alive.",
+   "why_best": "Bc7 threatens the b8 rook. 1...O-O defends it along the back rank and tucks the king away safely. Black keeps the initiative: after 2.Nc3 Nxa1+ the knight takes the rook with check and Black regains the material.",
+   "why_not_alt": "1...Ke7 also covers b8, but it costs a tempo and leaves the king with no pawn cover. 2.Ka4 lets White's king escape, and Black never wins back enough material.",
+   "concepts": [
+    "defence",
+    "initiative",
+    "king_safety"
+   ],
+   "novel_concept": "",
+   "plan": "Take the a1 rook with check, keep checking, and win back material.",
+   "difficulty": "natural"
+  },
+  "student": {
+   "novel_concept": "",
+   "idea": "Castle now. The b4-bishop is loose, so take it.",
+   "assessment": "Black is winning. White's king is stuck in the centre, and Black's pieces are aimed at it.",
+   "why_best": "After 1...O-O the b4-bishop is gone. White's king is stuck in the centre, and Black's pieces are aimed at it. After 2.Nc3 Nxa1+ 3.Ka4 Bc2+ 4.b3 Bxc3, Black wins the exchange and the b8-rook.",
+   "why_not_alt": "1...Ke7 is slow. White gets time to regroup with 2.Ka4 and 3.Bxb8, and Black's king stays in the centre.",
+   "concepts": [
+    "king_safety",
+    "piece_activity",
+    "win_material"
+   ],
+   "plan": "Take the b4-bishop, then trade pieces and convert the extra material.",
+   "difficulty": "natural"
+  },
+  "base": {
+   "novel_concept": ""
+  }
+ },
+ {
+  "fen": "r3r1k1/p1p2Rp1/7p/6R1/1PB1Q3/7q/2P4b/6K1 w - - 0 1",
+  "best": "Kf2",
+  "alt": "Kh1",
+  "teacher": {
+   "assessment": "Black is somewhat better and up material, but both kings are exposed. White's c4 bishop pins down g8 with discovered checks.",
+   "idea": "Run the king to f2, off the h-file, before Black's discovered checks land.",
+   "why_best": "On f2 the king escapes the h-file battery. Black has no better than trading queens with 1...Qg3+ 2.Rxg3 Bxg3+ 3.Kxg3. After 3...Rxe4, the discovered check 4.Rf4+ wins material back and leaves a holdable endgame.",
+   "why_not_alt": "On h1 the king stays on the h-file under the queen. 1...Bf4+ is a discovered check from h3, and Black's bishop keeps checking with tempo until White's position collapses.",
+   "concepts": [
+    "king_safety",
+    "discovered_attack",
+    "defence"
+   ],
+   "novel_concept": "",
+   "plan": "Get out of the checks, then use the Bc4 and Rf7 discovered checks to regain material.",
+   "difficulty": "hard"
+  },
+  "student": {
+   "novel_concept": "",
+   "idea": "Step out of check onto f2, where Black's queen and rook are still loose.",
+   "assessment": "Black is slightly better: White is in check, and Black's queen and rook are still on the loose.",
+   "why_best": "On f2 the king is no longer trapped. After 1.Kf2 Qg3+ 2.Rxg3 Bxg3+ 3.Kxg3, White has traded queens and bishops, and the rook on f4 becomes active.",
+   "why_not_alt": "Kh1 leaves the king on g8. Black's queen and rook are now very active, and White's king is stuck in the centre with no escape.",
+   "concepts": [
+    "king_safety",
+    "defence",
+    "counterplay"
+   ],
+   "plan": "Trade queens, then use the rook on f4 against Black's queenside pawns.",
+   "difficulty": "natural"
+  },
+  "base": {
+   "novel_concept": ""
+  }
+ },
+ {
+  "fen": "1r4k1/7p/3p2p1/8/3q4/Q4R2/P1K3P1/8 w - - 0 1",
+  "best": "g3",
+  "alt": "Qc3",
+  "teacher": {
+   "assessment": "Black is winning. White's king on c2 is exposed to many checks, and White is already a pawn down.",
+   "idea": "Don't force anything. Make a quiet move and keep the defenders where they are.",
+   "why_best": "Black has 12 checks against the open king, so any forcing try backfires. After 1.g3 Qa1 2.Rb3 Rc8+ 3.Rc3 White trades rooks and only loses the a-pawn, limiting the damage.",
+   "why_not_alt": "1.Qc3 offers a queen trade, but after 1...Qd5 Black hits a2. Then ...Qa2+ and ...Rb3 deflect White's queen, and White loses much more material.",
+   "concepts": [
+    "defence",
+    "king_safety",
+    "avoid_trades"
+   ],
+   "novel_concept": "",
+   "plan": "Keep queen and rook close to the king, block checks, and aim for a fortress.",
+   "difficulty": "computer"
+  },
+  "student": {
+   "novel_concept": "",
+   "idea": "Push the g-pawn to g3 to open the c-file toward Black's king.",
+   "assessment": "Black is winning. White's king on c2 is stuck in the centre, and Black's queen and rook are swarming it.",
+   "why_best": "1.g3 opens the c-file toward the king. After 1...Qa1 2.Rb3 Rc8+ 3.Rc3, White's rook reaches the c-file and the queen. White's queen and rook are both aimed at Black's king, and White's queen is also aimed at d6.",
+   "why_not_alt": "1.Qc3 is too slow. Black plays 1...Qd5 and keeps the extra pawn, so White's queen is stuck guarding d6. White's king stays in the centre and Black's queen and rook keep swarming it.",
+   "concepts": [
+    "king_safety",
+    "counterplay",
+    "piece_activity"
+   ],
+   "plan": "Bring the rook to c3, then use the c-file and queen against Black's king.",
+   "difficulty": "natural"
+  },
+  "base": {
+   "novel_concept": ""
+  }
+ },
+ {
+  "fen": "5bk1/ppq3pp/2p2p2/4pN2/PP2Pn2/2Pr4/1BQ2PPP/R5K1 w - - 0 1",
+  "best": "g3",
+  "alt": "Re1",
+  "teacher": {
+   "assessment": "White is slightly better: more space and the active Nf5, while Black's f8-bishop is passive.",
+   "idea": "Kick the f4 knight. Its best square, h3, is offside and vulnerable.",
+   "why_best": "1.g3 hits the knight. After 1...Nh3+ 2.Kg2 it sits on the rim, and Bc1 adds another attacker. It can end up short of squares. g3 also gives White's king a flight square.",
+   "why_not_alt": "Re1 leaves the f4 knight unchallenged and the back rank unrelieved. Black regroups calmly with ...g6 and ...Qd7, and the game is equal.",
+   "concepts": [
+    "trapped_piece",
+    "win_material",
+    "back_rank"
+   ],
+   "novel_concept": "",
+   "plan": "Hunt the h3 knight with Kg2 and Bc1, then use the queen's checks.",
+   "difficulty": "natural"
+  },
+  "student": {
+   "novel_concept": "",
+   "idea": "Push g3 to hit the f4 knight and open the c1-bishop's diagonal.",
+   "assessment": "White is slightly better: more space, Black's f4 knight is loose, and White's pieces are active.",
+   "why_best": "1.g3 attacks the f4 knight, so Black must defend it. After 1...Nh3+ 2.Kg2 the knight jumps to g2, and 3.Bc1 hits the c1-bishop. White's pieces then come in with ...Rd1 and ...Qb3+.",
+   "why_not_alt": "1.Re1 is too slow. Black plays 1...g6, develops with ...b5, and the f4 knight stays safe. White's pieces stay cramped and passive.",
+   "concepts": [
+    "prophylaxis",
+    "piece_activity",
+    "piece_activity"
+   ],
+   "plan": "Bring the rook to d1, the queen to b3, and the bishop to c1.",
+   "difficulty": "natural"
+  },
+  "base": {
+   "novel_concept": ""
+  }
+ },
+ {
+  "fen": "2n2r2/1q4k1/4bp2/b2pB3/2pP4/p1P2Q2/P1B2PP1/5NK1 w - - 0 1",
+  "best": "Ng3",
+  "alt": "Qg3+",
+  "teacher": {
+   "assessment": "Black is a piece up, but White has real attacking chances against the exposed king and the weak f6-pawn.",
+   "idea": "Bring the idle knight into the attack via g3\u2013h5 before cashing in.",
+   "why_best": "After 1.Ng3 the knight heads for h5, adding a third attacker on f6 with check. After 1...Rf7 2.Nh5+ Kf8 3.Nxf6, Black's king is stuck in the centre and White keeps enough pressure to hold the balance.",
+   "why_not_alt": "1.Qg3+ only drives the king into the corner. Then Bxf6 trades off White's best attackers, and in that simpler position Black's extra material starts to count.",
+   "concepts": [
+    "king_safety",
+    "avoid_trades",
+    "piece_activity"
+   ],
+   "novel_concept": "",
+   "plan": "Pile up on f6 with knight, queen and bishop; keep the black king in the centre.",
+   "difficulty": "hard"
+  },
+  "student": {
+   "novel_concept": "",
+   "idea": "Develop with tempo, not with checks, before Black's checks start.",
+   "assessment": "Roughly equal. White's pieces are active, and Black's king is stuck in the centre.",
+   "why_best": "Ng3 adds a second attacker to the f6 pawn and eyes the g7 king. It also frees the knight, so White can calmly go Nh5+ and Nxf6, winning the pawn.",
+   "why_not_alt": "Qg3+ is a check that starts a tempo race. After Kh8, Qh4+ and Bxf6, White wins the f6 pawn, but Black's king escapes with Rxf6 and Qxf6, and White is left with no compensation.",
+   "concepts": [
+    "development",
+    "king_safety",
+    "piece_activity"
+   ],
+   "plan": "Win f6 with Nh5+, then use the knight and bishop to finish development.",
+   "difficulty": "natural"
+  },
+  "base": {
+   "novel_concept": ""
+  }
+ },
+ {
+  "fen": "3rk1r1/Q4p1p/8/8/8/6P1/P4P1P/6K1 b - - 0 1",
+  "best": "Rg6",
+  "alt": "Rd1+",
+  "teacher": {
+   "assessment": "White is slightly better with queen and extra pawn, but Black's two rooks can hold if they stay together.",
+   "idea": "Bring the rook to the sixth rank to guard the king and stay compact.",
+   "why_best": "After 1...Rg6 the rook covers the sixth rank, and 2.Qc5 Re6 builds a safe shelter around the king. The rooks protect each other, so the queen has no easy checks or targets.",
+   "why_not_alt": "1...Rd1+ is a check that achieves nothing. It splits the rooks, and after 2.Kg2 the queen starts checking (Qb8+, Qb4+, Qh4+) against Black's exposed king.",
+   "concepts": [
+    "king_safety",
+    "defence",
+    "piece_activity"
+   ],
+   "novel_concept": "rooks defend each other vs queen",
+   "plan": "Keep the rooks connected near the king, then use one to stop the a-pawn.",
+   "difficulty": "hard"
+  },
+  "student": {
+   "novel_concept": "",
+   "idea": "Bring the rook to g6 to hit the queen and the king.",
+   "assessment": "White is slightly better. Black's king is stuck in the centre, and White's queen and rooks are active.",
+   "why_best": "Rg6 attacks the queen and the king. After 2.Qc5 Re6, the rook covers f7 and h7, so White's queen has no good squares. Black's rook then walks to a8 and stays active.",
+   "why_not_alt": "Rd1+ is a check that leads nowhere. After 2.Kg2 Rg6, White's queen and rook are active, and White's king is safe. Black's rook is passive and loses time.",
+   "concepts": [
+    "counterplay",
+    "king_safety",
+    "piece_activity"
+   ],
+   "plan": "Bring the rook to a8, then use the g-file and the king's pawns.",
+   "difficulty": "natural"
+  },
+  "base": {
+   "novel_concept": ""
+  }
+ },
+ {
+  "fen": "1rb1kb1r/pp1n1ppp/2N1p3/1N1pP3/5P2/2R1B3/2P3PP/4KB1R b Kk - 0 1",
+  "best": "bxc6",
+  "alt": "f6",
+  "teacher": {
+   "assessment": "About equal after bxc6. Black is in danger now: White threatens Nc7 mate, and the c6 knight is a key attacker.",
+   "idea": "Take the knight on c6 to stop mate and win back material.",
+   "why_best": "The c6 knight attacks the rook on b8. It also covers d8 and e7, so Nc7 would be mate. After 1...bxc6 2.Rxc6 a6, Black frees the king and wins material back. The game levels out.",
+   "why_not_alt": "1...f6 gives the king a square but leaves the knight alive. After 2.Nxb8 White wins the exchange, keeps attacking, and ends up a lot of material ahead.",
+   "concepts": [
+    "defence",
+    "mating_attack",
+    "win_material"
+   ],
+   "novel_concept": "",
+   "plan": "Use ...a6 to drive off the b5 knight, then develop and get the king safe.",
+   "difficulty": "natural"
+  },
+  "student": {
+   "novel_concept": "",
+   "idea": "Take the free knight on c6, then trade off White's rook and bishop.",
+   "assessment": "Roughly equal. White is a pawn up, but Black's knight on d7 is attacked and can be taken.",
+   "why_best": "The c6 knight is hanging. 1...bxc6 wins it outright. After 2.Rxc6 a6 3.Ba7 axb5, Black trades off White's best pieces, and the material is level.",
+   "why_not_alt": "1...f6 is a passive pawn break. It lets White play 2.Nxb8, winning the exchange, and Black's knight stays attacked. White is clearly winning.",
+   "concepts": [
+    "hanging_piece",
+    "win_material",
+    "defence"
+   ],
+   "plan": "Trade off White's rook and bishop, then finish development and castle.",
+   "difficulty": "natural"
+  },
+  "base": {
+   "novel_concept": ""
+  }
+ },
+ {
+  "fen": "rn2k2r/pp3pp1/1qpbp3/6Pp/2pP1B1P/P1N1PP1B/1PP5/2KR3R w kq - 0 1",
+  "best": "Bxd6",
+  "alt": "g6",
+  "teacher": {
+   "assessment": "Black is up material, but White can win back a whole bishop and reach roughly equal chances.",
+   "idea": "Take the loose bishop on d6. Nothing in Black's camp recaptures.",
+   "why_best": "Black's queen can't defend d6 because the c6 pawn blocks her. So 1.Bxd6 wins a clean piece and cuts Black's lead from 6 to about 2. White also keeps the d6 bishop deep in Black's camp.",
+   "why_not_alt": "1.g6 ignores the free bishop. Black answers 1...Bxf4, swaps off the hanging piece and leaves White with doubled f-pawns, still clearly lost.",
+   "concepts": [
+    "hanging_piece",
+    "win_material"
+   ],
+   "novel_concept": "",
+   "plan": "Keep the d6 bishop strong, push g6 to loosen Black's king, then open the centre.",
+   "difficulty": "natural"
+  },
+  "student": {
+   "novel_concept": "",
+   "idea": "Recapture with the bishop so the queenside pawns stay intact.",
+   "assessment": "Roughly equal. White is a piece down, but Black's queenside pawns are doubled and Black's king is still in the centre.",
+   "why_best": "1.Bxd6 wins a piece and removes the bishop pair. After 1...Nd7 2.g6 f5 3.e4, White's queenside pawns are active and the game is level.",
+   "why_not_alt": "1.g6 gives up the bishop for a pawn. After 1...Bxf4 2.exf4 White has doubled pawns, but Black's king is safe and the game is lost.",
+   "concepts": [
+    "win_material",
+    "piece_activity",
+    "pawn_weakness"
+   ],
+   "plan": "Play g6, e4, and use the queenside pawns and the d-pawn.",
+   "difficulty": "natural"
+  },
+  "base": {
+   "novel_concept": ""
+  }
+ },
+ {
+  "fen": "3QR3/p1r2p2/1p2ppk1/2p1q1p1/2P4P/1P2P1P1/P4P2/6K1 w - - 0 1",
+  "best": "g4",
+  "alt": "e4",
+  "teacher": {
+   "assessment": "White is winning: the queen and rook on the eighth rank surround Black's bare king on g6.",
+   "idea": "Take the king's escape squares with g4, then deliver checks to mate.",
+   "why_best": "g4 covers h5 and f5, so the g6 king is boxed in. White threatens h5+ and Rg8+. After 1...Qa1+ 2.Kg2 Rc8 3.Rg8+ Kh7 4.Qxc8, White wins the rook and mate follows.",
+   "why_not_alt": "e4 is still winning but lets the king out. Black's king can run to h5, and the e4 pawn falls to ...Qxe4. White wins material but gets no forced mate.",
+   "concepts": [
+    "mating_attack",
+    "king_safety",
+    "win_material"
+   ],
+   "novel_concept": "",
+   "plan": "Threaten h5+ and Rg8+ to drive the king into a mating net.",
+   "difficulty": "hard"
+  },
+  "student": {
+   "novel_concept": "",
+   "idea": "Push g4 to open the c8\u2013h4 diagonal toward Black's king.",
+   "assessment": "White is winning. Black's king is stuck in the centre, and White's queen and rook are aimed at it.",
+   "why_best": "1.g4 opens the c8\u2013h4 diagonal, so the queen and rook can hunt it. After 1...Qa1+ 2.Kg2 Rc8 3.Rg8+ Kh7 4.Qxc8 White wins the rook for a queen, and the attack continues.",
+   "why_not_alt": "1.e4 is too slow. Black gets time to regroup with ...Rd7 and ...Qxe4, and White's attack is gone.",
+   "concepts": [
+    "mating_attack",
+    "king_safety",
+    "initiative"
+   ],
+   "plan": "Bring the queen and rook to h7 and g8, then hunt the king.",
+   "difficulty": "natural"
+  },
+  "base": {
+   "novel_concept": ""
+  }
+ },
+ {
+  "fen": "4r1k1/pp1qnpb1/b2p2p1/6Bp/3P4/2N2B2/PP1Q1PPP/4R1K1 b - - 0 1",
+  "best": "Nf5",
+  "alt": "Nc6",
+  "teacher": {
+   "assessment": "Roughly equal, but Black is slightly better: White's isolated d4-pawn is a fixed target for Black's pieces.",
+   "idea": "Pile up on the weak d4-pawn with knight and g7-bishop.",
+   "why_best": "Nf5 joins the Bg7 in hitting d4, so White must push 2.d5. That gives up the d4 square, and after the rook trade the knight jumps to d4, a strong central post. Black also gets checking chances.",
+   "why_not_alt": "Nc6 also hits d4, but the knight can simply be taken by Bxc6 after the rook trade. White stays central and the game fizzles to equal.",
+   "concepts": [
+    "pawn_weakness",
+    "outpost",
+    "piece_activity"
+   ],
+   "novel_concept": "",
+   "plan": "Plant the knight on d4, then bring the queen to f5 against White's king.",
+   "difficulty": "natural"
+  },
+  "student": {
+   "novel_concept": "",
+   "idea": "Jump to f5 to hit the e8 rook and the queen.",
+   "assessment": "Roughly equal. Black's pieces are active, but White's rook on e8 is the main threat.",
+   "why_best": "1...Nf5 attacks the e8 rook, so White must answer with 2.d5. That opens the e-file toward Black's king. After 2...Rxe1+ 3.Qxe1 Nd4, Black's knight reaches the centre and the queen eyes the d-file.",
+   "why_not_alt": "1...Nc6 is slow. White plays 2.Rxe8+ Qxe8 3.Qe3, and Black's queen is stuck in the centre. White keeps the extra piece, and the position is roughly equal.",
+   "concepts": [
+    "initiative",
+    "king_safety",
+    "piece_activity"
+   ],
+   "plan": "Bring the knight to d4, then use queen and bishop checks against White's king.",
+   "difficulty": "natural"
+  },
+  "base": {
+   "novel_concept": ""
+  }
+ },
+ {
+  "fen": "3r3r/4kppp/pN1Rp3/1b2P1b1/1p6/2P5/PPB2PPP/4R1K1 w - - 0 1",
+  "best": "c4",
+  "alt": "Red1",
+  "teacher": {
+   "assessment": "White is better: active rook on d6, strong knight on b6, and Black's king stuck in the centre.",
+   "idea": "Hit the b5 bishop while Black is busy with the d-file.",
+   "why_best": "1.c4 attacks the bishop on b5 while Black is still dealing with the d6 rook and d-file pressure. In the main line, after 1...Rxd6 2.exd6+ Kxd6 3.cxb5 axb5, White has won a piece for pawns.",
+   "why_not_alt": "1.Red1 only defends. Black gets time for 1...Bf4 and ...Bxe5, wins the e5 pawn, trades rooks and reaches a worse but holdable ending.",
+   "concepts": [
+    "win_material",
+    "initiative",
+    "hanging_piece"
+   ],
+   "novel_concept": "",
+   "plan": "Bring the extra piece into play, check with Rd1+ and go after Black's queenside pawns.",
+   "difficulty": "natural"
+  },
+  "student": {
+   "novel_concept": "",
+   "idea": "Push the passed c-pawn to open the d6 rook and win it.",
+   "assessment": "White is winning. The c-pawn is passed, and Black's king is stuck in the centre.",
+   "why_best": "1.c4 hits the b5 bishop, so Black must answer with 1...Rxd6. After 2.exd6+ Kxd6 3.cxb5 axb5, White has a passed pawn on c3. The rook on d6 also adds pressure.",
+   "why_not_alt": "1.Red1 is a slow regrouping move. It lets Black play 1...Bf4 and trade rooks, so White's edge shrinks to just a small one.",
+   "concepts": [
+    "passed_pawn",
+    "win_material",
+    "king_safety"
+   ],
+   "plan": "Keep the extra passed c-pawn, then push the d-pawn and use the d6 rook.",
+   "difficulty": "natural"
+  },
+  "base": {
+   "novel_concept": ""
+  }
+ },
+ {
+  "fen": "8/1k4pp/p1p4r/3n1p2/1P1P4/PB3b1P/1B3P2/2R1K3 w - - 0 1",
+  "best": "Bxd5",
+  "alt": "Kd2",
+  "teacher": {
+   "assessment": "Black is better. His rook, knight and f3-bishop all aim at White's boxed-in king, and the h3-pawn is weak.",
+   "idea": "Remove the knight before it joins the attack, then activate the rook.",
+   "why_best": "1.Bxd5 cxd5 removes Black's best attacker and swaps off White's passive b3-bishop. Then 2.Rc3 attacks the f3-bishop, so White's rook gets active with tempo. Black wins h3, but White's king is much safer.",
+   "why_not_alt": "1.Kd2 lets Black take h3 with his knight still on the board. White ends up making the same trade later anyway, but with his rook pushed back to passive defence (Rg1, Re1).",
+   "concepts": [
+    "king_safety",
+    "piece_activity",
+    "defence"
+   ],
+   "novel_concept": "",
+   "plan": "Activate the rook, keep the king safe, use the b2-bishop and the queenside space.",
+   "difficulty": "natural"
+  },
+  "student": {
+   "novel_concept": "",
+   "idea": "Trade off Black's strong d5 knight before it lands on White's king.",
+   "assessment": "Black is slightly better: White's king on e1 is exposed to Black's rook and bishop, and Black's pieces are active.",
+   "why_best": "1.Bxd5 cxd5 removes Black's best attacker. After 2.Rc3 Rxh3, White's king is stuck in the centre. White's pieces stay active, and Black's king is boxed in.",
+   "why_not_alt": "1.Kd2 lets Black play 1...Rxh3. White's king escapes with 2.Rg1, and Black's pieces get time to develop. White's king is safe, but Black's pieces are active.",
+   "concepts": [
+    "king_safety",
+    "piece_activity",
+    "development"
+   ],
+   "plan": "Play Rc3, then Bc1 to box in Black's king, and keep Black's pieces active.",
+   "difficulty": "natural"
+  },
+  "base": {
+   "novel_concept": ""
+  }
+ },
+ {
+  "fen": "r3k2r/1p2b2p/p3Rp2/2q5/8/8/PPP1QPPP/R5K1 b kq - 0 1",
+  "best": "Rd8",
+  "alt": "Rf8",
+  "teacher": {
+   "assessment": "Roughly equal. Black's extra pawn is offset by the pinned e7-bishop and an exposed king on the e-file.",
+   "idea": "Seize the open d-file with tempo; the back-rank threat buys time to unpin.",
+   "why_best": "1...Rd8 takes the only open file and eyes White's weak back rank, so White spends a move on 2.Re1. That gains Black the time for ...Rd7, which guards e7 and loosens the pin on the bishop.",
+   "why_not_alt": "1...Rf8 is passive. It gives White a free hand, and after 2.Qg4 and 3.Rae1 White doubles rooks on the e-file against the pinned bishop.",
+   "concepts": [
+    "open_file",
+    "pin",
+    "back_rank"
+   ],
+   "novel_concept": "",
+   "plan": "Play ...Rd7 to shield e7, tuck the king away, then use the extra pawn.",
+   "difficulty": "natural"
+  },
+  "student": {
+   "novel_concept": "",
+   "idea": "Bring the rook to d8 to guard f6 and the king.",
+   "assessment": "Roughly equal. Black is a pawn up, but White's rook on f6 and queen on e2 threaten to win f6.",
+   "why_best": "Rd8 covers f6 and the king. After 2.Re1 Rd7 3.a3, Black's rook stays near the king, and the queen stays on c5 guarding d6. White's rook on f6 is only a small threat.",
+   "why_not_alt": "Rf8 also guards f6, but it steps off the king. After 2.Qg4, White's queen and rook both hit d6, and Black's rook is no longer near the king.",
+   "concepts": [
+    "king_safety",
+    "defence",
+    "piece_activity"
+   ],
+   "plan": "Keep the rook near the king, then use the queen and rook against White's pieces.",
+   "difficulty": "natural"
+  },
+  "base": {
+   "novel_concept": ""
+  }
+ }
+]

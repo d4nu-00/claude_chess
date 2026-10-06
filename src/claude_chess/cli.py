@@ -9,7 +9,7 @@ from typing import Any, Callable
 
 import chess
 
-SPEC_HELP = ("naive | engine-ctx | engine-noctx | hybrid-ctx | hybrid-noctx | stockfish:ELO | stockfish-skill:N | "
+SPEC_HELP = ("raw-text | raw-ascii | raw-image | naive | engine-ctx | engine-noctx | hybrid-ctx | hybrid-noctx | stockfish:ELO | stockfish-skill:N | "
              "maia:RATING (1100..1900, step 100) | maia3:ELO[:5m|23m|79m][:T] (Maia-3, any Elo) | random")
 
 
@@ -39,6 +39,17 @@ def make_player_factory(spec: str, args: Any, seed: int = 0) -> Callable[[], Any
         from claude_chess.match.maia import MaiaPlayer
         rating = int(spec.split(":", 1)[1])
         return lambda: MaiaPlayer(rating=rating)
+    if spec in ("raw-text", "raw-ascii", "raw-image"):
+        def raw_factory():
+            from claude_chess.engine.raw import RawPlayer
+            from claude_chess.llm import ClaudeCLIStream
+            if args.backend not in ("auto", "cli"):
+                raise SystemExit("raw players need the claude CLI backend (--backend cli)")
+            llm = ClaudeCLIStream(args.model, effort=args.effort)
+            return RawPlayer(llm, style={"raw-text": "unicode", "raw-ascii": "ascii", "raw-image": "image"}[spec], illegal_policy=args.illegal_policy,
+                             max_retries=args.max_retries,
+                             name=f"{spec}({args.model},{args.effort})")
+        return raw_factory
     if spec in ("naive", "engine-ctx", "engine-noctx", "hybrid-ctx", "hybrid-noctx"):
         def factory():
             from claude_chess.engine.players import ClaudeEnginePlayer, NaiveClaudePlayer
@@ -96,6 +107,37 @@ def parse_position(text: str) -> chess.Board:
     return board
 
 
+def resume_positions(run_dirs: str | list[str]) -> dict[int, list[str]]:
+    """SAN move lists of the unfinished games (result "*") across one or more runs' per-move logs.
+    Pass the original run and any earlier resume runs together: their logs are merged by ply."""
+    import json
+    from pathlib import Path
+    dirs = [Path(d) for d in ([run_dirs] if isinstance(run_dirs, str) else run_dirs)]
+    done: set[int] = set()
+    rows: dict[tuple[int, int], dict] = {}
+    for rd in dirs:
+        if (rd / "games.jsonl").exists():
+            done |= {int(g["game"]) for g in map(json.loads, (rd / "games.jsonl").read_text().splitlines())
+                     if g["result"] != "*"}
+        dec = rd / "decisions.jsonl"
+        for x in (dec.read_text().splitlines() if dec.exists() else []):
+            if x:
+                r = json.loads(x)
+                rows[(int(r["game"]), r["ply"])] = r
+    out: dict[int, list[str]] = {}
+    for g in sorted({k[0] for k in rows} - done):
+        board, sans = chess.Board(), []
+        for ply in sorted(p for (gg, p) in rows if gg == g):
+            r = rows[(g, ply)]
+            if ply != board.ply() + 1 or not r.get("uci"):
+                raise SystemExit(f"game {g}: cannot resume, move log is not a clean game from the start position")
+            mv = chess.Move.from_uci(r["uci"])
+            sans.append(board.san(mv))
+            board.push(mv)
+        out[g] = sans
+    return out
+
+
 def cmd_match(args: argparse.Namespace) -> None:
     from claude_chess.context import learned
     from claude_chess.match.openings import OPENINGS
@@ -107,17 +149,32 @@ def cmd_match(args: argparse.Namespace) -> None:
     fa = make_player_factory(args.white, args, seed=1)
     fb = make_player_factory(args.black, args, seed=2)
     label = args.label or f"{args.white}_vs_{args.black}".replace(":", "")
-    rd = play_match(fa, fb, args.games, args.max_plies,
-                    openings=None if args.no_openings else OPENINGS, parallel=args.parallel,
+    start_moves = resume_positions(args.resume_from) if args.resume_from else None
+    only = [int(x) for x in args.only_games.split(",")] if args.only_games else None
+    games = args.games
+    if start_moves:
+        if only:  # --only-games narrows which unfinished games to resume
+            start_moves = {g: m for g, m in start_moves.items() if g in only}
+        only, games = sorted(start_moves), max(start_moves) + 1
+    opening_fn = None
+    if args.random_openings:
+        from functools import partial
+
+        from claude_chess.match.openings import random_opening
+        opening_fn = partial(random_opening, plies=args.opening_plies, seed=args.opening_seed)
+    rd = play_match(fa, fb, games, args.max_plies, start_moves=start_moves, opening_fn=opening_fn,
+                    openings=None if args.no_openings or args.random_openings else OPENINGS, parallel=args.parallel,
                     label=label, runs_root=args.runs_root, analyze=not args.no_analysis,
                     analysis_depth=args.analysis_depth, resign_cp=args.resign_cp,
                     resign_plies=args.resign_plies, opening_offset=args.opening_offset,
-                    only_games=[int(x) for x in args.only_games.split(",")] if args.only_games else None,
+                    only_games=only,
                     meta={"resign_cp": args.resign_cp, "resign_plies": args.resign_plies,
-                          "opening_offset": args.opening_offset, "white_spec": args.white, "black_spec": args.black, "model": args.model,
+                          "opening_offset": args.opening_offset, "resume_from": args.resume_from,
+                          "random_openings": args.random_openings, "opening_plies": args.opening_plies,
+                          "opening_seed": args.opening_seed, "white_spec": args.white, "black_spec": args.black, "model": args.model,
                           "depth": args.depth, "candidates": args.candidates, "replies": args.replies,
                           "tac_depth": args.tac_depth, "tac_margin": args.tac_margin,
-                          "thinking": args.thinking, "board_read": args.board_read,
+                          "thinking": args.thinking, "effort": args.effort if "raw" in args.white + args.black else None, "board_read": args.board_read,
                           "threat_agent": args.threat_agent, "tablebase": not args.no_tablebase,
                           "search": args.search, "ctx_version": args.ctx_version,
                           "illegal_policy": args.illegal_policy, "book": args.book,
@@ -309,6 +366,7 @@ def _add_player_args(p: argparse.ArgumentParser) -> None:
     p.add_argument("--model", default="sonnet")
     p.add_argument("--backend", default="auto")
     p.add_argument("--thinking", type=int, default=None)
+    p.add_argument("--effort", default="max", choices=("low", "medium", "high", "xhigh", "max"))
     p.add_argument("--depth", type=int, default=1)
     p.add_argument("--candidates", type=int, default=4)
     p.add_argument("--replies", type=int, default=2)
@@ -337,6 +395,8 @@ def build_parser() -> argparse.ArgumentParser:
     m.add_argument("--max-plies", type=int, default=200)
     m.add_argument("--model", default="sonnet")
     m.add_argument("--backend", default="auto")
+    m.add_argument("--effort", default="max", choices=("low", "medium", "high", "xhigh", "max"),
+                   help="raw-text / raw-image: claude CLI --effort level (default max)")
     m.add_argument("--parallel", type=int, default=1)
     m.add_argument("--label", default=None)
     m.add_argument("--depth", type=int, default=1)
@@ -369,6 +429,15 @@ def build_parser() -> argparse.ArgumentParser:
     m.add_argument("--only-games", default=None,
                    help="comma-separated game indices to play (re-run failed games with the same "
                         "opening/colour assignment), e.g. 1,2")
+    m.add_argument("--resume-from", action="append", default=None, metavar="RUN_DIR",
+                   help="continue the unfinished (aborted) games of this run from their saved positions "
+                        "(same colours; earlier moves replayed as book, so analysis covers new moves only). "
+                        "Repeat to merge an original run with earlier resume runs")
+    m.add_argument("--random-openings", action="store_true",
+                   help="sample a random main-line ECO opening per game pair (see --opening-plies/--opening-seed) "
+                        "instead of the fixed list; the players skip those plies")
+    m.add_argument("--opening-plies", type=int, default=8, help="--random-openings: plies per opening (default 8)")
+    m.add_argument("--opening-seed", type=int, default=0, help="--random-openings: seed (same seed = same openings)")
     m.add_argument("--no-openings", action="store_true", help="start every game from the initial position")
     m.add_argument("--no-analysis", action="store_true")
     m.add_argument("--analysis-depth", type=int, default=12)

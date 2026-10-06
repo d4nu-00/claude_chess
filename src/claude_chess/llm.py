@@ -107,49 +107,7 @@ class ClaudeCLI:
             "--strict-mcp-config",
         ]
 
-    def complete(self, system: str, prompt: str, max_tokens: int = 1024) -> LLMResponse:
-        # max_tokens is not controllable via the CLI; prompts ask for brevity instead.
-        last_err: Exception | None = None
-        for attempt in range(self.retries + 1):
-            t0 = time.monotonic()
-            try:
-                proc = subprocess.run(
-                    self._cmd(system),
-                    input=prompt,
-                    capture_output=True,
-                    text=True,
-                    timeout=self.timeout,
-                    cwd=self._cwd,
-                    env=self._env,
-                )
-                data = json.loads(proc.stdout)
-                if data.get("is_error") or proc.returncode != 0:
-                    raise LLMError(f"claude -p error rc={proc.returncode}: {str(data.get('result'))[:300]}")
-                usage = data.get("usage") or {}
-                resp = LLMResponse(
-                    text=data.get("result") or "",
-                    cost_usd=float(data.get("total_cost_usd") or 0.0),
-                    input_tokens=int(usage.get("input_tokens") or 0),
-                    output_tokens=int(usage.get("output_tokens") or 0),
-                    seconds=time.monotonic() - t0,
-                )
-                self.counters.record(resp)
-                return resp
-            except (subprocess.TimeoutExpired, json.JSONDecodeError, LLMError, OSError) as e:
-                last_err = e
-                if attempt < self.retries:
-                    time.sleep(1.5 * (attempt + 1))
-        if last_err is not None and _is_limit_error(str(last_err)):
-            # Rate/session limit: back off for a few minutes before giving up.
-            for wait in LIMIT_BACKOFF_S:
-                time.sleep(wait)
-                try:
-                    return self._once(system, prompt)
-                except (subprocess.TimeoutExpired, json.JSONDecodeError, LLMError, OSError) as e:
-                    last_err = e
-        raise LLMUnavailable(f"claude -p failed after retries: {last_err}")
-
-    def _once(self, system: str, prompt: str) -> LLMResponse:
+    def _call(self, system: str, prompt: str, images: list[bytes] | None = None) -> LLMResponse:
         t0 = time.monotonic()
         proc = subprocess.run(self._cmd(system), input=prompt, capture_output=True, text=True,
                               timeout=self.timeout, cwd=self._cwd, env=self._env)
@@ -165,8 +123,102 @@ class ClaudeCLI:
         self.counters.record(resp)
         return resp
 
+    def complete(self, system: str, prompt: str, max_tokens: int = 1024,
+                 images: list[bytes] | None = None) -> LLMResponse:
+        # max_tokens is not controllable via the CLI; prompts ask for brevity instead.
+        last_err: Exception | None = None
+        for attempt in range(self.retries + 1):
+            try:
+                return self._call(system, prompt, images)
+            except (subprocess.TimeoutExpired, json.JSONDecodeError, LLMError, OSError) as e:
+                last_err = e
+                if attempt < self.retries:
+                    time.sleep(1.5 * (attempt + 1))
+        if last_err is not None and _is_limit_error(str(last_err)):
+            # Rate/session limit: back off for a few minutes before giving up.
+            for wait in LIMIT_BACKOFF_S:
+                time.sleep(wait)
+                try:
+                    return self._call(system, prompt, images)
+                except (subprocess.TimeoutExpired, json.JSONDecodeError, LLMError, OSError) as e:
+                    last_err = e
+        raise LLMUnavailable(f"claude -p failed after retries: {last_err}")
+
 
 LIMIT_BACKOFF_S = (30, 60, 120)
+
+
+class ClaudeCLIStream(ClaudeCLI):
+    """`claude -p` over stream-json: image input, an explicit --effort level, and thinking capture.
+
+    Used by the "raw" players (engine/raw.py). The reply text is the final result; `thinking`
+    holds whatever thinking text the CLI emits (models may return it empty/redacted), and
+    `thinking_tokens` is the count reported in usage either way.
+    """
+
+    def __init__(self, model: str = "claude-opus-5-5", effort: str = "max", timeout: float = 1800.0,
+                 retries: int = 1, executable: str = "claude") -> None:
+        super().__init__(model, timeout=timeout, retries=retries, executable=executable)
+        self.effort = effort
+
+    def _cmd(self, system: str) -> list[str]:
+        return [
+            self.executable, "-p",
+            "--model", self.model,
+            "--effort", self.effort,
+            "--settings", '{"showThinkingSummaries": true}',  # else thinking blocks come back empty
+            "--input-format", "stream-json",
+            "--output-format", "stream-json", "--verbose",
+            "--tools", "",
+            "--system-prompt", system,
+            "--no-session-persistence",
+            "--setting-sources", "",
+            "--strict-mcp-config",
+        ]
+
+    def _call(self, system: str, prompt: str, images: list[bytes] | None = None) -> LLMResponse:
+        import base64
+
+        content: list[dict] = [
+            {"type": "image", "source": {"type": "base64", "media_type": "image/png",
+                                         "data": base64.b64encode(img).decode()}}
+            for img in images or []
+        ]
+        content.append({"type": "text", "text": prompt})
+        msg = json.dumps({"type": "user", "message": {"role": "user", "content": content}})
+        t0 = time.monotonic()
+        proc = subprocess.run(self._cmd(system), input=msg + "\n", capture_output=True, text=True,
+                              timeout=self.timeout, cwd=self._cwd, env=self._env)
+        thinking: list[str] = []
+        result: dict | None = None
+        for line in proc.stdout.splitlines():
+            try:
+                ev = json.loads(line)
+            except json.JSONDecodeError:
+                continue
+            if ev.get("type") == "result":
+                result = ev
+            elif ev.get("type") == "assistant":
+                for block in (ev.get("message") or {}).get("content") or []:
+                    if block.get("type") == "thinking" and block.get("thinking"):
+                        thinking.append(block["thinking"])
+        if result is None:
+            raise LLMError(f"claude -p produced no result rc={proc.returncode}: "
+                           f"{(proc.stderr or proc.stdout)[-300:]}")
+        if result.get("is_error") or proc.returncode != 0:
+            raise LLMError(f"claude -p error rc={proc.returncode}: {str(result.get('result'))[:300]}")
+        usage = result.get("usage") or {}
+        resp = LLMResponse(
+            text=result.get("result") or "",
+            cost_usd=float(result.get("total_cost_usd") or 0.0),
+            input_tokens=int(usage.get("input_tokens") or 0),
+            output_tokens=int(usage.get("output_tokens") or 0),
+            seconds=time.monotonic() - t0,
+            thinking="\n\n".join(thinking),
+            thinking_tokens=int((usage.get("output_tokens_details") or {}).get("thinking_tokens") or 0),
+        )
+        self.counters.record(resp)
+        return resp
 
 
 class AnthropicLLM:

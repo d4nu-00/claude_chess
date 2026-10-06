@@ -28,3 +28,7 @@ reads this index first and writes back what it learns. Pages are small and singl
 - [context-research](pages/context-research.md) — how to get MORE RELEVANT context: data (coverage vs salience), literature, ranked plan
 - [cloud-environment](pages/cloud-environment.md) — rebuilding Stockfish/lc0 in the cloud sandbox, blocked hosts, agent gotchas
 - [maia-calibration](pages/maia-calibration.md) — Maia (human-like lc0 nets) as opponents, Lichess rating table, performance-rating stats (maia agent)
+- [raw-thinking](pages/raw-thinking.md) — Opus 5.5 with no harness (blog repro): text vs image board, saved rationale, why raw CoT isn't available
+- [explainer-model](pages/explainer-model.md) — engine lines → concepts → condensed explanations: design, encoder + LoRA LM, Schut-style concept discovery
+- [concept-discovery](pages/concept-discovery.md) — SAE features in our encoder (static + best-minus-alt dynamic), named by Claude, simulation-scored
+- [explainer-hypotheses](pages/explainer-hypotheses.md) — round 2: joint pick+explain model, lookahead (refuted), recall@k, geometry checker, GUI

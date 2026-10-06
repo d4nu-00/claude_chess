@@ -8,3 +8,6 @@ logs/
 experiments/*/LIVE.md
 experiments/*/live.html
 knowledge_learned/cache/
+
+# explainer pipeline: raw downloads, shards, checkpoints (large, regenerable)
+data/

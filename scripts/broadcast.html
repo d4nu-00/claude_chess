@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Opus vs Maia Broadcast</title>
+<style>
+:root{--bg:#161512;--panel:#262421;--panel2:#302e2b;--text:#bababa;--strong:#fff;--dim:#8a8784;--accent:#f0a020;--good:#7ec850;--bad:#e05a4f;--blue:#5a9fe0;--line:#3d3a36}
+@media (prefers-color-scheme:light){:root{--bg:#eeeeee;--panel:#fff;--panel2:#f3f3f3;--text:#333;--strong:#000;--dim:#777;--line:#d4d4d4}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:15px/1.45 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+header{display:flex;align-items:center;gap:12px;padding:10px 16px;background:var(--panel);border-bottom:1px solid var(--line)}
+header h1{font-size:17px;margin:0;color:var(--strong);font-weight:600}
+.pill{font-size:12px;padding:2px 8px;border-radius:99px;background:var(--panel2);color:var(--dim)}
+.pill.live{background:#3a2a10;color:var(--accent)} .pill.live::before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--accent);margin-right:6px;animation:pulse 1.4s infinite}
+@keyframes pulse{50%{opacity:.25}}
+#tabs{padding:10px 16px 6px;max-width:1200px;margin:0 auto;display:flex;flex-direction:column;gap:6px}
+#tabs details{background:var(--panel);border:1px solid var(--line);border-radius:8px}
+#tabs summary{cursor:pointer;padding:6px 12px;color:var(--strong);font-weight:600;font-size:13px;list-style:none}
+#tabs summary::before{content:"▸ ";color:var(--dim)} #tabs details[open] summary::before{content:"▾ "}
+#tabs summary small{color:var(--dim);font-weight:400;margin-left:6px}
+.rows{max-height:190px;overflow:auto;border-top:1px solid var(--line)}
+.tab{display:grid;grid-template-columns:62px 1fr auto auto;gap:10px;align-items:center;width:100%;padding:5px 12px;background:none;border:0;border-bottom:1px solid var(--line);cursor:pointer;color:var(--text);text-align:left;font:inherit;font-size:13px}
+.tab:last-child{border-bottom:0} .tab:hover{background:var(--panel2)} .tab.sel{background:var(--panel2);box-shadow:inset 3px 0 var(--accent)}
+.tab b{color:var(--strong);font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap} .tab small{color:var(--dim);font-variant-numeric:tabular-nums}
+.badge{font-size:11px;font-weight:700;text-align:center;padding:1px 6px;border-radius:99px;background:var(--panel2);color:var(--dim)}
+.badge.W{background:#1d3a1d;color:var(--good)} .badge.L{background:#3d1f1c;color:var(--bad)} .badge.D{background:#33321a;color:#d6c64a} .badge.live{background:#3a2a10;color:var(--accent)}
+main{display:grid;grid-template-columns:minmax(0,640px) minmax(320px,1fr);gap:16px;padding:0 16px 24px;max-width:1200px;margin:0 auto}
+@media (max-width:860px){main{grid-template-columns:minmax(0,1fr);padding:0 10px 24px}}
+html,body{overflow-x:hidden}.card{min-width:0}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.player{display:flex;justify-content:space-between;align-items:center;padding:8px 12px;background:var(--panel2)}
+.player b{color:var(--strong)} .player .tm{font-variant-numeric:tabular-nums;font-size:18px;color:var(--dim)}
+.player.think .tm{color:var(--accent)}
+.boardwrap{display:flex}
+#evalbar{width:22px;flex:0 0 22px;background:#222;position:relative}
+#evalfill{position:absolute;left:0;right:0;bottom:0;background:#f5f5f5;transition:height .4s}
+#evaltxt{position:absolute;left:0;right:0;font-size:10px;text-align:center;font-weight:700;mix-blend-mode:difference;color:#fff}
+#board{flex:1;min-width:0;display:block}
+.ctrl{display:flex;gap:6px;padding:8px 12px;flex-wrap:wrap;align-items:center}
+button.b{background:var(--panel2);border:1px solid var(--line);color:var(--text);border-radius:6px;padding:5px 12px;font:inherit;cursor:pointer}
+button.b:hover{border-color:var(--accent)}
+.status{margin-left:auto;font-size:13px;color:var(--dim)}
+h2{font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--dim);margin:0;padding:10px 12px 4px;font-weight:600}
+#now{padding:10px 12px;font-size:16px;color:var(--strong);border-bottom:1px solid var(--line)}
+#now .big{font-size:26px;font-variant-numeric:tabular-nums;color:var(--accent);font-weight:600}
+#thoughts{padding:6px 12px 12px;white-space:pre-wrap;max-height:300px;overflow:auto;color:var(--text)}
+.meta{color:var(--dim);font-size:12.5px;padding:0 12px 6px}
+#moves{padding:6px 8px 10px;display:grid;grid-template-columns:34px 1fr 1fr;gap:2px 4px;max-height:260px;overflow:auto;font-variant-numeric:tabular-nums}
+#moves .n{color:var(--dim);text-align:right;padding-right:4px}
+.mv{background:none;border:0;color:var(--text);text-align:left;font:inherit;padding:2px 6px;border-radius:4px;cursor:pointer}
+.mv:hover{background:var(--panel2)} .mv.cur{background:var(--accent);color:#000}
+.mv.op::after{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--accent);margin-left:6px;vertical-align:middle}
+.mv.cur.op::after{background:#000}
+.mv .q{color:var(--bad);font-weight:700}
+#graph{display:block;width:100%;height:auto;cursor:crosshair;touch-action:none}
+.right{display:flex;flex-direction:column;gap:12px;min-width:0}
+.legend{padding:0 12px 10px;font-size:12px;color:var(--dim)} .legend i{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--accent);margin:0 4px 0 0}
+</style>
+</head>
+<body>
+<header><h1>Claude Opus 5.5 vs Maia-3 (Elo 2400)</h1><span class="pill" id="mode">connecting…</span><span class="pill" id="upd"></span></header>
+<div id="tabs"></div>
+<main>
+  <section class="card">
+    <div class="player" id="ptop"><span><b id="ntop"></b></span><span class="tm" id="ttop"></span></div>
+    <div class="boardwrap"><div id="evalbar"><div id="evalfill"></div><div id="evaltxt"></div></div><svg id="board" viewBox="0 0 8 8"></svg></div>
+    <div class="player" id="pbot"><span><b id="nbot"></b></span><span class="tm" id="tbot"></span></div>
+    <div class="ctrl"><button class="b" id="first">⏮</button><button class="b" id="prev">◀</button><button class="b" id="next">▶</button><button class="b" id="last">⏭ Live</button><button class="b" id="flip">Flip</button><span class="status" id="status"></span></div>
+  </section>
+  <div class="right">
+    <section class="card"><div id="now"></div>
+      <h2>Opus's thoughts on <span id="thoughtmove"></span></h2><div class="meta" id="thoughtmeta"></div><div id="thoughts"></div></section>
+    <section class="card"><h2>Evaluation</h2><svg id="graph" viewBox="0 0 600 170"></svg>
+      <div class="legend"><i></i>Opus move · Stockfish depth 12, White's view · click to jump</div></section>
+    <section class="card"><h2>Moves</h2><div id="moves"></div></section>
+  </div>
+</main>
+<script>
+const SNAP = /*__SNAPSHOT__*/null;
+const $ = id => document.getElementById(id);
+const GLYPH = {K:"♚",Q:"♛",R:"♜",B:"♝",N:"♞",P:"♟",k:"♚",q:"♛",r:"♜",b:"♝",n:"♞",p:"♟"};
+let state = SNAP, fetchedAt = Date.now(), gid = null, ply = null, flipped = null;
+
+const cpToFrac = cp => 1/(1+Math.exp(-cp/400));
+const fmtEval = cp => cp==null ? "…" : Math.abs(cp)>=9000 ? (cp>0?"M":"-M") : (cp>=0?"+":"")+(cp/100).toFixed(1);
+const fmtDur = s => { s=Math.max(0,Math.round(s)); const h=Math.floor(s/3600),m=Math.floor(s%3600/60),x=s%60; return h?`${h}:${String(m).padStart(2,"0")}:${String(x).padStart(2,"0")}`:`${m}:${String(x).padStart(2,"0")}`; };
+const now = () => SNAP ? state.server_time : state.server_time + (Date.now()-fetchedAt)/1000;
+const cur = () => state.games.find(g=>g.id===gid) || state.games[0];
+
+function swingMark(g,i){ // i = index into g.moves; evals[i]=before, evals[i+1]=after (White view)
+  const a=g.evals[i], b=g.evals[i+1]; if(a==null||b==null) return "";
+  const sg = i%2===0 ? 1 : -1, d = sg*(b-a);
+  return d<=-300?"??":d<=-150?"?":d<=-60?"?!":"";
+}
+
+function drawBoard(g, p){
+  const fen = p===0 ? g.start_fen : g.moves[p-1].fen, rows = fen.split(" ")[0].split("/");
+  const lm = p>0 ? g.moves[p-1].uci : null, fl = flipped;
+  const sq = (f,r)=>fl?[7-f,r]:[f,7-r];
+  let s = "";
+  for(let r=0;r<8;r++)for(let f=0;f<8;f++){const [x,y]=sq(f,r);s+=`<rect x="${x}" y="${y}" width="1" height="1" fill="${(f+r)%2?"#f0d9b5":"#b58863"}"/>`;}
+  if(lm) for(const u of [lm.slice(0,2),lm.slice(2,4)]){const [x,y]=sq(u.charCodeAt(0)-97,+u[1]-1);s+=`<rect x="${x}" y="${y}" width="1" height="1" fill="#f6f669" opacity=".55"/>`;}
+  rows.forEach((row,i)=>{let f=0;for(const ch of row){if(/\d/.test(ch)){f+=+ch;continue}
+    const [x,y]=sq(f,7-i), white=ch===ch.toUpperCase();
+    s+=`<text x="${x+.5}" y="${y+.8}" font-size=".86" text-anchor="middle" fill="${white?"#fff":"#111"}" stroke="${white?"#111":"#fff"}" stroke-width="${white?.035:.02}" paint-order="stroke" style="font-family:'Apple Symbols','Segoe UI Symbol','DejaVu Sans',serif">${GLYPH[ch]}&#xFE0E;</text>`;f++;}});
+  for(let i=0;i<8;i++){const [x0,y0]=sq(i,0),[x1,y1]=sq(0,i);
+    s+=`<text x="${x0+.93}" y="${y0+.97}" font-size=".17" text-anchor="end" fill="#8a7a66">${"abcdefgh"[i]}</text><text x="${x1+.04}" y="${y1+.2}" font-size=".17" fill="#8a7a66">${i+1}</text>`;}
+  $("board").innerHTML = s;
+}
+
+function drawGraph(g, p){
+  const n=g.evals.length, W=600,H=170,pad=8,mid=H/2, X=i=>pad+(W-2*pad)*(n<2?0:i/(n-1)), Y=cp=>mid-(mid-pad)*Math.tanh((cp??0)/500);
+  const pts=g.evals.map((c,i)=>c==null?null:[X(i),Y(c)]).filter(Boolean);
+  let s=`<rect width="${W}" height="${H}" fill="#2b2926"/><line x1="0" x2="${W}" y1="${mid}" y2="${mid}" stroke="#555" stroke-dasharray="4 4"/>`;
+  if(pts.length>1){
+    const line=pts.map(q=>q.join(",")).join(" "), area=`M${pts[0][0]},${mid} L${line.replace(/ /g," L")} L${pts[pts.length-1][0]},${mid}Z`;
+    s+=`<clipPath id="up"><rect width="${W}" height="${mid}"/></clipPath><clipPath id="dn"><rect y="${mid}" width="${W}" height="${mid}"/></clipPath>
+      <path d="${area}" fill="#e8e8e8" clip-path="url(#up)" opacity=".85"/><path d="${area}" fill="#050505" clip-path="url(#dn)" opacity=".9"/>
+      <polyline points="${line}" fill="none" stroke="#f0a020" stroke-width="1.6"/>`;}
+  g.moves.forEach((m,i)=>{const c=g.evals[i+1]; if(m.opus&&c!=null) s+=`<circle cx="${X(i+1)}" cy="${Y(c)}" r="3" fill="#f0a020" stroke="#000" stroke-width=".6"/>`;});
+  s+=`<line x1="${X(p)}" x2="${X(p)}" y1="0" y2="${H}" stroke="#fff" stroke-width="1.2" opacity=".8"/>`;
+  s+=`<text x="6" y="14" font-size="10" fill="#aaa">White better</text><text x="6" y="${H-6}" font-size="10" fill="#aaa">Black better</text>`;
+  $("graph").innerHTML=s; $("graph").dataset.n=n;
+}
+
+const openG = {};
+function badge(x){
+  if(x.status==="live") return `<span class="badge live">● live</span>`;
+  if(x.status==="stopped") return `<span class="badge">stopped</span>`;
+  const o = x.result==="1/2-1/2" ? "D" : ((x.result==="1-0")===(x.opus_white!==false) ? "W" : "L");
+  return `<span class="badge ${o}">${{W:"Win",L:"Loss",D:"Draw"}[o]}</span>`;
+}
+function renderTabs(){
+  const harness = x=>x.cond.startsWith("hybrid");
+  const groups = [["Live now", x=>x.status==="live", true],
+                  ["Harness games (hybrid-ctx)", x=>x.status!=="live"&&harness(x), true],
+                  ["Raw Opus, no harness", x=>x.status!=="live"&&!harness(x), false]];
+  $("tabs").innerHTML = groups.map(([name,f,dflt],i)=>{
+    let xs = state.games.filter(f); if(!xs.length) return "";
+    xs = xs.slice().sort((a,b)=>(b.run||"").localeCompare(a.run||"")||a.id.localeCompare(b.id));
+    const hasSel = xs.some(x=>x.id===gid), open = openG[i]===undefined ? (dflt||hasSel) : openG[i];
+    const w = xs.filter(x=>x.status==="finished"&&badge(x).includes("Win")).length, l = xs.filter(x=>x.status==="finished"&&badge(x).includes("Loss")).length;
+    const rec = xs.some(x=>x.status==="finished") ? ` · Opus ${w}W ${l}L ${xs.filter(x=>x.status==="finished").length-w-l}D` : "";
+    return `<details data-g="${i}" ${open?"open":""}><summary>${name}<small>${xs.length} game${xs.length>1?"s":""}${rec}</small></summary><div class="rows">`+
+      xs.map(x=>`<button class="tab ${x.id===gid?"sel":""}" data-id="${x.id}">${badge(x)}<b>${harness(x)?x.series:x.label+" · game "+x.game}</b><small>${x.moves.length} plies</small><small>${fmtEval(x.evals[x.moves.length])}</small></button>`).join("")+`</div></details>`;
+  }).join("");
+  document.querySelectorAll("#tabs details").forEach(d=>d.ontoggle=()=>{openG[d.dataset.g]=d.open});
+  document.querySelectorAll(".tab").forEach(t=>t.onclick=()=>{gid=t.dataset.id;ply=null;flipped=null;render()});
+}
+
+function render(){
+  if(!state||!state.games.length){$("status").textContent="No games found";return}
+  if(!gid||!state.games.some(g=>g.id===gid)) gid=state.games[0].id;
+  const g=cur(), N=g.moves.length, live=ply===null, p=live?N:Math.min(ply,N);
+  if(flipped===null) flipped = g.opus_white===false ? true : false;
+  const opusWhite = g.opus_white!==false;
+  // tabs
+  renderTabs();
+  // players (top/bottom depending on flip)
+  const [nt,nb]=flipped?[g.white,g.black]:[g.black,g.white];
+  $("ntop").textContent=nt; $("nbot").textContent=nb;
+  drawBoard(g,p); drawGraph(g,p);
+  const ev=g.evals[p]; $("evalfill").style.height=(ev==null?50:cpToFrac(ev)*100)+"%"; $("evaltxt").textContent=fmtEval(ev);
+  $("evaltxt").style.top=flipped?"2px":"auto"; $("evaltxt").style.bottom=flipped?"auto":"2px";
+  $("evalbar").style.transform=flipped?"rotate(180deg)":"none"; $("evaltxt").style.transform=flipped?"rotate(180deg)":"none";
+  // moves
+  let mh="";
+  for(let i=0;i<N;i+=2){
+    const cell=j=>j<N?`<button class="mv ${g.moves[j].opus?"op":""} ${j+1===p?"cur":""}" data-p="${j+1}">${g.moves[j].san}<span class="q">${swingMark(g,j)}</span></button>`:"<span></span>";
+    mh+=`<span class="n">${i/2+1}.</span>${cell(i)}${cell(i+1)}`;}
+  $("moves").innerHTML=mh; document.querySelectorAll(".mv").forEach(b=>b.onclick=()=>{ply=+b.dataset.p;render()});
+  const c=document.querySelector(".mv.cur"); if(c&&live) c.scrollIntoView({block:"nearest"});
+  // thoughts: the selected ply's move if Opus's, else Opus's most recent move before it
+  let ti=-1; for(let i=p-1;i>=0;i--) if(g.moves[i].opus){ti=i;break}
+  if(ti>=0){const m=g.moves[ti], num=Math.floor(ti/2)+1, san=(ti%2?num+"... ":num+". ")+m.san;
+    $("thoughtmove").textContent=san;
+    $("thoughtmeta").textContent=`${fmtDur(m.seconds)} spent · ${m.tokens?m.tokens.toLocaleString()+" thinking tokens · ":""}$${m.cost.toFixed(2)} · Stockfish ${fmtEval(g.evals[ti])} → ${fmtEval(g.evals[ti+1])} ${swingMark(g,ti)}`;
+    $("thoughts").textContent=m.reasoning||"(no written reasoning)";}
+  else{$("thoughtmove").textContent="—";$("thoughtmeta").textContent="";$("thoughts").textContent="No Opus move yet."}
+  $("status").textContent = `ply ${p}/${N}` + (g.termination?` · ${g.termination.slice(0,70)}`:"");
+  tick();
+}
+
+function tick(){
+  if(!state) return; const g=cur(); if(!g) return;
+  const opusToMove = (g.to_move==="white")===(g.opus_white!==false);
+  let msg;
+  if(g.status==="live"){
+    const el = g.last_ts>0 ? fmtDur(now()-g.last_ts) : "—";
+    msg = opusToMove ? `Opus is thinking · <span class="big">${el}</span> on this move` : `Maia to move · <span class="big">${el}</span>`;
+  } else msg = g.status==="finished" ? `Game over ${g.result}` : `Game stopped (usage limit / API error) — not currently being played`;
+  $("now").innerHTML = msg;
+  const tmr = (g.status==="live"&&g.last_ts>0) ? fmtDur(now()-g.last_ts) : "";
+  for(const [pid,tid,name] of [["ptop","ttop",$("ntop").textContent],["pbot","tbot",$("nbot").textContent]]){
+    const isOpus=name.startsWith("Claude"), white=name===g.white, thinking=g.status==="live"&&((white?"white":"black")===g.to_move);
+    $(pid).classList.toggle("think",thinking); $(tid).textContent = thinking ? tmr : (isOpus?`${fmtDur(g.moves.filter(m=>m.opus).reduce((a,m)=>a+m.seconds,0))} total`:"");
+  }
+  if(SNAP) return;
+  $("upd").textContent = "updated "+fmtDur((Date.now()-fetchedAt)/1000)+" ago";
+}
+
+async function poll(){
+  try{const r=await fetch("/api/state",{cache:"no-store"}); state=await r.json(); fetchedAt=Date.now(); $("mode").textContent="LIVE"; $("mode").className="pill live"; render();}
+  catch(e){$("mode").textContent="offline — retrying"; $("mode").className="pill"}
+}
+$("first").onclick=()=>{ply=0;render()};
+$("prev").onclick=()=>{const g=cur();ply=Math.max(0,(ply===null?g.moves.length:ply)-1);render()};
+$("next").onclick=()=>{const g=cur();if(ply===null)return;ply=ply+1>=g.moves.length?null:ply+1;render()};
+$("last").onclick=()=>{ply=null;render()};
+$("flip").onclick=()=>{flipped=!flipped;render()};
+addEventListener("keydown",e=>{if(e.key==="ArrowLeft")$("prev").click();if(e.key==="ArrowRight")$("next").click()});
+function graphSeek(e){const g=cur(), r=$("graph").getBoundingClientRect(), t=((e.touches?e.touches[0].clientX:e.clientX)-r.left)/r.width, n=g.evals.length;
+  const i=Math.round(Math.max(0,Math.min(1,(t*600-8)/584))*(n-1)); ply=i>=g.moves.length?null:i; render();}
+$("graph").addEventListener("pointerdown",e=>{graphSeek(e);$("graph").onpointermove=graphSeek;});
+addEventListener("pointerup",()=>{$("graph").onpointermove=null});
+if(SNAP){$("mode").textContent="SNAPSHOT "+new Date(SNAP.server_time*1000).toLocaleString();render();}
+else{poll();setInterval(poll,3000);}
+setInterval(tick,1000);
+</script>
+</body>
+</html>

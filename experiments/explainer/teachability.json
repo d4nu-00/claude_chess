@@ -1,0 +1,80 @@
+[
+ {
+  "feature": 496,
+  "name": "Grab hanging material, avoid giveback",
+  "sim": 0.8,
+  "n_proto": 214,
+  "n_test": 46,
+  "before": 0.348,
+  "concept": 0.217,
+  "control": 0.326,
+  "concept_on_random": 0.217,
+  "control_on_random": 0.239,
+  "teachability": -0.109
+ },
+ {
+  "feature": 285,
+  "name": "Simplifying trades that eliminate heavy pieces",
+  "sim": 0.7,
+  "n_proto": 300,
+  "n_test": 100,
+  "before": 0.2,
+  "concept": 0.16,
+  "control": 0.17,
+  "concept_on_random": 0.215,
+  "control_on_random": 0.155,
+  "teachability": -0.01
+ },
+ {
+  "feature": 673,
+  "name": "Best line avoids queen trade",
+  "sim": 0.9,
+  "n_proto": 300,
+  "n_test": 100,
+  "before": 0.25,
+  "concept": 0.24,
+  "control": 0.225,
+  "concept_on_random": 0.15,
+  "control_on_random": 0.215,
+  "teachability": 0.015
+ },
+ {
+  "feature": 21,
+  "name": "Capture the hanging enemy queen",
+  "sim": 0.7,
+  "n_proto": 300,
+  "n_test": 100,
+  "before": 0.51,
+  "concept": 0.49,
+  "control": 0.475,
+  "concept_on_random": 0.13,
+  "control_on_random": 0.16,
+  "teachability": 0.015
+ },
+ {
+  "feature": 634,
+  "name": "Best line relocates king from center",
+  "sim": 1.0,
+  "n_proto": 300,
+  "n_test": 100,
+  "before": 0.34,
+  "concept": 0.375,
+  "control": 0.3,
+  "concept_on_random": 0.215,
+  "control_on_random": 0.175,
+  "teachability": 0.075
+ },
+ {
+  "feature": 835,
+  "name": "Best line castles kingside, alternative doesn't",
+  "sim": 0.9,
+  "n_proto": 300,
+  "n_test": 100,
+  "before": 0.38,
+  "concept": 0.395,
+  "control": 0.34,
+  "concept_on_random": 0.23,
+  "control_on_random": 0.205,
+  "teachability": 0.055
+ }
+]

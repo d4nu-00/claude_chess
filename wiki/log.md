@@ -28,3 +28,12 @@
 - 2026-09-25 orchestrator: learning loop + learned KB (knowledge_learned/), learn/kb CLI, gate memoises SF scores. See [[learning-loop]].
 - 2026-09-25 orchestrator: sacrifices (declared, compensation-capped), --book, context v4 motifs, learn caching, collapse/drift reviews, provenance, Ollama backend. See [[engine]], [[context-builder]], [[learning-loop]].
 - 2026-09-25 orchestrator: exp3 (Haiku, ctx v4) — no measurable change vs v3 at n=12; sacrifice path ~inert with Haiku. See [[results]].
+- 2026-09-25 orchestrator: raw-text/raw-image players (engine/raw.py, ClaudeCLIStream), Opus 5.5 max effort vs maia3:2400:79m pilot; raw CoT unavailable via CLI. See [[raw-thinking]].
+- 2026-09-26 orchestrator: --random-openings (random ECO main-line openings per game pair), --resume-from (multi-run), scripts/export_pgn.py. See [[raw-thinking]].
+- 2026-09-26 orchestrator: scripts/broadcast.py live viewer (eval graph, reasoning, move timer). See [[raw-thinking]].
+- 2026-10-02 explainer agent: design for the concept/explanation model (Lichess evals + puzzles, concept detectors, Claude teacher, encoder + LoRA LM, SAE discovery). See [[explainer-model]].
+- 2026-10-03 explainer agent: encoder enc_v1 (MLX, 7.5M) trained; SAE discovery: dynamic features = castle / avoid queen trade / grab material (sim 0.8-1.0). See [[concept-discovery]].
+- 2026-10-03 explainer agent: student Qwen3-1.7B LoRA (Qwen3.5-2B OOMs) — format learned, 10% of ideas correct vs teacher 93% (geometry errors); random-trunk probe baseline 0.28 vs 0.47; teachability: king-safety concepts only; showcase page. See [[explainer-model]], [[results]].
+- 2026-10-03 explainer agent: round 2 — joint pick+explain model + GUI (scripts/play.py). Lookahead refuted; joint A ≈ instinct; joint D (+verified tactical outcome per candidate) beats instinct on puzzles 75% vs 63% (p<0.001); idea-first prompt hurts tactics (p=0.006). See [[explainer-hypotheses]].
+- 2026-10-04 explainer agent: round 2 done — E (move-first + tactical outcomes) 34%/72% vs instinct 26%/63% (p<0.001), decide-then-explain costs nothing; J6 depth-4 tactics small one-way gain, GUI default. See [[explainer-hypotheses]].
+- 2026-10-05 explainer agent: round 3 — +2,000 Opus labels (teacher_v2.jsonl); E3 ideas sound 26→39% (p=0.035), true 19→28%; puzzles 76%. joint_best → E3. See [[explainer-hypotheses]].

@@ -122,3 +122,19 @@ def test_resign_adjudication_ends_decided_game():
         sf.close()
     assert rec.result == "1-0" and "resign" in rec.termination
     assert rec.game.end().board().ply() < 150
+
+
+def test_random_opening_is_legal_deterministic_and_varied():
+    import chess
+
+    from claude_chess.match.openings import random_opening
+    seen = set()
+    for pair in range(12):
+        name, sans = random_opening(pair, plies=8, seed=3)
+        assert (name, sans) == random_opening(pair, plies=8, seed=3)
+        b = chess.Board()
+        for san in sans:
+            b.push_san(san)
+        assert 2 <= len(sans) <= 8 and name
+        seen.add(tuple(sans))
+    assert len(seen) > 3

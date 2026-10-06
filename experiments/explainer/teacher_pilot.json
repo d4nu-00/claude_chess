@@ -1,0 +1,38 @@
+{
+ "opus_x1": {
+  "n": 20,
+  "cost_per_label": 0.0336,
+  "seconds_per_label": 9.1,
+  "verifier_ok": 0.95,
+  "idea_words": 12.4,
+  "idea_correct": 1.0,
+  "judge_cost": 0.336
+ },
+ "opus_x5": {
+  "n": 20,
+  "cost_per_label": 0.0201,
+  "seconds_per_label": 5.6,
+  "verifier_ok": 1.0,
+  "idea_words": 11.15,
+  "idea_correct": 1.0,
+  "judge_cost": 0.332
+ },
+ "sonnet_x5": {
+  "n": 20,
+  "cost_per_label": 0.0096,
+  "seconds_per_label": 4.2,
+  "verifier_ok": 1.0,
+  "idea_words": 12.9,
+  "idea_correct": 0.75,
+  "judge_cost": 0.347
+ },
+ "haiku_x5": {
+  "n": 20,
+  "cost_per_label": 0.0177,
+  "seconds_per_label": 26.7,
+  "verifier_ok": 1.0,
+  "idea_words": 9.6,
+  "idea_correct": 0.7,
+  "judge_cost": 0.355
+ }
+}
